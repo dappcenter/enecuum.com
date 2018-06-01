@@ -1,6 +1,4 @@
-# ENQ Website official repo
-
-
+![ENQ](https://raw.githubusercontent.com/Enecuum/enecuum.com/dev/static/img/tokens/il_1.png)
 
 ## Build Setup
 
