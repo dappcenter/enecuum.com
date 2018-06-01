@@ -1,0 +1,100 @@
+<template>
+  <div class="authorize">
+    <el-row class="flex-center flex-column">
+      <h1 class="h3">Sign Up</h1>
+      <p>1. Email, password</p>
+      <el-form :model="signUpForm" :rules="signUpFormRules" ref="signUpForm" class="authorize_form">
+        <el-form-item prop="email">
+          <el-input v-model="signUpForm.email" placeholder="Email address" @keyup.enter.native="submitForm"></el-input>
+        </el-form-item>
+        <el-form-item prop="password">
+          <el-input type="password" v-model="signUpForm.password" placeholder="Password" @keyup.enter.native="submitForm"></el-input>
+        </el-form-item>
+        <el-form-item prop="confirm_password">
+          <el-input type="password" v-model="signUpForm.confirm_password" placeholder="Confirm password" @keyup.enter.native="submitForm"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" class="neon" @click="submitForm" :loading="loading">Sign Up</el-button>
+        </el-form-item>
+      </el-form>
+    </el-row>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: "signup",
+    data() {
+      return {
+        loading: false,
+        signUpForm: {
+          email: '',
+          password: '',
+          confirm_password: ''
+        },
+        signUpFormRules: {
+          email: [
+            {required: true, message: 'Email is required'}
+          ],
+          password: [
+            {required: true, message: 'Password is required'}
+          ],
+          confirm_password: [
+            {required: true, message: 'This field required'}
+          ]
+        }
+      }
+    },
+    methods: {
+      submitForm() {
+        let form = this.$refs.signUpForm;
+        form.validate((valid) => {
+          if (valid) {
+            this.signupForm();
+          } else {
+            setTimeout(() => {
+              form.clearValidate();
+            }, 3000);
+            return false;
+          }
+        });
+      },
+      signupForm() {
+        if ((this.signUpForm.password !== this.signUpForm.confirm_password) || !this.signUpForm.password) {
+          this.$message({
+            type: 'danger',
+            message: 'Passwords don\'t match'
+          });
+          return false;
+        }
+        let data = this.signUpForm;
+        if (this.cq_user) {
+          data.append('cq_user', this.cq_user);
+        }
+        this.loading = true;
+        let isSended = this.$store.dispatch('signUp', data);
+        isSended.then((res) => {
+          if (res.ok) {
+            this.a({category: 'signup', eventAction: 'success', eventLabel: 'reg'});
+            this.$message({
+              type: "success",
+              message: res.success
+            });
+            this.$refs['signUpForm'].resetFields();
+          } else {
+            this.$message({
+              type: "error",
+              message: res.error
+            });
+          }
+          this.loading = false;
+        }).catch(() => {
+          this.$message({
+            type: "error",
+            message: "Something went wrong, sorry"
+          });
+        });
+      }
+    }
+  }
+</script>

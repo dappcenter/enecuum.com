@@ -1,0 +1,22 @@
+$--color-primary: #00add9;
+$--color-text-primary: rgba(0, 0, 0, 0.7);
+$--color-text-regular: #606266;
+$--color-text-secondary: rgba(0, 0, 0, 0.5);
+$--color-text-placeholder: #c0c4cc;
+
+$--input-height: 54px;
+
+$--button-min-width: 160px;
+$--button-font-size: 16px;
+$--button-padding-vertical: 15px;
+$--button-padding-horizontal: 15px;
+
+$--background-menu-color-hover: initial;
+
+$--collapse-border-color: transparent;
+
+$--checkbox-input-width: 20px;
+$--checkbox-input-height: 20px;
+
+$--font-path: './fonts';
+@import "./element/index";

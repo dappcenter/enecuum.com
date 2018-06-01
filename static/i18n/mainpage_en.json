@@ -1,0 +1,217 @@
+{
+  "mainpage": {
+    "banner": {
+      "title": "Blockchain of Tomorrow",
+      "subtitle": "Enecuum is an innovative decentralized platform for integrating blockchain into business processes",
+      "wp": "Download whitepaper",
+      "wp_ko": "백서",
+      "onepager": "Onepager",
+      "subscribeForm": {
+        "description": "Please fill the sign up form to join ENQ. All important information about the project will be available for whitelist members.",
+        "input": "Enter Your Email Address",
+        "button": "Join"
+      }
+    },
+    "features": [
+      {
+        "TITLE": "Scalability",
+        "SUB_TITLE": "Directed Acyclic Hypergraph (HyperDAG)",
+        "IMG": "img/mainpage/features/slider-img1.png",
+        "TEXT": "New transaction recording method supporting creation of separate branches in the system, with a custom ruleset tailored to solve any business problem, including the problem of quick and cheap handling a large number of transactions. These branches made of chains of blocks each containing a number of homogenous transactions."
+      },
+      {
+        "TITLE": "Scalability",
+        "SUB_TITLE": "Free Transactions",
+        "IMG": "img/mainpage/features/free.png",
+        "TEXT": "Most part of transactions have zero fees. Our architecture already supports macroblocks of unlimited size - a unique solution allowing our system protocol to scale in parallel with the growing overall computational power of the network."
+      },
+      {
+        "TITLE": "Speed",
+        "SUB_TITLE": "High Speed",
+        "IMG": "img/mainpage/features/speed.png",
+        "TEXT": "High throughput allowing for up to 1 million transaction per second."
+      },
+      {
+        "TITLE": "Security",
+        "SUB_TITLE": "Hybrid Consensus Algorithm",
+        "IMG": "img/mainpage/features/hammer.png",
+        "TEXT": "Implementation of PoW + PoA (first case of real life implementation) + PoS algorithms makes the system 3 times more resistant to hacking."
+      },
+      {
+        "TITLE": "Security",
+        "SUB_TITLE": "Private Branches",
+        "IMG": "img/mainpage/features/cloud.png",
+        "TEXT": "Enecuum Tickets allow to create dedicated branches where circulation of ENQ coins, the main system cryptocurrency, is not intended. A Ticket is both an access key to the corresponding branch and a decryption key for the transactions in this branch, and can be freely transferred between the users of the system. The key purpose of Ticket branches is to facilitate creation of a blockchain-based flexible environment for easy interaction between businesses and their customers."
+      },
+      {
+        "TITLE": "Security",
+        "SUB_TITLE": "Flexible Smart Contracts",
+        "IMG": "img/mainpage/features/scheme.png",
+        "TEXT": "SHARNELL linear logic + JS as the smart contract language. High level of Enecuum’s smart contracts security is ensured by the business-oriented linear logic called SHARNELL. They are written in JavaScript and are easy and cheap to implement for a web developer. A reliable and secure means to perform your own ICO and issue your own Tokens."
+      },
+      {
+        "TITLE": "Security",
+        "SUB_TITLE": "On-chain Voting",
+        "IMG": "img/mainpage/features/scheme2.png",
+        "TEXT": "On-chain voting + test branch for a safe upgrade of the system. Support of various branches allows to create private branches with custom rulesets adapted to a particular business case."
+      }
+    ],
+    "businesscase": {
+      "title": "Business Cases",
+      "slider": [
+        {
+          "TITLE": "ICO Platform",
+          "BAR": "ICO Platform",
+          "IMG": "img/mainpage/business/ico.png",
+          "TEXT": {
+            "BLOCK_1": "High throughput of the Enecuum blockchain enables startups to raise funds at any scale, without the risk of a network hang-up. This way all the investors can be sure they can participate in the ICO and quickly receive their Tokens.",
+            "BLOCK_2": "Smart contracts in Enecuum are implemented in JavaScript and are easy to write for a web developer. It significantly decreases the learning curve and cost of their creation. Linear logic at their base helps eliminate potential vulnerabilities in smart contracts and minimizes the risks of hacking.",
+            "BLOCK_3": "“Cancellation model” allows to implement complex crowdsales with step-by-step raising and return of the funds to the investors, at any stage of the process. System-specific notation of Tokens, similar to the ERC-20 notation, simplifies their entry to a cryptocurrency exchange service after the ICO."
+          }
+        },
+        {
+          "TITLE": "Banking, Corporate & Insurance",
+          "BAR": "Banking",
+          "IMG": "img/mainpage/business/bank.png",
+          "TEXT": {
+            "BLOCK_1": "Enecuum’s Tickets and Marks aim to provide banks and government agencies with a reliable control over targeted spending of received credit and budget funds, and companies to conduct secure payments between themselves with no fear of sensitive information or trade secrets disclosure.",
+            "BLOCK_2": "Tickets intend to give banks a secure channel of communication when sharing a Ticket with Bank B, Bank A could give Bank B access to a private branch only holders of this Ticket could access to and only holders of this Ticket could decrypt transaction from.",
+            "BLOCK_3": "Another example could be when Bank A assings different Marks to its customersbased based on the nature of their business (construction company, industrial equipment supplier, etc). Bank A could then issue a client a directed loan in Tokens having a specific Mark. The client could only use these Tokens to pay certain predefined organizations, spending them according to the purpose of the loan."
+          }
+        },
+        {
+          "TITLE": "Distributed Computations",
+          "BAR": "Computations",
+          "IMG": "img/mainpage/business/analysis.png",
+          "TEXT": {
+            "BLOCK_1": "System ability to run “heavy” smart contracts in dedicated branches allows users to perform complex calculations that require high computational power without increasing workload on the main Enecuum branches (useful for neural network training, scientific calculations, rendering computer graphics, JS libraries and so on).",
+            "BLOCK_2": "Payment for using such “heavy” smart contracts is performed in ENQ coins at a flexible rate, similar to the transaction price concept in the Ethereum blockchain. Creating a request to perform the calculations, the customer sets the price and miners decide whether it is beneficial for them to provide their computational power for the task.",
+            "BLOCK_3": "In case miners agree to the terms, the customer’s funds are reserved by the smart contract for future payment. When the task is completed and valid results are provided, the funds are released and automatically transferred to the miners."
+          }
+        },
+        {
+          "TITLE": "Decentralized Storage",
+          "BAR": "Storage",
+          "IMG": "img/mainpage/business/store.png",
+          "TEXT": {
+            "BLOCK_1": "Effective use of disk space on user’s devices achieved through sharding and change of the transaction duplication parameters.",
+            "BLOCK_2": "For example, if 4 users provide 5 GB of space each and the duplication and sharding parameters set to 50%, the effective storage capacity for files is 10 GB. Extrapolating this pattern to the entire network, the size of the “global decentralized disk” will grow proportionally preserving availability of the data and a sufficiently high speed of access. That means users can build on top of the Enecuum blockchain such services as decentralized hostings, cloud data storage services and content delivery networks.",
+            "BLOCK_3": "Applying SHARNELL Smart Contracts, and Tickets as encryption keys on top of such data branches, users can create complex paid access services with decentralized and immutable content paid for in Tokens."
+          }
+        },
+        {
+          "TITLE": "Micropayments, Fintech & IoT",
+          "BAR": "Micropayments",
+          "IMG": "img/mainpage/business/pay.png",
+          "TEXT": {
+            "BLOCK_1": "Support of separate branches with their own consensus rulesets that stimulates miners’ activity creates conditions beneficial for implementation of micro-transaction services.",
+            "BLOCK_2": "Zero transaction fee for a decentralized micro-transaction service. Extremely low fee per transaction in case of a centralization when a service makes a lot of micro-transactions from a single wallet. For example, 10,000,000 transactions a day can be easily recorded in several large macroblocks of ~120 MB each. The fee will be calculated per block, and will be very low per transaction.",
+            "BLOCK_3": "This is a perfect case for an Internet of Things-based service. A simple PoA mining client running on various devices will be able to completely cover their carried transaction fees. A mesh network, supported by the Enecuum protocol, between these devices provides a high availability."
+          }
+        }
+      ]
+    },
+    "mining": {
+      "title": "Mining",
+      "subtitle": "Hybrid Consensus Algorithm",
+      "blocks": {
+        "title": "3 Mining Stages",
+        "stages": [
+          {
+            "TITLE": "Proof of Work",
+            "IMG": "img/mainpage/mining/hammer.png",
+            "TEXT": {
+              "BLOCK_1": "Proof of Work at Enecuum is based on an improved version of the Bitcoin-NG protocol modified for effective mining of many block of different types in parallel. This approach ensures high scalability the system.",
+              "BLOCK_2": "A custom version of the Cryptonight protocol (Keccak + AES + X11) aims to defend the system against centralization caused by Application-Specific Integrated Circuit devices.",
+              "BLOCK_3": "PoW miners calculate the block hash and hold their macroblocks open for PoA miners to fill it with microblocks containing transactions."
+            }
+          },
+          {
+            "TITLE": "Proof of Activity",
+            "IMG": "img/mainpage/mining/hammers.png",
+            "TEXT": {
+              "BLOCK_1": "Proof of Activity at Eneecum is proposed to be applied at two different stages.",
+              "BLOCK_2": " First, PoA miners reach consensus to form teams of 64 participants. Second, every team validates a chain of 62 microblocks with 40 transaction each and publish them into the network - to the blocks opened by the PoW miners.",
+              "BLOCK_3": "PoA mining at Enecuum requires a wide and steady Internet connection, but low computational power and can be performed on mobile devices."
+            }
+          },
+          {
+            "TITLE": "Proof of Stake",
+            "IMG": "img/mainpage/mining/safety.png",
+            "TEXT": {
+              "BLOCK_1": "PoS miners continuously re-check balances of all wallets in the system.",
+              "BLOCK_2": "The reward for PoS mining is flexible. The system defines the minimum and maximum balance thresholds outside of which a miner is not able to gain any reward."
+            }
+          }
+        ]
+      }
+    },
+    "phonemining": {
+      "title": "Phone Mining",
+      "description": "With Enecuum, you'll be able to perform PoA mining on your phone approving transactions and validating blocks. The reward for PoA mining is equal to the reward received by PoW miners. Effective mining with little computational power.",
+      "button": "Wallet coming soon",
+      "img": "img/mainpage/phone_mining/phone--en.png"
+    },
+    "roadmap": {
+      "title": "Roadmap",
+      "img_desctop": "img/mainpage/roadmap/road_map_desktop.png",
+      "img_mobile": "img/mainpage/roadmap/road_map_mobile.png"
+    },
+    "partners": {
+      "partners": {
+        "title": "Partners",
+        "img": [
+          {
+            "link": "http://www.kwm.com/en",
+            "img": "/img/mainpage/partners/kwm.png"
+          },
+          {
+            "link": "http://coinsortium.io",
+            "img": "/img/mainpage/partners/coinsortium.png"
+          },
+          {
+            "link": "http://hkfintech.org",
+            "img": "/img/mainpage/partners/fintechhh.png"
+          },
+          {
+            "link": "http://www.spblockchain.ru",
+            "img": "/img/mainpage/partners/spblockchain.jpg"
+          },
+          {
+            "link": "https://www.trustverse.io/",
+            "img": "/img/mainpage/partners/trustverse.png"
+          }
+        ]
+      },
+      "eco_partners": {
+        "title": "Ecosystem partners",
+        "img": [
+          {
+            "link": "http://urbo.pro",
+            "img": "/img/mainpage/partners/urbo.png"
+          },
+          {
+            "link": "https://paytomat.com/#top",
+            "img": "/img/mainpage/partners/paytomat.png"
+          },
+          {
+            "link": "https://plasmabank.com",
+            "img": "/img/mainpage/partners/plasma.png"
+          },
+          {
+            "link": "https://upstudy.ru",
+            "img": "/img/mainpage/partners/upstudy_2.svg"
+          },
+          {
+            "link": "http://Arloid.com",
+            "img": "/img/mainpage/partners/arloid.png"
+          }
+        ]
+      }
+    },
+    "feedback": {
+      "title": "Contact Us",
+      "button": "Send"
+    }
+  }
+}

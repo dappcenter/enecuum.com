@@ -1,0 +1,61 @@
+{
+  "header": {
+    "logoUrl": "img/logo.png",
+    "menu": [
+      {
+        "label": "Home",
+        "url": "/",
+        "external": false
+      },
+      {
+        "label": "Team",
+        "url": "/team",
+        "external": false
+      },
+      {
+        "label": "Blog",
+        "url": "",
+        "external": {
+          "link": "https://medium.com/@EnqBlockchain"
+        }
+      },
+      {
+        "label": "Calendar",
+        "url": "/calendar",
+        "external": false
+      },
+      {
+        "label": "Video",
+        "url": "/video",
+        "external": false
+      },
+      {
+        "label": "Token",
+        "url": "/token",
+        "external": false
+      },
+      {
+        "label": "ENQ.Textnet",
+        "url": "",
+        "external": {
+          "link": ""
+        }
+      },
+      {
+        "label": "FAQ",
+        "url": "/faq",
+        "external": false
+      },
+      {
+        "label": "Sign In",
+        "url": "/signin",
+        "external": false
+      },
+      {
+        "label": "Sign up",
+        "url": "/signup",
+        "external": false
+      }
+    ]
+  }
+}

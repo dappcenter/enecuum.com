@@ -1,0 +1,538 @@
+{
+  "team": [
+    {
+      "title": "Our team",
+      "members": [
+        [
+          {
+            "avatar": "/img/team/avatars/anton_nikonorov.png",
+            "name": "Anton Nikonorov",
+            "position": "CTO",
+            "description": "Experienced Chief Executive Officer with a demonstrated history of experience in the Information Technology & Services industry. Skilled in Oracle DB, C++, Agile Methodologies, SCADA and Apache Cordova. A strong entrepreneur and a professional with a degree in Electrical Egineering from the St. Petersburg Polytechnic University.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/anton-nikonorov-4067a384/"
+              },
+              {
+                "type": "facebook",
+                "url": "https://ru-ru.facebook.com/anton.nikonorov"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/mikhail_sayfulin.png",
+            "name": "Mikhail Sayfullin",
+            "position": "CEO",
+            "description": "Entrepreneur since 2002. Founded and developed a marketing agency that successfully delivered high quality services to the largest international corporations. Since 2014, Michail has been successfully working in the IT field launching a popular marketplace in the entertainment sector. One of the founders of the Enecuum Limited and our strategic manager since 2017.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/mikhail-sayfullin-a5271436/"
+              },
+              {
+                "type": "envelope",
+                "url": "mailto:ceo@enecuum.com"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/ivaniv_v_ivanov.png",
+            "name": "Ivan V. Ivanov",
+            "position": "Co-founder",
+            "description": "Founder of the UPSTUDY GROUP, co-Founder of EE24.COM, managing director of the YUKUMA GROUP. A prominent professional with more than 13 years experience of business development and management in High Tech, IT and Web projects. With his strong entrepreneurial skills and multiple international business connections, Ivan is proud to be a board member of Enecuum helping make the project an international success.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/ivanvalerevich"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/jev.png",
+            "name": "Jev Vainsteins",
+            "position": "CBDO",
+            "description": "BD Exec Cloud Evangelist, Blockchain Enthusiast, ICO & VC Advisor. 16-years experience in technical marketing (Business Development, Sales & Presales to Carriers, Distributors, VAR's, System Integrators).      Indirect Channel development for Telecom Products within CEE/CIS and EMEA. Establish new relationships with Distributors, System integrators, Service providers and Solution Partners within CEE/CIS and EMEA. Strong relationships with decision makers in the data centre, cloud and  telecommunications sectors within EMEA.Jev is perfect visioner and speaker <a href='https://youtu.be/PWo0W9vdc-U' target=_blank>https://youtu.be/PWo0W9vdc-U</a>. Responsible for business development of ENQ platform. Ex Huawei IT Solutions Sales Executive Responsible for Cloud in EMEA Global Solution Elite Team. Canonical Ubuntu Business Development Executive responsible for Partner Programs and Sales EMEA & APAC. Ex Senior Sales Engineering Leader in Cogent Communications 3rd largest ISP provider in the world carrying over 20% of World internet traffic present in 2500 data centers, having its own 53 data centers and having one of the largest fiber network in the world.",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/feranicus/"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "title": "Development",
+      "members": [
+        [
+          {
+            "avatar": "/img/team/avatars/mihail_gluhov.png",
+            "name": "Mikhail Gluhov",
+            "position": "Tech Lead",
+            "description": "Mike loves to solve complex problems. An effective Tech Lead establishes a technical vision with the development team and works with developers to turn it into reality. Mike takes on traits that other roles may have, such as a Team Lead, Architect or Software Engineering Manager but they remain hands-on with code.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/mikhail-glukhov-62a07352/"
+              },
+              {
+                "type": "github",
+                "url": "https://github.com/rigidus"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/stefan.png",
+            "name": "Stefan Hamminga",
+            "position": "AI Engineer",
+            "description": "Stefan has fourteen years of experience in machine learning, artificial intelligence and robotics development. After his study Artificial Intelligence at the University of Groningen he went on to build a wide range of products, from business intelligence software to autonomous robotics. He is now very iterested in combining neural networking with blockchain technology.\n                                ",
+            "social": [
+              {
+                "type": "github",
+                "url": "https://github.com/stefanhamminga"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/dmitriy_pavlyuk.png",
+            "name": "Dmitry Pavlyuk",
+            "position": "Software Developer",
+            "description": "A developer-mathematician, Dmitry specializes in functional programming languages. He studied at the Computational Mathematics and Cybernetics faculty of the Lomonosov Moscow State University. He has a hands-on work experience in VPN-client development.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "#"
+              },
+              {
+                "type": "envelope",
+                "url": "#"
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "avatar": "/img/team/avatars/ksenia.png",
+            "name": "Kseniya Pozdnyakova",
+            "position": "Software Developer",
+            "description": "Ksenia is a Haskell developer, her favourite programming language. \"Haskell is so natural for someone who really loves math\". She has a strong background in Applied Mathematics received at the Ural Federal University. She dreams of changing the world. That is why she chose to be a developer. \"You can invent something and scale it for the whole of humankind. You can improve life drastically not only for a single person, but for the whole society. That is my passion,\" says Ksenia.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/ksenia-pozdnyakova"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/darya_melnikova.png",
+            "name": "Darya Melnikova",
+            "position": "Software Developer",
+            "description": "A Haskell/C++ software developer, Daria is stuyding for a Master's degree in Computer Science & Software Engineering. Her passion is mathematical logic and functional programming. Daria also has an Advanced Training Diploma from the Saint Petersburg Academic University and a law degree. After a few years of building a career in law, Daria discovered that software development is much more fun, than legislations and contracts, and was into it ever since.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/melnikova-daria/"
+              },
+              {
+                "type": "facebook",
+                "url": "https://www.facebook.com/melnikovad"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/mikhail_subbotin.png",
+            "name": "Mikhail Subbotin",
+            "position": "Software Developer",
+            "description": "Mikhail has six years experience in Java, but he prefers Haskell, which he finds to be very elegant. He is a third year student of Applied Mathematics at the Bauman Moscow State Technical University, but this is not his first degree. His aim is to achieve a PhD in math.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/msubbotin"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/mihail_zabelin.png",
+            "name": "Mikhail Zabelin",
+            "position": "Software Developer",
+            "description": "A software developer with a degree in Solid-state Physics from the St. Petersburg Polytechnic University.\n                                ",
+            "social": [
+              {
+                "type": "github",
+                "url": "https://travmaturg.github.io/"
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "avatar": "/img/team/avatars/artem.png",
+            "name": "Artem Kravchenko",
+            "position": "DevOps",
+            "description": "DevOps. Techno guru. Interested in process automation, AI and software development. Now proving his high skill in blockchain projects. His work is his hobby. He's very good at solving any business problems.\n                                ",
+            "social": [
+              {
+                "type": "github",
+                "url": "https://github.com/scytem"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/vladislav.png",
+            "name": "Vladislav Svolskiy",
+            "position": "Cyber Security Specialist",
+            "description": "A young, ambitious cybersecurity specialist taking pride in designing elegant and secure systems, and devising methods and means of ensuring a strong information security culture. He likes to be actively engaged in the development and implementation of cyber security in the project as well as auditing the level of security of each product in the company and the company infrastructure on the whole.\n                                ",
+            "social": [
+              {
+                "type": "github",
+                "url": "https://github.com/633kh4ck"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/ilya_gruzdev.png",
+            "name": "Ilya Gruzdev",
+            "position": "Software Developer",
+            "description": "A geek and mathematician. Ilya studied in Saint Petersburg National Research University of Information Technologies, Mechanics and Optics (ITMO). His main interests are Computer Science, theoretical physics, functional programming languages and its use in practice, and DSL development.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/ilya-gruzdev-875297159/"
+              },
+              {
+                "type": "github",
+                "url": "https://github.com/iilyha"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/constantin.png",
+            "name": "Konstantin Zhidanov",
+            "position": "Software Developer",
+            "description": "Konstantin is a software developer with the skills on low-level programming and applied cryptography. Besides, he teaches computer science related courses at Saint-Petersburg State University of Airspace Instrumentation. 'To teach something is the best way to be sure that you really understand it'\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/konstantin-zhidanov/"
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "avatar": "/img/team/avatars/julia_osipova.png",
+            "name": "Julia Osipova",
+            "position": "UX/UI designer",
+            "description": "A UX/UI designer of web and mobile applications. Julia studied at the Saint Petersburg State University of Technology and Design (faculty of Graphic Design in Advertisement and Business). Julia has two years of work experience during which she created UX/UI designs for WIX platform web apps and web apps for cryptocurrency projects.\n                                ",
+            "social": [
+              {
+                "type": "behance",
+                "url": "https://www.behance.net/osipova_ju7b5e"
+              },
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/julia-osipova-392567158/"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/oleg_kazakov.png",
+            "name": "Oleg Karakoz",
+            "position": "Technical Writer",
+            "description": "Oleg is a Technical Writer with a passion for new concepts. He has knowledge of several European languages and likes English for its universal application and professional versatility. He received a B.A. in Linguistics, but is now interested in CS and is learning Java.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/oleg-karakoz"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "title": "Marketing",
+      "members": [
+        [
+          {
+            "avatar": "/img/team/avatars/milya.png",
+            "name": "Milya Musina",
+            "position": "CMO",
+            "description": "Crypto geek and marketer. Even at school Milya managed to launch her own art festival with a 3000-strong audience using only guerrilla marketing. It was her first marketing project and an immediate success. Many years later, she got interested in cryptocurrencies and started promoting a cryptocurrency exchange, all that leading her to our friendly company.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/milya-musina-0733a8125/"
+              },
+              {
+                "type": "envelope",
+                "url": "mailto:m.musina@enecuum.com"
+              },
+              {
+                "type": "facebook",
+                "url": "https://www.facebook.com/people/Миля-Мусина/100012056355459"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/denis.png",
+            "name": "Denis Lisetskiy",
+            "position": "PR",
+            "description": "A crypto futurist and community developer, Denis joined the team after a hands-on work experience in biotechnology, where he cooperated with Russian and Nicaraguan state companies.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/lisetskiy/"
+              },
+              {
+                "type": "envelope",
+                "url": "mailto:pr@enecuum.com"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/evgeniya.png",
+            "name": "Evgeniya Zaslavskaya",
+            "position": "PR",
+            "description": "Came to the crypto industry when 1 bitcoin cost 900 $. The last project (AI-startup) took the second place in the international rating on ICO charges in January 2018. Before that Evgeniya was working as PR specialist in a biotechnology company that worked with government.She has been working in the field of media for more than 10 years. By education - a journalist.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/%D0%B5%D0%B2%D0%B3%D0%B5%D0%BD%D0%B8%D1%8F-%D0%B7%D0%B0%D1%81%D0%BB%D0%B0%D0%B2%D1%81%D0%BA%D0%B0%D1%8F-4ba0313b/ "
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/sergey.png",
+            "name": "Sergey Dryamov",
+            "position": "Art director",
+            "description": "Experience more than 10 years in creative agencies, last 10 years as the creative director. Has extensive experience in brand-architecture. He created concepts for more than 100 events, 30 brands, and more than 50 communication strategies.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/sergey-dryamov-415a1669/"
+              },
+              {
+                "type": "envelope",
+                "url": "mailto:svdryamov@enecuum.com"
+              },
+              {
+                "type": "facebook",
+                "url": "https://www.facebook.com/dryamov"
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "avatar": "/img/team/avatars/ewan.png",
+            "name": "Ivan Abramov",
+            "position": "Email Developer",
+            "description": "Technically minded email developer. Studied in Saint-Petersburg State University of Economics. Ivan have more than 3 years experience in digital marketing including development of web projects from scratch. Build adaptive emails in html/css ensuring adherence to usability, accessibility and best practice guidelines.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/ivan-abramov-abb07b79/"
+              },
+              {
+                "type": "envelope",
+                "url": "mailto:abramov@enecuum.com"
+              },
+              {
+                "type": "facebook",
+                "url": "https://www.facebook.com/ivan.abramov.311"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/lera.png",
+            "name": "Lera Vinokurova",
+            "position": "Team Support",
+            "description": "Lera used to work in a Charity and knows better than anyone how important it is to build a communicational bridge between people. She provides support and troubleshooting for a strong partner relationship with the customer to better serve their business needs.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/valeriia-vinokurova-2b8188161/"
+              },
+              {
+                "type": "envelope",
+                "url": "mailto:vinokurova@enecuum.com"
+              },
+              {
+                "type": "facebook",
+                "url": "https://www.facebook.com/valera.vinokurova"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/Pinxuan_Wu.png",
+            "name": "Pinxuan Wu",
+            "position": "Support Manager",
+            "description": "Xuan used to work in mass media of the biggest Chinese e-commerce platform Taobao. With years interacting with customers she knows how to grab their wants and needs immediately even better than themselves. After that she switching into another social media Facebook, Instagram, Youtube. Having been in PR position, she learned how to represent company’s goal, pursuing and attitude towards it’s clients. Hundreds and thousands times tracing audience likes, makes her most familiar thing is delivering feedback back to corresponding department. She is 24 hours ready here to help participants’  problems.",
+            "social": [
+              {
+                "type": "twitter",
+                "url": "https://twitter.com/wpx_19951115"
+              },
+              {
+                "type": "facebook",
+                "url": "https://www.facebook.com/pinxuan.wu.902"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/dmitry.png",
+            "name": "Dmitry Rumyantsev",
+            "position": "Support Manager",
+            "description": "Dmitry is a PR specialist with more than 7 years experience in IT, education, crypto and politics spheres. He is not only responsible for PR support, he is a great journalist and passionate person who believes that Enecuum become successful prpject and will change the world.",
+            "social": [
+              {
+                "type": "facebook",
+                "url": "https://www.facebook.com/dmitry.rumyantsev.5"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "title": "Operations",
+      "members": [
+        [
+          {
+            "avatar": "/img/team/avatars/julia krutikova.png",
+            "name": "Julia Krutikova",
+            "position": "Business assistant",
+            "description": "Julia is a business assistant at Enecuum. Having over 16 years of professional administrative experience in different spheres of business, she is sure that administrative efficiency and streamlined workflow are the background of each successful project.\n                                ",
+            "social": []
+          },
+          {
+            "avatar": "/img/team/avatars/amanda.png",
+            "name": "Amanda Hung",
+            "position": "Senior Accountant",
+            "description": "Amanda believes that a good accountant is not only capable of dealing with financial affairs of the company, but also finds ways to improve one’s efficiency and performance. Integrity, clear mind and efficiency are the essential pillars of a professional accountant should possess. With more than 20 years of accounting experience in international companies, Amanda is proud to be a part of Enecuum team in Hong Kong.\n                                ",
+            "social": []
+          },
+          {
+            "avatar": "/img/team/avatars/julia_linykh.png",
+            "name": "Julia Ilinykh",
+            "position": "HR Manager",
+            "description": "Julia has more than 15 years experience in human resources management. Her aim is to help people and the Company deliver their best by setting a perfect office design, developing a good team spirit and creating a climat for positive changes.\n                                ",
+            "social": [
+              {
+                "type": "envelope",
+                "url": "mailto:hr@enecuum.com"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "title": "Advisors and Consultants",
+      "members": [
+        [
+          {
+            "avatar": "/img/team/avatars/ismail.png",
+            "name": "Ismail Malik",
+            "position": "",
+            "description": "Ismail is a prominent professional in the field of promotion and consulting. His iconic figure along with his deep knowledge help cut Enecuum into a true diamond on the market.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/blockchain/"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/RugaevS.png",
+            "name": "Alexander Rugaev",
+            "position": "",
+            "description": "Alexander Rugaev is a serial entrepreneur and one of the early blockchain supporters. He has experience in creating industrial grade Bitcoin and Ethereum mining farms. He has 16 years of experience in e-commerce and online marketing.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/alexrugaev/"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/Lana.png",
+            "name": "Lana Lyu",
+            "position": "",
+            "description": "Lana is a Blockchain Technology aficionado with extensive experience working in the legal, financial and DLT related services sector for German, Russian, Kazakh and Hong Kong private and corporate clients. Passionate about FinTech Startups/SME's and female entrepreneurship, Lana supports the development and growth of FinTech community in Hong Kong, regularly delivers talks on the conferences and universities, organizes monthly events with & for Women in Business. Lana leads Russian Club Hong Kong as Vice President developing the Russian-Hong Kong social and business relationship.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/lan-lyu-64106760/"
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "avatar": "/img/team/avatars/tarun.png",
+            "name": "Tarun Jaswani",
+            "position": "",
+            "description": "Tarun Jaswani is partner with Interfacemax, a Digital Asset Fund focussed on blockchain projects that create value through real world application. A techpreneur with past experience in Virtual Reality, Gaming and Adtech.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/tmjaswani/"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/Michael_Kiook.png",
+            "name": "Michael Kiook Jeoung",
+            "position": "",
+            "description": "Michael Kiook Jeoung is an ICT strategist and finance expert. His concentration is blockchain enabled service model and platform. He had a leadership role at Cisco Systems, OECD, Ministry of Land and Transport where he was instrumental to both private and public sector innovative initiatives for the block chain technology(DLT), smart city, cloud platform-services, IoT and ubiquitous computing-sensor network. He has 15+ years of experience in strategic consulting and has created success stories for various edge technologies and services with fundamental business framework and process. He has also worked for the advisory committee for Ministry of Agriculture and Ministry of Defense of Korea.",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/jeoung-kiook-0a15a010/"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/jorge.png",
+            "name": "Jorge Sebastiao",
+            "position": "",
+            "description": "CTO Eco-System in Huawei Technologies. Over 30 years of ICT experience, covering, managed services, cyber security, innovation, architecture as well as risk management, compliance, auditing, certification, business continuity, & disaster recovery. He was become infected by Enecuum technological steck.",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/sebastiao/"
+              },
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/company/enecuum-limited/"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "title": "Advisors and Consultants",
+      "members": [
+        [
+          {
+            "avatar": "/img/team/avatars/stan.png",
+            "name": "Stan Prihodko",
+            "position": "",
+            "description": "Stan is head of Crypto asset management in <a href=\"https://gem.capital/\">GEM Capital</a>, a fund with over $400m AUM. Prior to joining GEM Stan was engaged in trust management of cryptocurrency assets and consultations on investing in ICOs for high net worth individuals.",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/stan-prikhodko-7a817a36/"
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

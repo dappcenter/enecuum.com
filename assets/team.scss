@@ -1,0 +1,109 @@
+.member {
+  &-item {
+    padding: 50px 0 20px;
+    text-align: center;
+    &_avatar {
+      margin-bottom: 23px;
+      border-radius: 50%;
+      width: 163px;
+      height: 163px;
+    }
+    &_name {
+      color: #4F4F4F;
+      font-size: 16px;
+      font-weight: 100;
+    }
+    &_position {
+      color: #B0B0B0;
+      font-weight: 100;
+    }
+    &_contacts {
+      &_links {
+        padding: 10px 0;
+        color: #B5B5B5;
+        display: flex;
+        justify-content: center;
+        a {
+          text-decoration: none;
+          font-size: 12px;
+          color: #ffffff;
+          background-color: #B5B5B5;
+          border-radius: 50%;
+          width: 24px;
+          height: 24px;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin: 0px 5px;
+        }
+      }
+      &_description {
+        &-link {
+          color: #00ADD9;
+          font-size: 13px;
+          cursor: pointer;
+          display: inline-block;
+          padding: 5px 20px;
+          border-top: 1px solid #B0B0B0;
+        }
+        &-text {
+          font-size: 14px;
+          text-align: left;
+          font-weight: 100;
+          color: #000;
+          width: 500px;
+          a {
+            color: #00add3;
+            text-decoration: underline;
+          }
+          @media screen and (max-width: 768px) {
+            width: 300px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.teamForm {
+  margin-top: 80px;
+  &-upload {
+    display: flex;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background: #ffffff;
+    margin: 5px;
+    .el-button {
+      color: #c1c1c1;
+    }
+  }
+  .collapse {
+    &-header {
+      .el-collapse-item__header {
+        margin-bottom: 30px;
+        text-align: center;
+      }
+      .el-collapse-item__arrow {
+        display: none;
+      }
+    }
+  }
+  @media screen and (min-width: 768px) {
+    padding-bottom: 170px;
+  }
+}
+
+.textarea {
+  & > .el-textarea__inner {
+    height: 200px;
+  }
+}
+
+.circle {
+  i {
+    font-size: 20px;
+  }
+}

@@ -1,0 +1,29 @@
+.footer {
+  padding: 30px 150px;
+  background: #313e48;
+  font-size: 13px;
+  color: #dbdbdb;
+  a {
+    color: #dbdbdb;
+  }
+  img {
+    width: 40px;
+  }
+  &_networks {
+    padding-top: 9px;
+    a {
+      margin-right: 5px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    padding: 20px;
+    flex-direction: column;
+  }
+  &-fixed {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 9;
+  }
+}

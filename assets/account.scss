@@ -1,0 +1,61 @@
+.account {
+  &-copy {
+    cursor: pointer;
+  }
+  &__form {
+    width: 100%;
+    &-wrapper {
+      margin: 52px 0px 65px 0px;
+      background-color: #f8f8f8;
+    }
+    .el-form {
+      &-item {
+        flex-grow: 3;
+        padding: 45px 10px;
+        &:last-child {
+          flex-grow: 1;
+          margin-top: 40px;
+          .el-button {
+            width: 100%;
+          }
+        }
+        &__label {
+          margin-left: 20px;
+          font-weight: 600;
+          color: #525252;
+        }
+        @media screen and (max-width: 768px) {
+          width: 100%;
+          padding: 16px;
+          margin-bottom: 0px;
+          &:last-child {
+            flex-grow: 1;
+            margin-top: 0px;
+            text-align: center;
+            .el-button {
+              max-width: 170px;
+            }
+          }
+        }
+      }
+    }
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      &-wrapper {
+        margin-top: 12px;
+      }
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .addr {
+      width: 100%;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      font-size: 16px;
+      &-wrapper {
+        padding: 0px 16px;
+      }
+    }
+  }
+}

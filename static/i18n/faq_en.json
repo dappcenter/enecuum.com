@@ -1,0 +1,209 @@
+{
+  "faq": {
+    "main": [
+      [
+        {
+          "title": "General",
+          "content": [
+            {
+              "title": "What is ENQ (Enecuum)?",
+              "text": "ENQ is a new generation blockchain that combines advantages of its predecessors. It started as a vision of a better system and grew into the concept of an adaptive decentralized environment where any business goal can be reached. The idea emerged in 2015 and shaped up into a complete design around 2017-2018. Now we’re working to give users the performance they always wanted. We aim to offer better smart contracts, zero fee transactions for active users, private branches and many other amazing features. All that with unprecedented interoperability."
+            },
+            {
+              "title": "Why have we started ENQ?",
+              "text": "The vast majority of blockchain projects are based on a single technical concept. Different concepts and protocols keep them apart from each other and have different properties: some are quick, other are secure. We don’t want to be bound by their limitations, we want to implement all the best practices. ENQ’s architecture was built from scratch to be flexible, to include any blockchain native application that had already been created in the ecosystem and develop new technologies in parallel. Using hybrid consensus algorithm and HyperDAG ENQ provides interoperability of high speed, high security and scalability."
+            },
+            {
+              "title": "How does hybrid consensus algorithm work?",
+              "text": "Hybrid consensus algorithm allows a wide range of devices for mining. It envisions three stages. First stage is PoW mining on dedicated machines using a Cryptonight-like algorithm to find a hash of certain complexity and open a macroblock. Second stage is PoA mining on mobile devices to create microblocks with transactions in them and publish them into the macroblock. Third stage is PoS mining to recheck the changed state of accounts associated with the transactions. All that in multiple threads, in parallel."
+            },
+            {
+              "title": "What is HyperDAG?",
+              "text": "HyperDAG stands for Hyper Directed Acyclic Graph. Its major difference from an ordinary DAG is that a new transaction added to the system can have an edge with not just one, but a whole group of previously added transactions that were published in a microblock. As a result, HyperDAG successfully combines advantages of both traditional blockchain and DAG paradigms, at the same time remedying their shortcomings. HyperDAG is designed to be able to process millions of transactions per second and be well-secured against attacks."
+            },
+            {
+              "title": "What is ADE?",
+              "text": "If you bump into this acronym, remember that ADE stands for Adaptive Decentralized Environment. We chose it because it grasps the essence of the project the best way."
+            },
+            {
+              "title": "Is ENQ truly decentralized?",
+              "text": "The highest possible degree of decentralization is our aim and one of our main differentiation factors. We seek to make mobile users equal participants of our decentralized environment, which in turn makes it scale faster, use less resources and be decentralized in the true sense of this word."
+            },
+            {
+              "title": "What are the ENQ advantages?",
+              "text": "Higher speed - ENQ looks like a racing car among blockchain projects. Brand new HyperDAG-based architecture is capable of millions transaction per second.\nBetter scalability - a possibility to increase size of blocks dynamically, adapting to any network size; multilevel sharding paradigm; the SHARNELL linear logic for building fault-resistant smart contracts.\nStronger security - private sidechains and a unique hybrid consensus algorithm designed to guarantee true decentralization.\n"
+            },
+            {
+              "title": "What are additional features of Enecuum?",
+              "text": "- Decentralized data storage\n- Tokens, Tickets and private sidechains\n- Marks for targeted fund allocation and expenses\n- Ready-to-use platform for ICO’s + a cancellation model aimed to facilitate conducting complex crowdsales with multiple sale rounds and refunds to the members of the whitelist at any stage\n- Possibility to run heavy smart contracts on nodes with high computational power and perform complex calculations \n- API for fast integration with existing business processes\n"
+            },
+            {
+              "title": "Does ENQ have a cryptocurrency?",
+              "text": "The ENQ token (“ENQ”, consistent with the company name) is the native token of the environment and is also the main medium of exchange for the Tickets, Tokens and other cryptocurrencies in it. ENQ’s are proposed to be generated according to system specific parameters and paid out to miners as a reward for spending their computational power. ENQ’s can be received and sent with no fees. They can also be used as payment for publishing smart contracts to the network, performing complex mathematical computations via a smart contract, creating custom macroblocks, new Tokens and private branches, and participation in PoS mining."
+            },
+            {
+              "title": "Where do I get the latest news?",
+              "text": "Subscribe to our Telegram channel: https://t.me/Enecuum_EN\nYou will be up-to-date with the latest news and details about the project and can get straight answers and advice in case of any questions.\nWe also aim to cover all the necessary media channels. Here is the full list of our media sources:\n<a href='https://medium.com/@EnqBlockchain'>https://medium.com/@EnqBlockchain</a>\n<a href='https://t.me/Enecuum_EN'>https://t.me/Enecuum_EN</a>\n<a href='https://bitcointalk.org/index.php?topic=2939909.0;topicseen'>https://bitcointalk.org/index.php?topic=2939909.0;topicseen</a>\n<a href='https://twitter.com/enq_enecuum'>https://twitter.com/enq_enecuum</a>\n<a href='https://www.facebook.com/enecuum.EN/?ref=bookmarks'>https://www.facebook.com/enecuum.EN/?ref=bookmarks</a>\n<a href='https://www.instagram.com/enecuum/'>https://www.instagram.com/enecuum/</a>\n<a href='https://www.linkedin.com/company/enecuum-limited/'>https://www.linkedin.com/company/enecuum-limited/</a>\n<a href='https://www.youtube.com/channel/UCyZqNfzK_PP82nkAVOlmN4Q?view_as=subscriber'>https://www.youtube.com/channel/UCyZqNfzK_PP82nkAVOlmN4Q?view_as=subscriber</a>\n<a href='https://www.reddit.com/user/enecuum'>https://www.reddit.com/user/enecuum</a>\n<a href='https://github.com/Enecuum'>https://github.com/Enecuum</a>\n<a href='https://discordapp.com/invite/aCgCcA2'>https://discordapp.com/invite/aCgCcA2</a>\nConsider any source <b>outside</b> of this list fake. All ENQ official media sources are listed above"
+            },
+            {
+              "title": "Are you a permissioned blockchain?",
+              "text": "ENQ offers functionality of both permissionless and permissionned systems. The designed public network is permissionless. The designed private branches users create are permissioned."
+            },
+            {
+              "title": "Do you have crypto community contributors?",
+              "text": "We recommend that you pay attention to our partners <a href='https://paytomat.com/'>Paytomat</a> and <a href='https://bitcointalk.org/index.php?topic=2345298.0'>https://bitcointalk.org/index.php?topic=2345298.0</a> Urbo. Each of them chose us for their own reasons. For Paytomat, the scalability and speed of transactions is extremely important, because they are engaged in cryptocurrency payments in retail. Urbo is a delivery automation service for HoReCa. They need a compromise between privacy and publicity of data, and high security standards."
+            },
+            {
+              "title": "When is the mainnet launch?",
+              "text": "Currently, we are improving our testnet. Mainnet and public mining are the next step when we thoroughly performed all the necessary tests. You can check our code on GitHub and wait for the updates on our <a href='https://t.me/Enecuum_EN'>Telegram channel</a>."
+            },
+            {
+              "title": "Is there a more detailed roadmap planned?",
+              "text": "We intentionally made the roadmap in large blocks so that our technical specialists were at ease to implement the project. Later, we update the roadmap with more details."
+            },
+            {
+              "title": "Where is the Company located?",
+              "text": "Enecuum HK Limited\nAddress: 21/F, 48 Connaught Road Central, Hong Kong"
+            }
+          ]
+        },
+        {
+          "title": "Technical",
+          "content": [
+            {
+              "title": "What is ENQ written in?",
+              "text": "The languages we’re using are Haskell, Kotlin, C++. Part of the smart contract functionality (including the SHARNELL Smart Contracts) we intend to implement in JavaScript."
+            },
+            {
+              "title": "Is your technology open source or proprietary?",
+              "text": "We develop ENQ under open source licensing (GNU GPL-3.0, BSD-3-Clause)."
+            },
+            {
+              "title": "Can I take a look at your code?",
+              "text": "We welcome you to visit <a href='https://github.com/Enecuum'>our GitHub workspace</a> and inspect our code. You’re also welcome to contribute"
+            },
+            {
+              "title": "How to set up and run a node?",
+              "text": "You can find all the necessary guidelines in <a href='https://github.com/Enecuum/Node'>our Node repository</a>."
+            },
+            {
+              "title": "Is there a testnet?",
+              "text": "Yes, there is and it is being improved as you read these lines. <a href='https://testnet.enecuum.com/dashboard/snapshot/o1B4U1OMG55XD0LRpq94Ph5rWDAFTxPV'>Here</a> you can see some useful stats."
+            },
+            {
+              "title": "What makes ENQ ASIC resistant?",
+              "text": "PoW mining in ENQ is designed to use a modified version (Keccak+AES+X4) of the Cryptonight algorithm. AES uses 4 MB L3 CPU cache. This proves the use of ASIC devices non-cost effective."
+            },
+            {
+              "title": "Can I check the MVP?",
+              "text": "PoA and HyperDAG are doing an excellent job. Our historical statistics updated every moment.\n<a href='https://testnet.enecuum.com/dashboard/snapshot/o1B4U1OMG55XD0LRpq94Ph5rWDAFTxPV'>https://testnet.enecuum.com/dashboard/snapshot/o1B4U1OMG55XD0LRpq94Ph5rWDAFTxPV</a>\nIf you want to get up-to-date statistics - feel free to contact us.\n"
+            }
+          ]
+        },
+        {
+          "title": "Community",
+          "content": [
+            {
+              "title": "Who are ENQ?",
+              "text": "You can learn about ENQ team members on <a href='https://enecuum.com/team'>the team page</a>."
+            },
+            {
+              "title": "I want to work at ENQ, hire me.",
+              "text": "If you want to become a member of our team, please feel free to contact our HR manager Julia at hr@enecuum.com"
+            },
+            {
+              "title": "I can offer services that you may need at ENQ.",
+              "text": "We are interested in profitable partnership. Communicate your offer and ideas to our CMO, Milya at m.musina@enecuum.com."
+            },
+            {
+              "title": "I’ve found a vulnerability. Whom do I contact at ENQ?",
+              "text": "If you like to report any potential vulnerability, please write our CISO at hack@enecuum.com"
+            }
+          ]
+        },
+        {
+          "title": "Newcomers",
+          "content": [
+            {
+              "title": "How to start?",
+              "text": "You can sign up for an account and join our whitelist for the token sale. Right now we’re growing our testnet into a mainnet. Follow us on our Telegram channel to learn about the exact release dates and token sale dates."
+            },
+            {
+              "title": "What is the maximum deposit?",
+              "text": "The max deposit for a member is 2 million USD in ETH."
+            },
+            {
+              "title": "Is there any video tutorial?",
+              "text": "We plan to release a series of video tutorials. First tutorial is coming soon."
+            }
+          ]
+        }
+      ],
+      [
+        {
+          "title": "Business",
+          "content": [
+            {
+              "title": "What ENQ can offer to the business?",
+              "text": "- ICO platform\n\nEnecuum is designed to let you raise funds at any scale with no network hang-up. That means that contributors can quickly receive their tokens. To minimize the number of possible errors in smart contracts, we apply linear logic.\n\n - Banking\n\nHigh transactions speed and private sidechains with Tickets as the access and encryption keys. Custom transaction fees.\n\n - Computations\n\nBesides flexible rate for heavy smart contracts, we also offer complex calculations that require high computational power without increasing workload on the main ENQ branches.\n\n - Storage\n\nENQ is the right choice to build up-to-date decentralized storage projects. We implemented sharding  for better scalability. You are welcome to build a global decentralized storage, decentralized hosting services or even cloud solutions on top of us.\n\n - Micropayments\n\nAlmost zero transaction fees for a decentralized microtransaction service and separate branches with their own consensus rulesets is our offer for this business niche.\n"
+            },
+            {
+              "title": "How to create my own project on top on ENQ?",
+              "text": "If you plan to create a project on top of ENQ, contact our CTO for more details at cto@enecuum.com"
+            },
+            {
+              "title": "What is the real transaction speed?",
+              "text": "Transaction speed depends on a variety of factors, but it can reach over 1 million transactions per second. If we take the example with a 1000 active PoW nodes and 64,000 PoA nodes, the transaction speed can reach 2,480,000 TPS."
+            },
+            {
+              "title": "Is there any guarantee our transactions are published successfully?",
+              "text": "Speaking about transactions inside our net, our algorithm is designed to support fail-tolerant constant work of nodes in the network ensuring successful publication of transactions."
+            }
+          ]
+        },
+        {
+          "title": "Financial Contributors",
+          "content": [
+            {
+              "title": "Where can I find details about the token sale?",
+              "text": "We intend to carry a private token sale. You can add your email to the whitelist on our website to receive all the necessary details concerning the process."
+            },
+            {
+              "title": "Are there any soft or hard caps for your private token sale?",
+              "text": "This information is still being prepared for release. It will appear shortly on our Telegram channel: <a href='https://t.me/Enecuum_EN'>https://t.me/Enecuum_EN</a>"
+            }
+          ]
+        },
+        {
+          "title": "Miners",
+          "content": [
+            {
+              "title": "What can ENQ offer miners?",
+              "text": "Miners are the backbone of our decentralized environment. Besides Cryptonight-like mining on dedicated machines, our project offers mobile mining. If we are ASIC-resistant as envisioned, it means everybody, from mobile users to users on powerful dedicated machines, can benefit from participation."
+            },
+            {
+              "title": "What is phone mining?",
+              "text": "Phone mining in ENQ is teaming up with other mobile users and publishing microblocks with transactions in them. Phone mining is envisioned to be lightweight and easy. A mobile miner should have minimum 1GB RAM, 1GHz CPU and Android 5.0."
+            },
+            {
+              "title": "How to become a miner team lead in a team of mobile phones?",
+              "text": "A team lead should have the most powerful CPU and a stable and fast Internet connection with low latency - that combination out of all other members in the team."
+            },
+            {
+              "title": "What a miner can mine in ENQ?",
+              "text": "Our system design offers 3 types of mining: PoW, PoA and PoS. \nPoW miners aim to search for a hash satisfying certain requirement to open a macroblock. A Cryptonight modification based on xmr-stak miner is intended for PoW mining. \nPoA miners on their mobile phones aim to form a PoA team and create microblocks with transaction in them and publish them into a macroblock.\nPoS miners rely on the amount of ENQ they have and their stable and wide Internet connection. PoS miners aim to check the changing balances of user accounts in the system.\nMining of every type is rewarded."
+            },
+            {
+              "title": "When do you expect first miners?",
+              "text": "We expect public mining to be open after the initial public release of our mainnet. Follow us on <a href='https://t.me/Enecuum_EN'>our Telegram channel</a> to keep up-to-date with the release dates."
+            },
+            {
+              "title": "What will phone mining cost my gadget? Any battery drain of connection overload?",
+              "text": "It is designed to be effective yet easy on the phone. So far our tests showed around 5% drain for 30 minutes of mining - not much more than an active screen will consume. As for the traffic consumption, it can be compared to regular phone messengers."
+            }
+          ]
+        }
+      ]
+    ]
+  }
+}

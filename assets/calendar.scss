@@ -1,0 +1,28 @@
+.events {
+  padding-bottom: 80px;
+  &-tabs {
+    width: 100%;
+    &.enq-tabs {
+      .el {
+        &-tab {
+          &-pane {
+            padding: 20px;
+          }
+        }
+        &-tabs {
+          width: 100%;
+          &__content {
+            margin: -20px;
+          }
+          &__nav {
+            justify-content: flex-start;
+            padding-bottom: 20px;
+          }
+          &__item {
+            margin: 0px 20px;
+          }
+        }
+      }
+    }
+  }
+}

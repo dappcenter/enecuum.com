@@ -1,0 +1,338 @@
+.row.banner {
+  background: url('/img/mainpage/banner.png');
+  padding: 70px 150px 190px;
+  background-size: cover;
+  color: #fff;
+  @media screen and (max-width: 768px) {
+    padding: 20px 15px 190px;
+  }
+}
+
+.banner {
+  .enq-button {
+    margin-top: 20px;
+    margin-right: 15px;
+  }
+  &_title {
+
+  }
+  &_text {
+    & > div {
+      max-width: 335px;
+    }
+  }
+  &_networks {
+    padding-top: 20px;
+    a {
+      margin-right: 10px;
+    }
+    img {
+      width: 40px;
+    }
+    @media screen and (max-width: 768px) {
+      justify-content: center;
+      display: flex;
+      flex-wrap: wrap;
+      a {
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+.subscribe {
+  padding-top: 70px;
+  @media screen and (max-width: 768px) {
+    padding-top: 10px;
+  }
+  &_text {
+    max-width: 500px;
+    margin-bottom: 16px;
+  }
+  &_footer {
+    display: flex;
+    align-items: flex-start;
+    .input {
+      width: 500px;
+      max-width: 500px;
+      margin-right: 15px;
+    }
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      .input {
+        width: 100%;
+      }
+      &-item {
+        width: 100%;
+      }
+      .join {
+        width: 100%;
+      }
+    }
+  }
+}
+.business {
+  padding: 50px 0px;
+  &_carousel {
+    display: flex;
+    justify-content: center;
+    &-container {
+      padding: 0px 35px 35px 35px;
+      width: 100%;
+      max-width: 950px;
+      display: inline-block;
+    }
+    &-tabs {
+      display: flex;
+      justify-content: center;
+      @media screen and (max-width: 768px) {
+        justify-content: end;
+        padding: 15px;
+      }
+    }
+    &-row {
+      display: flex;
+    }
+    &-title {
+      font-weight: bold;
+      text-align: center;
+    }
+    &-item {
+      box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.15);
+      background: #ffffff;
+      border-radius: 10px;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 15px;
+    }
+    &-text {
+      height: 250px;
+      padding-left: 40px;
+      padding-right: 10px;
+      overflow-y: scroll;
+    }
+    @media screen and (max-width: 768px) {
+      &-row {
+        flex-direction: column;
+        text-align: center;
+      }
+      &-text {
+        padding-left: 10px;
+        height: initial;
+      }
+    }
+  }
+}
+.features {
+  display: flex;
+  justify-content: center;
+  &_block {
+    padding-top: 50px;
+    text-align: center;
+    border-radius: 15px;
+    position: relative;
+    top: -90px;
+    padding-bottom: 90px;
+    background: #fff;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      img {
+        width: 100%;
+      }
+    }
+  }
+  &_carousel {
+    display: flex;
+    justify-content: center;
+    margin-top: -160px;
+    &-row {
+      display: flex;
+      height: auto;
+    }
+    &-container {
+      padding: 35px;
+      width: 100%;
+      max-width: 950px;
+    }
+    &-item {
+      box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.15);
+      background: #ffffff;
+      border-radius: 10px;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    &-title {
+      margin-bottom: 35px;
+      color: #4f4f4f;
+      font-size: 24px;
+      padding-left: 40px;
+    }
+    img {
+      margin-right: 60px;
+      width: auto;
+      height: auto;
+      z-index: 10;
+      max-height: 160px;
+    }
+    &-text {
+
+    }
+    @media screen and (max-width: 768px) {
+      &-row {
+        flex-direction: column;
+      }
+      img {
+        width: auto;
+        margin-left: auto;
+        margin-right: auto;
+        height: initial;
+        max-width: 100%;
+      }
+    }
+  }
+}
+.feedback {
+  flex-wrap: wrap;
+  padding: 48px 0 60px;
+  background: #f2f5f3;
+  .title {
+    margin-bottom: 70px;
+  }
+  .send {
+    margin-top: 50px;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 16px;
+  }
+}
+.mining {
+  padding: 48px 0 40px;
+  background: #f7faf8;
+  flex-wrap: wrap;
+  &_block {
+    background: #ffffff;
+    -webkit-box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+    padding: 100px 80px 80px 80px;
+    margin-top: 34px;
+    position: relative;
+    max-width: 1200px;
+    margin: 34px auto 0;
+    &_steps {
+      text-align: center;
+    }
+    &-wrapper {
+      display: inline-block;
+      max-width: 1200px;
+    }
+    &-text {
+      padding-right: 50px;
+    }
+    &_img {
+      &-block {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      &-main {
+        max-height: 100%;
+        width: auto;
+        max-width: 65%;
+      }
+      &-arrow {
+        width: 28%;
+        margin-right: 2%;
+        @media screen and (max-width: 768px) {
+          display: none;
+        }
+      }
+    }
+    @media screen and (max-width: 768px) {
+      padding: 50px 15px;
+      &-text {
+        padding-right: 0px;
+      }
+    }
+  }
+}
+.partner {
+  flex-wrap: wrap;
+  padding: 48px 0 40px;
+  &-item {
+    padding: 50px 0px 20px;
+    text-align: center;
+    &_avatar {
+      margin-bottom: 23px;
+      width: 100%;
+      height: auto;
+    }
+  }
+  .page-sub-title {
+    text-align: center;
+  }
+  @media screen and (max-width: 768px) {
+    padding-top: 30px;
+    &-pure,
+    &-eco {
+      flex-direction: column;
+    }
+  }
+}
+.phonemining {
+  padding: 48px 0 0;
+  position: relative;
+  &-container {
+    max-width: 1200px;
+  }
+  .title {
+    margin-bottom: 30px;
+  }
+  .button {
+    margin-top: 20px;
+  }
+  img {
+    display: block;
+    width: 90%;
+    max-width: 600px;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 40px 15px;
+    img {
+      margin-top: 40px;
+    }
+  }
+}
+.roadmap {
+  flex-wrap: wrap;
+  padding: 48px 0 40px;
+  background: #f7faf8;
+  .title {
+    margin-bottom: 70px;
+  }
+  &_block {
+    text-align: center;
+  }
+  &_img {
+    padding: 0px 15px;
+    &-mobile {
+      @media screen and (min-width: 768px) {
+        display: none;
+      }
+    }
+    &-desktop {
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+    }
+  }
+  img {
+    margin-bottom: 60px;
+    width: 100%;
+    height: 100%;
+    max-width: 1000px;
+  }
+}

@@ -1,0 +1,35 @@
+.error {
+  margin: 62px 0px;
+  @media screen and (max-width: 768px) {
+    &_img {
+      width: 100px;
+    }
+  }
+  &_title {
+    font-size: 70px;
+    font-weight: bold;
+    margin-left: 40px;
+    @media screen and (max-width: 768px) {
+      font-size: 45px;
+    }
+  }
+  &_text {
+    margin-top: 37px;
+    margin-bottom: 50px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #141414;
+    @media screen and (max-width: 768px) {
+      font-size: 20px;
+    }
+  }
+  &_home {
+    font-weight: bold;
+    a {
+      color: #ffffff;
+    }
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
+  }
+}
