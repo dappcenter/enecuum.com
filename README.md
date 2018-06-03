@@ -3,6 +3,7 @@
 ## Build Setup
 
 ``` bash
+# nodejs ^8.x recommended
 # install dependencies
 $ npm install # Or yarn install
 

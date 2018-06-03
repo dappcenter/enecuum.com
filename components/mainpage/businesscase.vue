@@ -64,9 +64,6 @@
       setTimeout(() => {
         this.changeHeight();
       }, 1000);
-      if (window.outerWidth <= 768) {
-        this.tabpos = 'right';
-      }
     }
   }
 </script>

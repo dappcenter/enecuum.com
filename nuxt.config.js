@@ -53,11 +53,13 @@ module.exports = {
   },
   plugins: [
     '~plugins/element-ui',
-
     {
       src: '~plugins/a.js',
       ssr: false
     }
+  ],
+  modules: [
+    '~/modules/cache'
   ],
   css: [
     '~/assets/style.scss',

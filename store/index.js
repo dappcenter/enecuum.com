@@ -8,7 +8,7 @@ const createStore = () => {
   return new Vuex.Store({
     state: {
       cookies: '',
-      kyc: '',
+      kyc: {},
       isAuth: false,
       curLang: 'en',
       cq_user: null,

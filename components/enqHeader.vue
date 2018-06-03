@@ -157,7 +157,6 @@
 <style scoped lang="scss">
   .menu {
     position: relative;
-    padding: 0px 54px;
     background-color: #f8f9fa;
     border-bottom: 0px;
     &-left {
@@ -165,12 +164,21 @@
       z-index: 1;
       border-bottom: transparent;
       background-color: #f8f9fa;
+      @media screen and (min-width: 991px) {
+        padding-left: 54px;
+      }
     }
     &-right {
       flex-grow: 1;
       z-index: 1;
       border-bottom: transparent;
       background-color: #f8f9fa;
+      @media screen and (min-width: 991px) {
+        padding-right: 54px;
+      }
+      @media screen and (max-width: 991px) {
+        padding-bottom: 60px;
+      }
     }
     &_logo {
       margin-right: 40px;
@@ -204,6 +212,7 @@
       &.homepage:hover {
         .menu_submenu {
           &-wrapper {
+            box-shadow: inset 0px 10px 40px -6px rgba(0, 0, 0, .10), 0px 2px 40px rgba(0, 0, 0, .10);
             background: #ffffff;
             top: 80px;
           }
@@ -224,6 +233,9 @@
         opacity: 0.9;
         width: 100%;
         transition: all 0.2s ease 0s;
+        @media screen and (max-width: 991px) {
+          display: none;
+        }
       }
       &-item {
         list-style: none;

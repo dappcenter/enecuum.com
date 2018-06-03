@@ -1,21 +1,22 @@
 <template>
-  <el-col :xs="22" :sm="12">
-    <div class="press smallblock">
-      <img src="/img/press/big_coin.png" alt="">
-      <div class="press_info">
-        <h2 class="press_info-title">Name of article</h2>
-        <div class="press_info-date">15.04.2018</div>
-        <div class="press_info-description">We know many of you want to mee our CEO and CTO. Come to
-          Deconomy 2018 in Seoul or write to us on Telegram
-        </div>
-        <div class="press_info-read">READ</div>
-      </div>
+  <div class="press smallblock">
+    <img :src="'/img/press/'+article.link.match(/^https?:\/\/(www.)?([a-zA-Z\-\_]*)/)[article.link.match(/^https?:\/\/(www.)?([a-zA-Z\-\_]*)/).length-1]+'.png'"
+         :alt="article.title">
+    <div class="press_info">
+      <h2 class="press_info-title">{{article.title}}</h2>
+      <div class="press_info-date">{{article.date}}</div>
+      <div class="press_info-description">{{article.description}}</div>
+      <div class="press_info-read"><a :href="article.link" class="card-link" target="_blank">{{read}}</a></div>
     </div>
-  </el-col>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "smalbanner"
+  export default {
+    name: "smalbanner",
+    props: {
+      article: Object,
+      read: String
     }
+  }
 </script>

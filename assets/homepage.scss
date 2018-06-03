@@ -72,6 +72,7 @@
     }
   }
 }
+
 .business {
   padding: 50px 0px;
   &_carousel {
@@ -86,6 +87,9 @@
     &-tabs {
       display: flex;
       justify-content: center;
+      & > .el-tabs {
+        overflow: hidden;
+      }
       @media screen and (max-width: 768px) {
         justify-content: end;
         padding: 15px;
@@ -124,6 +128,7 @@
     }
   }
 }
+
 .features {
   display: flex;
   justify-content: center;
@@ -149,12 +154,20 @@
     margin-top: -160px;
     &-row {
       display: flex;
+      align-items: center;
       height: auto;
     }
     &-container {
       padding: 35px;
       width: 100%;
       max-width: 950px;
+      & > .el-carousel__container {
+        height: 330px;
+        transition: height .2s ease-in-out;
+      }
+      @media screen and (max-width: 768px) {
+        padding-bottom: 40px;
+      }
     }
     &-item {
       box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.15);
@@ -165,7 +178,7 @@
       padding: 20px;
     }
     &-title {
-      margin-bottom: 35px;
+      margin-bottom: 15px;
       color: #4f4f4f;
       font-size: 24px;
       padding-left: 40px;
@@ -178,9 +191,13 @@
       max-height: 160px;
     }
     &-text {
-
+      display: flex;
+      align-items: center;
     }
     @media screen and (max-width: 768px) {
+      /*&-text {
+        padding-bottom: 30px;
+      }*/
       &-row {
         flex-direction: column;
       }
@@ -194,6 +211,7 @@
     }
   }
 }
+
 .feedback {
   flex-wrap: wrap;
   padding: 48px 0 60px;
@@ -208,6 +226,7 @@
     padding: 16px;
   }
 }
+
 .mining {
   padding: 48px 0 40px;
   background: #f7faf8;
@@ -259,6 +278,7 @@
     }
   }
 }
+
 .partner {
   flex-wrap: wrap;
   padding: 48px 0 40px;
@@ -282,6 +302,7 @@
     }
   }
 }
+
 .phonemining {
   padding: 48px 0 0;
   position: relative;
@@ -306,6 +327,7 @@
     }
   }
 }
+
 .roadmap {
   flex-wrap: wrap;
   padding: 48px 0 40px;

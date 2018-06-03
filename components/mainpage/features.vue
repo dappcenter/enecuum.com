@@ -7,15 +7,17 @@
     </el-row>
     <el-row>
       <div class="features_carousel">
-        <el-carousel :interval="4000" class="features_carousel-container" indicator-position="none"
-                     @change="changeCarouselItem" :height="height">
+        <el-carousel :interval="40000" class="features_carousel-container" indicator-position="none"
+                     @change="changeCarouselItem" :height="height" :arrow="arrow">
           <el-carousel-item v-for="(slide, key) in data" :key="key" class="features_carousel-item">
             <div class="features_carousel-title">{{slide.TITLE}}</div>
             <div class="features_carousel-row">
               <img :src="slide.IMG" :alt="slide.TITLE">
               <div class="features_carousel-text">
-                <b>{{slide.SUB_TITLE}}</b>
-                {{slide.TEXT}}
+                <div>
+                  <b>{{slide.SUB_TITLE}}</b>
+                  {{slide.TEXT}}
+                </div>
               </div>
             </div>
           </el-carousel-item>
@@ -31,23 +33,29 @@
     props: ['data'],
     data() {
       return {
-        height: '300px'
+        height: '300px',
+        arrow: "always"
       }
     },
     methods: {
-      changeCarouselItem() {
-        this.changeHeight();
+      changeCarouselItem(index) {
+        this.changeHeight(index);
       },
-      changeHeight() {
-        let carRow = document.querySelector('.features_carousel-item.is-active div.features_carousel-row');
-        if (carRow) {
-          this.height = carRow.clientHeight + 120 + 'px';
+      changeHeight(index) {
+        let carRow = document.querySelectorAll('.features_carousel-item div.features_carousel-row');
+        if (carRow.length) {
+          let carRowLength = carRow.length - 1;
+          let currentRow = carRow[carRowLength - (carRowLength - index)];
+          this.height = currentRow.clientHeight + 100 + 'px';
         }
       }
     },
     mounted() {
+      if(window.innerWidth < 768) {
+        this.arrow = 'hover';
+      }
       setTimeout(() => {
-        this.changeHeight();
+        this.changeHeight(0);
       }, 1000);
     }
   }

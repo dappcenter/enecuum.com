@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-const apiUrl = '//api.enecuum.com/v1';
+const apiUrl = 'https://api.enecuum.com/v1';
 
 const actions = {
   isAuth(state, {cookies}) {
     return new Promise(resolve => {
       axios.request({
-        url: 'https:' + apiUrl + '/lk',
+        url: apiUrl + '/lk',
         method: 'get',
         withCredentials: true,
         headers: {
@@ -15,10 +15,8 @@ const actions = {
         },
       }).then((res) => {
         if (res.data.ok) {
-          if (res.data.code === 511) {
-            //show kyc
-          } else {
-            state.commit('SET_KYC_STATE', {status: res.data.ok, message: res.data.success});
+          if (res.data.code !== 511) {
+            state.commit('SET_KYC_STATE', {status: res.data.ok, message: res.data.success, code: res.data.code});
           }
           state.commit('SET_AUTH', true);
           resolve('success');

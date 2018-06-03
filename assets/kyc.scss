@@ -73,6 +73,24 @@
       color: #ff4f4f;
     }
   }
+  &-status {
+    width: 100%;
+    &-451:before {
+      content: url(/img/icons/ban.png);
+      display: inline-block;
+    }
+    &-202:before {
+      content: url(/img/icons/approve.png);
+      display: inline-block;
+    }
+    &-201:before {
+      content: url(/img/icons/revise.png);
+      display: inline-block;
+    }
+    @media screen and (max-width: 768px) {
+      padding-bottom: 60px;
+    }
+  }
 }
 
 .country {

@@ -5,23 +5,18 @@
       <el-col :xs="22" :sm="20" :md="22" :xl="16">
         <el-row>
           <el-tabs v-model="activeLang" class="enq-tabs events-tabs" @tab-click="changeLang">
-            <el-tab-pane v-for="(lang, lkey) in press.availablesLang" :key="lkey" :label="lang.label"
-                         :name="lang.name"></el-tab-pane>
+            <el-tab-pane v-if="press.availablesLang.length>1" v-for="(lang, lkey) in press.availablesLang" :key="lkey"
+                         :label="lang"
+                         :name="lang"></el-tab-pane>
           </el-tabs>
         </el-row>
-        <el-row>
-          <el-tabs v-model="activeTab" class="enq-tabs events-tabs">
-            <el-tab-pane v-for="(month, mkey) in press.months" :key="mkey" :label="month" :name="month">
-              <el-row :gutter="30" class="flex-start flex-wrap">
-                <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6" v-for="(article, key) in press.articles"
-                        :key="key"
-                        v-show="article.date.search(month)>-1">
-                  <art :article="article" :read="press.read">
-                  </art>
-                </el-col>
-              </el-row>
-            </el-tab-pane>
-          </el-tabs>
+        <el-row :gutter="30" class="flex-start flex-wrap events-press">
+          <el-col v-for="(article, akey) in press.articles" :key="akey" :xs="22"
+                  :sm="article.level ? article.level===3 ? 24 : 8 : 12">
+            <bigban v-if="article.level===3" :article="article"></bigban>
+            <midban v-if="article.level===2" :article="article"></midban>
+            <smallban v-if="!article.level" :article="article" :read="press.read"></smallban>
+          </el-col>
         </el-row>
       </el-col>
     </el-row>
@@ -30,9 +25,13 @@
 
 <script>
   import art from '@/components/press/article';
+  import bigban from '@/components/press/bigbanner';
+  import midban from '@/components/press/middlebanner';
+  import smallban from '@/components/press/smallbanner';
+
   import axios from 'axios';
 
-  function pressMiddleware(data, lang = 'articlesEN') {
+  function pressMiddleware(data, lang = 'articles_EN') {
     let monthArray = [];
     let articlesArray = [];
     data[lang].forEach(item => {
@@ -41,18 +40,31 @@
         date: item.date,
         title: item.title,
         description: item.description,
-        link: item.link
+        link: item.link,
+        level: item.level || 0,
+        img: item.img || ''
       };
       articlesArray.push(article);
       monthArray.push(splittedDate[0]);
     });
-
+    articlesArray.sort((a, b) => {
+      if (a.level < b.level) {
+        return 1;
+      }
+      if (a.level > b.level) {
+        return -1;
+      }
+    });
+    let availableLang = [];
+    for (let ln in data) {
+      ln.split('_').length > 1 ? availableLang.push(ln.split('_')[1]) : null;
+    }
     return {
       title: data.title,
       read: data.read,
       presskitIMG: data.presskitIMG,
       presskitDOC: data.presskitDOC,
-      availablesLang: data.availablesLang,
+      availablesLang: availableLang,
       articles: articlesArray,
       months: [...new Set(monthArray)],
     }
@@ -60,7 +72,7 @@
 
 
   export default {
-    name: "press",
+    name: "presssecond",
     data() {
       return {
         activeLang: 'EN',
@@ -68,12 +80,15 @@
       }
     },
     components: {
-      art
+      art,
+      bigban,
+      midban,
+      smallban
     },
     methods: {
       changeLang() {
         axios.get('/i18n/press_' + 'en' + '.json').then(res => {
-          this.press = pressMiddleware(res.data.press, 'articles' + this.activeLang);
+          this.press = pressMiddleware(res.data.press, 'articles_' + this.activeLang);
           this.activeTab = this.press.months[this.press.months.length - 1];
         });
       }

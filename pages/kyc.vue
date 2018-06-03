@@ -1,6 +1,6 @@
 <template>
   <section class="container kyc" :class="{'flex-middle':kyc.status}">
-    <complete v-if="kyc.status" :text="kyc.message"></complete>
+    <complete v-if="kyc.status" :kyc="kyc"></complete>
     <div class="authorize border-off-inputs" v-else>
       <el-row class="flex-center">
         <el-col :xs="22" :sm="14" :md="10" :lg="8" :xl="6">
@@ -50,7 +50,7 @@
       }
     },
     mounted() {
-      axios.get('/all.json').then(res => {
+      axios.get('i18n/countries.json').then(res => {
         this.countries = res.data;
       });
       /*      let kyc = this.$store.dispatch('kyc');
