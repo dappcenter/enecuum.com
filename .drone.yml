@@ -1,0 +1,79 @@
+pipeline:
+  build:
+    image: node:10-alpine
+    commands:
+      - "npm install"
+      - "npm run build"
+    when:
+      branch: dev
+  notify-build:
+    image: dev.enecuum.com:2087/library/drone-telegram:v1.0.0
+    secrets: [telegram_token, telegram_id]
+    when:
+      status: [success, failure]
+  publish:
+    image: plugins/docker
+    secrets: [docker_username, docker_password]
+    registry: dev.enecuum.com:2087
+    repo: dev.enecuum.com:2087/site/frontend
+    auto_tag: true
+    when:
+      branch:
+        - dev
+      status:
+        - success
+      event:
+        - push
+        - tag
+  deploy-dev:
+    image: peloton/drone-rancher
+    url: https://dev.enecuum.com:2096
+    secrets:
+      - source: rancher_access_key
+        target: PLUGIN_ACCESS_KEY
+      - source: rancher_secret_key
+        target: PLUGIN_SECRET_KEY
+    docker_image: dev.enecuum.com:2087/site/frontend:latest
+    service: site/frontend-dev
+    confirm: true
+    timeout: 240
+    when:
+      branch:
+        - dev
+      status:
+        - success
+  deploy-prod:
+    image: peloton/drone-rancher
+    url: https://dev.enecuum.com:2096
+    secrets:
+      - source: rancher_access_key
+        target: PLUGIN_ACCESS_KEY
+      - source: rancher_secret_key
+        target: PLUGIN_SECRET_KEY
+    docker_image: dev.enecuum.com:2087/site/frontend:latest
+    service: site/frontend-prod
+    confirm: true
+    timeout: 240
+    when:
+      branch:
+        - master
+      status:
+        - success
+  notify-deploy-dev:
+    image: dev.enecuum.com:2087/library/drone-telegram:v1.0.0
+    secrets: [telegram_token, telegram_id]
+    message: \u2705 dev deployment successful
+    when:
+      branch:
+        - dev
+      status:
+        - success
+  notify-deploy-prod:
+    image: dev.enecuum.com:2087/library/drone-telegram:v1.0.0
+    secrets: [telegram_token, telegram_id]
+    message: \u2705 prod deployment successful
+    when:
+      branch:
+        - master
+      status:
+        - success
