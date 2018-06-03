@@ -1,0 +1,12 @@
+.dockerignore
+
+node_modules/
+LICENSE
+VERSION
+Makefile
+docs
+.*
+!.eslintrc.js
+*.log
+*.yml
+*.md
