@@ -16,7 +16,7 @@ pipeline:
     secrets: [docker_username, docker_password]
     registry: dev.enecuum.com:2087
     repo: dev.enecuum.com:2087/site/frontend
-    auto_tag: true
+    tags: latest
     when:
       branch:
         - dev
