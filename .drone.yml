@@ -5,16 +5,23 @@ pipeline:
       - "npm install"
       - "npm run build"
     when:
-      branch: dev
+      branch:
+        - dev
+      event:
+        - push
+        - tag
   notify-build:
     image: dev.enecuum.com:2087/library/drone-telegram:v1.0.0
     secrets: [telegram_token, telegram_id]
     when:
-          branch:
-            - dev
-          status:
-            - success
-            - failure
+      branch:
+        - dev
+      status:
+        - success
+        - failure
+      event:
+        - push
+        - tag
   publish:
     image: plugins/docker
     secrets: [docker_username, docker_password]
@@ -46,6 +53,9 @@ pipeline:
         - dev
       status:
         - success
+      event:
+        - push
+        - tag
   deploy-prod:
     image: peloton/drone-rancher
     url: https://dev.enecuum.com:2096
@@ -63,6 +73,9 @@ pipeline:
         - master
       status:
         - success
+      event:
+        - push
+        - tag
   notify-deploy-dev:
     image: dev.enecuum.com:2087/library/drone-telegram:v1.0.0
     secrets: [telegram_token, telegram_id]
@@ -72,6 +85,9 @@ pipeline:
         - dev
       status:
         - success
+      event:
+        - push
+        - tag
   notify-deploy-prod:
     image: dev.enecuum.com:2087/library/drone-telegram:v1.0.0
     secrets: [telegram_token, telegram_id]
@@ -81,3 +97,14 @@ pipeline:
         - master
       status:
         - success
+      event:
+        - push
+        - tag
+  notify-pr:
+    image: dev.enecuum.com:2087/library/drone-telegram:v1.0.0
+    secrets: [telegram_token, telegram_id]
+    message: \u1F440 PR ${DRONE_REPO_LINK}/pull/${DRONE_PULL_REQUEST}
+    when:
+      branch:
+        - master
+      event: pull_request
