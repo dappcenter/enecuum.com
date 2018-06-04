@@ -10,7 +10,11 @@ pipeline:
     image: dev.enecuum.com:2087/library/drone-telegram:v1.0.0
     secrets: [telegram_token, telegram_id]
     when:
-      status: [success, failure]
+          branch:
+            - dev
+          status:
+            - success
+            - failure
   publish:
     image: plugins/docker
     secrets: [docker_username, docker_password]
