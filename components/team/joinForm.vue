@@ -58,7 +58,6 @@
           if (valid) {
             this.sendTeamForm();
           } else {
-            console.log('error submit!!');
             setTimeout(() => {
               form.clearValidate();
             }, 3000);
@@ -71,7 +70,6 @@
         data.append('file', this.$refs.upload.uploadFiles[0].raw);
         data.append('subject', this.form.subject);
         data.append('message', this.form.message);
-        console.log(this.$refs.upload.uploadFiles[0]);
         if (this.cq_user) {
           data.append('cq_user', this.cq_user);
         }

@@ -23,9 +23,6 @@
 <script>
   export default {
     name: "error",
-    props: ['error'],
-    mounted() {
-      console.log(this.error);
-    }
+    props: ['error']
   }
 </script>

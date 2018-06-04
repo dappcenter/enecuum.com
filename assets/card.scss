@@ -60,6 +60,10 @@
   &-link {
     text-transform: uppercase;
     color: #00add3;
+    transition: .2s color ease-in-out;
+    &:hover {
+      color: #1594b4;
+    }
   }
   &-iframe {
     .el-dialog {

@@ -19,7 +19,7 @@ module.exports = {
       {property: "og:type", content: "business.business"},
       {property: "og:title", content: "Enecuum | ENQ | Blockchain of Tomorrow"},
       {property: "og:url", content: "https://enecuum.com/"},
-      {property: "og:image", content: "head/favicon-32x32.png"},
+      {property: "og:image", content: "/head/favicon-32x32.png"},
       //twitter card
       {name: "twitter:card", content: "summary_large_image"},
       {name: "twitter:site", content: "@"},
@@ -27,18 +27,21 @@ module.exports = {
         name: "twitter:description",
         content: "Enecuum is a decentralized environment that aims to integrate blockchain technologies into both business and state structures. The technologies used in the project allow for solving various tasks: fintech, banking, document processing, insurance, logistics, IoT, DApps, ICO and more."
       },
-      {name: "twitter:image", content: "head/favicon-32x32.png"}
+      {name: "twitter:image", content: "/head/favicon-32x32.png"}
     ],
     link: [
-      {rel: 'icon', type: "image/x-icon", href: 'head/favicon.ico'},
-      {rel: 'apple-touch-icon', sizes: "180x180", href: 'head/apple-touch-icon.png'},
-      {rel: 'icon', type: 'image/png', sizes: "16x16", href: 'head/favicon-16x16.png'},
-      {rel: 'icon', type: 'image/png', sizes: "32x32", href: 'head/favicon-32x32.png'},
-      {rel: 'icon', type: 'image/png', sizes: "192x192", href: 'head//android-chrome-192x192.png'},
-      {rel: 'icon', type: 'image/png', sizes: "194x194", href: 'head/favicon-194x194.png'},
-      {rel: 'manifest', href: 'head/site.webmanifest'},
-      {rel: 'mask-icon', color: '00add9', href: 'head/safari-pinned-tab.svg'}
+      {rel: 'icon', type: "image/x-icon", href: '/head/favicon.ico'},
+      {rel: 'apple-touch-icon', sizes: "180x180", href: '/head/apple-touch-icon.png'},
+      {rel: 'icon', type: 'image/png', sizes: "16x16", href: '/head/favicon-16x16.png'},
+      {rel: 'icon', type: 'image/png', sizes: "32x32", href: '/head/favicon-32x32.png'},
+      {rel: 'icon', type: 'image/png', sizes: "192x192", href: '/head//android-chrome-192x192.png'},
+      {rel: 'icon', type: 'image/png', sizes: "194x194", href: '/head/favicon-194x194.png'},
+      {rel: 'manifest', href: '/head/site.webmanifest'},
+      {rel: 'mask-icon', color: '00add9', href: '/head/safari-pinned-tab.svg'}
     ]
+  },
+  router: {
+    middleware: 'router-filter'
   },
   /*
   ** Customize the progress bar color

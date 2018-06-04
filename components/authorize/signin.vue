@@ -3,8 +3,7 @@
     <el-row class="flex-center flex-column">
       <h1 class="h3">Sign In</h1>
       <p>Personal account</p>
-      <el-form :model="signInForm" :rules="signInFormRules" ref="signInForm" class="authorize_form"
-               @submit="console.log('test');">
+      <el-form :model="signInForm" :rules="signInFormRules" ref="signInForm" class="authorize_form">
         <el-form-item prop="email">
           <el-input v-model="signInForm.email" placeholder="Login" @keyup.enter.native="submitForm"></el-input>
         </el-form-item>

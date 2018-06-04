@@ -262,9 +262,14 @@
 }
 
 .el-button {
-  &.el-button:not([disabled]) {
-    &--primary {
-      &:hover {
+  &.el-button {
+    &--primary:not([disabled]) {
+      background-color: #00ADD9;
+      color: #ffffff;
+      transition: .2s all ease-in;
+      &:hover,
+      &:active,
+      &:focus {
         background-color: #1594b4;
         border-color: #1594b4;
       }

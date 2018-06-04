@@ -9,15 +9,15 @@
       </div>
       <div>
         {{footerAddress.COPYRIGHT}} ·
-        <a href="docs/Privacy.pdf">{{footerAddress.PRIVACY}}</a> ·
-        <a href="docs/Terms.pdf">{{footerAddress.TERMS}}</a> ·
+        <a href="/docs/privacy.pdf">{{footerAddress.PRIVACY}}</a> ·
+        <a href="/docs/terms.pdf">{{footerAddress.TERMS}}</a> ·
         <a href="mailto:hello@enecuum.com">{{footerAddress.MAILUS}}</a>
       </div>
     </div>
     <div class="footer_networks">
       <a v-for="(item, key) in social" :key="key" :href="item.link" target="_blank"
          @click="a({category: 'social', eventAction: 'click', eventLabel: item.type})">
-        <img :src="item.img" alt="">
+        <img :src="'/'+item.img" alt="">
       </a>
     </div>
   </section>

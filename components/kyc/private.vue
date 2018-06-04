@@ -490,7 +490,6 @@
       },
       photoPassportUpload(response, file, fileList) {
         this.privateForm.photoPassport = fileList.map(item => {
-          console.log(item);
           return item.response.success.filename;
         });
       },

@@ -64,7 +64,6 @@
       },
       send() {
         this.good = true;
-        console.log('send');
       }
     }
   }

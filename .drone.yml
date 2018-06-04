@@ -35,6 +35,7 @@ pipeline:
         target: PLUGIN_SECRET_KEY
     docker_image: dev.enecuum.com:2087/site/frontend:latest
     service: site/frontend-dev
+    start_first: false
     confirm: true
     timeout: 240
     when:
@@ -52,6 +53,7 @@ pipeline:
         target: PLUGIN_SECRET_KEY
     docker_image: dev.enecuum.com:2087/site/frontend:latest
     service: site/frontend-prod
+    start_first: false
     confirm: true
     timeout: 240
     when:

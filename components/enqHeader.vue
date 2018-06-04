@@ -4,13 +4,13 @@
       <transition name="fade">
         <div class="menu_logo-overlay" v-show="isOpened" @click="closeMenu"></div>
       </transition>
-      <img src="img/logo.png" alt="" class="menu_logo-img">
+      <nuxt-link to="/"><img src="/img/logo.svg" alt="" class="menu_logo-img"></nuxt-link>
       <button class="menu_logo-hamburger" @click="openMenu"><i class="fa fa-bars" aria-hidden="true"></i></button>
     </div>
     <div class="flex-between menu" :class="{'menu-open': isOpened}">
       <el-menu :default-active="activeMenu" mode="horizontal" router class="menu-left">
-        <div class="menu_logo">
-          <img src="img/logo.png" alt="" class="menu_logo-img"></div>
+        <nuxt-link to="/" class="menu_logo">
+          <img src="/img/logo.svg" alt="" class="menu_logo-img"></nuxt-link>
         <el-menu-item index="/" class="menu-item">Home</el-menu-item>
         <el-menu-item index="/team" class="menu-item">Team</el-menu-item>
         <el-menu-item index="" class="menu-item"><a href="https://medium.com/@EnqBlockchain" target="_blank">Blog</a>
@@ -110,7 +110,6 @@
           return -c / 2 * (t * (t - 2) - 1) + b;
         };
 
-        console.log(to);
         to = document.getElementById(to).offsetTop;
         let duration = 1000;
         let start = document.documentElement.scrollTop + 100,
@@ -118,7 +117,6 @@
           currentTime = 0,
           increment = 20;
 
-        console.log(start, to, duration);
         let animateScroll = function () {
           currentTime += increment;
           let val = Math.easeInOutQuad(currentTime, start, change, duration);
@@ -132,6 +130,7 @@
     },
     watch: {
       '$route': function () {
+        this.activeMenu = this.$route.path;
         this.isOpened = false;
         this.setHomeClass();
         if (document.querySelector('.openedMenu')) {

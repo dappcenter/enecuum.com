@@ -9,6 +9,9 @@
     }
   }
   &.bigblock {
+    img {
+      min-height: 120px;
+    }
     .press {
       &_info {
         bottom: 60px;

@@ -207,6 +207,19 @@
             "img": "/img/mainpage/partners/arloid.png"
           }
         ]
+      },
+      "media_partners": {
+        "title": "Media partners",
+        "img": [
+          {
+            "link": "http://icocrowd.com/",
+            "img": "/img/mainpage/partners/ico_crowd.png"
+          },
+          {
+            "link": "https://bloomchain.ru/",
+            "img": "/img/mainpage/partners/bloom_chain.png"
+          }
+        ]
       }
     },
     "feedback": {

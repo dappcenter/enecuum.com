@@ -8,12 +8,12 @@
         {{data.subtitle}}
       </div>
     </div>
-    <div><a href="docs/Enecuum_WP.pdf" class="enq-button enq-button--blue" target="_blank" @click="a({category: 'docs', eventAction: 'open', eventLabel: 'whitepaper'})">
+    <div><a href="/docs/Enecuum_WP.pdf" class="enq-button enq-button--blue" target="_blank" @click="a({category: 'docs', eventAction: 'open', eventLabel: 'whitepaper'})">
       {{data.wp}}
     </a>
-      <a href="docs/Enecuum_WP_KO.docx" class="enq-button enq-button--blue" target="_blank" @click="a({category: 'docs', eventAction: 'open', eventLabel: 'whitepaper_ko'})">
+      <a href="/docs/Enecuum_WP_KO.pdf" class="enq-button enq-button--blue" target="_blank" @click="a({category: 'docs', eventAction: 'open', eventLabel: 'whitepaper_ko'})">
         {{data.wp_ko}}
-      </a><a href="docs/Onepager.pdf" class="enq-button enq-button--plain" target="_blank" @click="a({category: 'docs', eventAction: 'open', eventLabel: 'onepager'})">
+      </a><a href="/docs/onepager.pdf" class="enq-button enq-button--plain" target="_blank" @click="a({category: 'docs', eventAction: 'open', eventLabel: 'onepager'})">
         {{data.onepager}}
       </a></div>
     <div class="banner_networks">
@@ -68,7 +68,6 @@
           if (valid) {
             this.sendWhitelist();
           } else {
-            console.log('error submit');
             return false;
           }
         });
@@ -81,7 +80,6 @@
         this.loading = true;
         let isSended = this.$store.dispatch('subscribeWP', data);
         isSended.then((res) => {
-          console.log(res);
           if (res.ok) {
             this.a({category: 'subscribe', eventAction: 'send', eventLabel: 'subscribe'});
             this.$message({

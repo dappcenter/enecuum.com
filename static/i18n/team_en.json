@@ -385,12 +385,16 @@
           {
             "avatar": "/img/team/avatars/dmitry.png",
             "name": "Dmitry Rumyantsev",
-            "position": "Support Manager",
+            "position": "PR",
             "description": "Dmitry is a PR specialist with more than 7 years experience in IT, education, crypto and politics spheres. He is not only responsible for PR support, he is a great journalist and passionate person who believes that Enecuum become successful prpject and will change the world.",
             "social": [
               {
-                "type": "facebook",
-                "url": "https://www.facebook.com/dmitry.rumyantsev.5"
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/dmitry-rumyantsev-a0218a10b/"
+              },
+              {
+                "type": "twitter",
+                "url": "https://twitter.com/DmRumian"
               }
             ]
           }
@@ -505,10 +509,6 @@
               {
                 "type": "linkedin",
                 "url": "https://www.linkedin.com/in/sebastiao/"
-              },
-              {
-                "type": "linkedin",
-                "url": "https://www.linkedin.com/company/enecuum-limited/"
               }
             ]
           }
