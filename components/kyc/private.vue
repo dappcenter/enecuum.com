@@ -476,7 +476,7 @@
     },
     methods: {
       handleBeforeUpload(file) {
-        let filetype = file.name.split('.')[file.name.split('.').length-1];
+        let filetype = file.name.split('.')[file.name.split('.').length - 1];
         const acceptedList = ['jpeg', 'jpg', 'png', 'txt', 'doc', 'docx', 'xls', 'xlsx', 'gif', 'pdf'];
         const accepted = acceptedList.indexOf(filetype) > -1;
         const isLt2M = file.size / 1024 / 1024 < 15;
@@ -551,7 +551,7 @@
               type: 'success',
               position: 'bottom-left'
             });
-            this.$store.state.commit('SET_KYC_STATE', {status: res.ok, message: res.success});
+            this.$store.state.commit('SET_KYC_STATE', {status: res.ok, message: res.success, code: res.code});
           } else {
             this.$notify({
               title: 'Error',

@@ -587,7 +587,7 @@
               type: 'success',
               position: 'bottom-left'
             });
-            this.$store.state.commit('SET_KYC_STATE', {status: res.ok, message: res.success});
+            this.$store.state.commit('SET_KYC_STATE', {status: res.ok, message: res.success, code: res.code});
           } else {
             this.$notify({
               title: 'Error',
