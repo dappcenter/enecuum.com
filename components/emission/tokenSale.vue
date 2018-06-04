@@ -18,7 +18,7 @@
       </el-col>
       <el-col :xs="24" :md="12">
         <p class="title-middle text-center">Distribution scheme of the ENQ Stage 1 emission</p>
-        <img src="/img/tokens/il_3.png" alt="" class="img-fluid">
+        <img src="/img/tokens/il_4.png" alt="" class="img-fluid">
         <div class="title-under text-center">Diagram 3. Intended distribution scheme of the ENQ Stage 1 emission</div>
       </el-col>
     </el-row>

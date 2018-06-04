@@ -21,9 +21,12 @@
 </template>
 
 <script>
+  import validators from '../kyc/validators';
+
   export default {
     name: "signin",
     data() {
+      const validateEmail = validators.email;
       return {
         loading: false,
         signInForm: {
@@ -32,7 +35,7 @@
         },
         signInFormRules: {
           email: [
-            {required: true, message: 'This field can not be empty'}
+            {validator: validateEmail, trigger: 'change'}
           ],
           password: [
             {required: true, message: 'This field can not be empty'}
@@ -60,13 +63,12 @@
       signinForm() {
         let data = this.signInForm;
         if (this.cq_user) {
-          data.append('cq_user', this.cq_user);
+          data.cq_user = this.cq_user;
         }
         this.loading = true;
         let isSended = this.$store.dispatch('signIn', data);
         isSended.then((res) => {
           if (res.ok) {
-            //a.send({category: 'subscribe', eventAction: 'send', eventLabel: 'subscribe'});
             this.$message({
               type: "success",
               message: res.success
@@ -87,6 +89,11 @@
             message: "Something went wrong, sorry"
           });
         });
+      }
+    },
+    mounted() {
+      if (this.$route.params.hash) {
+        console.log(this.$route.params.hash);
       }
     }
   }

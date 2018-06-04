@@ -8,6 +8,7 @@ _paq.push(['trackPageView']);
 _paq.push(['enableLinkTracking']);
 _paq.push(['trackAllContentImpressions']);
 
+
 (function () {
   let u = "//api.enecuum.com/v1/";
   _paq.push(['setTrackerUrl', u + 'a']);
@@ -146,6 +147,7 @@ function install(Vue) {
     });
   }
   Vue.prototype.a = function (target) {
+    console.log(target, _paq, isBlocked());
     if (_paq) {
       _paq.push(['trackEvent', target.category, target.eventAction, target.eventLabel]);
     }

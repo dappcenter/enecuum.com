@@ -255,7 +255,7 @@
           <el-form-item prop="ethWalletNumber">
             <el-input v-model="privateForm.ethWalletNumber" placeholder="Your wallet number"></el-input>
           </el-form-item>
-          <el-form-item prop="estimatedInvest">
+          <el-form-item prop="estimatedInvest" label="Estimated investment (ether)">
             <el-input-number v-model="privateForm.estimatedInvest" placeholder="Estimated investment (ethereum)"
                              class="full-width" :controls="false"></el-input-number>
           </el-form-item>
@@ -524,16 +524,16 @@
       },
       sendKyc() {
         let data = this.privateForm;
-        //let data = new FormData();
-        /*        for (let key in this.privateForm) {
-                  data.append(key, this.privateForm[key]);
-                }*/
+        if (this.cq_user) {
+          data.cq_user = this.cq_user;
+        }
         this.loading = true;
         let isSended = this.$store.dispatch('submitKyc', data);
         isSended.then(res => {
           this.loading = false;
+          console.log(this.$refs);
           if (res.ok) {
-            this.$refs['privateForm'].resetField();
+            this.$refs['privateForm'].resetFields();
             this.a({category: 'lk', eventAction: 'success', eventLabel: 'kyc'});
             _paq.push(['addEcommerceItem',
               2,
@@ -551,7 +551,7 @@
               type: 'success',
               position: 'bottom-left'
             });
-            this.$store.state.commit('SET_KYC_STATE', {status: res.ok, message: res.success, code: res.code});
+            this.$store.commit('SET_KYC_STATE', {status: res.ok, message: res.success, code: res.code});
           } else {
             this.$notify({
               title: 'Error',

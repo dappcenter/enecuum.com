@@ -7,7 +7,7 @@
     </el-row>
     <el-row>
       <div class="features_carousel">
-        <el-carousel :interval="40000" class="features_carousel-container" indicator-position="none"
+        <el-carousel :interval="4000" class="features_carousel-container" indicator-position="none"
                      @change="changeCarouselItem" :height="height" :arrow="arrow">
           <el-carousel-item v-for="(slide, key) in data" :key="key" class="features_carousel-item">
             <div class="features_carousel-title">{{slide.TITLE}}</div>

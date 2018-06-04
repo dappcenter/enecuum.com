@@ -90,7 +90,8 @@ const actions = {
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
           'Content-Type': 'application/json'
-        }
+        },
+        withCredentials: true,
       }).then(res => {
         resolve(res.data);
       })
@@ -147,6 +148,22 @@ const actions = {
         withCredentials: true,
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
+        }
+      }).then(res => {
+        resolve(res.data);
+      })
+    })
+  },
+  signinRecoveryPassword(state, data) {
+    return new Promise(resolve => {
+      axios.request({
+        url: apiUrl + '/recovery',
+        method: 'post',
+        data: data,
+        withCredentials: true,
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'Content-Type': 'application/json'
         }
       }).then(res => {
         resolve(res.data);

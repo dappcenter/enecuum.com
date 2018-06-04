@@ -8,16 +8,20 @@
         {{data.subtitle}}
       </div>
     </div>
-    <div><a href="/docs/Enecuum_WP.pdf" class="enq-button enq-button--blue" target="_blank" @click="a({category: 'docs', eventAction: 'open', eventLabel: 'whitepaper'})">
+    <div><a href="/docs/Enecuum_WP.pdf" class="enq-button enq-button--blue" target="_blank"
+            @click="a({category: 'docs', eventAction: 'open', eventLabel: 'whitepaper'})">
       {{data.wp}}
     </a>
-      <a href="/docs/Enecuum_WP_KO.pdf" class="enq-button enq-button--blue" target="_blank" @click="a({category: 'docs', eventAction: 'open', eventLabel: 'whitepaper_ko'})">
+      <a href="/docs/Enecuum_WP_KO.pdf" class="enq-button enq-button--blue" target="_blank"
+         @click="a({category: 'docs', eventAction: 'open', eventLabel: 'whitepaper_ko'})">
         {{data.wp_ko}}
-      </a><a href="/docs/onepager.pdf" class="enq-button enq-button--plain" target="_blank" @click="a({category: 'docs', eventAction: 'open', eventLabel: 'onepager'})">
+      </a><a href="/docs/onepager.pdf" class="enq-button enq-button--plain" target="_blank"
+             @click="a({category: 'docs', eventAction: 'open', eventLabel: 'onepager'})">
         {{data.onepager}}
       </a></div>
     <div class="banner_networks">
-      <a v-for="(item, key) in social" :key="key" :href="item.link" target="_blank" @click="a({category: 'social', eventAction: 'click', eventLabel: item.type})">
+      <a v-for="(item, key) in social" :key="key" :href="item.link" target="_blank"
+         @click="a({category: 'social', eventAction: 'click', eventLabel: item.type})">
         <img :src="item.img" alt="">
       </a>
     </div>
@@ -63,6 +67,9 @@
       }
     },
     methods: {
+      sendSocial() {
+
+      },
       submitWL() {
         this.$refs['whiteListForm'].validate((valid) => {
           if (valid) {
@@ -75,7 +82,7 @@
       sendWhitelist() {
         let data = this.whitelist;
         if (this.cq_user) {
-          data.append('cq_user', this.cq_user);
+          data.cq_user = this.cq_user;
         }
         this.loading = true;
         let isSended = this.$store.dispatch('subscribeWP', data);

@@ -53,13 +53,6 @@
       axios.get('i18n/countries.json').then(res => {
         this.countries = res.data;
       });
-      /*      let kyc = this.$store.dispatch('kyc');
-            kyc.then(res => {
-              if (res !== 'ok') {
-                this.kycComplete.status = res.ok;
-                this.kycComplete.message = res.success;
-              }
-            });*/
     }
   }
 </script>

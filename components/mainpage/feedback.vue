@@ -112,7 +112,7 @@
       sendFeedbackForm() {
         let data = this.feedbackForm;
         if (this.cq_user) {
-          data.append('cq_user', this.cq_user);
+          data.cq_user = this.cq_user;
         }
         this.loading = true;
         let isSended = this.$store.dispatch('sendFeedback', data);
