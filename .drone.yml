@@ -79,7 +79,7 @@ pipeline:
   notify-deploy-dev:
     image: dev.enecuum.com:2087/library/drone-telegram:v1.0.0
     secrets: [telegram_token, telegram_id]
-    message: \u2705 dev deployment successful
+    message: \u2705 ${DRONE_REPO}:`${DRONE_COMMIT_BRANCH}` \#${DRONE_BUILD_NUMBER} deployment successful
     when:
       branch:
         - dev
@@ -91,7 +91,7 @@ pipeline:
   notify-deploy-prod:
     image: dev.enecuum.com:2087/library/drone-telegram:v1.0.0
     secrets: [telegram_token, telegram_id]
-    message: \u2705 prod deployment successful
+    message: \u2705 ${DRONE_REPO}:`${DRONE_COMMIT_BRANCH}` \#${DRONE_BUILD_NUMBER} deployment successful
     when:
       branch:
         - master
@@ -103,8 +103,7 @@ pipeline:
   notify-pr:
     image: dev.enecuum.com:2087/library/drone-telegram:v1.0.0
     secrets: [telegram_token, telegram_id]
-    message: \u1F440 PR ${DRONE_REPO_LINK}/pull/${DRONE_PULL_REQUEST}
+    message: \u2757 PR ${DRONE_REPO_LINK}/pull/${DRONE_PULL_REQUEST}
     when:
-      branch:
-        - master
+      branch: master
       event: pull_request
