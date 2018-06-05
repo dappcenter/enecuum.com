@@ -20,7 +20,6 @@
     mounted() {
       this.$parent.interval = setInterval(() => {
         this.kyc.code === 201 ? this.$router.push('/') : null;
-        this.$store.dispatch('logout');
       }, 15000);
     }
   }

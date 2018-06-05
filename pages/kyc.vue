@@ -52,6 +52,7 @@
     },
     beforeRouteLeave(to, from, next) {
       clearInterval(this.interval);
+      this.$store.dispatch('logout');
       next()
     },
     mounted() {
