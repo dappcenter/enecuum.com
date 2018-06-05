@@ -39,6 +39,19 @@
         </el-row>
       </el-col>
     </el-col>
+    <el-col :xs="16" :sm="22">
+      <div class="page-sub-title">We are member of Fintech Association of Hong Kong</div>
+    </el-col>
+    <el-col :xs="22" class="flex-center">
+      <el-col :xs="16" :sm="22">
+        <el-row class="flex-center flex-wrap partner-eco" :gutter="40">
+          <el-col :xs="24" :md="6" :sm="8" :lg="4" v-for="(medpart, medkey) in data.members.img" :key="medkey">
+            <div class="partner-item"><a :href="medpart.link" target="_blank"><img :src="medpart.img" class="partner-item_avatar"></a>
+            </div>
+          </el-col>
+        </el-row>
+      </el-col>
+    </el-col>
   </div>
 </template>
 

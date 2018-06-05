@@ -216,6 +216,15 @@
             "img": "/img/mainpage/partners/bloom_chain.png"
           }
         ]
+      },
+      "members": {
+        "title": "We are member of Fintech Association of Hong Kong",
+        "img": [
+          {
+            "link": "http://hkfintech.org/",
+            "img": "/img/mainpage/partners/fintechhh.png"
+          }
+        ]
       }
     },
     "feedback": {

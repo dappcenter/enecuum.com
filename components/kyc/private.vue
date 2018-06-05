@@ -470,7 +470,7 @@
     },
     methods: {
       handleBeforeUpload(file) {
-        let filetype = file.name.split('.')[file.name.split('.').length - 1];
+        let filetype = file.name.split('.')[file.name.split('.').length - 1].toLocaleLowerCase();
         const acceptedList = ['jpeg', 'jpg', 'png', 'txt', 'doc', 'docx', 'xls', 'xlsx', 'gif', 'pdf'];
         const accepted = acceptedList.indexOf(filetype) > -1;
         const isLt2M = file.size / 1024 / 1024 < 15;
