@@ -230,7 +230,7 @@
       <el-row class="flex-center">
         <el-col :xs="22" :sm="14" :md="10" :lg="8" :xl="6">
           <p class="block-title">Ultimate Beneficiaries</p>
-          <div v-for="(user, key) in companyForm.benefits" :key="key">
+          <div v-for="(user, key) in companyForm.benefitsArray" :key="key">
             <el-form-item prop="firstName">
               <el-input v-model="user.firstName" placeholder="First name"></el-input>
             </el-form-item>
@@ -244,7 +244,7 @@
           <el-row class="flex-center kyc-addBenefic-wrapper">
             <button class="kyc-addBenefic" @click.prevent="addBenef"><img src="/img/icons/shape_close.svg" alt="">
             </button>
-            <button class="kyc-addBenefic remove" @click.prevent="removeBenef" v-if="companyForm.benefits.length>1"><i
+            <button class="kyc-addBenefic remove" @click.prevent="removeBenef" v-if="companyForm.benefitsArray.length>1"><i
               class="fa fa-times"
               aria-hidden="true"></i>
             </button>
@@ -339,7 +339,7 @@
           authCountryCode: '',
           authPhoneNumber: '',
           fileAuthRepr: '',
-          benefits: [],
+          benefitsArray: [],
           ethWalletNumber: '',
           estimatedInvest: '',
           firstAgree: null,
@@ -511,14 +511,14 @@
         return accepted && isLt2M;
       },
       addBenef() {
-        this.companyForm.benefits.push({
+        this.companyForm.benefitsArray.push({
           firstName: '',
           middleName: '',
           lastName: ''
         });
       },
       removeBenef() {
-        this.companyForm.benefits.pop();
+        this.companyForm.benefitsArray.pop();
       },
       photoRegUpload(response, file, fileList) {
         this.companyForm.fileConfirmReg = fileList.map(item => {
@@ -551,7 +551,7 @@
       },
       sendKyc() {
         let data = this.companyForm;
-        data.benefits = JSON.stringify(data.benefits);
+        data.benefic = JSON.stringify(data.benefitsArray);
         if (this.cq_user) {
           data.cq_user = this.cq_user;
         }
