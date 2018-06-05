@@ -39,10 +39,10 @@ const email = (rule, value, callback) => {
 const numbers = (rule, value, callback) => {
   if (value === '') {
     callback(new Error('This field is required'));
-  } else if (!value.match(/[\d\.]*/)) {
-    callback(new Error('The field must be a number'));
-  } else if (parseInt(value) <= 0) {
-    callback(new Error('Can not be less than zero'));
+  } else if (value.match(/[^0-9\.\,]/gi)) {
+    callback(new Error('This field must be a number'));
+  } else if (value <= 0) {
+    callback(new Error('Must be greater than zero'));
   } else {
     callback();
   }
