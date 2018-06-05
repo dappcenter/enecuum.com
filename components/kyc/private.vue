@@ -548,9 +548,7 @@
               type: 'success',
               position: 'bottom-left'
             });
-            if (process.env.dev) {
-              console.log('after submit kyc', res);
-            }
+            this.$store.state.debug ? console.log('after submit kyc', res) : null;
             this.$store.commit('SET_KYC_STATE', {status: res.ok, message: res.success, code: res.code});
           } else {
             this.$notify({

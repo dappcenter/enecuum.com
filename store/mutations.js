@@ -10,6 +10,9 @@ const mutations = {
   },
   SET_KYC_STATE(state, obj) {
     state.kyc = obj;
+  },
+  SET_DEBUG(state, boolean) {
+    state.debug = boolean;
   }
 };
 

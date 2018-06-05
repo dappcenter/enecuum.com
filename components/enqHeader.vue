@@ -20,7 +20,9 @@
         <el-menu-item index="/press" class="menu-item">Press</el-menu-item>
         <el-menu-item index="/token" class="menu-item">Token</el-menu-item>
         <el-menu-item index="/faq" class="menu-item">FAQ</el-menu-item>
-        <el-menu-item index="" class="menu-item"><a href="https://testnet.enecuum.com/dashboard/snapshot/o1B4U1OMG55XD0LRpq94Ph5rWDAFTxPV" target="_blank">ENQ.Testnet</a></el-menu-item>
+        <el-menu-item index="" class="menu-item"><a
+          href="https://testnet.enecuum.com/dashboard/snapshot/o1B4U1OMG55XD0LRpq94Ph5rWDAFTxPV" target="_blank">ENQ.Testnet</a>
+        </el-menu-item>
       </el-menu>
       <ul class="el-menu--horizontal el-menu menu-right">
         <nuxt-link to="/signin" class="el-menu-item menu-item float-right" v-if="!isAuth">Sign In</nuxt-link>

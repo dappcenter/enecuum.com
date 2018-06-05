@@ -7,6 +7,7 @@ import actions from './actions';
 const createStore = () => {
   return new Vuex.Store({
     state: {
+      debug: false,
       cookies: '',
       kyc: {},
       isAuth: false,
