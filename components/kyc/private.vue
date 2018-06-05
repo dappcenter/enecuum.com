@@ -38,7 +38,6 @@
                 placeholder="Date of birth"
                 class="form_date-picker">
               </el-date-picker>
-              <!--<el-button type="text" class="form_date-btn"><i class="fa fa-calendar" aria-hidden="true"></i></el-button>-->
             </div>
           </el-form-item>
         </el-col>
@@ -88,7 +87,6 @@
                 placeholder="Date of issue"
                 class="form_date-picker">
               </el-date-picker>
-              <!--<el-button type="text" class="form_date-btn"><i class="fa fa-calendar" aria-hidden="true"></i></el-button>-->
             </div>
           </el-form-item>
           <el-form-item prop="issuePlace">
@@ -102,7 +100,6 @@
                 placeholder="Valid until"
                 class="form_date-picker">
               </el-date-picker>
-              <!--<el-button type="text" class="form_date-btn"><i class="fa fa-calendar" aria-hidden="true"></i></el-button>-->
             </div>
           </el-form-item>
           <el-form-item prop="isIndefinitely">
@@ -117,7 +114,7 @@
           <p class="photo-upload-title block-title">Upload a photo of your ID/passport <img src="/img/icons/attach.svg"
                                                                                             alt="">
           </p>
-          <el-form-item prop="photoPassport">
+          <el-form-item prop="filePassport">
             <el-upload
               action="https://api.enecuum.com/v1/kyc-files"
               drag
@@ -128,7 +125,7 @@
               :headers="{
               'X-Requested-With': 'XMLHttpRequest'
               }"
-              ref="photoPassport"
+              ref="filePassport"
               :on-preview="handlePictureCardPreview"
               :before-upload="handleBeforeUpload"
               :on-success="photoPassportUpload"
@@ -141,7 +138,7 @@
           </el-form-item>
           <p class="photo-upload-title block-title">Upload a selfie holding your ID/passport <img
             src="/img/icons/attach.svg" alt=""></p>
-          <el-form-item prop="selfiePassport">
+          <el-form-item prop="fileSelfiePassport">
             <el-upload
               action="https://api.enecuum.com/v1/kyc-files"
               drag
@@ -152,7 +149,7 @@
               :headers="{
               'X-Requested-With': 'XMLHttpRequest'
               }"
-              ref="selfiePassport"
+              ref="fileSelfiePassport"
               :on-preview="handlePictureCardPreview"
               :before-upload="handleBeforeUpload"
               :on-success="selfiePassportUpload"
@@ -225,7 +222,7 @@
           </el-row>
           <p class="photo-upload-title block-title">Upload a document confirming your address <img
             src="/img/icons/attach.svg" alt=""></p>
-          <el-form-item prop="confirmDoc">
+          <el-form-item prop="fileConfirmAddr">
             <el-upload
               action="https://api.enecuum.com/v1/kyc-files"
               drag
@@ -322,8 +319,8 @@
           issuePlace: '',
           validUntil: '',
           isIndefinitely: false,
-          photoPassport: [],
-          selfiePassport: [],
+          filePassport: [],
+          fileSelfiePassport: [],
           country: '',
           city: '',
           street: '',
@@ -332,7 +329,7 @@
           zipCode: '',
           countryCode: '',
           phoneNumber: '',
-          confirmDoc: [],
+          fileConfirmAddr: [],
           ethWalletNumber: '',
           estimatedInvest: '',
           firstAgree: null,
@@ -393,13 +390,13 @@
               message: 'This field is required'
             }
           ],
-          photoPassport: [
+          filePassport: [
             {
               required: true,
               message: 'This field is required'
             }
           ],
-          selfiePassport: [
+          fileSelfiePassport: [
             {
               required: true,
               message: 'This field is required'
@@ -441,7 +438,7 @@
               trigger: 'change'
             }
           ],
-          confirmDoc: [
+          fileConfirmAddr: [
             {
               required: true,
               message: 'This field is required'
@@ -486,17 +483,17 @@
         return accepted && isLt2M;
       },
       photoPassportUpload(response, file, fileList) {
-        this.privateForm.photoPassport = fileList.map(item => {
+        this.privateForm.filePassport = fileList.map(item => {
           return item.response.success.filename;
         });
       },
       selfiePassportUpload(response, file, fileList) {
-        this.privateForm.selfiePassport = fileList.map(item => {
+        this.privateForm.fileSelfiePassport = fileList.map(item => {
           return item.response.success.filename;
         });
       },
       confirmDocUpload(response, file, fileList) {
-        this.privateForm.confirmDoc = fileList.map(item => {
+        this.privateForm.fileConfirmAddr = fileList.map(item => {
           return item.response.success.filename;
         });
       },

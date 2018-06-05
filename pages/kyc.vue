@@ -41,6 +41,7 @@
     data() {
       return {
         accountType: 'private',
+        interval: '',
         countries: null
       }
     },
@@ -48,6 +49,10 @@
       kyc() {
         return this.$store.state.kyc;
       }
+    },
+    beforeRouteLeave(to, from, next) {
+      clearInterval(this.interval);
+      next()
     },
     mounted() {
       axios.get('i18n/countries.json').then(res => {

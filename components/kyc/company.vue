@@ -80,7 +80,7 @@
           </el-row>
           <p class="photo-upload-title block-title">Upload a document confirming your registration <img
             src="/img/icons/attach.svg" alt=""></p>
-          <el-form-item prop="photoReg">
+          <el-form-item prop="fileConfirmReg">
             <el-upload
               action="https://api.enecuum.com/v1/kyc-files"
               drag
@@ -91,7 +91,7 @@
               :headers="{
               'X-Requested-With': 'XMLHttpRequest'
               }"
-              ref="photoReg"
+              ref="fileConfirmReg"
               :on-preview="handlePictureCardPreview"
               :before-upload="handleBeforeUpload"
               :on-success="photoRegUpload"
@@ -202,7 +202,7 @@
           </el-row>
           <p class="photo-upload-title block-title">Upload a document confirming the authority of your representative
             <img src="/img/icons/attach.svg" alt=""></p>
-          <el-form-item prop="photoAuth">
+          <el-form-item prop="fileAuthRepr">
             <el-upload
               action="https://api.enecuum.com/v1/kyc-files"
               drag
@@ -213,7 +213,7 @@
               :headers="{
               'X-Requested-With': 'XMLHttpRequest'
               }"
-              ref="photoAuth"
+              ref="fileAuthRepr"
               :on-preview="handlePictureCardPreview"
               :before-upload="handleBeforeUpload"
               :on-success="photoAuthUpload"
@@ -324,7 +324,7 @@
           regBuilding: '',
           regOffice: '',
           regZipCode: '',
-          photoReg: '',
+          fileConfirmReg: '',
           country: '',
           city: '',
           street: '',
@@ -338,12 +338,8 @@
           authLastName: '',
           authCountryCode: '',
           authPhoneNumber: '',
-          photoAuth: '',
-          benefits: [{
-            firstName: '',
-            middleName: '',
-            lastName: ''
-          }],
+          fileAuthRepr: '',
+          benefits: [],
           ethWalletNumber: '',
           estimatedInvest: '',
           firstAgree: null,
@@ -398,7 +394,7 @@
               message: 'This field is required'
             }
           ],
-          photoReg: [
+          fileConfirmReg: [
             {
               required: true,
               message: 'This field is required'
@@ -452,12 +448,6 @@
               message: 'This field is required'
             }
           ],
-          authMiddleName: [
-            {
-              required: true,
-              message: 'This field is required'
-            }
-          ],
           authLastName: [
             {
               required: true,
@@ -476,7 +466,7 @@
               trigger: 'change'
             }
           ],
-          photoAuth: [
+          fileAuthRepr: [
             {
               required: true,
               message: 'This field is required'
@@ -531,12 +521,12 @@
         this.companyForm.benefits.pop();
       },
       photoRegUpload(response, file, fileList) {
-        this.companyForm.photoReg = fileList.map(item => {
+        this.companyForm.fileConfirmReg = fileList.map(item => {
           return item.response.success.filename;
         });
       },
       photoAuthUpload(response, file, fileList) {
-        this.companyForm.photoAuth = fileList.map(item => {
+        this.companyForm.fileAuthRepr = fileList.map(item => {
           return item.response.success.filename;
         });
       },
@@ -561,6 +551,7 @@
       },
       sendKyc() {
         let data = this.companyForm;
+        data.benefits = JSON.stringify(data.benefits);
         if (this.cq_user) {
           data.cq_user = this.cq_user;
         }
