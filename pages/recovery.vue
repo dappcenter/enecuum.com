@@ -4,7 +4,7 @@
       <el-col :xs="22" :sm="14" :md="10" :lg="8" :xl="6">
         <div class="authorize">
           <el-row class="flex-center flex-column">
-            <h1 class="h3">Recovery form</h1>
+            <h1 class="h3">Recover password</h1>
             <p>Please enter your email and new password</p>
             <el-form :model="signUpForm" :rules="signUpFormRules" ref="signUpForm" class="authorize_form">
               <el-form-item prop="email">
@@ -12,16 +12,16 @@
                           @keyup.enter.native="submitForm"></el-input>
               </el-form-item>
               <el-form-item prop="password">
-                <el-input type="password" v-model="signUpForm.password" placeholder="Password"
+                <el-input type="password" v-model="signUpForm.tempPassword" placeholder="Temporary password"
                           @keyup.enter.native="submitForm"></el-input>
               </el-form-item>
               <el-form-item prop="password">
-                <el-input type="password" v-model="signUpForm.tempPassword" placeholder="Temporary password"
+                <el-input type="password" v-model="signUpForm.password" placeholder="New password"
                           @keyup.enter.native="submitForm"></el-input>
               </el-form-item>
               <el-form-item prop="confirm_password">
                 <el-input type="password" v-model="signUpForm.confirm_password" placeholder="Confirm password"
-                          @keyup.enter.native="submitForm"></el-input>
+                          @keyup.enter.native="submitForm" onpaste="return false;"></el-input>
               </el-form-item>
               <el-form-item>
                 <el-button type="primary" class="neon" @click="submitForm" :loading="loading">Submit</el-button>
@@ -103,23 +103,29 @@
         let isSended = this.$store.dispatch('signinRecoveryPassword', data);
         isSended.then((res) => {
           if (res.ok) {
-            this.$message({
-              type: "success",
-              message: res.success
+            this.$notify({
+              title: 'Success',
+              message: res.success,
+              type: 'success',
+              position: 'bottom-left'
             });
             this.$refs['signUpForm'].resetFields();
             this.$router.push('/signin');
           } else {
-            this.$message({
-              type: "error",
-              message: res.error
+            this.$notify({
+              title: 'Error',
+              message: res.error,
+              type: 'error',
+              position: 'bottom-left'
             });
           }
           this.loading = false;
         }).catch(() => {
-          this.$message({
-            type: "error",
-            message: "Something went wrong, sorry"
+          this.$notify({
+            title: 'Error',
+            message: "Something went wrong, sorry",
+            type: 'error',
+            position: 'bottom-left'
           });
         });
       }

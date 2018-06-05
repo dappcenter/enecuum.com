@@ -89,22 +89,28 @@
         isSended.then((res) => {
           if (res.ok) {
             this.a({category: 'subscribe', eventAction: 'send', eventLabel: 'subscribe'});
-            this.$message({
-              type: "success",
-              message: res.success
+            this.$notify({
+              title: 'Success',
+              message: res.success,
+              type: 'success',
+              position: 'bottom-left'
             });
             this.$refs['whiteListForm'].resetFields();
           } else {
-            this.$message({
-              type: "error",
-              message: res.error
+            this.$notify({
+              title: 'Error',
+              message: res.error,
+              type: 'error',
+              position: 'bottom-left'
             });
           }
           this.loading = false;
         }).catch(() => {
-          this.$message({
-            type: "error",
-            message: "Something went wrong, sorry"
+          this.$notify({
+            title: 'Error',
+            message: "Something went wrong, sorry",
+            type: 'error',
+            position: 'bottom-left'
           });
           this.loading = false;
         });
