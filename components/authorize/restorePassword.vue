@@ -2,7 +2,7 @@
   <div class="authorize">
     <el-row class="flex-center flex-column">
       <h1 class="h3">Forgot password?</h1>
-      <p>Enter the email assosiated with your account to recover the password</p>
+      <p>Enter the email assosiated with your account</p>
       <el-form :model="signInForm" :rules="signInFormRules" ref="signInForm" class="authorize_form">
         <el-form-item prop="email">
           <el-input v-model="signInForm.email" placeholder="Email"></el-input>

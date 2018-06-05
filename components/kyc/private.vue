@@ -119,7 +119,7 @@
           </p>
           <el-form-item prop="photoPassport">
             <el-upload
-              action="//api.enecuum.com/v1/kyc-files"
+              action="https://api.enecuum.com/v1/kyc-files"
               drag
               :limit="4"
               name="files[]"
@@ -143,7 +143,7 @@
             src="/img/icons/attach.svg" alt=""></p>
           <el-form-item prop="selfiePassport">
             <el-upload
-              action="//api.enecuum.com/v1/kyc-files"
+              action="https://api.enecuum.com/v1/kyc-files"
               drag
               :limit="4"
               name="files[]"
@@ -227,7 +227,7 @@
             src="/img/icons/attach.svg" alt=""></p>
           <el-form-item prop="confirmDoc">
             <el-upload
-              action="//api.enecuum.com/v1/kyc-files"
+              action="https://api.enecuum.com/v1/kyc-files"
               drag
               :limit="4"
               name="files[]"

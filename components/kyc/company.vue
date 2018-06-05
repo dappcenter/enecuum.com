@@ -82,7 +82,7 @@
             src="/img/icons/attach.svg" alt=""></p>
           <el-form-item prop="photoReg">
             <el-upload
-              action="//api.enecuum.com/v1/kyc-files"
+              action="https://api.enecuum.com/v1/kyc-files"
               drag
               :limit="4"
               name="files[]"
@@ -204,7 +204,7 @@
             <img src="/img/icons/attach.svg" alt=""></p>
           <el-form-item prop="photoAuth">
             <el-upload
-              action="//api.enecuum.com/v1/kyc-files"
+              action="https://api.enecuum.com/v1/kyc-files"
               drag
               :limit="4"
               name="files[]"
