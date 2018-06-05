@@ -17,12 +17,19 @@
       joinForm
     },
     data() {
-      return {}
+      return {
+        interval: null
+      }
     },
     computed: {
       title() {
         return this.$store.state.team.title;
       }
+    },
+    beforeRouteLeave(to, from, next) {
+      this.$store.state.debug ? console.log('bye') : null;
+      clearInterval(this.interval);
+      next()
     },
     async asyncData() {
       const {data} = await axios.get('/i18n/team_' + 'en' + '.json');

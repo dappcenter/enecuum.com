@@ -17,8 +17,18 @@
     props: {
       kyc: Object
     },
+    data() {
+      return {
+        interval: null
+      }
+    },
+    beforeRouteLeave(to, from, next) {
+      this.$store.state.debug ? console.log('bye') : null;
+      clearInterval(this.interval);
+      next()
+    },
     mounted() {
-      setTimeout(() => {
+      this.interval = setInterval(() => {
         this.kyc.code === 201 ? this.$router.push('/') : null;
       }, 15000);
     }

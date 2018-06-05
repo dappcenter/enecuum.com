@@ -189,6 +189,7 @@
       height: 80px;
       &-img {
         width: 135px;
+        vertical-align: middle;
       }
       &-mobile {
         display: none;
