@@ -53,6 +53,13 @@ module.exports = {
   build: {
     analyze: false,
     vendor: ['element-ui', 'axios'],
+    filenames: {
+      css: 'common.[hash].css',
+      manifest: 'manifest.[hash].js',
+      vendor: 'common.[hash].js',
+      app: 'app.[hash].js',
+      chunk: '[name].[hash].js'
+    }
   },
   plugins: [
     '~plugins/element-ui',
@@ -69,6 +76,7 @@ module.exports = {
     '~/assets/opensans.css',
     'font-awesome/css/font-awesome.css'
   ],
+
   /*
   ** Run ESLint on save
   */
