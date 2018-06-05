@@ -5,7 +5,7 @@
     </h1>
     <el-row class="flex-center">
       <el-col :xs="22" :sm="16">
-        <h2 class="text-center title-middle">{{kyc.message}}</h2>
+        <h2 class="text-center title-middle" v-html="kyc.message"></h2>
       </el-col>
     </el-row>
   </div>
@@ -18,7 +18,7 @@
       kyc: Object
     },
     mounted() {
-      setTimeout(() => {
+      this.$parent.interval = setInterval(() => {
         this.kyc.code === 201 ? this.$router.push('/') : null;
       }, 15000);
     }

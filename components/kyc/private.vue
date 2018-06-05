@@ -38,7 +38,6 @@
                 placeholder="Date of birth"
                 class="form_date-picker">
               </el-date-picker>
-              <!--<el-button type="text" class="form_date-btn"><i class="fa fa-calendar" aria-hidden="true"></i></el-button>-->
             </div>
           </el-form-item>
         </el-col>
@@ -88,7 +87,6 @@
                 placeholder="Date of issue"
                 class="form_date-picker">
               </el-date-picker>
-              <!--<el-button type="text" class="form_date-btn"><i class="fa fa-calendar" aria-hidden="true"></i></el-button>-->
             </div>
           </el-form-item>
           <el-form-item prop="issuePlace">
@@ -102,7 +100,6 @@
                 placeholder="Valid until"
                 class="form_date-picker">
               </el-date-picker>
-              <!--<el-button type="text" class="form_date-btn"><i class="fa fa-calendar" aria-hidden="true"></i></el-button>-->
             </div>
           </el-form-item>
           <el-form-item prop="isIndefinitely">
@@ -117,9 +114,9 @@
           <p class="photo-upload-title block-title">Upload a photo of your ID/passport <img src="/img/icons/attach.svg"
                                                                                             alt="">
           </p>
-          <el-form-item prop="photoPassport">
+          <el-form-item prop="filePassport">
             <el-upload
-              action="//api.enecuum.com/v1/kyc-files"
+              action="https://api.enecuum.com/v1/kyc-files"
               drag
               :limit="4"
               name="files[]"
@@ -128,7 +125,7 @@
               :headers="{
               'X-Requested-With': 'XMLHttpRequest'
               }"
-              ref="photoPassport"
+              ref="filePassport"
               :on-preview="handlePictureCardPreview"
               :before-upload="handleBeforeUpload"
               :on-success="photoPassportUpload"
@@ -141,9 +138,9 @@
           </el-form-item>
           <p class="photo-upload-title block-title">Upload a selfie holding your ID/passport <img
             src="/img/icons/attach.svg" alt=""></p>
-          <el-form-item prop="selfiePassport">
+          <el-form-item prop="fileSelfiePassport">
             <el-upload
-              action="//api.enecuum.com/v1/kyc-files"
+              action="https://api.enecuum.com/v1/kyc-files"
               drag
               :limit="4"
               name="files[]"
@@ -152,7 +149,7 @@
               :headers="{
               'X-Requested-With': 'XMLHttpRequest'
               }"
-              ref="selfiePassport"
+              ref="fileSelfiePassport"
               :on-preview="handlePictureCardPreview"
               :before-upload="handleBeforeUpload"
               :on-success="selfiePassportUpload"
@@ -225,9 +222,9 @@
           </el-row>
           <p class="photo-upload-title block-title">Upload a document confirming your address <img
             src="/img/icons/attach.svg" alt=""></p>
-          <el-form-item prop="confirmDoc">
+          <el-form-item prop="fileConfirmAddr">
             <el-upload
-              action="//api.enecuum.com/v1/kyc-files"
+              action="https://api.enecuum.com/v1/kyc-files"
               drag
               :limit="4"
               name="files[]"
@@ -255,9 +252,9 @@
           <el-form-item prop="ethWalletNumber">
             <el-input v-model="privateForm.ethWalletNumber" placeholder="Your wallet number"></el-input>
           </el-form-item>
-          <el-form-item prop="estimatedInvest">
-            <el-input-number v-model="privateForm.estimatedInvest" placeholder="Estimated investment (ethereum)"
-                             class="full-width" :controls="false"></el-input-number>
+          <el-form-item prop="estimatedInvest" label="Estimated investment (ether)">
+            <el-input v-model="privateForm.estimatedInvest" placeholder="Estimated investment (ethereum)"
+                      class="full-width"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
@@ -303,6 +300,7 @@
       const validateFAgree = validators.chkbox;
       const validateSAgree = validators.chkbox;
       const validatePhoneNumber = validators.phoneNumber;
+      const validateNumber = validators.numbers;
       return {
         loading: false,
         dialogVisible: false,
@@ -321,8 +319,8 @@
           issuePlace: '',
           validUntil: '',
           isIndefinitely: false,
-          photoPassport: [],
-          selfiePassport: [],
+          filePassport: [],
+          fileSelfiePassport: [],
           country: '',
           city: '',
           street: '',
@@ -331,7 +329,7 @@
           zipCode: '',
           countryCode: '',
           phoneNumber: '',
-          confirmDoc: [],
+          fileConfirmAddr: [],
           ethWalletNumber: '',
           estimatedInvest: '',
           firstAgree: null,
@@ -392,13 +390,13 @@
               message: 'This field is required'
             }
           ],
-          photoPassport: [
+          filePassport: [
             {
               required: true,
               message: 'This field is required'
             }
           ],
-          selfiePassport: [
+          fileSelfiePassport: [
             {
               required: true,
               message: 'This field is required'
@@ -440,7 +438,7 @@
               trigger: 'change'
             }
           ],
-          confirmDoc: [
+          fileConfirmAddr: [
             {
               required: true,
               message: 'This field is required'
@@ -453,11 +451,7 @@
             }
           ],
           estimatedInvest: [
-            {
-              required: true,
-              type: 'number',
-              message: 'This field is required'
-            }
+            {validator: validateNumber, trigger: 'change'}
           ],
           firstAgree: [
             {
@@ -489,17 +483,17 @@
         return accepted && isLt2M;
       },
       photoPassportUpload(response, file, fileList) {
-        this.privateForm.photoPassport = fileList.map(item => {
+        this.privateForm.filePassport = fileList.map(item => {
           return item.response.success.filename;
         });
       },
       selfiePassportUpload(response, file, fileList) {
-        this.privateForm.selfiePassport = fileList.map(item => {
+        this.privateForm.fileSelfiePassport = fileList.map(item => {
           return item.response.success.filename;
         });
       },
       confirmDocUpload(response, file, fileList) {
-        this.privateForm.confirmDoc = fileList.map(item => {
+        this.privateForm.fileConfirmAddr = fileList.map(item => {
           return item.response.success.filename;
         });
       },
@@ -524,16 +518,16 @@
       },
       sendKyc() {
         let data = this.privateForm;
-        //let data = new FormData();
-        /*        for (let key in this.privateForm) {
-                  data.append(key, this.privateForm[key]);
-                }*/
+        if (this.cq_user) {
+          data.cq_user = this.cq_user;
+        }
         this.loading = true;
         let isSended = this.$store.dispatch('submitKyc', data);
         isSended.then(res => {
           this.loading = false;
+          console.log(this.$refs);
           if (res.ok) {
-            this.$refs['privateForm'].resetField();
+            this.$refs['privateForm'].resetFields();
             this.a({category: 'lk', eventAction: 'success', eventLabel: 'kyc'});
             _paq.push(['addEcommerceItem',
               2,
@@ -546,12 +540,8 @@
               new Date().getTime() + '',
               this.privateForm.estimatedInvest,
             ]);
-            this.$notify({
-              title: 'Success',
-              type: 'success',
-              position: 'bottom-left'
-            });
-            this.$store.state.commit('SET_KYC_STATE', {status: res.ok, message: res.success, code: res.code});
+            this.$store.state.debug ? console.log('after submit kyc', res) : null;
+            this.$store.commit('SET_KYC_STATE', {status: res.ok, message: res.success, code: res.code});
           } else {
             this.$notify({
               title: 'Error',

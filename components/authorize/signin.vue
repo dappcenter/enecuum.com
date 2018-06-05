@@ -21,9 +21,12 @@
 </template>
 
 <script>
+  import validators from '../kyc/validators';
+
   export default {
     name: "signin",
     data() {
+      const validateEmail = validators.email;
       return {
         loading: false,
         signInForm: {
@@ -32,7 +35,7 @@
         },
         signInFormRules: {
           email: [
-            {required: true, message: 'This field can not be empty'}
+            {validator: validateEmail, trigger: 'change'}
           ],
           password: [
             {required: true, message: 'This field can not be empty'}
@@ -60,33 +63,43 @@
       signinForm() {
         let data = this.signInForm;
         if (this.cq_user) {
-          data.append('cq_user', this.cq_user);
+          data.cq_user = this.cq_user;
         }
         this.loading = true;
         let isSended = this.$store.dispatch('signIn', data);
         isSended.then((res) => {
           if (res.ok) {
-            //a.send({category: 'subscribe', eventAction: 'send', eventLabel: 'subscribe'});
-            this.$message({
-              type: "success",
-              message: res.success
+            this.$notify({
+              title: 'Success',
+              message: res.success,
+              type: 'success',
+              position: 'bottom-left'
             });
             this.$refs['signInForm'].resetFields();
             this.$router.push('/kyc');
             this.$store.commit('SET_AUTH', true);
           } else {
-            this.$message({
-              type: "error",
-              message: res.error
+            this.$notify({
+              title: 'Error',
+              message: res.error,
+              type: 'error',
+              position: 'bottom-left'
             });
           }
           this.loading = false;
         }).catch(() => {
-          this.$message({
-            type: "error",
-            message: "Something went wrong, sorry"
+          this.$notify({
+            title: 'Error',
+            message: "Something went wrong, sorry",
+            type: 'error',
+            position: 'bottom-left'
           });
         });
+      }
+    },
+    mounted() {
+      if (this.$route.params.hash) {
+        console.log(this.$route.params.hash);
       }
     }
   }

@@ -8,10 +8,12 @@
           <el-input v-model="signUpForm.email" placeholder="Email address" @keyup.enter.native="submitForm"></el-input>
         </el-form-item>
         <el-form-item prop="password">
-          <el-input type="password" v-model="signUpForm.password" placeholder="Password" @keyup.enter.native="submitForm"></el-input>
+          <el-input type="password" v-model="signUpForm.password" placeholder="Password"
+                    @keyup.enter.native="submitForm"></el-input>
         </el-form-item>
         <el-form-item prop="confirm_password">
-          <el-input type="password" v-model="signUpForm.confirm_password" placeholder="Confirm password" @keyup.enter.native="submitForm"></el-input>
+          <el-input type="password" v-model="signUpForm.confirm_password" placeholder="Confirm password"
+                    @keyup.enter.native="submitForm"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" class="neon" @click="submitForm" :loading="loading">Sign Up</el-button>
@@ -22,9 +24,12 @@
 </template>
 
 <script>
+  import validators from '../kyc/validators';
+
   export default {
     name: "signup",
     data() {
+      const validateEmail = validators.email;
       return {
         loading: false,
         signUpForm: {
@@ -34,7 +39,7 @@
         },
         signUpFormRules: {
           email: [
-            {required: true, message: 'Email is required'}
+            {validator: validateEmail, trigger: 'change'}
           ],
           password: [
             {required: true, message: 'Password is required'}
@@ -69,29 +74,36 @@
         }
         let data = this.signUpForm;
         if (this.cq_user) {
-          data.append('cq_user', this.cq_user);
+          data.cq_user = this.cq_user;
         }
         this.loading = true;
         let isSended = this.$store.dispatch('signUp', data);
         isSended.then((res) => {
           if (res.ok) {
             this.a({category: 'signup', eventAction: 'success', eventLabel: 'reg'});
-            this.$message({
-              type: "success",
-              message: res.success
+            this.$notify({
+              title: 'Success',
+              message: res.success,
+              type: 'success',
+              position: 'bottom-left'
             });
             this.$refs['signUpForm'].resetFields();
+            this.$router.push('/kyc');
           } else {
-            this.$message({
-              type: "error",
-              message: res.error
+            this.$notify({
+              title: 'Error',
+              message: res.error,
+              type: 'error',
+              position: 'bottom-left'
             });
           }
           this.loading = false;
         }).catch(() => {
-          this.$message({
-            type: "error",
-            message: "Something went wrong, sorry"
+          this.$notify({
+            title: 'Error',
+            message: "Something went wrong, sorry",
+            type: 'error',
+            position: 'bottom-left'
           });
         });
       }

@@ -50,7 +50,7 @@
           innerHTML: '<span><img src="https://mc.yandex.ru/watch/47793562" style="position:absolute; left:-9999px;" alt=""></span> <span> <img src="http://www.google-analytics.com/collect?v=1&t=pageview&tid=UA-114577800-1&cid=35009a79-1a05-49d7-b876-2b884d0f825b&dl=https%3A%2F%2Fenecuum.com&dt=nojs" style="position:absolute; left:-9999px;" alt=""></span><span><img src="//a.enecuum.com/a.php?idsite=GNL2r4zMP1&rec=1&action_name=nojs" style="position:absolute; left:-9999px; border:0;" alt=""></span>'
         }
       ],
-      __dangerouslyDisableSanitizers: ['script'],
+      __dangerouslyDisableSanitizers: ['script', 'noscript'],
       script: [{
         type: 'application/ld+json',
         innerHTML: `{

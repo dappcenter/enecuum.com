@@ -8,6 +8,7 @@ _paq.push(['trackPageView']);
 _paq.push(['enableLinkTracking']);
 _paq.push(['trackAllContentImpressions']);
 
+
 (function () {
   let u = "//api.enecuum.com/v1/";
   _paq.push(['setTrackerUrl', u + 'a']);

@@ -71,13 +71,12 @@
         data.append('subject', this.form.subject);
         data.append('message', this.form.message);
         if (this.cq_user) {
-          data.append('cq_user', this.cq_user);
+          data.cq_user = this.cq_user;
         }
         this.loading = true;
         let isSended = this.$store.dispatch('sendJoinTheTeam', data);
         isSended.then((res) => {
           if (res.ok) {
-            //a.send({category: 'subscribe', eventAction: 'send', eventLabel: 'subscribe'});
             this.$message({
               type: "success",
               message: res.success

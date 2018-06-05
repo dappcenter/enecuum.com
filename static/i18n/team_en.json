@@ -257,26 +257,6 @@
       "members": [
         [
           {
-            "avatar": "/img/team/avatars/milya.png",
-            "name": "Milya Musina",
-            "position": "CMO",
-            "description": "Crypto geek and marketer. Even at school Milya managed to launch her own art festival with a 3000-strong audience using only guerrilla marketing. It was her first marketing project and an immediate success. Many years later, she got interested in cryptocurrencies and started promoting a cryptocurrency exchange, all that leading her to our friendly company.\n                                ",
-            "social": [
-              {
-                "type": "linkedin",
-                "url": "https://www.linkedin.com/in/milya-musina-0733a8125/"
-              },
-              {
-                "type": "envelope",
-                "url": "mailto:m.musina@enecuum.com"
-              },
-              {
-                "type": "facebook",
-                "url": "https://www.facebook.com/people/Миля-Мусина/100012056355459"
-              }
-            ]
-          },
-          {
             "avatar": "/img/team/avatars/denis.png",
             "name": "Denis Lisetskiy",
             "position": "PR",
@@ -516,7 +496,7 @@
       ]
     },
     {
-      "title": "Advisors and Consultants",
+      "title": "Ambassadors",
       "members": [
         [
           {

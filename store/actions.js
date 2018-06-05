@@ -3,7 +3,7 @@ import axios from 'axios';
 const apiUrl = 'https://api.enecuum.com/v1';
 
 const actions = {
-  isAuth(state, {cookies}) {
+  isAuth(store, {cookies}) {
     return new Promise(resolve => {
       axios.request({
         url: apiUrl + '/lk',
@@ -14,15 +14,16 @@ const actions = {
           Cookie: cookies ? cookies : ''
         },
       }).then((res) => {
+        store.state.debug ? console.log('log from /lk', res.data) : null;
         if (res.data.ok) {
           if (res.data.code !== 511) {
-            state.commit('SET_KYC_STATE', {status: res.data.ok, message: res.data.success, code: res.data.code});
+            store.commit('SET_KYC_STATE', {status: res.data.ok, message: res.data.success, code: res.data.code});
           }
-          state.commit('SET_AUTH', true);
+          store.commit('SET_AUTH', true);
           resolve('success');
         } else {
           if (res.data.code === 401) {
-            state.dispatch('logout');
+            store.dispatch('logout');
           }
           resolve('notauth');
         }
@@ -34,6 +35,7 @@ const actions = {
     if (req.headers) {
       cookies = (req.headers.cookie);
     }
+    process.env.dev ? store.commit('SET_DEBUG', true) : null;
     store.commit('SET_COOKIES', cookies);
   },
   subscribeWP(state, data) {
@@ -90,7 +92,8 @@ const actions = {
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
           'Content-Type': 'application/json'
-        }
+        },
+        withCredentials: true,
       }).then(res => {
         resolve(res.data);
       })
@@ -135,6 +138,7 @@ const actions = {
         'X-Requested-With': 'XMLHttpRequest',
       }
     }).then(_ => {
+      state.commit('SET_KYC_STATE', {});
       state.commit('SET_AUTH', false);
     });
   },
@@ -147,6 +151,22 @@ const actions = {
         withCredentials: true,
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
+        }
+      }).then(res => {
+        resolve(res.data);
+      })
+    })
+  },
+  signinRecoveryPassword(state, data) {
+    return new Promise(resolve => {
+      axios.request({
+        url: apiUrl + '/recovery',
+        method: 'post',
+        data: data,
+        withCredentials: true,
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'Content-Type': 'application/json'
         }
       }).then(res => {
         resolve(res.data);

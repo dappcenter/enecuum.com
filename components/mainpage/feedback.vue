@@ -112,29 +112,35 @@
       sendFeedbackForm() {
         let data = this.feedbackForm;
         if (this.cq_user) {
-          data.append('cq_user', this.cq_user);
+          data.cq_user = this.cq_user;
         }
         this.loading = true;
         let isSended = this.$store.dispatch('sendFeedback', data);
         isSended.then((res) => {
           if (res.ok) {
             this.a({category: 'feedback', eventAction: 'send', eventLabel: 'feedback'});
-            this.$message({
-              type: "success",
-              message: res.success
+            this.$notify({
+              title: 'Success',
+              message: res.success,
+              type: 'success',
+              position: 'bottom-left'
             });
             this.$refs['feedbackForm'].resetFields();
           } else {
-            this.$message({
-              type: "error",
-              message: res.error
+            this.$notify({
+              title: 'Error',
+              message: res.error,
+              type: 'error',
+              position: 'bottom-left'
             });
           }
           this.loading = false;
         }).catch(() => {
-          this.$message({
-            type: "error",
-            message: "Something went wrong, sorry"
+          this.$notify({
+            title: 'Error',
+            message: "Something went wrong, sorry",
+            type: 'error',
+            position: 'bottom-left'
           });
           this.loading = false;
         });

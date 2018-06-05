@@ -80,9 +80,9 @@
           </el-row>
           <p class="photo-upload-title block-title">Upload a document confirming your registration <img
             src="/img/icons/attach.svg" alt=""></p>
-          <el-form-item prop="photoReg">
+          <el-form-item prop="fileConfirmReg">
             <el-upload
-              action="//api.enecuum.com/v1/kyc-files"
+              action="https://api.enecuum.com/v1/kyc-files"
               drag
               :limit="4"
               name="files[]"
@@ -91,7 +91,7 @@
               :headers="{
               'X-Requested-With': 'XMLHttpRequest'
               }"
-              ref="photoReg"
+              ref="fileConfirmReg"
               :on-preview="handlePictureCardPreview"
               :before-upload="handleBeforeUpload"
               :on-success="photoRegUpload"
@@ -202,9 +202,9 @@
           </el-row>
           <p class="photo-upload-title block-title">Upload a document confirming the authority of your representative
             <img src="/img/icons/attach.svg" alt=""></p>
-          <el-form-item prop="photoAuth">
+          <el-form-item prop="fileAuthRepr">
             <el-upload
-              action="//api.enecuum.com/v1/kyc-files"
+              action="https://api.enecuum.com/v1/kyc-files"
               drag
               :limit="4"
               name="files[]"
@@ -213,7 +213,7 @@
               :headers="{
               'X-Requested-With': 'XMLHttpRequest'
               }"
-              ref="photoAuth"
+              ref="fileAuthRepr"
               :on-preview="handlePictureCardPreview"
               :before-upload="handleBeforeUpload"
               :on-success="photoAuthUpload"
@@ -230,7 +230,7 @@
       <el-row class="flex-center">
         <el-col :xs="22" :sm="14" :md="10" :lg="8" :xl="6">
           <p class="block-title">Ultimate Beneficiaries</p>
-          <div v-for="(user, key) in companyForm.benefits" :key="key">
+          <div v-for="(user, key) in companyForm.benefitsArray" :key="key">
             <el-form-item prop="firstName">
               <el-input v-model="user.firstName" placeholder="First name"></el-input>
             </el-form-item>
@@ -244,7 +244,7 @@
           <el-row class="flex-center kyc-addBenefic-wrapper">
             <button class="kyc-addBenefic" @click.prevent="addBenef"><img src="/img/icons/shape_close.svg" alt="">
             </button>
-            <button class="kyc-addBenefic remove" @click.prevent="removeBenef" v-if="companyForm.benefits.length>1"><i
+            <button class="kyc-addBenefic remove" @click.prevent="removeBenef" v-if="companyForm.benefitsArray.length>1"><i
               class="fa fa-times"
               aria-hidden="true"></i>
             </button>
@@ -258,9 +258,9 @@
           <el-form-item prop="ethWalletNumber">
             <el-input v-model="companyForm.ethWalletNumber" placeholder="Your wallet number"></el-input>
           </el-form-item>
-          <el-form-item prop="estimatedInvest">
-            <el-input-number v-model="companyForm.estimatedInvest" placeholder="Estimated investment (ethereum)"
-                             class="full-width" :controls="false"></el-input-number>
+          <el-form-item prop="estimatedInvest" label="Estimated investment (ether)">
+            <el-input v-model="companyForm.estimatedInvest" placeholder="Estimated investment (ethereum)"
+                      class="full-width"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
@@ -307,6 +307,7 @@
       const validateFAgree = validators.chkbox;
       const validateSAgree = validators.chkbox;
       const validatePhoneNumber = validators.phoneNumber;
+      const validateNumber = validators.numbers;
       return {
         loading: false,
         dialogVisible: false,
@@ -323,7 +324,7 @@
           regBuilding: '',
           regOffice: '',
           regZipCode: '',
-          photoReg: '',
+          fileConfirmReg: '',
           country: '',
           city: '',
           street: '',
@@ -337,12 +338,8 @@
           authLastName: '',
           authCountryCode: '',
           authPhoneNumber: '',
-          photoAuth: '',
-          benefits: [{
-            firstName: '',
-            middleName: '',
-            lastName: ''
-          }],
+          fileAuthRepr: '',
+          benefitsArray: [],
           ethWalletNumber: '',
           estimatedInvest: '',
           firstAgree: null,
@@ -397,7 +394,7 @@
               message: 'This field is required'
             }
           ],
-          photoReg: [
+          fileConfirmReg: [
             {
               required: true,
               message: 'This field is required'
@@ -451,12 +448,6 @@
               message: 'This field is required'
             }
           ],
-          authMiddleName: [
-            {
-              required: true,
-              message: 'This field is required'
-            }
-          ],
           authLastName: [
             {
               required: true,
@@ -475,7 +466,7 @@
               trigger: 'change'
             }
           ],
-          photoAuth: [
+          fileAuthRepr: [
             {
               required: true,
               message: 'This field is required'
@@ -488,11 +479,7 @@
             }
           ],
           estimatedInvest: [
-            {
-              required: true,
-              type: 'number',
-              message: 'This field is required'
-            }
+            {validator: validateNumber, trigger: 'change'}
           ],
           firstAgree: [
             {
@@ -524,22 +511,22 @@
         return accepted && isLt2M;
       },
       addBenef() {
-        this.companyForm.benefits.push({
+        this.companyForm.benefitsArray.push({
           firstName: '',
           middleName: '',
           lastName: ''
         });
       },
       removeBenef() {
-        this.companyForm.benefits.pop();
+        this.companyForm.benefitsArray.pop();
       },
       photoRegUpload(response, file, fileList) {
-        this.companyForm.photoReg = fileList.map(item => {
+        this.companyForm.fileConfirmReg = fileList.map(item => {
           return item.response.success.filename;
         });
       },
       photoAuthUpload(response, file, fileList) {
-        this.companyForm.photoAuth = fileList.map(item => {
+        this.companyForm.fileAuthRepr = fileList.map(item => {
           return item.response.success.filename;
         });
       },
@@ -564,12 +551,16 @@
       },
       sendKyc() {
         let data = this.companyForm;
+        data.benefic = JSON.stringify(data.benefitsArray);
+        if (this.cq_user) {
+          data.cq_user = this.cq_user;
+        }
         this.loading = true;
         let isSended = this.$store.dispatch('submitKyc', data);
         isSended.then(res => {
           this.loading = false;
           if (res.ok) {
-            this.$refs['companyForm'].resetField();
+            this.$refs['companyForm'].resetFields();
             this.a({category: 'lk', eventAction: 'success', eventLabel: 'kyc'});
             _paq.push(['addEcommerceItem',
               2,
@@ -582,12 +573,8 @@
               new Date().getTime() + '',
               this.companyForm.estimatedInvest,
             ]);
-            this.$notify({
-              title: 'Success',
-              type: 'success',
-              position: 'bottom-left'
-            });
-            this.$store.state.commit('SET_KYC_STATE', {status: res.ok, message: res.success, code: res.code});
+            this.$store.state.debug ? console.log('after submit kyc', res) : null;
+            this.$store.commit('SET_KYC_STATE', {status: res.ok, message: res.success, code: res.code});
           } else {
             this.$notify({
               title: 'Error',
