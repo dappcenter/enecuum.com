@@ -11,7 +11,7 @@
                 <el-input v-model="signUpForm.email" placeholder="Email address"
                           @keyup.enter.native="submitForm"></el-input>
               </el-form-item>
-              <el-form-item prop="password">
+              <el-form-item prop="tempPassword">
                 <el-input type="password" v-model="signUpForm.tempPassword" placeholder="Temporary password"
                           @keyup.enter.native="submitForm"></el-input>
               </el-form-item>
@@ -82,16 +82,20 @@
       },
       signupForm() {
         if ((this.signUpForm.password !== this.signUpForm.confirm_password) || !this.signUpForm.password) {
-          this.$message({
-            type: 'danger',
-            message: 'Passwords don\'t match'
+          this.$notify({
+            type: 'info',
+            message: 'Passwords don\'t match',
+            position: 'bottom-left',
+            showClose: false
           });
           return false;
         }
         if (this.signUpForm.tempPassword == this.signUpForm.password) {
-          this.$message({
-            type: 'danger',
-            message: 'You must not use the temporary password as the primary password'
+          this.$notify({
+            type: 'info',
+            message: 'You must not use the temporary password as the primary password',
+            position: 'bottom-left',
+            showClose: false
           });
           return false;
         }

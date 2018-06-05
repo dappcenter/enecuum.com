@@ -14,6 +14,9 @@ const actions = {
           Cookie: cookies ? cookies : ''
         },
       }).then((res) => {
+        if (process.env.dev) {
+          console.log(res.data);
+        }
         if (res.data.ok) {
           if (res.data.code !== 511) {
             state.commit('SET_KYC_STATE', {status: res.data.ok, message: res.data.success, code: res.data.code});

@@ -147,7 +147,6 @@ function install(Vue) {
     });
   }
   Vue.prototype.a = function (target) {
-    console.log(target, _paq, isBlocked());
     if (_paq) {
       _paq.push(['trackEvent', target.category, target.eventAction, target.eventLabel]);
     }

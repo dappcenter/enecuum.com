@@ -259,8 +259,8 @@
             <el-input v-model="companyForm.ethWalletNumber" placeholder="Your wallet number"></el-input>
           </el-form-item>
           <el-form-item prop="estimatedInvest" label="Estimated investment (ether)">
-            <el-input-number v-model="companyForm.estimatedInvest" placeholder="Estimated investment (ethereum)"
-                             class="full-width" :controls="false"></el-input-number>
+            <el-input v-model="companyForm.estimatedInvest" placeholder="Estimated investment (ethereum)"
+                      class="full-width"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
@@ -307,6 +307,7 @@
       const validateFAgree = validators.chkbox;
       const validateSAgree = validators.chkbox;
       const validatePhoneNumber = validators.phoneNumber;
+      const validateNumber = validators.numbers;
       return {
         loading: false,
         dialogVisible: false,
@@ -488,11 +489,7 @@
             }
           ],
           estimatedInvest: [
-            {
-              required: true,
-              type: 'number',
-              message: 'This field is required'
-            }
+            {validator: validateNumber, trigger: 'change'}
           ],
           firstAgree: [
             {
@@ -590,6 +587,9 @@
               type: 'success',
               position: 'bottom-left'
             });
+            if (process.env.dev) {
+              console.log('after submit kyc', res);
+            }
             this.$store.commit('SET_KYC_STATE', {status: res.ok, message: res.success, code: res.code});
           } else {
             this.$notify({

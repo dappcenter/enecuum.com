@@ -24,7 +24,7 @@ const phoneNumber = (rule, value, callback) => {
   } else {
     callback();
   }
-}
+};
 
 const email = (rule, value, callback) => {
   if (value === '') {
@@ -34,11 +34,24 @@ const email = (rule, value, callback) => {
   } else {
     callback();
   }
-}
+};
+
+const numbers = (rule, value, callback) => {
+  if (value === '') {
+    callback(new Error('This field is required'));
+  } else if (!value.match(/[\d\.]*/)) {
+    callback(new Error('The field must be a number'));
+  } else if (parseInt(value) < 0) {
+    callback(new Error('Can not be less than zero'));
+  } else {
+    callback();
+  }
+};
 
 export default {
   eth,
   chkbox,
   phoneNumber,
-  email
+  email,
+  numbers
 }
