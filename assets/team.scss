@@ -85,6 +85,9 @@
       .el-collapse-item__header {
         margin-bottom: 30px;
         text-align: center;
+        @media screen and (max-width: 768px) {
+          margin-bottom: 60px;
+        }
       }
       .el-collapse-item__arrow {
         display: none;
