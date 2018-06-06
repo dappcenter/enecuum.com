@@ -1,6 +1,6 @@
 <template>
   <el-collapse v-model="activeTab" accordion class="enq-collapse">
-    <el-collapse-item v-for="(item, key) in data" :key="key" :title="item.title" :name="item.title" class="mt-14"
+    <el-collapse-item v-for="(item, key) in data" :key="key" :title="item.title" :name="item.title"
                       :id="item.title">
       <div class="faq-tabs_content">
         <p v-html="item.text"></p>
