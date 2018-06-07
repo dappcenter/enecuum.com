@@ -36,11 +36,15 @@
     </el-row>
     <div class="divider"></div>
     <el-row class="flex-center">
-      <p><b>This FAQ is very helpful, but what if I have more questions?​​</b></p>
+      <el-col :xs="22" :sm="16" :md="16" :lg="14" :xl="14">
+        <p class="text-center"><b>This FAQ is very helpful, but what if I have more questions?​​</b></p>
+      </el-col>
     </el-row>
     <el-row class="flex-center">
-      <p class="text-center">If you have any more questions, please email our support at <br> <a
-        href="mailto:support@enecuum.com">support@enecuum.com</a></p>
+      <el-col :xs="22" :sm="16" :md="16" :lg="14" :xl="14">
+        <p class="text-center">If you have any more questions, please email our support at <br> <a
+          href="mailto:support@enecuum.com">support@enecuum.com</a></p>
+      </el-col>
     </el-row>
   </section>
 </template>
