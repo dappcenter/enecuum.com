@@ -352,3 +352,7 @@ p {
     max-width: 400px !important;
   }
 }
+
+.el-menu-item * {
+  vertical-align: inherit;
+}
