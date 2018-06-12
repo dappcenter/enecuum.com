@@ -133,18 +133,26 @@
       },
       {
         "date": "06-04-2018",
-        "img": "img/calendar/flags/Hungary.png",
+        "img": "img/calendar/ianBalina.png",
         "title": "IAN BALINA CRYPTO WORLD TOUR",
         "place": "TBD, Hungary",
         "description": "Ian Balina is an influential Blockchain and Cryptocurrency Investor, Advisor, and Evangelist. He has appeared in The Wall Street Journal, Forbes, Huffington Post, The Street, INC and Entrepreneur Magazine for his work in analytics, cryptocurrencies, and entrepreneurship.\n Time: \n 6:30 PM – 9:00 PM CEST",
         "link": "https://www.eventbrite.com/e/ian-balina-crypto-world-tour-budapesthu-tickets-45410952381"
       },
       {
+        "date": "06-27-2018 | 06-28-2018",
+        "img": "img/calendar/blockchain_expo.png",
+        "title": "The world’s largest Blockchain conference & exhibition",
+        "place": "Amsterdam",
+        "description": "As Europe’s largest established business Blockchain event, with over 8000 blockchain people attending in Berlin 2017, the Blockchain Expo will be arriving RAI Amsterdam on 27-28 June 2018, bringing together 8000+ dedicated blockchain industry attendees across key industries for two days of world-class content from leading brands embracing and developing cutting-edge blockchain technologies. Presented in a series of top-level keynotes, interactive panel discussions and solution-based case studies with a focus on learning and building partnerships in the emerging Blockchain space, Blockchain Expo will explore the industries that are set to be disrupted the most by this new technology, including; manufacturing, retail, financial services, legal, healthcare, insurance, energy, music, government, real estate and more.",
+        "link": "https://blockchain-expo.com/europe/"
+      },
+      {
         "date": "06-00-2018",
         "img": "img/calendar/flags/Vietnam.png",
         "title": "Enecuum meetup",
         "place": "Vietnam",
-        "description": "Coming soon...",
+        "description": "Vietnam, Hanoi, Giang Vo Str, D2 Giang Vo Building, Ba Dinh Dist,3rd floor 16 June 19:00 – 21:00\nEntering the blockchain of tomorrow Enecuum is designed as a next-generation decentralized blockchain platform with unique features that have the potential to help implement a large number of secure and well-scalable blockchain services and decentralized applications. One of Enecuum’s key advantages over other platforms is the “HyperDAG” - a data model for storing and writing transactions, with flexible settings that offer new opportunities for the practical application of blockchain technology. HyperDAG supports the creation of separate branches where the rules can be tailored to solve numerous potential business problems through smart contracts, providing immediate transactions with zero commission and guarantee the network expansion by supporting three simultaneous mining algorithms: Proof of Work, Proof of Stake and Proof of Activity that allows us to implement simple mining on mobile devices… We will share with you our innovative solutions of private chains, sharding, linear logic smart contracts built on JavaScript for the decentralized world. Join us on June, 16th, meet and mingle with Enecuum team and partners.",
         "link": ""
       },
       {
