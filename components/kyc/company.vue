@@ -50,7 +50,7 @@
                 v-for="item in countries"
                 :key="item.name"
                 :label="item.name"
-                :value="item.callingCodes[0]">
+                :value="item.numericCode">
                                               <span class="flex-between flex-middle">{{item.name}} <img :src="item.flag"
                                                                                                         alt=""
                                                                                                         class="country-flags"></span>
@@ -113,7 +113,7 @@
                 v-for="item in countries"
                 :key="item.name"
                 :label="item.name"
-                :value="item.callingCodes[0]">
+                :value="item.numericCode">
                                               <span class="flex-between flex-middle">{{item.name}} <img :src="item.flag"
                                                                                                         alt=""
                                                                                                         class="country-flags"></span>
@@ -148,8 +148,8 @@
                   <el-option
                     v-for="item in countries"
                     :key="item.name"
-                    :label="item.callingCodes[0]"
-                    :value="item.callingCodes[0]">
+                    :label="item.name"
+                    :value="item.numericCode">
                                                   <span class="flex-between flex-middle">+{{ item.callingCodes[0]}} {{item.name}} <img
                                                     :src="item.flag" alt=""
                                                     class="country-flags"></span>
@@ -186,7 +186,7 @@
                     v-for="item in countries"
                     :key="item.name"
                     :label="item.callingCodes[0]"
-                    :value="item.callingCodes[0]">
+                    :value="item.numericCode">
                                                   <span class="flex-between flex-middle">+{{ item.callingCodes[0]}} {{item.name}} <img
                                                     :src="item.flag" alt=""
                                                     class="country-flags"></span>
