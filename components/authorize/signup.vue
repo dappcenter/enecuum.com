@@ -66,9 +66,11 @@
       },
       signupForm() {
         if ((this.signUpForm.password !== this.signUpForm.confirm_password) || !this.signUpForm.password) {
-          this.$message({
-            type: 'danger',
-            message: 'Passwords don\'t match'
+          this.$notify({
+            title: 'Info',
+            message: res.success,
+            type: 'Passwords don\'t match',
+            position: 'bottom-left'
           });
           return false;
         }
