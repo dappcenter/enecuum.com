@@ -1,16 +1,15 @@
 import Vue from 'vue';
 import Fingerprint2 from '@/plugins/fingerprint.js';
 
-let _paq = _paq || [];
-_paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
-_paq.push(["setCookieDomain", "*.enecuum.com"]);
-_paq.push(['trackPageView']);
-_paq.push(['enableLinkTracking']);
-_paq.push(['trackAllContentImpressions']);
-
 
 (function () {
-  let u = "//api.enecuum.com/v1/";
+  let _paq = _paq || [];
+  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+  _paq.push(["setCookieDomain", "*.enecuum.com"]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  _paq.push(['trackAllContentImpressions']);
+  let u = "https://api.enecuum.com/v1/";
   _paq.push(['setTrackerUrl', u + 'a']);
   _paq.push(['setSiteId', 'GNL2r4zMP1']);
   let d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
@@ -19,6 +18,7 @@ _paq.push(['trackAllContentImpressions']);
   g.defer = true;
   g.src = u + 'a';
   s.parentNode.insertBefore(g, s);
+  window._paq = _paq;
 })();
 
 (function () {
@@ -160,10 +160,3 @@ function install(Vue) {
 }
 
 Vue.use(install);
-
-/*
-document.addEventListener('click', function (e) {
-  if (e.target && e.target.getAttribute && e.target.getAttribute('data-link')) {
-    a.send({category: 'social', eventAction: 'click', eventLabel: e.target.getAttribute('data-link')});
-  }
-});*/
