@@ -76,7 +76,7 @@
       }
     },
     mounted() {
-      this.activeTab = moment().subtract(1, "month").startOf("month").format('MMMM');
+      this.activeTab = moment().subtract(0, "month").startOf("month").format('MMMM');
     },
     async asyncData() {
       const {data} = await axios.get('/i18n/calendar_' + 'en' + '.json');
