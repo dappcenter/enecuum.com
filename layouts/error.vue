@@ -6,7 +6,7 @@
           <img src="/img/icons/notfound.svg" alt="" class="error_img">
           <h2 class="error_title">404</h2>
         </el-row>
-        <el-row><p class="error_text">We can't find the page you're looking for. Check the URL, or head back gome.</p>
+        <el-row><p class="error_text">We can't find the page you're looking for. Check the URL, or head back home.</p>
         </el-row>
         <el-row>
           <nuxt-link to="/">
