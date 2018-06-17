@@ -111,7 +111,9 @@
       },
       sendFeedbackForm() {
         let data = this.feedbackForm;
-        data.cq_user = this.getFinger();
+        if (this.cq_user) {
+          data.cq_user = this.cq_user;
+        }
         this.loading = true;
         let isSended = this.$store.dispatch('sendFeedback', data);
         isSended.then((res) => {
