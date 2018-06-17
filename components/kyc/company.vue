@@ -35,7 +35,6 @@
                 placeholder="Date of incorporation"
                 class="form_date-picker">
               </el-date-picker>
-              <!--<el-button type="text" class="form_date-btn"><i class="fa fa-calendar" aria-hidden="true"></i></el-button>-->
             </div>
           </el-form-item>
         </el-col>
@@ -80,7 +79,7 @@
           </el-row>
           <p class="photo-upload-title block-title">Upload a document confirming your registration <img
             src="/img/icons/attach.svg" alt=""></p>
-          <el-form-item prop="fileConfirmReg">
+          <el-form-item prop="fileConfirmReg" ref="fileConfirmReg">
             <el-upload
               action="https://api.enecuum.com/v1/kyc-files"
               drag
@@ -91,7 +90,6 @@
               :headers="{
               'X-Requested-With': 'XMLHttpRequest'
               }"
-              ref="fileConfirmReg"
               :on-preview="handlePictureCardPreview"
               :before-upload="handleBeforeUpload"
               :on-success="photoRegUpload"
@@ -202,7 +200,7 @@
           </el-row>
           <p class="photo-upload-title block-title">Upload a document confirming the authority of your representative
             <img src="/img/icons/attach.svg" alt=""></p>
-          <el-form-item prop="fileAuthRepr">
+          <el-form-item prop="fileAuthRepr" ref="fileAuthRepr">
             <el-upload
               action="https://api.enecuum.com/v1/kyc-files"
               drag
@@ -213,7 +211,6 @@
               :headers="{
               'X-Requested-With': 'XMLHttpRequest'
               }"
-              ref="fileAuthRepr"
               :on-preview="handlePictureCardPreview"
               :before-upload="handleBeforeUpload"
               :on-success="photoAuthUpload"
@@ -244,7 +241,8 @@
           <el-row class="flex-center kyc-addBenefic-wrapper">
             <button class="kyc-addBenefic" @click.prevent="addBenef"><img src="/img/icons/shape_close.svg" alt="">
             </button>
-            <button class="kyc-addBenefic remove" @click.prevent="removeBenef" v-if="companyForm.benefitsArray.length>1"><i
+            <button class="kyc-addBenefic remove" @click.prevent="removeBenef"
+                    v-if="companyForm.benefitsArray.length>1"><i
               class="fa fa-times"
               aria-hidden="true"></i>
             </button>
@@ -524,11 +522,13 @@
         this.companyForm.fileConfirmReg = fileList.map(item => {
           return item.response.success.filename;
         });
+        this.$refs.fileConfirmReg.clearValidate();
       },
       photoAuthUpload(response, file, fileList) {
         this.companyForm.fileAuthRepr = fileList.map(item => {
           return item.response.success.filename;
         });
+        this.$refs.fileAuthRepr.clearValidate();
       },
       handlePictureCardPreview(file) {
         this.dialogPhotoPreview = file.url;
@@ -552,9 +552,7 @@
       sendKyc() {
         let data = this.companyForm;
         data.benefic = JSON.stringify(data.benefitsArray);
-        if (this.cq_user) {
-          data.cq_user = this.cq_user;
-        }
+        data.cq_user = this.getFinger();
         this.loading = true;
         let isSended = this.$store.dispatch('submitKyc', data);
         isSended.then(res => {

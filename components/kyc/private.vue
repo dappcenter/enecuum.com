@@ -114,7 +114,7 @@
           <p class="photo-upload-title block-title">Upload a photo of your ID/passport <img src="/img/icons/attach.svg"
                                                                                             alt="">
           </p>
-          <el-form-item prop="filePassport">
+          <el-form-item prop="filePassport" ref="filePassport">
             <el-upload
               action="https://api.enecuum.com/v1/kyc-files"
               drag
@@ -125,7 +125,6 @@
               :headers="{
               'X-Requested-With': 'XMLHttpRequest'
               }"
-              ref="filePassport"
               :on-preview="handlePictureCardPreview"
               :before-upload="handleBeforeUpload"
               :on-success="photoPassportUpload"
@@ -138,7 +137,7 @@
           </el-form-item>
           <p class="photo-upload-title block-title">Upload a selfie holding your ID/passport <img
             src="/img/icons/attach.svg" alt=""></p>
-          <el-form-item prop="fileSelfiePassport">
+          <el-form-item prop="fileSelfiePassport" ref="fileSelfiePassport">
             <el-upload
               action="https://api.enecuum.com/v1/kyc-files"
               drag
@@ -149,7 +148,6 @@
               :headers="{
               'X-Requested-With': 'XMLHttpRequest'
               }"
-              ref="fileSelfiePassport"
               :on-preview="handlePictureCardPreview"
               :before-upload="handleBeforeUpload"
               :on-success="selfiePassportUpload"
@@ -222,7 +220,7 @@
           </el-row>
           <p class="photo-upload-title block-title">Upload a document confirming your address <img
             src="/img/icons/attach.svg" alt=""></p>
-          <el-form-item prop="fileConfirmAddr">
+          <el-form-item prop="fileConfirmAddr" ref="fileConfirmAddr">
             <el-upload
               action="https://api.enecuum.com/v1/kyc-files"
               drag
@@ -486,16 +484,19 @@
         this.privateForm.filePassport = fileList.map(item => {
           return item.response.success.filename;
         });
+        this.$refs.filePassport.clearValidate();
       },
       selfiePassportUpload(response, file, fileList) {
         this.privateForm.fileSelfiePassport = fileList.map(item => {
           return item.response.success.filename;
         });
+        this.$refs.fileSelfiePassport.clearValidate();
       },
       confirmDocUpload(response, file, fileList) {
         this.privateForm.fileConfirmAddr = fileList.map(item => {
           return item.response.success.filename;
         });
+        this.$refs.fileConfirmAddr.clearValidate();
       },
       handlePictureCardPreview(file) {
         this.dialogPhotoPreview = file.url;
@@ -518,14 +519,11 @@
       },
       sendKyc() {
         let data = this.privateForm;
-        if (this.cq_user) {
-          data.cq_user = this.cq_user;
-        }
+        data.cq_user = this.getFinger();
         this.loading = true;
         let isSended = this.$store.dispatch('submitKyc', data);
         isSended.then(res => {
           this.loading = false;
-          console.log(this.$refs);
           if (res.ok) {
             this.$refs['privateForm'].resetFields();
             this.a({category: 'lk', eventAction: 'success', eventLabel: 'kyc'});

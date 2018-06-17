@@ -23,7 +23,7 @@ const actions = {
           resolve('success');
         } else {
           if (res.data.code === 401) {
-            store.dispatch('logout');
+            store.dispatch('logoutClient');
           }
           resolve('notauth');
         }
@@ -129,7 +129,11 @@ const actions = {
       })
     });
   },
-  logout(state) {
+  logoutClient(state) {
+    state.commit('SET_KYC_STATE', {});
+    state.commit('SET_AUTH', false);
+  },
+  logoutServer(state) {
     axios.request({
       url: apiUrl + '/logout',
       method: 'post',
@@ -138,8 +142,7 @@ const actions = {
         'X-Requested-With': 'XMLHttpRequest',
       }
     }).then(_ => {
-      state.commit('SET_KYC_STATE', {});
-      state.commit('SET_AUTH', false);
+      state.dispatch('logoutClient');
     });
   },
   submitKyc(state, data) {
