@@ -19,12 +19,14 @@
           <el-button type="primary" class="neon" @click="submitForm" :loading="loading">Sign Up</el-button>
         </el-form-item>
       </el-form>
+      <vue-recaptcha size="invisible" sitekey="Your key here"></vue-recaptcha>
     </el-row>
   </div>
 </template>
 
 <script>
   import validators from '../kyc/validators';
+  import VueRecaptcha from 'vue-recaptcha';
 
   export default {
     name: "signup",
@@ -49,6 +51,9 @@
           ]
         }
       }
+    },
+    components: {
+      VueRecaptcha
     },
     methods: {
       submitForm() {
@@ -75,9 +80,7 @@
           return false;
         }
         let data = this.signUpForm;
-        if (this.cq_user) {
-          data.cq_user = this.cq_user;
-        }
+        //data.cq_user = this.getFinger();
         this.loading = true;
         let isSended = this.$store.dispatch('signUp', data);
         isSended.then((res) => {

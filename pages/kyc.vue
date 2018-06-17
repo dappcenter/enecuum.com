@@ -52,7 +52,7 @@
     },
     beforeRouteLeave(to, from, next) {
       clearInterval(this.interval);
-      this.$store.dispatch('logout');
+      this.$store.dispatch('logoutClient');
       next()
     },
     mounted() {

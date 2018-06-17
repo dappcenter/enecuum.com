@@ -62,9 +62,7 @@
       },
       signinForm() {
         let data = this.signInForm;
-        if (this.cq_user) {
-          data.cq_user = this.cq_user;
-        }
+        data.cq_user = this.getFinger();
         this.loading = true;
         let isSended = this.$store.dispatch('signIn', data);
         isSended.then((res) => {

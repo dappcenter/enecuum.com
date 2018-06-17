@@ -70,9 +70,7 @@
         data.append('file', this.$refs.upload.uploadFiles[0].raw);
         data.append('subject', this.form.subject);
         data.append('message', this.form.message);
-        if (this.cq_user) {
-          data.cq_user = this.cq_user;
-        }
+        data.cq_user = this.getFinger();
         this.loading = true;
         let isSended = this.$store.dispatch('sendJoinTheTeam', data);
         isSended.then((res) => {

@@ -6,7 +6,6 @@ import Fingerprint2 from '@/plugins/fingerprint.js';
   let _paq = _paq || [];
   _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
   _paq.push(["setCookieDomain", "*.enecuum.com"]);
-  _paq.push(['trackPageView']);
   _paq.push(['enableLinkTracking']);
   _paq.push(['trackAllContentImpressions']);
   let u = "https://api.enecuum.com/v1/";
@@ -130,6 +129,7 @@ function install(Vue) {
         if (!isInited) {
           if (typeof(_paq !== 'undefined')) {
             _paq.push(['setUserId', Vue.cq_user]);
+            _paq.push(['trackPageView']);
             isInited = true;
           }
           if (isBlocked()) {

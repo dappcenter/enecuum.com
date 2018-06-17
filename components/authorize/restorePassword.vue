@@ -24,12 +24,14 @@
           <el-button type="primary" class="neon" @click="submitForm" :loading="loading">Recover</el-button>
         </el-row>
       </el-form>
+      <vue-recaptcha size="invisible" sitekey="Your key here"></vue-recaptcha>
     </el-row>
   </div>
 </template>
 
 <script>
   import validators from '../kyc/validators';
+  import VueRecaptcha from 'vue-recaptcha';
 
   export default {
     name: "restorePassword",
@@ -50,6 +52,9 @@
           ]
         }
       }
+    },
+    components: {
+      VueRecaptcha
     },
     methods: {
       back() {
