@@ -132,6 +132,7 @@ const actions = {
   logoutClient(state) {
     state.commit('SET_KYC_STATE', {});
     state.commit('SET_AUTH', false);
+    console.log('logoutClient');
   },
   logoutServer(state) {
     axios.request({
