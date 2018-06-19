@@ -17,7 +17,7 @@
         </el-form-item>
       </el-form>
     </el-row>
-    <vue-recaptcha size="invisible" sitekey="6LdmtV8UAAAAAN97NVynpruHAEAjBLhRF8XIzxY3" @verify="onVerify"
+    <vue-recaptcha size="invisible" :sitekey="recaptchaKey" @verify="onVerify"
                    ref="invisibleRecaptcha"></vue-recaptcha>
   </div>
 </template>
@@ -49,9 +49,17 @@
     components: {
       'vue-recaptcha': VueRecaptcha
     },
+    computed: {
+      recaptchaKey() {
+        return require('@/config/config.json').recaptchaKey;
+      }
+    },
     methods: {
       onVerify(response) {
         this.signinForm(response);
+      },
+      restore() {
+        this.$emit('restore');
       },
       submitForm() {
         let form = this.$refs.signInForm;

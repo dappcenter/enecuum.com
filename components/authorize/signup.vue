@@ -18,7 +18,7 @@
         <el-form-item>
           <el-button type="primary" class="neon" @click="submitForm" :loading="loading">Sign Up</el-button>
         </el-form-item>
-        <vue-recaptcha size="invisible" sitekey="6LdmtV8UAAAAAN97NVynpruHAEAjBLhRF8XIzxY3" ref="invisibleRecaptcha"
+        <vue-recaptcha size="invisible" :sitekey="recaptchaKey" ref="invisibleRecaptcha"
                        @verify="onVerify"></vue-recaptcha>
       </el-form>
     </el-row>
@@ -55,6 +55,11 @@
     },
     components: {
       'vue-recaptcha': VueRecaptcha
+    },
+    computed: {
+      recaptchaKey() {
+        return require('@/config/config.json').recaptchaKey;
+      }
     },
     methods: {
       onVerify(response) {

@@ -10,7 +10,6 @@
   //import GAuth from '@/components/kyc/checkGAuth';
   //import vesting from '@/components/kyc/vesting/tokenVesting';
 
-
   export default {
     name: "kyc",
     middleware: 'auth',

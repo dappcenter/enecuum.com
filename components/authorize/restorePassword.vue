@@ -24,7 +24,7 @@
           <el-button type="primary" class="neon" @click="submitForm" :loading="loading">Recover</el-button>
         </el-row>
       </el-form>
-      <vue-recaptcha size="invisible" sitekey="6LdmtV8UAAAAAN97NVynpruHAEAjBLhRF8XIzxY3" @verify="onVerify"
+      <vue-recaptcha size="invisible" :sitekey="recaptchaKey" @verify="onVerify"
                      ref="invisibleRecaptcha"></vue-recaptcha>
     </el-row>
   </div>
@@ -56,6 +56,11 @@
     },
     components: {
       'vue-recaptcha': VueRecaptcha
+    },
+    computed: {
+      recaptchaKey() {
+        return require('@/config/config.json').recaptchaKey;
+      },
     },
     methods: {
       back() {
