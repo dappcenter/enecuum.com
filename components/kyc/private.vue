@@ -519,7 +519,6 @@
       },
       sendKyc() {
         let data = this.privateForm;
-        data.cq_user = this.getFinger();
         this.loading = true;
         let isSended = this.$store.dispatch('submitKyc', data);
         isSended.then(res => {

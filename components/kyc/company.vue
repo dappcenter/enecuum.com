@@ -552,7 +552,6 @@
       sendKyc() {
         let data = this.companyForm;
         data.benefic = JSON.stringify(data.benefitsArray);
-        data.cq_user = this.getFinger();
         this.loading = true;
         let isSended = this.$store.dispatch('submitKyc', data);
         isSended.then(res => {

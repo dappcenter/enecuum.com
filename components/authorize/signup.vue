@@ -80,7 +80,6 @@
           return false;
         }
         let data = this.signUpForm;
-        //data.cq_user = this.getFinger();
         this.loading = true;
         let isSended = this.$store.dispatch('signUp', data);
         isSended.then((res) => {

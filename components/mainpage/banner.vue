@@ -67,9 +67,6 @@
       }
     },
     methods: {
-      sendSocial() {
-
-      },
       submitWL() {
         this.$refs['whiteListForm'].validate((valid) => {
           if (valid) {
@@ -81,7 +78,6 @@
       },
       sendWhitelist() {
         let data = this.whitelist;
-        //data.cq_user = this.getFinger();
         this.loading = true;
         let isSended = this.$store.dispatch('subscribeWP', data);
         isSended.then((res) => {
