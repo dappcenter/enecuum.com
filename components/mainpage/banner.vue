@@ -25,7 +25,7 @@
         <img :src="item.img" alt="">
       </a>
     </div>
-    <el-form class="subscribe" :model="whitelist" :rules="rules" ref="whiteListForm">
+    <el-form class="subscribe" :model="whitelist" :rules="rules" ref="whiteListForm" @submit.native.prevent="submitWL">
       <div class="subscribe_text">
         {{data.subscribeForm.description}}
       </div>
@@ -67,9 +67,6 @@
       }
     },
     methods: {
-      sendSocial() {
-
-      },
       submitWL() {
         this.$refs['whiteListForm'].validate((valid) => {
           if (valid) {
@@ -81,9 +78,6 @@
       },
       sendWhitelist() {
         let data = this.whitelist;
-        if (this.cq_user) {
-          data.cq_user = this.cq_user;
-        }
         this.loading = true;
         let isSended = this.$store.dispatch('subscribeWP', data);
         isSended.then((res) => {

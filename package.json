@@ -23,9 +23,12 @@
     "element-ui": "^2.3.7",
     "fingerprintjs2": "^1.8.0",
     "font-awesome": "^4.7.0",
+    "frappe-charts": "^1.1.0",
+    "hchs-vue-charts": "^1.2.8",
     "moment": "^2.22.1",
     "nuxt": "^1.0.0",
-    "twix": "^1.2.1"
+    "twix": "^1.2.1",
+    "vue-recaptcha": "^1.1.1"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",

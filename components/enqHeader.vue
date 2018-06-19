@@ -101,7 +101,7 @@
         });
       },
       logout() {
-        this.$store.dispatch('logout');
+        this.$store.dispatch('logoutServer');
         this.$router.push('/signin');
       },
       scrollTo(to) {

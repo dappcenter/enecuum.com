@@ -1,11 +1,11 @@
 <template>
   <div>
-    <el-form :model="privateForm" :rules="privateFormRules" ref="privateForm" class="kyc_form">
+    <el-form :model="companyForm" :rules="companyFormRules" ref="companyForm" class="kyc_form">
       <el-row class="flex-center">
         <el-col :xs="22" :sm="14" :md="10" :lg="8" :xl="6">
           <p class="block-title">Please, choose your current country</p>
           <el-form-item prop="currentCountry">
-            <el-select v-model="privateForm.currentCountry" clearable filterable placeholder="Current country">
+            <el-select v-model="companyForm.currentCountry" clearable filterable placeholder="Current country">
               <el-option
                 v-for="item in countries"
                 :key="item.name"
@@ -20,22 +20,19 @@
       </el-row>
       <el-row class="flex-center">
         <el-col :xs="22" :sm="14" :md="10" :lg="8" :xl="6">
-          <p class="block-title">Name, date of birth</p>
-          <el-form-item prop="firstName">
-            <el-input v-model="privateForm.firstName" placeholder="First name"></el-input>
+          <p class="block-title">General data</p>
+          <el-form-item prop="companyName">
+            <el-input v-model="companyForm.companyName" placeholder="Company name"></el-input>
           </el-form-item>
-          <el-form-item prop="middleName">
-            <el-input v-model="privateForm.middleName" placeholder="Middle name (if exist)"></el-input>
+          <el-form-item prop="regNumber">
+            <el-input v-model="companyForm.regNumber" placeholder="Registration number"></el-input>
           </el-form-item>
-          <el-form-item prop="lastName">
-            <el-input v-model="privateForm.lastName" placeholder="Last name"></el-input>
-          </el-form-item>
-          <el-form-item prop="birthDate">
+          <el-form-item prop="regDate">
             <div class="form_date">
               <el-date-picker
-                v-model="privateForm.birthDate"
+                v-model="companyForm.regDate"
                 type="date"
-                placeholder="Date of birth"
+                placeholder="Date of incorporation"
                 class="form_date-picker">
               </el-date-picker>
             </div>
@@ -45,100 +42,44 @@
       <div class="kyc-divider"></div>
       <el-row class="flex-center">
         <el-col :xs="22" :sm="14" :md="10" :lg="8" :xl="6">
-          <p class="block-title">Nationality, residence</p>
-          <el-form-item prop="nationality">
-            <el-select v-model="privateForm.nationality" clearable filterable placeholder="Nationality">
+          <p class="block-title">Registration address</p>
+          <el-form-item prop="regCountry">
+            <el-select v-model="companyForm.regCountry" clearable filterable placeholder="Country">
               <el-option
                 v-for="item in countries"
                 :key="item.name"
                 :label="item.name"
                 :value="item.numericCode">
-                              <span class="flex-between flex-middle">{{item.name}} <img :src="item.flag" alt=""
-                                                                                        class="country-flags"></span>
+                                              <span class="flex-between flex-middle">{{item.name}} <img :src="item.flag"
+                                                                                                        alt=""
+                                                                                                        class="country-flags"></span>
               </el-option>
             </el-select>
           </el-form-item>
-          <el-form-item prop="residenceCountry">
-            <el-select v-model="privateForm.residenceCountry" clearable filterable placeholder="Country of residence">
-              <el-option
-                v-for="item in countries"
-                :key="item.name"
-                :label="item.name"
-                :value="item.numericCode">
-                              <span class="flex-between flex-middle">{{item.name}} <img :src="item.flag" alt=""
-                                                                                        class="country-flags"></span>
-              </el-option>
-            </el-select>
+          <el-form-item prop="regCity">
+            <el-input v-model="companyForm.regCity" placeholder="City"></el-input>
           </el-form-item>
-        </el-col>
-      </el-row>
-      <div class="kyc-divider"></div>
-      <el-row class="flex-center">
-        <el-col :xs="22" :sm="14" :md="10" :lg="8" :xl="6">
-          <p class="block-title">ID/Passport</p>
-          <el-form-item prop="passportNumber">
-            <el-input v-model="privateForm.passportNumber" placeholder="ID/Passport number"></el-input>
+          <el-form-item prop="regStreet">
+            <el-input v-model="companyForm.regStreet" placeholder="Street"></el-input>
           </el-form-item>
-          <el-form-item prop="issueDate">
-            <div class="form_date">
-              <el-date-picker
-                v-model="privateForm.issueDate"
-                type="date"
-                placeholder="Date of issue"
-                class="form_date-picker">
-              </el-date-picker>
-            </div>
+          <el-form-item prop="regBuilding">
+            <el-input v-model="companyForm.regBuilding" placeholder="Building"></el-input>
           </el-form-item>
-          <el-form-item prop="issuePlace">
-            <el-input v-model="privateForm.issuePlace" placeholder="Place of issue"></el-input>
-          </el-form-item>
-          <el-form-item prop="validUntil">
-            <div class="form_date">
-              <el-date-picker
-                v-model="privateForm.validUntil"
-                type="date"
-                placeholder="Valid until"
-                class="form_date-picker">
-              </el-date-picker>
-            </div>
-          </el-form-item>
-          <el-form-item prop="isIndefinitely">
-            <el-checkbox v-model="privateForm.isIndefinitely" class="flex-middle">
-              <p class="kyc-checkbox">Check this box if your ID/passport is valid indefinitely</p>
-            </el-checkbox>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row class="flex-center">
-        <el-col :xs="22" :sm="14" :md="10" :lg="8" :xl="6">
-          <p class="photo-upload-title block-title">Upload a photo of your ID/passport <img src="/img/icons/attach.svg"
-                                                                                            alt="">
-          </p>
-          <el-form-item prop="filePassport">
-            <el-upload
-              action="https://api.enecuum.com/v1/kyc-files"
-              drag
-              :limit="4"
-              name="files[]"
-              list-type="picture"
-              :with-credentials="true"
-              :headers="{
-              'X-Requested-With': 'XMLHttpRequest'
-              }"
-              ref="filePassport"
-              :on-preview="handlePictureCardPreview"
-              :before-upload="handleBeforeUpload"
-              :on-success="photoPassportUpload"
-              :thumbnail-mode="true"
-              class="photo-upload">
-              <div class="photo-upload-text">
-                Drop file here
-              </div>
-            </el-upload>
-          </el-form-item>
-          <p class="photo-upload-title block-title">Upload a selfie holding your ID/passport <img
+          <el-row :gutter="20">
+            <el-col :span="10">
+              <el-form-item prop="regOffice">
+                <el-input v-model="companyForm.regOffice" placeholder="Office"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="14">
+              <el-form-item prop="regZipCode">
+                <el-input v-model="companyForm.regZipCode" placeholder="ZIP-code"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <p class="photo-upload-title block-title">Upload a document confirming your registration <img
             src="/img/icons/attach.svg" alt=""></p>
-          <el-form-item prop="fileSelfiePassport">
+          <el-form-item prop="fileConfirmReg" ref="fileConfirmReg">
             <el-upload
               action="https://api.enecuum.com/v1/kyc-files"
               drag
@@ -149,10 +90,9 @@
               :headers="{
               'X-Requested-With': 'XMLHttpRequest'
               }"
-              ref="fileSelfiePassport"
               :on-preview="handlePictureCardPreview"
               :before-upload="handleBeforeUpload"
-              :on-success="selfiePassportUpload"
+              :on-success="photoRegUpload"
               :thumbnail-mode="true"
               class="photo-upload">
               <div class="photo-upload-text">
@@ -162,67 +102,105 @@
           </el-form-item>
         </el-col>
       </el-row>
-      <div class="kyc-divider"></div>
       <el-row class="flex-center">
         <el-col :xs="22" :sm="14" :md="10" :lg="8" :xl="6">
-          <p class="block-title">Address</p>
+          <p class="block-title">Physical business address</p>
           <el-form-item prop="country">
-            <el-select v-model="privateForm.country" clearable filterable placeholder="Country">
+            <el-select v-model="companyForm.country" clearable filterable placeholder="Country">
               <el-option
                 v-for="item in countries"
                 :key="item.name"
                 :label="item.name"
                 :value="item.numericCode">
-                              <span class="flex-between flex-middle">{{item.name}} <img :src="item.flag" alt=""
-                                                                                        class="country-flags"></span>
+                                              <span class="flex-between flex-middle">{{item.name}} <img :src="item.flag"
+                                                                                                        alt=""
+                                                                                                        class="country-flags"></span>
               </el-option>
             </el-select>
           </el-form-item>
           <el-form-item prop="city">
-            <el-input v-model="privateForm.city" placeholder="City"></el-input>
+            <el-input v-model="companyForm.city" placeholder="City"></el-input>
           </el-form-item>
           <el-form-item prop="street">
-            <el-input v-model="privateForm.street" placeholder="Street"></el-input>
+            <el-input v-model="companyForm.street" placeholder="Street"></el-input>
           </el-form-item>
           <el-form-item prop="building">
-            <el-input v-model="privateForm.building" placeholder="Building"></el-input>
+            <el-input v-model="companyForm.building" placeholder="Building"></el-input>
           </el-form-item>
           <el-row :gutter="20">
             <el-col :span="10">
-              <el-form-item prop="apartment">
-                <el-input v-model="privateForm.apartment" placeholder="Apartment"></el-input>
+              <el-form-item prop="office">
+                <el-input v-model="companyForm.office" placeholder="Office"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="14">
               <el-form-item prop="zipCode">
-                <el-input v-model="privateForm.zipCode" placeholder="ZIP-code"></el-input>
+                <el-input v-model="companyForm.zipCode" placeholder="ZIP-code"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row :gutter="20">
             <el-col :span="10">
               <el-form-item prop="countryCode">
-                <el-select v-model="privateForm.countryCode" clearable filterable placeholder="Country code">
+                <el-select v-model="companyForm.countryCode" clearable filterable placeholder="Country code">
                   <el-option
                     v-for="item in countries"
                     :key="item.name"
                     :label="item.name"
                     :value="item.numericCode">
-                  <span class="flex-middle flex-between">+{{ item.callingCodes[0]}} {{ item.name }} <img
-                    :src="item.flag" alt="" class="country-flags"> </span>
+                                                  <span class="flex-between flex-middle">+{{ item.callingCodes[0]}} {{item.name}} <img
+                                                    :src="item.flag" alt=""
+                                                    class="country-flags"></span>
                   </el-option>
                 </el-select>
               </el-form-item>
             </el-col>
             <el-col :span="14">
               <el-form-item prop="phoneNumber">
-                <el-input type="tel" v-model="privateForm.phoneNumber" placeholder="(000)0000000"></el-input>
+                <el-input type="tel" v-model="companyForm.phoneNumber" placeholder="(000)0000000"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
-          <p class="photo-upload-title block-title">Upload a document confirming your address <img
-            src="/img/icons/attach.svg" alt=""></p>
-          <el-form-item prop="fileConfirmAddr">
+        </el-col>
+      </el-row>
+      <div class="kyc-divider"></div>
+      <el-row class="flex-center">
+        <el-col :xs="22" :sm="14" :md="10" :lg="8" :xl="6">
+          <p class="block-title">Authorized representative</p>
+          <el-form-item prop="authFirstName">
+            <el-input v-model="companyForm.authFirstName" placeholder="First name"></el-input>
+          </el-form-item>
+          <el-form-item prop="authMiddleName">
+            <el-input v-model="companyForm.authMiddleName" placeholder="Middle name (if exist)"></el-input>
+          </el-form-item>
+          <el-form-item prop="authLastName">
+            <el-input v-model="companyForm.authLastName" placeholder="Last name"></el-input>
+          </el-form-item>
+          <el-row :gutter="20">
+            <el-col :span="10">
+              <el-form-item prop="authCountryCode">
+                <el-select v-model="companyForm.authCountryCode" clearable filterable placeholder="Country code">
+                  <el-option
+                    v-for="item in countries"
+                    :key="item.name"
+                    :label="item.callingCodes[0]"
+                    :value="item.numericCode">
+                                                  <span class="flex-between flex-middle">+{{ item.callingCodes[0]}} {{item.name}} <img
+                                                    :src="item.flag" alt=""
+                                                    class="country-flags"></span>
+                  </el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="14">
+              <el-form-item prop="authPhoneNumber">
+                <el-input v-model="companyForm.authPhoneNumber" placeholder="(000) 000 00 00"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <p class="photo-upload-title block-title">Upload a document confirming the authority of your representative
+            <img src="/img/icons/attach.svg" alt=""></p>
+          <el-form-item prop="fileAuthRepr" ref="fileAuthRepr">
             <el-upload
               action="https://api.enecuum.com/v1/kyc-files"
               drag
@@ -235,7 +213,7 @@
               }"
               :on-preview="handlePictureCardPreview"
               :before-upload="handleBeforeUpload"
-              :on-success="confirmDocUpload"
+              :on-success="photoAuthUpload"
               :thumbnail-mode="true"
               class="photo-upload">
               <div class="photo-upload-text">
@@ -243,6 +221,32 @@
               </div>
             </el-upload>
           </el-form-item>
+        </el-col>
+      </el-row>
+      <div class="kyc-divider"></div>
+      <el-row class="flex-center">
+        <el-col :xs="22" :sm="14" :md="10" :lg="8" :xl="6">
+          <p class="block-title">Ultimate Beneficiaries</p>
+          <div v-for="(user, key) in companyForm.benefitsArray" :key="key">
+            <el-form-item prop="firstName">
+              <el-input v-model="user.firstName" placeholder="First name"></el-input>
+            </el-form-item>
+            <el-form-item prop="middleName">
+              <el-input v-model="user.middleName" placeholder="Middle name (if exist)"></el-input>
+            </el-form-item>
+            <el-form-item prop="lastName">
+              <el-input v-model="user.lastName" placeholder="Last name"></el-input>
+            </el-form-item>
+          </div>
+          <el-row class="flex-center kyc-addBenefic-wrapper">
+            <button class="kyc-addBenefic" @click.prevent="addBenef"><img src="/img/icons/shape_close.svg" alt="">
+            </button>
+            <button class="kyc-addBenefic remove" @click.prevent="removeBenef"
+                    v-if="companyForm.benefitsArray.length>1"><i
+              class="fa fa-times"
+              aria-hidden="true"></i>
+            </button>
+          </el-row>
         </el-col>
       </el-row>
       <div class="kyc-divider"></div>
@@ -250,10 +254,10 @@
         <el-col :xs="22" :sm="14" :md="10" :lg="8" :xl="6">
           <p class="block-title">Ethereum wallet number</p>
           <el-form-item prop="ethWalletNumber">
-            <el-input v-model="privateForm.ethWalletNumber" placeholder="Your wallet number"></el-input>
+            <el-input v-model="companyForm.ethWalletNumber" placeholder="Your wallet number"></el-input>
           </el-form-item>
           <el-form-item prop="estimatedInvest" label="Estimated investment (ether)">
-            <el-input v-model="privateForm.estimatedInvest" placeholder="Estimated investment (ethereum)"
+            <el-input v-model="companyForm.estimatedInvest" placeholder="Estimated investment (ethereum)"
                       class="full-width"></el-input>
           </el-form-item>
         </el-col>
@@ -262,13 +266,13 @@
       <el-row class="flex-center kyc_agreement">
         <el-col :xs="22" :sm="14" :md="10" :lg="8" :xl="6">
           <el-form-item prop="firstAgree">
-            <el-checkbox v-model="privateForm.firstAgree" class="flex-middle">
+            <el-checkbox v-model="companyForm.firstAgree" class="flex-middle" required="required">
               <p class="kyc-checkbox">I agree to the processing and storage of my personal data by Enecuum HK
                 Limited.</p>
             </el-checkbox>
           </el-form-item>
           <el-form-item prop="secondAgree">
-            <el-checkbox v-model="privateForm.secondAgree" class="flex-middle">
+            <el-checkbox v-model="companyForm.secondAgree" class="flex-middle">
               <p class="kyc-checkbox">I hereby declare that the information provided is true and correct. I also
                 understand that any willful dishonesty may render for refusal of this application.</p>
             </el-checkbox>
@@ -288,10 +292,11 @@
 </template>
 
 <script>
-  import validators from './validators';
+  import validators from '../validators';
+
 
   export default {
-    name: "private",
+    name: "company",
     props: {
       countries: Array
     },
@@ -305,98 +310,89 @@
         loading: false,
         dialogVisible: false,
         dialogPhotoPreview: '',
-        privateForm: {
-          accountType: '1',
+        companyForm: {
+          accountType: '2',
           currentCountry: '',
-          firstName: '',
-          middleName: '',
-          lastName: '',
-          birthDate: '',
-          nationality: '',
-          residenceCountry: '',
-          passportNumber: '',
-          issueDate: '',
-          issuePlace: '',
-          validUntil: '',
-          isIndefinitely: false,
-          filePassport: [],
-          fileSelfiePassport: [],
+          companyName: '',
+          regNumber: '',
+          regDate: '',
+          regCountry: '',
+          regCity: '',
+          regStreet: '',
+          regBuilding: '',
+          regOffice: '',
+          regZipCode: '',
+          fileConfirmReg: '',
           country: '',
           city: '',
           street: '',
           building: '',
-          apartment: '',
+          office: '',
           zipCode: '',
           countryCode: '',
           phoneNumber: '',
-          fileConfirmAddr: [],
+          authFirstName: '',
+          authMiddleName: '',
+          authLastName: '',
+          authCountryCode: '',
+          authPhoneNumber: '',
+          fileAuthRepr: '',
+          benefitsArray: [],
           ethWalletNumber: '',
           estimatedInvest: '',
           firstAgree: null,
           secondAgree: null,
         },
-        privateFormRules: {
-          firstName: [
+        companyFormRules: {
+          companyName: [
             {
               required: true,
               message: 'This field is required'
             }
           ],
-          lastName: [
+          regNumber: [
             {
               required: true,
               message: 'This field is required'
             }
           ],
-          birthDate: [
+          regDate: [
             {
               required: true,
               message: 'This field is required'
             }
           ],
-          nationality: [
+          regCountry: [
             {
               required: true,
               message: 'This field is required'
             }
           ],
-          residenceCountry: [
+          regCity: [
             {
               required: true,
               message: 'This field is required'
             }
           ],
-          passportNumber: [
+          regStreet: [
             {
               required: true,
               message: 'This field is required'
             }
           ],
-          issueDate: [
+          regOffice: [
             {
               required: true,
               message: 'This field is required'
             }
           ],
-          issuePlace: [
+          regZipCode: [
             {
               required: true,
               message: 'This field is required'
             }
           ],
-          validUntil: [
-            {
-              required: true,
-              message: 'This field is required'
-            }
-          ],
-          filePassport: [
-            {
-              required: true,
-              message: 'This field is required'
-            }
-          ],
-          fileSelfiePassport: [
+          fileConfirmReg: [
             {
               required: true,
               message: 'This field is required'
@@ -420,6 +416,12 @@
               message: 'This field is required'
             }
           ],
+          office: [
+            {
+              required: true,
+              message: 'This field is required'
+            }
+          ],
           zipCode: [
             {
               required: true,
@@ -438,7 +440,31 @@
               trigger: 'change'
             }
           ],
-          fileConfirmAddr: [
+          authFirstName: [
+            {
+              required: true,
+              message: 'This field is required'
+            }
+          ],
+          authLastName: [
+            {
+              required: true,
+              message: 'This field is required'
+            }
+          ],
+          authCountryCode: [
+            {
+              required: true,
+              message: 'This field is required'
+            }
+          ],
+          authPhoneNumber: [
+            {
+              validator: validatePhoneNumber,
+              trigger: 'change'
+            }
+          ],
+          fileAuthRepr: [
             {
               required: true,
               message: 'This field is required'
@@ -482,27 +508,34 @@
         }
         return accepted && isLt2M;
       },
-      photoPassportUpload(response, file, fileList) {
-        this.privateForm.filePassport = fileList.map(item => {
-          return item.response.success.filename;
+      addBenef() {
+        this.companyForm.benefitsArray.push({
+          firstName: '',
+          middleName: '',
+          lastName: ''
         });
       },
-      selfiePassportUpload(response, file, fileList) {
-        this.privateForm.fileSelfiePassport = fileList.map(item => {
-          return item.response.success.filename;
-        });
+      removeBenef() {
+        this.companyForm.benefitsArray.pop();
       },
-      confirmDocUpload(response, file, fileList) {
-        this.privateForm.fileConfirmAddr = fileList.map(item => {
+      photoRegUpload(response, file, fileList) {
+        this.companyForm.fileConfirmReg = fileList.map(item => {
           return item.response.success.filename;
         });
+        this.$refs.fileConfirmReg.clearValidate();
+      },
+      photoAuthUpload(response, file, fileList) {
+        this.companyForm.fileAuthRepr = fileList.map(item => {
+          return item.response.success.filename;
+        });
+        this.$refs.fileAuthRepr.clearValidate();
       },
       handlePictureCardPreview(file) {
         this.dialogPhotoPreview = file.url;
         this.dialogVisible = true;
       },
       submitForm() {
-        this.$refs['privateForm'].validate((valid) => {
+        this.$refs['companyForm'].validate((valid) => {
           if (valid) {
             this.sendKyc();
           } else {
@@ -517,28 +550,25 @@
         });
       },
       sendKyc() {
-        let data = this.privateForm;
-        if (this.cq_user) {
-          data.cq_user = this.cq_user;
-        }
+        let data = this.companyForm;
+        data.benefic = JSON.stringify(data.benefitsArray);
         this.loading = true;
         let isSended = this.$store.dispatch('submitKyc', data);
         isSended.then(res => {
           this.loading = false;
-          console.log(this.$refs);
           if (res.ok) {
-            this.$refs['privateForm'].resetFields();
+            this.$refs['companyForm'].resetFields();
             this.a({category: 'lk', eventAction: 'success', eventLabel: 'kyc'});
             _paq.push(['addEcommerceItem',
               2,
-              'ind',
+              'comp',
               "kyc",
-              this.privateForm.estimatedInvest,
+              this.companyForm.estimatedInvest,
               1
             ]);
             _paq.push(['trackEcommerceOrder',
               new Date().getTime() + '',
-              this.privateForm.estimatedInvest,
+              this.companyForm.estimatedInvest,
             ]);
             this.$store.state.debug ? console.log('after submit kyc', res) : null;
             this.$store.commit('SET_KYC_STATE', {status: res.ok, message: res.success, code: res.code});

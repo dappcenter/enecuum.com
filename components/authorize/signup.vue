@@ -18,6 +18,8 @@
         <el-form-item>
           <el-button type="primary" class="neon" @click="submitForm" :loading="loading">Sign Up</el-button>
         </el-form-item>
+        <vue-recaptcha size="invisible" :sitekey="recaptchaKey" ref="invisibleRecaptcha"
+                       @verify="onVerify"></vue-recaptcha>
       </el-form>
     </el-row>
   </div>
@@ -25,6 +27,7 @@
 
 <script>
   import validators from '../kyc/validators';
+  import VueRecaptcha from 'vue-recaptcha';
 
   export default {
     name: "signup",
@@ -50,12 +53,23 @@
         }
       }
     },
+    components: {
+      'vue-recaptcha': VueRecaptcha
+    },
+    computed: {
+      recaptchaKey() {
+        return require('@/config/config.json').recaptchaKey;
+      }
+    },
     methods: {
+      onVerify(response) {
+        this.signupForm(response);
+      },
       submitForm() {
         let form = this.$refs.signUpForm;
         form.validate((valid) => {
           if (valid) {
-            this.signupForm();
+            this.$refs.invisibleRecaptcha.execute();
           } else {
             setTimeout(() => {
               form.clearValidate();
@@ -64,7 +78,7 @@
           }
         });
       },
-      signupForm() {
+      signupForm(captcha) {
         if ((this.signUpForm.password !== this.signUpForm.confirm_password) || !this.signUpForm.password) {
           this.$notify({
             title: 'Info',
@@ -75,9 +89,7 @@
           return false;
         }
         let data = this.signUpForm;
-        if (this.cq_user) {
-          data.cq_user = this.cq_user;
-        }
+        data.recaptcha = captcha;
         this.loading = true;
         let isSended = this.$store.dispatch('signUp', data);
         isSended.then((res) => {

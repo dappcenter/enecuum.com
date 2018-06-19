@@ -24,12 +24,15 @@
           <el-button type="primary" class="neon" @click="submitForm" :loading="loading">Recover</el-button>
         </el-row>
       </el-form>
+      <vue-recaptcha size="invisible" :sitekey="recaptchaKey" @verify="onVerify"
+                     ref="invisibleRecaptcha"></vue-recaptcha>
     </el-row>
   </div>
 </template>
 
 <script>
   import validators from '../kyc/validators';
+  import VueRecaptcha from 'vue-recaptcha';
 
   export default {
     name: "restorePassword",
@@ -51,15 +54,26 @@
         }
       }
     },
+    components: {
+      'vue-recaptcha': VueRecaptcha
+    },
+    computed: {
+      recaptchaKey() {
+        return require('@/config/config.json').recaptchaKey;
+      },
+    },
     methods: {
       back() {
         this.$emit('back');
+      },
+      onVerify(response) {
+        this.recoveryPwd(response);
       },
       submitForm() {
         let form = this.$refs.signInForm;
         form.validate((valid) => {
           if (valid) {
-            this.recoveryPwd();
+            this.$refs.invisibleRecaptcha.execute();
           } else {
             setTimeout(() => {
               form.clearValidate();
@@ -68,11 +82,9 @@
           }
         });
       },
-      recoveryPwd() {
+      recoveryPwd(captcha) {
         let data = this.signInForm;
-        if (this.cq_user) {
-          data.cq_user = this.cq_user;
-        }
+        data.recaptcha = captcha;
         this.loading = true;
         let isSended = this.$store.dispatch('resetPassword', data);
         isSended.then((res) => {

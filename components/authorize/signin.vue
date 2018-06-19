@@ -17,11 +17,14 @@
         </el-form-item>
       </el-form>
     </el-row>
+    <vue-recaptcha size="invisible" :sitekey="recaptchaKey" @verify="onVerify"
+                   ref="invisibleRecaptcha"></vue-recaptcha>
   </div>
 </template>
 
 <script>
   import validators from '../kyc/validators';
+  import VueRecaptcha from 'vue-recaptcha';
 
   export default {
     name: "signin",
@@ -43,7 +46,18 @@
         }
       }
     },
+    components: {
+      'vue-recaptcha': VueRecaptcha
+    },
+    computed: {
+      recaptchaKey() {
+        return require('@/config/config.json').recaptchaKey;
+      }
+    },
     methods: {
+      onVerify(response) {
+        this.signinForm(response);
+      },
       restore() {
         this.$emit('restore');
       },
@@ -51,7 +65,7 @@
         let form = this.$refs.signInForm;
         form.validate((valid) => {
           if (valid) {
-            this.signinForm();
+            this.$refs.invisibleRecaptcha.execute();
           } else {
             setTimeout(() => {
               form.clearValidate();
@@ -60,11 +74,9 @@
           }
         });
       },
-      signinForm() {
+      signinForm(captcha) {
         let data = this.signInForm;
-        if (this.cq_user) {
-          data.cq_user = this.cq_user;
-        }
+        data.recaptcha = captcha;
         this.loading = true;
         let isSended = this.$store.dispatch('signIn', data);
         isSended.then((res) => {
@@ -85,6 +97,7 @@
               type: 'error',
               position: 'bottom-left'
             });
+            this.$refs.invisibleRecaptcha.reset();
           }
           this.loading = false;
         }).catch(() => {
@@ -95,11 +108,6 @@
             position: 'bottom-left'
           });
         });
-      }
-    },
-    mounted() {
-      if (this.$route.params.hash) {
-        console.log(this.$route.params.hash);
       }
     }
   }

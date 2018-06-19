@@ -7,7 +7,6 @@
     <phmining :data="mainpage.phonemining"></phmining>
     <roadmap :data="mainpage.roadmap"></roadmap>
     <partners :data="mainpage.partners"></partners>
-    <feedback :data="mainpage.feedback"></feedback>
   </section>
 </template>
 

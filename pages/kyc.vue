@@ -1,47 +1,26 @@
 <template>
   <section class="container kyc" :class="{'flex-middle':kyc.status}">
-    <complete v-if="kyc.status" :kyc="kyc"></complete>
-    <div class="authorize border-off-inputs" v-else>
-      <el-row class="flex-center">
-        <el-col :xs="22" :sm="14" :md="10" :lg="8" :xl="6">
-          <h1 class="h3">Fill out the registration form</h1>
-          <p class="block-title">Account type</p>
-          <el-row class="flex-center flex-between kyc_accountType">
-            <el-button class="acType enq-button enq-button--blue-plain" :class="{'active': accountType==='private'}"
-                       @click="accountType='private'">
-              Private individual
-            </el-button>
-            <el-button class="acType enq-button enq-button--blue-plain" :class="{'active': accountType==='company'}"
-                       @click="accountType='company'">
-              Company
-            </el-button>
-          </el-row>
-        </el-col>
-      </el-row>
-      <kycPrivate v-if="accountType==='private'" :countries="countries"></kycPrivate>
-      <kycCompany v-else :countries="countries"></kycCompany>
-    </div>
+    <component :is="currentComponent" :kyc="kyc"></component>
   </section>
 </template>
 
 <script>
-  import kycPrivate from '@/components/kyc/private';
-  import kycCompany from '@/components/kyc/company';
   import complete from '@/components/kyc/complete';
-  import axios from 'axios';
+  import kycform from '@/components/kyc/kycform';
+  //import GAuth from '@/components/kyc/checkGAuth';
+  //import vesting from '@/components/kyc/vesting/tokenVesting';
 
   export default {
     name: "kyc",
     middleware: 'auth',
     components: {
-      kycPrivate,
-      kycCompany,
+      kycform,
       complete
     },
     data() {
       return {
-        accountType: 'private',
         interval: '',
+        currentComponent: complete,
         countries: null
       }
     },
@@ -50,15 +29,18 @@
         return this.$store.state.kyc;
       }
     },
+    mounted() {
+      this.$store.state.kyc.status ? this.currentComponent = complete : this.currentComponent = kycform;
+    },
+    watch: {
+      '$store.state.kyc.status': function () {
+        this.currentComponent = complete;
+      }
+    },
     beforeRouteLeave(to, from, next) {
       clearInterval(this.interval);
-      this.$store.dispatch('logout');
+      this.$store.dispatch('logoutClient');
       next()
-    },
-    mounted() {
-      axios.get('i18n/countries.json').then(res => {
-        this.countries = res.data;
-      });
     }
   }
 </script>
