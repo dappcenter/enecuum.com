@@ -7,8 +7,8 @@
 <script>
   import complete from '@/components/kyc/complete';
   import kycform from '@/components/kyc/kycform';
-  import GAuth from '@/components/kyc/checkGAuth';
-  import vesting from '@/components/kyc/vesting/tokenVesting';
+  //import GAuth from '@/components/kyc/checkGAuth';
+  //import vesting from '@/components/kyc/vesting/tokenVesting';
 
 
   export default {
