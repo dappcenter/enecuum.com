@@ -18,8 +18,9 @@
         <el-form-item>
           <el-button type="primary" class="neon" @click="submitForm" :loading="loading">Sign Up</el-button>
         </el-form-item>
+        <vue-recaptcha size="invisible" sitekey="6LdmtV8UAAAAAN97NVynpruHAEAjBLhRF8XIzxY3" ref="invisibleRecaptcha"
+                       @verify="onVerify"></vue-recaptcha>
       </el-form>
-      <vue-recaptcha size="invisible" sitekey="Your key here"></vue-recaptcha>
     </el-row>
   </div>
 </template>
@@ -53,13 +54,17 @@
       }
     },
     components: {
-      VueRecaptcha
+      'vue-recaptcha': VueRecaptcha
     },
     methods: {
+      onVerify(response) {
+        this.signinForm(response);
+      },
       submitForm() {
         let form = this.$refs.signUpForm;
         form.validate((valid) => {
           if (valid) {
+            this.$refs.invisibleRecaptcha.execute();
             this.signupForm();
           } else {
             setTimeout(() => {
@@ -80,6 +85,7 @@
           return false;
         }
         let data = this.signUpForm;
+        data.recaptcha = captcha;
         this.loading = true;
         let isSended = this.$store.dispatch('signUp', data);
         isSended.then((res) => {
