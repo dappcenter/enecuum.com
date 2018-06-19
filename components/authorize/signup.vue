@@ -58,14 +58,13 @@
     },
     methods: {
       onVerify(response) {
-        this.signinForm(response);
+        this.signupForm(response);
       },
       submitForm() {
         let form = this.$refs.signUpForm;
         form.validate((valid) => {
           if (valid) {
             this.$refs.invisibleRecaptcha.execute();
-            this.signupForm();
           } else {
             setTimeout(() => {
               form.clearValidate();
@@ -74,7 +73,7 @@
           }
         });
       },
-      signupForm() {
+      signupForm(captcha) {
         if ((this.signUpForm.password !== this.signUpForm.confirm_password) || !this.signUpForm.password) {
           this.$notify({
             title: 'Info',

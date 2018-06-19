@@ -16,9 +16,7 @@
     middleware: 'auth',
     components: {
       kycform,
-      complete,
-      GAuth,
-      vesting
+      complete
     },
     data() {
       return {
