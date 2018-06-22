@@ -560,6 +560,7 @@
               type: 'error',
               position: 'bottom-left'
             });
+            this.$refs.invisibleRecaptcha.reset();
           }
         });
       }
