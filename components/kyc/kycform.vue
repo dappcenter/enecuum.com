@@ -1,6 +1,6 @@
 <template>
   <div class="authorize border-off-inputs">
-    <el-row class="flex-center">
+    <el-row class="flex-center flex-wrap">
       <el-col :xs="22" :sm="14" :md="10" :lg="8" :xl="6">
         <h1 class="h3">Fill out the registration form</h1>
         <p class="block-title">Account type</p>
@@ -28,6 +28,9 @@
 
   export default {
     name: "kycform",
+    props: {
+      kyc: Object
+    },
     data() {
       return {
         accountType: 'private',
@@ -39,7 +42,7 @@
       kycCompany
     },
     mounted() {
-      axios.get('i18n/countries.json').then(res => {
+      axios.get('/i18n/countries.json').then(res => {
         this.countries = res.data;
       });
     }

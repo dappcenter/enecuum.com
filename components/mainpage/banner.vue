@@ -38,10 +38,14 @@
         </el-button>
       </div>
     </el-form>
+    <vue-recaptcha size="invisible" :sitekey="recaptchaKey" @verify="onVerify"
+                   ref="invisibleRecaptcha"></vue-recaptcha>
   </el-row>
 </template>
 
 <script>
+  import VueRecaptcha from 'vue-recaptcha';
+
   export default {
     name: "banner",
     props: ['data'],
@@ -61,23 +65,33 @@
         }
       }
     },
+    components: {
+      'vue-recaptcha': VueRecaptcha
+    },
     computed: {
       social() {
         return this.$store.state.social;
+      },
+      recaptchaKey() {
+        return require('@/config/config.json').recaptchaKey;
       }
     },
     methods: {
+      onVerify(response) {
+        this.sendWhitelist(response);
+      },
       submitWL() {
         this.$refs['whiteListForm'].validate((valid) => {
           if (valid) {
-            this.sendWhitelist();
+            this.$refs.invisibleRecaptcha.execute();
           } else {
             return false;
           }
         });
       },
-      sendWhitelist() {
+      sendWhitelist(captcha) {
         let data = this.whitelist;
+        data.recaptcha = captcha;
         this.loading = true;
         let isSended = this.$store.dispatch('subscribeWP', data);
         isSended.then((res) => {
@@ -99,6 +113,7 @@
             });
           }
           this.loading = false;
+          this.$refs.invisibleRecaptcha.reset();
         }).catch(() => {
           this.$notify({
             title: 'Error',

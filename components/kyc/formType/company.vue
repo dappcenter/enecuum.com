@@ -285,6 +285,8 @@
         <el-button type="primary" class="neon" @click="submitForm" :loading="loading">Next</el-button>
       </el-col>
     </el-row>
+    <vue-recaptcha size="invisible" :sitekey="recaptchaKey" @verify="onVerify"
+                   ref="invisibleRecaptcha"></vue-recaptcha>
     <el-dialog :visible.sync="dialogVisible">
       <img width="100%" :src="dialogPhotoPreview" alt="">
     </el-dialog>
@@ -293,7 +295,7 @@
 
 <script>
   import validators from '../validators';
-
+  import VueRecaptcha from 'vue-recaptcha';
 
   export default {
     name: "company",
@@ -494,14 +496,25 @@
         }
       }
     },
+    components: {
+      'vue-recaptcha': VueRecaptcha
+    },
+    computed: {
+      recaptchaKey() {
+        return require('@/config/config.json').recaptchaKey;
+      }
+    },
     methods: {
+      onVerify(response) {
+        this.sendKyc(response);
+      },
       handleBeforeUpload(file) {
         let filetype = file.name.split('.')[file.name.split('.').length - 1].toLocaleLowerCase();
         const acceptedList = ['jpeg', 'jpg', 'png', 'txt', 'doc', 'docx', 'xls', 'xlsx', 'gif', 'pdf'];
         const accepted = acceptedList.indexOf(filetype) > -1;
         const isLt2M = file.size / 1024 / 1024 < 15;
         if (!accepted) {
-          this.$message.error('Unsuported filetype');
+          this.$message.error('Unsuported filetype. We are acecpted only:' + acceptedList.join(','));
         }
         if (!isLt2M) {
           this.$message.error('File can not exceed 15MB');
@@ -537,7 +550,7 @@
       submitForm() {
         this.$refs['companyForm'].validate((valid) => {
           if (valid) {
-            this.sendKyc();
+            this.$refs.invisibleRecaptcha.execute();
           } else {
             this.$notify({
               title: 'Warning',
@@ -549,9 +562,10 @@
           }
         });
       },
-      sendKyc() {
+      sendKyc(captcha) {
         let data = this.companyForm;
         data.benefic = JSON.stringify(data.benefitsArray);
+        data.recaptcha = captcha;
         this.loading = true;
         let isSended = this.$store.dispatch('submitKyc', data);
         isSended.then(res => {
@@ -570,12 +584,11 @@
               new Date().getTime() + '',
               this.companyForm.estimatedInvest,
             ]);
-            this.$store.state.debug ? console.log('after submit kyc', res) : null;
             this.$store.commit('SET_KYC_STATE', {status: res.ok, message: res.success, code: res.code});
           } else {
             this.$notify({
               title: 'Error',
-              message: res.error,
+              message: this.$store.state.lang[res.code],
               type: 'error',
               position: 'bottom-left'
             });

@@ -31,8 +31,8 @@
         </div>
       </el-col>
     </el-row>
-    <!--    <vue-recaptcha size="invisible" :sitekey="recaptchaKey" @verify="onVerify"
-                       ref="invisibleRecaptcha"></vue-recaptcha>-->
+    <vue-recaptcha size="invisible" :sitekey="recaptchaKey" @verify="onVerify"
+                   ref="invisibleRecaptcha"></vue-recaptcha>
   </section>
 </template>
 
@@ -130,7 +130,7 @@
           } else {
             this.$notify({
               title: 'Error',
-              message: this.$store.state.lang[res.code],
+              message: res.error ? res.error : this.$store.state.lang[res.code],
               type: 'error',
               position: 'bottom-left'
             });
