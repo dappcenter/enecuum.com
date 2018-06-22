@@ -5,14 +5,24 @@
       <p>Personal account</p>
       <el-form :model="signInForm" :rules="signInFormRules" ref="signInForm" class="authorize_form">
         <el-form-item prop="email">
-          <el-input v-model="signInForm.email" placeholder="Login" @keyup.enter.native="submitForm"></el-input>
+          <el-input v-model="signInForm.email" placeholder="Login" @keyup.enter.native="submitForm"
+                    :disabled="'disabled' ? loading : null"></el-input>
         </el-form-item>
         <el-form-item prop="password">
           <el-input v-model="signInForm.password" type="password" placeholder="Password"
-                    @keyup.enter.native="submitForm"></el-input>
+                    @keyup.enter.native="submitForm" :disabled="'disabled' ? loading : null"></el-input>
         </el-form-item>
-        <a href="" class="authorize_forgot-password-link" @click.prevent="restore">Forgot password?</a>
-        <el-form-item prop="confirm_password">
+        <div v-if="show2FA">
+          <el-form-item>
+            <el-input v-model="code" type="text" placeholder="Enter 2FA code" :disabled="'disabled' ? loading : null"
+                      @keyup.native="submit2FA"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" class="neon" @click="submit2FA" :loading="loading">Submit</el-button>
+          </el-form-item>
+        </div>
+        <a href="" class="authorize_forgot-password-link" @click.prevent="restore" v-if="!show2FA">Forgot password?</a>
+        <el-form-item prop="confirm_password" v-if="!show2FA">
           <el-button type="primary" class="neon" @click="submitForm" :loading="loading">Sign In</el-button>
         </el-form-item>
       </el-form>
@@ -36,6 +46,8 @@
           email: '',
           password: '',
         },
+        show2FA: false,
+        code: null,
         signInFormRules: {
           email: [
             {validator: validateEmail, trigger: 'change'}
@@ -56,10 +68,37 @@
     },
     methods: {
       onVerify(response) {
-        this.signinForm(response);
+        this.show2FA ? this.send2FA(response) : this.signinForm(response);
       },
       restore() {
         this.$emit('restore');
+      },
+      submit2FA() {
+        if (this.code.toString().length < 6) return false;
+        this.loading = true;
+        this.$refs.invisibleRecaptcha.execute();
+      },
+      send2FA(captcha) {
+        let data = {code: this.code};
+        data.recaptcha = captcha;
+        this.loading = true;
+        let isSubmitted = this.$store.dispatch('set2fa', data);
+        isSubmitted.then(res => {
+          if (res.code === 200) {
+            this.$store.commit('SET_AUTH', true);
+            this.$router.push('/backoffice/kyc');
+          } else {
+            this.$notify({
+              title: 'Success',
+              message: this.$store.state.lang[res.code],
+              type: 'error',
+              position: 'bottom-left'
+            });
+          }
+          this.$refs['signInForm'].resetFields();
+          this.loading = false;
+        });
+        this.$refs.invisibleRecaptcha.reset();
       },
       submitForm() {
         let form = this.$refs.signInForm;
@@ -81,24 +120,23 @@
         let isSended = this.$store.dispatch('signIn', data);
         isSended.then((res) => {
           if (res.ok) {
-            this.$notify({
-              title: 'Success',
-              message: res.success,
-              type: 'success',
-              position: 'bottom-left'
-            });
-            this.$refs['signInForm'].resetFields();
-            this.$router.push('/kyc');
-            this.$store.commit('SET_AUTH', true);
+            if (res.code === 100) {
+              this.show2FA = true;
+            } else if (res.code === 200) {
+              this.$store.commit('SET_AUTH', true);
+              this.$router.push('/backoffice/kyc');
+            } else {
+              this.$router.push({path: '/auth/2fa', params: {code: res.code}});
+            }
           } else {
             this.$notify({
               title: 'Error',
-              message: res.error,
+              message: this.$store.state.lang[res.code],
               type: 'error',
               position: 'bottom-left'
             });
-            this.$refs.invisibleRecaptcha.reset();
           }
+          this.$refs.invisibleRecaptcha.reset();
           this.loading = false;
         }).catch(() => {
           this.$notify({

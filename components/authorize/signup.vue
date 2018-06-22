@@ -82,10 +82,11 @@
         if ((this.signUpForm.password !== this.signUpForm.confirm_password) || !this.signUpForm.password) {
           this.$notify({
             title: 'Info',
-            message: res.success,
-            type: 'Passwords don\'t match',
+            message: 'Passwords don\'t match',
+            type: 'warning',
             position: 'bottom-left'
           });
+          this.$refs.invisibleRecaptcha.reset();
           return false;
         }
         let data = this.signUpForm;
@@ -97,19 +98,20 @@
             this.a({category: 'signup', eventAction: 'success', eventLabel: 'reg'});
             this.$notify({
               title: 'Success',
-              message: res.success,
+              message: this.$store.state.lang[res.code],
               type: 'success',
               position: 'bottom-left'
             });
             this.$refs['signUpForm'].resetFields();
-            this.$router.push('/kyc');
+            this.$router.push('/auth/2fa');
           } else {
             this.$notify({
               title: 'Error',
-              message: res.error,
+              message: this.$store.state.lang[res.code],
               type: 'error',
               position: 'bottom-left'
             });
+            this.$refs.invisibleRecaptcha.reset();
           }
           this.loading = false;
         }).catch(() => {

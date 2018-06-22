@@ -91,7 +91,7 @@
           if (res.ok) {
             this.$notify({
               title: 'Success',
-              message: res.success,
+              message: this.$store.state.lang[res.code],
               type: 'success',
               position: 'bottom-left'
             });
@@ -100,12 +100,13 @@
           } else {
             this.$notify({
               title: 'Error',
-              message: res.error,
+              message: res.error ? res.error : this.$store.state.lang[res.code],
               type: 'error',
               position: 'bottom-left'
             });
           }
           this.loading = false;
+          this.$refs.invisibleRecaptcha.reset();
         }).catch(() => {
           this.$notify({
             title: 'Error',
