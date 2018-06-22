@@ -21,8 +21,8 @@
         <el-button type="primary" class="neon" @click="submitForm" :loading="loading">Save</el-button>
       </el-row>
     </el-col>
-        <vue-recaptcha size="invisible" :sitekey="recaptchaKey" @verify="onVerify"
-                       ref="invisibleRecaptcha"></vue-recaptcha>
+    <vue-recaptcha size="invisible" :sitekey="recaptchaKey" @verify="onVerify"
+                   ref="invisibleRecaptcha"></vue-recaptcha>
   </el-row>
 </template>
 
@@ -81,7 +81,7 @@
         data.recaptcha = captcha;
         let isVerify = this.$store.dispatch('walletVerification', data);
         isVerify.then(res => {
-          if (res.code === 200 || res.code===423) {
+          if (res.code === 200 || res.code === 423) {
             this.$notify({
               title: 'Success',
               type: 'success',
@@ -101,6 +101,9 @@
           this.loading = false;
         });
       }
+    },
+    mounted() {
+      this.walletForm.ethWalletNumber = this.kyc.message.wallet;
     }
   }
 </script>
