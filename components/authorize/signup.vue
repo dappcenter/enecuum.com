@@ -69,6 +69,7 @@
         let form = this.$refs.signUpForm;
         form.validate((valid) => {
           if (valid) {
+            this.loading = true;
             this.$refs.invisibleRecaptcha.execute();
           } else {
             setTimeout(() => {
@@ -87,11 +88,11 @@
             position: 'bottom-left'
           });
           this.$refs.invisibleRecaptcha.reset();
+          this.loading = false;
           return false;
         }
         let data = this.signUpForm;
         data.recaptcha = captcha;
-        this.loading = true;
         let isSended = this.$store.dispatch('signUp', data);
         isSended.then((res) => {
           if (res.ok) {

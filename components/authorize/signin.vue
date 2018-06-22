@@ -81,7 +81,6 @@
       send2FA(captcha) {
         let data = {code: this.code};
         data.recaptcha = captcha;
-        this.loading = true;
         let isSubmitted = this.$store.dispatch('set2fa', data);
         isSubmitted.then(res => {
           if (res.code === 200) {
@@ -104,6 +103,7 @@
         let form = this.$refs.signInForm;
         form.validate((valid) => {
           if (valid) {
+            this.loading = true;
             this.$refs.invisibleRecaptcha.execute();
           } else {
             setTimeout(() => {
@@ -116,7 +116,6 @@
       signinForm(captcha) {
         let data = this.signInForm;
         data.recaptcha = captcha;
-        this.loading = true;
         let isSended = this.$store.dispatch('signIn', data);
         isSended.then((res) => {
           if (res.ok) {
