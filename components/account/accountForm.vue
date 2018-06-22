@@ -3,16 +3,17 @@
     <el-col :xs="22" :sm="12" :md="14" :xl="10">
       <el-row :gutter="30" class="flex-center flex-wrap">
         <el-form :model="accountForm" :rules="rulesAccountForm" ref="accountForm"
-                 class="account__form flex-middle flex-center">
-          <el-form-item label="YOU INVEST" prop="invest">
+                 class="account__form flex-center">
+          <el-form-item label="YOU INVEST (ETH)" prop="invest">
             <el-input-number :controls="false" v-model="accountForm.invest" placeholder="0000000 ETH"
                              @keyup.native="ethInput"></el-input-number>
           </el-form-item>
-          <el-form-item label="YOU GET" prop="get">
-            <el-input-number :controls="false" v-model="accountForm.get" placeholder="0000000 ENQ" @keyup.native="enqInput"></el-input-number>
+          <el-form-item label="YOU GET (ENQ)" prop="get">
+            <el-input-number :controls="false" v-model="accountForm.get" placeholder="0000000 ENQ"
+                             @keyup.native="enqInput"></el-input-number>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="buy" class="neon">Buy tokens</el-button>
+            <el-button type="primary" @click="buy" class="neon" :disabled="!verified ? 'disabled' : null">Buy tokens</el-button>
           </el-form-item>
         </el-form>
       </el-row>
@@ -27,6 +28,9 @@
 
   export default {
     name: "account-form",
+    props: {
+      verified: Boolean
+    },
     data() {
       return {
         price: 0,

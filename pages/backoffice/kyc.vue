@@ -1,5 +1,5 @@
 <template>
-  <section class="container kyc" :class="{'flex-middle':kyc.status}">
+  <section class="container kyc" :class="{'flex-middle':kyc.code!==511}">
     <component :is="currentComponent" :kyc="kyc"></component>
   </section>
 </template>
@@ -7,37 +7,42 @@
 <script>
   import complete from '@/components/kyc/complete';
   import kycform from '@/components/kyc/kycform';
-  import GAuth from '@/components/kyc/checkGAuth';
-  import vesting from '@/components/kyc/vesting/tokenVesting';
+  import walletVerify from '@/components/account/walletVerify';
 
   export default {
     name: "kyc",
     middleware: 'auth',
     components: {
       kycform,
-      complete
+      complete,
+      walletVerify
     },
     data() {
       return {
         interval: '',
-        currentComponent: complete,
+        currentComponent: null,
         countries: null
       }
     },
     computed: {
       kyc() {
+        this.setComponent(this.$store.state.kyc.code);
         return this.$store.state.kyc;
       }
     },
-    mounted() {
-      //this.currentComponent = GAuth;
-      console.log(this.$store.state.kyc);
-      this.$store.state.kyc.status ? this.currentComponent = complete : this.currentComponent = kycform;
-    },
-    watch: {
-      '$store.state.kyc.code': function () {
-        console.log(this.$store.state.kyc);
-        //this.currentComponent = complete;
+    methods: {
+      setComponent(statusCode) {
+        switch (statusCode) {
+          case 511:
+            this.currentComponent = kycform;
+            break;
+          case 202:
+            this.currentComponent = walletVerify;
+            break;
+          default:
+            this.currentComponent = complete;
+            break;
+        }
       }
     },
     beforeRouteLeave(to, from, next) {
