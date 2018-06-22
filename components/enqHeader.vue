@@ -20,16 +20,19 @@
         <el-menu-item index="/press" class="menu-item">Press</el-menu-item>
         <el-menu-item index="/token" class="menu-item">Token</el-menu-item>
         <el-menu-item index="/faq" class="menu-item">FAQ</el-menu-item>
-        <el-menu-item index="" class="menu-item"><a
-          href="https://testnet.enecuum.com/dashboard/snapshot/o1B4U1OMG55XD0LRpq94Ph5rWDAFTxPV" target="_blank">ENQ.Testnet</a>
-        </el-menu-item>
+        <nuxt-link to="/privatesale" class="el-menu-item menu-item">
+          <button class="enq-button default gold small">Private Sale</button>
+        </nuxt-link>
       </el-menu>
       <ul class="el-menu--horizontal el-menu menu-right">
-        <nuxt-link to="/signin" class="el-menu-item menu-item float-right" v-if="!isAuth">Sign In</nuxt-link>
-        <nuxt-link to="/signup" class="el-menu-item menu-item float-right" v-if="!isAuth">
+        <nuxt-link to="/auth/login" class="el-menu-item menu-item float-right" v-if="!isAuth">Sign In</nuxt-link>
+        <nuxt-link to="/auth/join" class="el-menu-item menu-item float-right" v-if="!isAuth">
           <button class="enq-button--plain-small">Sign Up</button>
         </nuxt-link>
         <li class="el-menu-item float-right menu-item" v-if="isAuth" @click.prevent="logout">Logout</li>
+        <nuxt-link to="/backoffice/kyc" class="el-menu-item menu-item float-right" v-if="isAuth">
+          <button class="enq-button--plain-small">Backoffice</button>
+        </nuxt-link>
       </ul>
       <div class="menu_submenu-wrapper" v-if="itsHomepage">
         <ul class="menu_submenu">
@@ -58,6 +61,7 @@
 
   export default {
     name: "enq-header",
+    middleware: 'auth',
     data() {
       return {
         activeMenu: '/',
@@ -102,7 +106,7 @@
       },
       logout() {
         this.$store.dispatch('logoutServer');
-        this.$router.push('/signin');
+        this.$router.push('/auth/login');
       },
       scrollTo(to) {
         Math.easeInOutQuad = function (t, b, c, d) {
@@ -138,11 +142,15 @@
         if (document.querySelector('.openedMenu')) {
           document.querySelector('.openedMenu').classList.remove('openedMenu');
         }
+        //this.$store.state.isAuth && (this.$route.path.search('backoffice') == -1) ? this.$store.dispatch('logoutServer') : null;
       }
     },
     mounted() {
       this.ainit();
       this.setHomeClass();
+      axios.get('/i18n/statusCode_' + 'en' + '.json').then(res => {
+        this.$store.commit('SET_LANG', res.data);
+      });
     },
     created() {
       this.activeMenu = this.$route.path;
