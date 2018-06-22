@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiUrl = 'http://api.enecuum.com/v1';
+const apiUrl = 'https://api.enecuum.com/v1';
 
 const actions = {
   isAuth(store, {cookies}) {
