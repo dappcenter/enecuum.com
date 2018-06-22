@@ -146,7 +146,7 @@
     text-align: center;
     border: none;
     cursor: pointer;
-    transition: all 0.2s ease 0s;
+    transition: all 0.2s ease;
     &.default {
       border: 2px solid #f3f3f3;
       color: #4f4f4f;
@@ -169,6 +169,16 @@
       }
       &.small {
         padding: 9px 15px;
+      }
+      &.gold {
+        color: #ffffff;
+        background-color: #dfad39;
+        min-width: 100px;
+        transition: all .2s ease;
+        border: 0px;
+        &:hover {
+          background-color: rgba(223, 173, 57, 0.8);
+        }
       }
     }
     &--blue {
