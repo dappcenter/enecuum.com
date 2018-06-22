@@ -31,11 +31,14 @@
         </div>
       </el-col>
     </el-row>
+    <!--    <vue-recaptcha size="invisible" :sitekey="recaptchaKey" @verify="onVerify"
+                       ref="invisibleRecaptcha"></vue-recaptcha>-->
   </section>
 </template>
 
 <script>
-  import validators from '../components/kyc/validators';
+  import validators from '../../components/kyc/validators';
+  import VueRecaptcha from 'vue-recaptcha';
 
   export default {
     name: "signup",
@@ -66,12 +69,23 @@
         }
       }
     },
+    components: {
+      'vue-recaptcha': VueRecaptcha
+    },
+    computed: {
+      recaptchaKey() {
+        return require('@/config/config.json').recaptchaKey;
+      }
+    },
     methods: {
+      onVerify(response) {
+        this.signupForm(response);
+      },
       submitForm() {
         let form = this.$refs.signUpForm;
         form.validate((valid) => {
           if (valid) {
-            this.signupForm();
+            this.$refs.invisibleRecaptcha.execute();
           } else {
             setTimeout(() => {
               form.clearValidate();
@@ -80,7 +94,7 @@
           }
         });
       },
-      signupForm() {
+      signupForm(captcha) {
         if ((this.signUpForm.password !== this.signUpForm.confirm_password) || !this.signUpForm.password) {
           this.$notify({
             type: 'info',
@@ -100,9 +114,7 @@
           return false;
         }
         let data = this.signUpForm;
-        if (this.cq_user) {
-          data.cq_user = this.cq_user;
-        }
+        data.recaptcha = captcha;
         this.loading = true;
         let isSended = this.$store.dispatch('signinRecoveryPassword', data);
         isSended.then((res) => {
@@ -114,16 +126,17 @@
               position: 'bottom-left'
             });
             this.$refs['signUpForm'].resetFields();
-            this.$router.push('/signin');
+            this.$router.push('/auth/login');
           } else {
             this.$notify({
               title: 'Error',
-              message: res.error,
+              message: this.$store.state.lang[res.code],
               type: 'error',
               position: 'bottom-left'
             });
           }
           this.loading = false;
+          this.$refs.invisibleRecaptcha.reset();
         }).catch(() => {
           this.$notify({
             title: 'Error',

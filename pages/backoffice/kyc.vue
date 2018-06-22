@@ -7,8 +7,8 @@
 <script>
   import complete from '@/components/kyc/complete';
   import kycform from '@/components/kyc/kycform';
-  //import GAuth from '@/components/kyc/checkGAuth';
-  //import vesting from '@/components/kyc/vesting/tokenVesting';
+  import GAuth from '@/components/kyc/checkGAuth';
+  import vesting from '@/components/kyc/vesting/tokenVesting';
 
   export default {
     name: "kyc",
@@ -30,11 +30,14 @@
       }
     },
     mounted() {
+      //this.currentComponent = GAuth;
+      console.log(this.$store.state.kyc);
       this.$store.state.kyc.status ? this.currentComponent = complete : this.currentComponent = kycform;
     },
     watch: {
-      '$store.state.kyc.status': function () {
-        this.currentComponent = complete;
+      '$store.state.kyc.code': function () {
+        console.log(this.$store.state.kyc);
+        //this.currentComponent = complete;
       }
     },
     beforeRouteLeave(to, from, next) {
