@@ -13,6 +13,8 @@ const createStore = () => {
       isAuth: false,
       curLang: 'en',
       cq_user: null,
+      lang: {},
+      info2fa: {},
       "social": [{
         "img": 'img/snet/gh.svg',
         "type": "github",

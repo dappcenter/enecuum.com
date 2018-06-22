@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiUrl = 'https://api.enecuum.com/v1';
+const apiUrl = 'http://api.enecuum.com/v1';
 
 const actions = {
   isAuth(store, {cookies}) {
@@ -16,9 +16,7 @@ const actions = {
       }).then((res) => {
         store.state.debug ? console.log('log from /lk', res.data) : null;
         if (res.data.ok) {
-          if (res.data.code !== 511) {
-            store.commit('SET_KYC_STATE', {status: res.data.ok, message: res.data.success, code: res.data.code});
-          }
+          store.commit('SET_KYC_STATE', {status: res.data.ok, message: res.data.success, code: res.data.code});
           store.commit('SET_AUTH', true);
           resolve('success');
         } else {
@@ -118,7 +116,7 @@ const actions = {
   resetPassword(state, data) {
     return new Promise(resolve => {
       axios.request({
-        url: apiUrl + '/recovery?email=' + data.email + '&tempPassword=' + data.tempPassword,
+        url: apiUrl + '/recovery?email=' + data.email + '&tempPassword=' + data.tempPassword + '&recaptcha=' + data.recaptcha,
         method: 'get',
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
@@ -132,7 +130,6 @@ const actions = {
   logoutClient(state) {
     state.commit('SET_KYC_STATE', {});
     state.commit('SET_AUTH', false);
-    console.log('logoutClient');
   },
   logoutServer(state) {
     axios.request({
@@ -165,6 +162,55 @@ const actions = {
     return new Promise(resolve => {
       axios.request({
         url: apiUrl + '/recovery',
+        method: 'post',
+        data: data,
+        withCredentials: true,
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'Content-Type': 'application/json'
+        }
+      }).then(res => {
+        resolve(res.data);
+      })
+    })
+  },
+  get2fa(state, {cookies}) {
+    return new Promise(resolve => {
+      axios.request({
+        url: apiUrl + '/2fa',
+        method: 'get',
+        withCredentials: true,
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'Content-Type': 'application/json',
+          Cookie: cookies ? cookies : ''
+        }
+      }).then(res => {
+        if (res.data.code === 200) state.commit('SET_2FA', res.data.success);
+        resolve(res.data);
+      })
+    })
+  },
+  set2fa(state, data) {
+    return new Promise(resolve => {
+      axios.request({
+        url: apiUrl + '/2fa',
+        method: 'post',
+        data: data,
+        withCredentials: true,
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'Content-Type': 'application/json'
+        }
+      }).then(res => {
+        resolve(res.data);
+      })
+    })
+  },
+  walletVerification(state, data) {
+    return new Promise(resolve => {
+      axios.request({
+        url: apiUrl + '/wallet',
         method: 'post',
         data: data,
         withCredentials: true,

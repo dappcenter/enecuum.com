@@ -10,7 +10,7 @@ import Fingerprint2 from '@/plugins/fingerprint.js';
   _paq.push(['trackAllContentImpressions']);
   let u = "https://api.enecuum.com/v1/";
   _paq.push(['setTrackerUrl', u + 'a']);
-  _paq.push(['setSiteId', 'GNL2r4zMP1']);
+  _paq.push(['setSiteId', '1']);
   let d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
   g.type = 'text/javascript';
   g.async = true;

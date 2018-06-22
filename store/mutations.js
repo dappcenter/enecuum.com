@@ -13,6 +13,12 @@ const mutations = {
   },
   SET_DEBUG(state, boolean) {
     state.debug = boolean;
+  },
+  SET_LANG(state, objects) {
+    state.lang = objects;
+  },
+  SET_2FA(state, objects) {
+    state.info2fa = objects;
   }
 };
 

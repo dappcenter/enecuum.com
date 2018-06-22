@@ -40,9 +40,6 @@ module.exports = {
       {rel: 'mask-icon', color: '00add9', href: '/head/safari-pinned-tab.svg'}
     ]
   },
-  router: {
-    middleware: 'router-filter'
-  },
   /*
   ** Customize the progress bar color
   */
