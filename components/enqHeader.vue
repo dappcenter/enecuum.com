@@ -33,7 +33,7 @@
           <button class="enq-button--plain-small">Sign Up</button>
         </nuxt-link>
         <li class="el-menu-item float-right menu-item" v-if="isAuth" @click.prevent="logout">Logout</li>
-        <nuxt-link to="/backoffice/kyc" class="el-menu-item menu-item float-right" v-if="isAuth">
+        <nuxt-link to="/backoffice" class="el-menu-item menu-item float-right" v-if="isAuth">
           <button class="enq-button--plain-small">Backoffice</button>
         </nuxt-link>
       </ul>
@@ -158,6 +158,10 @@
       socket.on('checked', (data) => {
         if (data !== 401) this.$store.dispatch('loginClient', data);
         this.checkingAuth = false;
+      });
+      socket.on('disconnect', () => {
+      });
+      socket.on('connect', () => {
       });
       setTimeout(() => {
         this.checkingAuth = false;

@@ -99,6 +99,7 @@ const actions = {
         },
         withCredentials: true,
       }).then(res => {
+        if (res.data.code === 401) state.dispatch('logoutServer');
         resolve(res.data);
       })
     });
@@ -115,6 +116,7 @@ const actions = {
         },
         withCredentials: true,
       }).then(res => {
+        if (res.data.code === 401) state.dispatch('logoutServer');
         resolve(res.data);
       })
     });
@@ -129,6 +131,7 @@ const actions = {
           'Content-Type': 'application/json'
         }
       }).then(res => {
+        if (res.data.code === 401) state.dispatch('logoutServer');
         resolve(res.data);
       })
     });
@@ -163,6 +166,7 @@ const actions = {
           'X-Requested-With': 'XMLHttpRequest',
         }
       }).then(res => {
+        if (res.data.code === 401) state.dispatch('logoutServer');
         resolve(res.data);
       })
     })
@@ -179,6 +183,7 @@ const actions = {
           'Content-Type': 'application/json'
         }
       }).then(res => {
+        if (res.data.code === 401) state.dispatch('logoutServer');
         resolve(res.data);
       })
     })
@@ -195,6 +200,7 @@ const actions = {
           Cookie: cookies ? cookies : ''
         }
       }).then(res => {
+        if (res.data.code === 401) state.dispatch('logoutServer');
         if (res.data.code === 200) state.commit('SET_2FA', res.data.success);
         resolve(res.data);
       })
@@ -212,6 +218,7 @@ const actions = {
           'Content-Type': 'application/json'
         }
       }).then(res => {
+        if (res.data.code === 401) state.dispatch('logoutServer');
         resolve(res.data);
       })
     })
@@ -228,6 +235,7 @@ const actions = {
           'Content-Type': 'application/json'
         }
       }).then(res => {
+        if (res.data.code === 401) state.dispatch('logoutServer');
         resolve(res.data);
       })
     })

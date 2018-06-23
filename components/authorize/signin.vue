@@ -74,7 +74,7 @@
         this.$emit('restore');
       },
       submit2FA() {
-        if (this.code.toString().length < 6) return false;
+        if (this.code && this.code.toString().length < 6) return false;
         this.loading = true;
         this.$refs.invisibleRecaptcha.execute();
       },

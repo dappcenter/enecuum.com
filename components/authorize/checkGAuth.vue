@@ -2,7 +2,7 @@
   <el-row class="authorize full-selector flex-center">
     <el-col :xs="22" :sm="14" :md="10" :lg="8" :xl="6">
       <h1 class="text-center">Enable 2-Step Verification</h1>
-      <el-form :model="twoAuthForm" :rules="twoAuthFormRules" ref="twoAuthForm"  @submit.native.prevent="submitForm">
+      <el-form :model="twoAuthForm" :rules="twoAuthFormRules" ref="twoAuthForm" @submit.native.prevent="submitForm">
         <el-row class="flex-center">
           <el-col :span="16">
             <img :src="qr" alt="" style="width: 100%;">
@@ -23,7 +23,8 @@
         <el-row class="flex-center">
           <el-col :span="16">
             <el-form-item prop="code">
-              <el-input v-model="twoAuthForm.code" placeholder="2FA Code"></el-input>
+              <el-input v-model="twoAuthForm.code" placeholder="2FA Code" :disabled="'disabled' ? loading : null"
+                        @keyup.native="submitForm"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
@@ -75,6 +76,7 @@
         this.send2Fa(response);
       },
       submitForm() {
+        if (this.twoAuthForm.code && this.twoAuthForm.code.toString().length < 6) return false;
         this.$refs['twoAuthForm'].validate((valid) => {
           if (valid) {
             this.$refs.invisibleRecaptcha.execute();
@@ -95,7 +97,7 @@
         this.loading = true;
         let isTwoauthed = this.$store.dispatch('set2fa', data);
         isTwoauthed.then(res => {
-          res.code === 200 ? this.$router.push('/backoffice/kyc') : this.$notify({
+          res.code === 200 ? this.$router.push('/backoffice/') : this.$notify({
             title: 'Warning',
             type: 'warning',
             message: this.$store.state.lang[res.code],

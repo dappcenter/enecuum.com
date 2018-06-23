@@ -12,13 +12,14 @@ export default function ({store, route, redirect}) {
 }
 
 function routerFilter(code, routeName, redirect) {
+  console.log(code, routeName);
   if (routeName !== 'backoffice' && code === 423) {
     return redirect('/backoffice');
   }
   if (routeName === 'backoffice' && code !== 423) {
     return redirect('/backoffice/kyc');
   }
-  if (code === 511) {
-    return redirect('/backoffice/kyc');
-  }
+  /*  if (routeName === 'backoffice' && code === 511) {
+      return redirect('/backoffice/kyc');
+    }*/
 }
