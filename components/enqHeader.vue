@@ -155,16 +155,13 @@
     mounted() {
       this.ainit();
       this.setHomeClass();
-      try {
-        socket.on('checked', (data) => {
-          if (data !== 401) this.$store.dispatch('loginClient', data);
-          this.checkingAuth = false;
-        });
-      } catch (err) {
-
-      }
-      if (!socket) this.checkingAuth = false;
-
+      socket.on('checked', (data) => {
+        if (data !== 401) this.$store.dispatch('loginClient', data);
+        this.checkingAuth = false;
+      });
+      setTimeout(() => {
+        this.checkingAuth = false;
+      }, 4000);
     },
     created() {
       this.activeMenu = this.$route.path;
