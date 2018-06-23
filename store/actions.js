@@ -142,6 +142,7 @@ const actions = {
     state.commit('SET_AUTH', false);
   },
   logoutServer(state) {
+    state.dispatch('logoutClient');
     axios.request({
       url: apiUrl + '/logout',
       method: 'post',
@@ -149,8 +150,6 @@ const actions = {
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
       }
-    }).then(_ => {
-      state.dispatch('logoutClient');
     });
   },
   submitKyc(state, data) {

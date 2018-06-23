@@ -22,7 +22,7 @@ function checkAuth(client, {cookies}) {
 
 module.exports = function () {
   const server = require('http').createServer(this.nuxt.renderer.app);
-  const io = require('socket.io')(server);
+  const io = require('socket.io')(server, {path: '/socket'});
   this.nuxt.listen = (port, host) => new Promise((resolve) => server.listen(port || 80, host || '0.0.0.0', resolve));
   this.nuxt.plugin('close', () => new Promise((resolve) => server.close(resolve)));
   this.addVendor('socket.io-client');

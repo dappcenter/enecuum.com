@@ -4,7 +4,7 @@
       <h1 class="text-center">Wallet Verification</h1>
       <el-alert
         class="enq-alert"
-        :title="'Pay attention: you will not be able to change the address of the wallet after confirmation, only the investment from specified address will be accepted during the private sale'"
+        :title="'Pay attention: you will not be able to change the address of the wallet after confirmation, only the contribution from specified address will be accepted during the private sale'"
         type="info"
         :closable="false">
       </el-alert>
@@ -91,7 +91,7 @@
             this.$notify({
               type: 'info',
               duration: 5000,
-              message: 'it\'s amazing! You read the terms in less than ' + Math.round(totalSeconds) + ' seconds',
+              message: 'It\'s amazing! You read the terms in less than ' + Math.round(totalSeconds) + ' seconds',
               position: 'bottom-left',
               showClose: false
             });

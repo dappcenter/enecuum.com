@@ -25,7 +25,10 @@
     mounted() {
       this.message = this.$store.state.lang[this.kyc.code];
       this.$parent.interval = setInterval(() => {
-        this.kyc.code === 201 ? this.$router.push('/') : null;
+        if (this.kyc.code === 201) {
+          this.$router.push('/');
+          this.$store.dispatch('logoutClient');
+        }
       }, 15000);
       if (this.kyc.code === 202) {
         setTimeout(() => {

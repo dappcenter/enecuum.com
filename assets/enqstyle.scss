@@ -186,6 +186,8 @@
         min-width: 100px;
         transition: all .2s ease;
         border: 0px;
+        padding: 12px 25px;
+        width: initial;
         &:hover {
           background-color: rgba(223, 173, 57, 0.8);
         }

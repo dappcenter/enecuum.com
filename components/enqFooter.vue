@@ -58,6 +58,7 @@
           "@type": "Organization",
           "url": "https://enecuum.com/",
           "name": "Enecuum | ENQ | Blockchain of Tomorrow",
+          "short name":"ENQ",
           "sameAs": ["https://www.facebook.com/enecuum.EN/?ref=bookmarks", "https://twitter.com/enq_enecuum", "https://www.linkedin.com/company/enecuum-limited/"],
           "description": "Enecuum is a decentralized environment that aims to integrate blockchain technologies into both business and state structures. The technologies used in the project allow for solving various tasks: fintech, banking, document processing, insurance, logistics, IoT, DApps, ICO and more.",
           "logo": "head/favicon-32x32.png",
