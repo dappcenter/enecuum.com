@@ -137,6 +137,16 @@
         overflow: hidden;
       }
     }
+    &.privatesale {
+      .el-collapse-item__header {
+        @media screen and (max-width: 1368px) {
+          line-height: 1.8;
+          white-space: initial;
+          text-overflow: initial;
+          overflow: initial;
+        }
+      }
+    }
   }
   &-button {
     padding: 14px;

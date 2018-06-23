@@ -24,7 +24,10 @@
           <button class="enq-button default gold small">Private Sale</button>
         </nuxt-link>
       </el-menu>
-      <ul class="el-menu--horizontal el-menu menu-right">
+      <ul class="el-menu--horizontal el-menu menu-right text-right" v-if="loadingFingerEnd || checkingAuth">
+        <fingerLoader @onEnd="loadingFingerEnd=false"></fingerLoader>
+      </ul>
+      <ul class="el-menu--horizontal el-menu menu-right" v-else>
         <nuxt-link to="/auth/login" class="el-menu-item menu-item float-right" v-if="!isAuth">Sign In</nuxt-link>
         <nuxt-link to="/auth/join" class="el-menu-item menu-item float-right" v-if="!isAuth">
           <button class="enq-button--plain-small">Sign Up</button>
@@ -56,8 +59,8 @@
 
 <script>
   import axios from 'axios';
-  import Fingerprint2 from '@/plugins/fingerprint.js';
-
+  import socket from '~/plugins/socket.io.js'
+  import fingerLoader from '@/components/authorize/loader'
 
   export default {
     name: "enq-header",
@@ -66,8 +69,13 @@
       return {
         activeMenu: '/',
         itsHomepage: false,
-        isOpened: false
+        isOpened: false,
+        checkingAuth: true,
+        loadingFingerEnd: true
       }
+    },
+    components: {
+      fingerLoader
     },
     computed: {
       isAuth() {
@@ -142,18 +150,19 @@
         if (document.querySelector('.openedMenu')) {
           document.querySelector('.openedMenu').classList.remove('openedMenu');
         }
-        //this.$store.state.isAuth && (this.$route.path.search('backoffice') == -1) ? this.$store.dispatch('logoutServer') : null;
       }
     },
     mounted() {
       this.ainit();
       this.setHomeClass();
-      axios.get('/i18n/statusCode_' + 'en' + '.json').then(res => {
-        this.$store.commit('SET_LANG', res.data);
+      socket.on('checked', (data) => {
+        if (data !== 401) this.$store.dispatch('loginClient', data);
+        this.checkingAuth = false;
       });
     },
     created() {
       this.activeMenu = this.$route.path;
+      this.$store.dispatch('getLang');
     },
     head() {
       return {

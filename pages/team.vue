@@ -27,7 +27,6 @@
       }
     },
     beforeRouteLeave(to, from, next) {
-      this.$store.state.debug ? console.log('bye') : null;
       clearInterval(this.interval);
       next()
     },

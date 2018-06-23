@@ -2,7 +2,7 @@
   <div class="authorize">
     <el-row class="flex-center flex-column">
       <h1 class="h3">Sign Up</h1>
-      <p>1. Email, password</p>
+      <p>Enter the email and password for your account</p>
       <el-form :model="signUpForm" :rules="signUpFormRules" ref="signUpForm" class="authorize_form">
         <el-form-item prop="email">
           <el-input v-model="signUpForm.email" placeholder="Email address" @keyup.enter.native="submitForm"></el-input>

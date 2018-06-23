@@ -16,9 +16,19 @@
             </el-form-item>
           </el-col>
         </el-row>
+        <el-row class="flex-center">
+          <el-form-item :error="errorAgree">
+            <el-checkbox v-model="agree" @change="checked">I agree with <a
+              href="/docs/Enecuum_TokenSale_Terms_and_Conditions.pdf" target="_blank" @click="reading"
+              class="unvisited">Token Sale Terms and Conditions</a>
+            </el-checkbox>
+          </el-form-item>
+        </el-row>
       </el-form>
       <el-row class="flex-center">
-        <el-button type="primary" class="neon" @click="submitForm" :loading="loading">Save</el-button>
+        <el-button type="primary" class="neon" @click="submitForm" :disabled="!agree ? 'disabled' : null"
+                   :loading="loading">Save
+        </el-button>
       </el-row>
     </el-col>
     <vue-recaptcha size="invisible" :sitekey="recaptchaKey" @verify="onVerify"
@@ -37,13 +47,18 @@
     data() {
       return {
         loading: false,
+        read: false,
+        agree: false,
+        errorAgree: '',
+        timer: 0,
         walletForm: {
-          ethWalletNumber: ''
+          ethWalletNumber: '',
+          secondAgree: null
         },
         walletFormRules: {
           ethWalletNumber: [{
             required: true,
-            message: 'This field is required'
+            message: "This field is required"
           }]
         }
       }
@@ -57,6 +72,33 @@
       }
     },
     methods: {
+      reading() {
+        this.read = true;
+        this.errorAgree = '';
+        if (this.timer === 0) {
+          let date = new Date().getTime();
+          this.timer = date;
+        }
+      },
+      checked() {
+        if (!this.read) {
+          this.agree = false;
+          this.errorAgree = 'Please, read the terms first';
+        }
+        if (this.timer !== 0) {
+          let totalSeconds = (new Date().getTime() - this.timer) / 1000;
+          if (totalSeconds < 120) {
+            this.$notify({
+              type: 'info',
+              duration: 5000,
+              message: 'it\'s amazing! You read the terms in less than ' + Math.round(totalSeconds) + ' seconds',
+              position: 'bottom-left',
+              showClose: false
+            });
+          }
+          this.timer = 0;
+        }
+      },
       onVerify(response) {
         this.sendWallet(response);
       },

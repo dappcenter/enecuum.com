@@ -63,8 +63,6 @@
           "logo": "head/favicon-32x32.png",
           "legalName": "Enecuum HK Limited"
         }`
-      }, {
-        src: 'https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit'
       }]
     }
   }

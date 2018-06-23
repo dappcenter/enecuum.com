@@ -14,10 +14,8 @@ const actions = {
           Cookie: cookies ? cookies : ''
         },
       }).then((res) => {
-        store.state.debug ? console.log('log from /lk', res.data) : null;
         if (res.data.ok) {
-          store.commit('SET_KYC_STATE', {status: res.data.ok, message: res.data.success, code: res.data.code});
-          store.commit('SET_AUTH', true);
+          store.dispatch('loginClient', res.data);
           resolve('success');
         } else {
           if (res.data.code === 401) {
@@ -27,6 +25,14 @@ const actions = {
         }
       })
     });
+  },
+  getLang(store) {
+    return new Promise(resolve => {
+      axios.get('/i18n/statusCode_' + 'en' + '.json').then(res => {
+        store.commit('SET_LANG', res.data);
+        resolve('success');
+      });
+    })
   },
   nuxtServerInit(store, {req}) {
     let cookies = '';
@@ -126,6 +132,10 @@ const actions = {
         resolve(res.data);
       })
     });
+  },
+  loginClient(state, data) {
+    state.commit('SET_KYC_STATE', {status: data.ok, message: data.success, code: data.code});
+    state.commit('SET_AUTH', true);
   },
   logoutClient(state) {
     state.commit('SET_KYC_STATE', {});

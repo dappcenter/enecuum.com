@@ -14,15 +14,15 @@
         </el-form-item>
         <div v-if="show2FA">
           <el-form-item>
-            <el-input v-model="code" type="text" placeholder="Enter 2FA code" :disabled="'disabled' ? loading : null"
+            <el-input v-model="code" type="text" placeholder="2FA" :disabled="'disabled' ? loading : null"
                       @keyup.native="submit2FA"></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" class="neon" @click="submit2FA" :loading="loading">Submit</el-button>
           </el-form-item>
         </div>
-        <a href="" class="authorize_forgot-password-link" @click.prevent="restore" v-if="!show2FA">Forgot password?</a>
         <el-form-item prop="confirm_password" v-if="!show2FA">
+          <el-button type="text" @click="restore">Forgot password?</el-button>
           <el-button type="primary" class="neon" @click="submitForm" :loading="loading">Sign In</el-button>
         </el-form-item>
       </el-form>
@@ -86,15 +86,14 @@
           if (res.code === 200) {
             this.$store.commit('SET_AUTH', true);
             this.$router.push('/backoffice/kyc');
+            this.$refs['signInForm'].resetFields();
           } else {
             this.$notify({
-              title: 'Success',
               message: this.$store.state.lang[res.code],
               type: 'error',
               position: 'bottom-left'
             });
           }
-          this.$refs['signInForm'].resetFields();
           this.loading = false;
         });
         this.$refs.invisibleRecaptcha.reset();
@@ -146,6 +145,9 @@
           });
         });
       }
+    },
+    mounted() {
+      console.log(this.$store.state.lang);
     }
   }
 </script>

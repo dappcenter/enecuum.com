@@ -38,6 +38,12 @@ module.exports = {
       {rel: 'icon', type: 'image/png', sizes: "194x194", href: '/head/favicon-194x194.png'},
       {rel: 'manifest', href: '/head/site.webmanifest'},
       {rel: 'mask-icon', color: '00add9', href: '/head/safari-pinned-tab.svg'}
+    ],
+    script: [
+      {
+        src: 'https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit',
+        async: true
+      }
     ]
   },
   /*
@@ -66,14 +72,17 @@ module.exports = {
     }
   ],
   modules: [
-    '~/modules/cache'
+    '~/modules/cache',
+    '~/io'
   ],
   css: [
     '~/assets/style.scss',
     '~/assets/opensans.css',
     'font-awesome/css/font-awesome.css'
   ],
-
+  env: {
+    dev: process.env.dev ? true : false
+  },
   /*
   ** Run ESLint on save
   */

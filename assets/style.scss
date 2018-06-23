@@ -60,6 +60,10 @@ body {
   }
 }
 
+a.unvisited:visited {
+  color: #00add3;
+}
+
 ::-webkit-scrollbar {
   width: 5px;
 }
@@ -154,6 +158,9 @@ p {
   }
   &-left {
     text-align: left;
+  }
+  &-right {
+    text-align: right;
   }
 }
 
