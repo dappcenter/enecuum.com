@@ -5,7 +5,7 @@
       <el-alert
         class="enq-alert"
         :title="'Pay attention: you will not be able to change the address of the wallet after confirmation, only the investment from specified address will be accepted during the private sale'"
-        type="info"
+        type="warning"
         :closable="false">
       </el-alert>
       <el-form :model="walletForm" :rules="walletFormRules" ref="walletForm">

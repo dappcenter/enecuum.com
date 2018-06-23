@@ -161,7 +161,7 @@
       });
       setTimeout(() => {
         this.checkingAuth = false;
-      }, 4000);
+      }, 2000);
     },
     created() {
       this.activeMenu = this.$route.path;

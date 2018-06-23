@@ -14,7 +14,7 @@
         </el-form-item>
         <div v-if="show2FA">
           <el-form-item>
-            <el-input v-model="code" type="text" placeholder="2FA" :disabled="'disabled' ? loading : null"
+            <el-input v-model="code" type="text" placeholder="2FA Code" :disabled="'disabled' ? loading : null"
                       @keyup.native="submit2FA"></el-input>
           </el-form-item>
           <el-form-item>
@@ -22,8 +22,8 @@
           </el-form-item>
         </div>
         <el-form-item prop="confirm_password" v-if="!show2FA">
-          <el-button type="text" @click="restore">Forgot password?</el-button>
           <el-button type="primary" class="neon" @click="submitForm" :loading="loading">Sign In</el-button>
+          <el-button type="text" @click="restore">Forgot password?</el-button>
         </el-form-item>
       </el-form>
     </el-row>
