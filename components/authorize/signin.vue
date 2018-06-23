@@ -6,15 +6,16 @@
       <el-form :model="signInForm" :rules="signInFormRules" ref="signInForm" class="authorize_form">
         <el-form-item prop="email">
           <el-input v-model="signInForm.email" placeholder="Login" @keyup.enter.native="submitForm"
-                    :disabled="'disabled' ? loading : null"></el-input>
+                    :disabled="'disabled' ? (loading || loading2fa) : null"></el-input>
         </el-form-item>
         <el-form-item prop="password">
           <el-input v-model="signInForm.password" type="password" placeholder="Password"
-                    @keyup.enter.native="submitForm" :disabled="'disabled' ? loading : null"></el-input>
+                    @keyup.enter.native="submitForm" :disabled="'disabled' ? (loading || loading2fa) : null"></el-input>
         </el-form-item>
         <div v-if="show2FA">
           <el-form-item>
-            <el-input v-model="code" type="text" placeholder="2FA Code" :disabled="'disabled' ? loading : null"
+            <el-input v-model="code" type="text" placeholder="2FA Code"
+                      :disabled="'disabled' ? loading : null"
                       @keyup.native="submit2FA"></el-input>
           </el-form-item>
           <el-form-item>
@@ -42,6 +43,7 @@
       const validateEmail = validators.email;
       return {
         loading: false,
+        loading2fa: false,
         signInForm: {
           email: '',
           password: '',
@@ -87,6 +89,7 @@
             this.$store.commit('SET_AUTH', true);
             this.$router.push('/backoffice/kyc');
             this.$refs['signInForm'].resetFields();
+            this.loading2fa = false;
           } else {
             this.$notify({
               message: this.$store.state.lang[res.code],
@@ -103,6 +106,7 @@
         form.validate((valid) => {
           if (valid) {
             this.loading = true;
+            this.loading2fa = true;
             this.$refs.invisibleRecaptcha.execute();
           } else {
             setTimeout(() => {
