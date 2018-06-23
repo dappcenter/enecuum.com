@@ -145,9 +145,6 @@
           });
         });
       }
-    },
-    mounted() {
-      console.log(this.$store.state.lang);
     }
   }
 </script>
