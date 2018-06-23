@@ -160,8 +160,8 @@
           if (data !== 401) this.$store.dispatch('loginClient', data);
           this.checkingAuth = false;
         });
-      } catch () {
-        
+      } catch (err) {
+
       }
       if (!socket) this.checkingAuth = false;
 
