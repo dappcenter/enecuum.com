@@ -1,4 +1,5 @@
 import io from 'socket.io-client';
+
 console.log(process.env);
 const socket = io((process.env.dev ? 'http' : 'https') + '://enecuum.com:8081', {
   path: '/provider',
