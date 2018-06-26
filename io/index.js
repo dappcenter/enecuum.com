@@ -28,7 +28,7 @@ io.origins((origin, callback) => {
 io.on('connection', (client) => {
   checkUserInfo(client, {cookies: client.handshake.headers.cookie});
 });
-server.listen(8081, '127.0.0.1');
+server.listen(8081, '0.0.0.0');
 
 
 let pool = mysql.createPool({
