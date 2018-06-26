@@ -8,7 +8,7 @@ const app = require(require.resolve('express'))();
 const server = require(require.resolve('http')).Server(app);
 const TOKEN_PRICE = 0.04;
 const apiUrl = 'https://api.enecuum.com/v1';
-const origins = ['http://enecuum.com', 'https://enecuum.com'];
+const origins = ['enecuum.com:*'];
 
 const io = require('socket.io')(server, {
   path: '/provider',
@@ -18,12 +18,7 @@ const io = require('socket.io')(server, {
   cookie: true
 });
 
-io.origins((origin, callback) => {
-  if (origins.indexOf(origin) > -1) {
-    callback(null, true);
-  }
-  return callback('origin not allowed', false);
-});
+io.origins[origins];
 
 io.on('connection', (client) => {
   checkUserInfo(client, {cookies: client.handshake.headers.cookie});
