@@ -19,6 +19,9 @@ const mutations = {
   },
   SET_2FA(state, objects) {
     state.info2fa = objects;
+  },
+  SET_WEB3WALLET(state, string) {
+    state.web3wallet = string
   }
 };
 

@@ -34,6 +34,7 @@
   function pressMiddleware(data, lang = 'articles_EN') {
     let monthArray = [];
     let articlesArray = [];
+    let notLevelArticlesArray = [];
     data[lang].forEach(item => {
       let splittedDate = item.date.split(' ');
       let article = {
@@ -44,7 +45,8 @@
         level: item.level || 0,
         img: item.img || ''
       };
-      articlesArray.push(article);
+      article.level === 0 ? notLevelArticlesArray.push(article) : articlesArray.push(article);
+
       monthArray.push(splittedDate[0]);
     });
     articlesArray.sort((a, b) => {
@@ -52,6 +54,13 @@
         return 1;
       }
       if (a.level > b.level) {
+        return -1;
+      }
+    });
+    notLevelArticlesArray.sort((a, b) => {
+      if (new Date(a.date) < new Date(b.date)) {
+        return 1;
+      } else {
         return -1;
       }
     });
@@ -65,7 +74,7 @@
       presskitIMG: data.presskitIMG,
       presskitDOC: data.presskitDOC,
       availablesLang: availableLang,
-      articles: articlesArray,
+      articles: [...articlesArray, ...notLevelArticlesArray],
       months: [...new Set(monthArray)],
     }
   }

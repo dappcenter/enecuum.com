@@ -10,6 +10,7 @@ const createStore = () => {
       debug: false,
       cookies: '',
       kyc: {},
+      web3wallet: '',
       isAuth: false,
       curLang: 'en',
       cq_user: null,

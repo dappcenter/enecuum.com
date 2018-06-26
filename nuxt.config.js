@@ -73,7 +73,6 @@ module.exports = {
   ],
   modules: [
     '~/modules/cache',
-    '~/io'
   ],
   css: [
     '~/assets/style.scss',
@@ -81,7 +80,7 @@ module.exports = {
     'font-awesome/css/font-awesome.css'
   ],
   env: {
-    dev: process.env.dev ? true : false
+    dev: process.env.dev
   },
   /*
   ** Run ESLint on save

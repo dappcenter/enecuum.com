@@ -141,6 +141,7 @@ const actions = {
     state.commit('SET_AUTH', true);
   },
   logoutClient(state) {
+    state.commit('SET_WEB3WALLET', '');
     state.commit('SET_KYC_STATE', {});
     state.commit('SET_AUTH', false);
   },

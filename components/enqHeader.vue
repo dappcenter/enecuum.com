@@ -71,7 +71,8 @@
         itsHomepage: false,
         isOpened: false,
         checkingAuth: true,
-        loadingFingerEnd: true
+        loadingFingerEnd: true,
+        waitingServerUpdateCount: 0
       }
     },
     components: {
@@ -159,9 +160,29 @@
         if (data !== 401) this.$store.dispatch('loginClient', data);
         this.checkingAuth = false;
       });
-      socket.on('disconnect', () => {
-      });
       socket.on('connect', () => {
+        if (this.waitingServerUpdateCount === 1) {
+          this.$notify({
+            title: 'Reconnect!',
+            type: 'info',
+            message: 'We are working hard to implement new features and make our site even better, we just updated it in the background, check out!',
+            position: 'top-right',
+            duration: 10000,
+          });
+        }
+        this.waitingServerUpdateCount++;
+      });
+      socket.on('depositUpdates', (info) => {
+        let me = (this.$store.state.web3wallet.toLocaleLowerCase() === info.sender.toLocaleLowerCase()) ? true : false
+        this.$notify({
+          title: 'Transaction!',
+          type: me ? 'success' : 'info',
+          dangerouslyUseHTMLString: true,
+          message: '<p>' + (me ? 'You bought ' : '') + info.amount + ' tokens was sold for ' + info.ether + ' ether</p><p>(you can see <a href=`https://etherscan.io/tx/${info.tx}`>tx details</a>)</p>',
+          position: 'bottom-left',
+          duration: 10000,
+          showClose: false
+        });
       });
       setTimeout(() => {
         this.checkingAuth = false;
