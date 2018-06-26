@@ -10,7 +10,7 @@ RUN npm install && \
 
 RUN apk del build-dependencies
 
-EXPOSE 80
+EXPOSE 80 8081
 
 ENTRYPOINT ["npm"]
 CMD ["run", "start"]
