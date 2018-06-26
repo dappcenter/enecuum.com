@@ -163,7 +163,7 @@
       socket.on('connect', () => {
         if (this.waitingServerUpdateCount === 1) {
           this.$notify({
-            title: 'Reconnect!',
+            title: 'Update',
             type: 'info',
             message: 'We are working hard to implement new features and make our site even better, we just updated it in the background, check out!',
             position: 'top-right',
@@ -175,7 +175,7 @@
       socket.on('depositUpdates', (info) => {
         let me = (this.$store.state.web3wallet.toLocaleLowerCase() === info.sender.toLocaleLowerCase()) ? true : false
         this.$notify({
-          title: 'Transaction!',
+          title: 'Transaction',
           type: me ? 'success' : 'info',
           dangerouslyUseHTMLString: true,
           message: '<p>' + (me ? 'You bought ' : '') + info.amount + ' tokens was sold for ' + info.ether + ' ether</p><p>(you can see <a href=`https://etherscan.io/tx/${info.tx}`>tx details</a>)</p>',
