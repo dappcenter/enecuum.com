@@ -3,7 +3,7 @@ FROM node:10-alpine
 ADD . /usr/src/frontend
 WORKDIR /usr/src/frontend
 
-RUN apk --no-cache add --virtual build-dependencies git
+RUN apk --update add --virtual build-dependencies git
 
 RUN npm install && \
     npm run build
