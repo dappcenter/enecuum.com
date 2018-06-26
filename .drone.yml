@@ -1,11 +1,10 @@
 pipeline:
   build:
-    image: node:10-alpine
-    commands:
-      - "apk --no-cache add --virtual build-dependencies git python make gcc g++ musl-dev"
-      - "npm install"
-      - "npm run build"
-      - "apk del build-dependencies"
+    image: plugins/docker
+    secrets: [docker_username, docker_password]
+    registry: dev.enecuum.com:2087
+    repo: dev.enecuum.com:2087/site/frontend
+    tags: latest
     when:
       branch:
         - dev
@@ -21,20 +20,6 @@ pipeline:
       status:
         - success
         - failure
-      event:
-        - push
-        - tag
-  publish:
-    image: plugins/docker
-    secrets: [docker_username, docker_password]
-    registry: dev.enecuum.com:2087
-    repo: dev.enecuum.com:2087/site/frontend
-    tags: latest
-    when:
-      branch:
-        - dev
-      status:
-        - success
       event:
         - push
         - tag

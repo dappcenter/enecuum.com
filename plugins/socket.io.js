@@ -1,8 +1,7 @@
 import io from 'socket.io-client';
 
-console.log(process.env);
 const socket = io((process.env.dev ? 'http' : 'https') + '://enecuum.com', {
-  path: '/provider',
+  path: '/io',
   reconnectionAttempts: 30,
   reconnectionDelay: 3000
 });
