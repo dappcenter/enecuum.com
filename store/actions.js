@@ -3,6 +3,28 @@ import axios from 'axios';
 const apiUrl = 'https://api.enecuum.com/v1';
 
 const actions = {
+  crutch(store) {
+    return new Promise(resolve => {
+      axios.request({
+        url: apiUrl + '/lk',
+        method: 'get',
+        withCredentials: true,
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+        },
+      }).then((res) => {
+        if (res.data.ok) {
+          store.dispatch('loginClient', res.data);
+          resolve('success');
+        } else {
+          if (res.data.code === 401) {
+            store.dispatch('logoutClient');
+          }
+          resolve('notauth');
+        }
+      })
+    });
+  },
   isAuth(store, {cookies}) {
     return new Promise(resolve => {
       axios.request({

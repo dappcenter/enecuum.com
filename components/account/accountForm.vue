@@ -9,7 +9,7 @@
                              placeholder="0000000 ETH"
                              @keyup.native="ethInput"></el-input-number>
           </el-form-item>
-          <el-form-item label="YOU GET (ENQ)" prop="get">
+          <el-form-item label="YOU ~ GET (ENQ)" prop="get">
             <el-input-number :controls="false" :min="0" :step="0.001" v-model="accountForm.get"
                              placeholder="0000000 ENQ"
                              @keyup.native="enqInput"></el-input-number>
@@ -76,7 +76,7 @@
           web3.eth.sendTransaction({
             from: web3.eth.coinbase,
             to: config.provider.contract,
-            value: web3.toWei(this.accountForm.invest, "ether"),
+            value: web3.toWei(bn(this.accountForm.invest).toFixed(10), "ether"),
             gas: 200000,
             gasPrice: gasPrice
           }, (err, res) => {

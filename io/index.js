@@ -118,7 +118,7 @@ contract.events.Deposit({}, (err, res) => {
     let amount = BigNumber(res.returnValues.value);
     let ether = amount.dividedBy(BigNumber("1e17")).toNumber();
     let usd = BigNumber(ether).multipliedBy(rate).dividedBy(1000).toFixed(3);
-    let token = BigNumber(usd).dividedBy(TOKEN_PRICE).dividedBy(10).toNumber();
+    let token = BigNumber(usd).dividedBy(TOKEN_PRICE).dividedBy(10);
     console.log('ether', ether);
     console.log('usd', usd);
     console.log('token', token);
