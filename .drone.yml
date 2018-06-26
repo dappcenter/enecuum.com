@@ -2,7 +2,7 @@ pipeline:
   build:
     image: node:10-alpine
     commands:
-      - "apk --no-cache add --virtual build-dependencies git python make"
+      - "apk --no-cache add --virtual build-dependencies git python make gcc musl-dev"
       - "npm install"
       - "npm run build"
       - "apk del build-dependencies"
