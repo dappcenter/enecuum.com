@@ -15,7 +15,7 @@
     "dev-nuxt": "nuxt",
     "dev-io": "nodemon ./io/index.js",
     "build": "nuxt build",
-    "start": "start npm run start-io & start npm run start-nuxt",
+    "start": "npm run start-io & npm run start-nuxt",
     "start-nuxt": "nuxt start",
     "start-io": "node ./io/index.js",
     "generate": "nuxt generate",
