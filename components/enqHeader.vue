@@ -72,7 +72,8 @@
         isOpened: false,
         checkingAuth: true,
         loadingFingerEnd: true,
-        waitingServerUpdateCount: 0
+        waitingServerUpdateCount: 0,
+        uniq: 0
       }
     },
     components: {
@@ -160,17 +161,21 @@
         if (data !== 401) this.$store.dispatch('loginClient', data);
         this.checkingAuth = false;
       });
-      socket.on('connect', () => {
-        if (this.waitingServerUpdateCount === 1) {
-          this.$notify({
-            title: 'Update',
-            type: 'info',
-            message: 'We are working hard to implement new features and make our site even better, we just updated it in the background, check out!',
-            position: 'top-right',
-            duration: 10000,
-          });
+      socket.on('connectServer', (res) => {
+        if (!this.uniq) {
+          this.uniq = res;
+        } else {
+          if (this.uniq !== res) {
+            this.uniq = res;
+            this.$notify({
+              title: 'Update',
+              type: 'info',
+              message: 'We are working hard to implement new features and make our site even better, we just updated it in the background, check out!',
+              position: 'top-right',
+              duration: 10000,
+            })
+          }
         }
-        this.waitingServerUpdateCount++;
       });
       socket.on('depositUpdates', (info) => {
         let me = (this.$store.state.web3wallet.toLocaleLowerCase() === info.sender.toLocaleLowerCase()) ? true : false;

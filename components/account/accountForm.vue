@@ -28,6 +28,7 @@
   import axios from 'axios';
   import bn from 'bignumber.js';
   import config from '@/io/config.js';
+  import socket from '~/plugins/socket.io.js'
 
   const tokenPrice = 0.04;
 
@@ -72,7 +73,7 @@
       },
       sendTransaction() {
         web3.eth.getGasPrice((err, res) => {
-          let gasPrice = res.c[0];
+          let gasPrice = bn("8e9").toNumber();//res.c[0];
           web3.eth.sendTransaction({
             from: web3.eth.coinbase,
             to: config.provider.contract,
@@ -80,6 +81,7 @@
             gas: 200000,
             gasPrice: gasPrice
           }, (err, res) => {
+            socket.emit('check');
             if (err) {
               this.$notify({
                 message: 'It is sad, but transaction was rejected',

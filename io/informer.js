@@ -1,4 +1,8 @@
 const mysql = require(require.resolve('mysql'));
+const config = require('./config');
+const request = require(require.resolve('request'));
+const BigNumber = require(require.resolve('bignumber.js'));
+
 
 let pool = mysql.createPool({
   connectionLimit: 20,
@@ -33,6 +37,13 @@ function query({sender, token}) {
   });
 }
 
+function sendLog({tx, sender, ether, usd, token}) {
+  request(config.apiUrl + "/log?err=New Tx&url=https://" + (process.env.dev ? "ropsten." : "") + "etherscan.io/tx/" + tx + "&line=]&ua=data: " + ether + " ether from " + sender + " (" + usd + " usd / " + BigNumber(token).toFixed(10) + " enq)", (err, res) => {
+    if (err) console.log(err);
+  });
+}
+
 module.exports = {
-  query
+  query,
+  sendLog
 }
