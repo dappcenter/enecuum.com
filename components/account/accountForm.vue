@@ -4,7 +4,7 @@
       <el-row :gutter="30" class="flex-center flex-wrap">
         <el-form :model="accountForm" :rules="rulesAccountForm" ref="accountForm"
                  class="account__form flex-center">
-          <el-form-item label="YOU INVEST (ETH)" prop="invest">
+          <el-form-item label="YOU SEND (ETH)" prop="invest">
             <el-input-number controls-position="right" :min="0" :step="0.001" v-model="accountForm.invest"
                              placeholder="0000000 ETH"
                              @keyup.native="ethInput"></el-input-number>
@@ -121,7 +121,6 @@
       }
     },
     mounted() {
-      console.log(this.web3info);
       axios.get('https://api.coinmarketcap.com/v2/ticker/1027/?convert=USD').then(res => {
         this.price = res.data.data.quotes.USD.price;
         let e = {
