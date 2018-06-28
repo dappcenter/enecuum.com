@@ -14,7 +14,7 @@ let currentContractAddress = process.env.dev ? config.web3.ropsten.contracts.tok
 let currentContractAbi = process.env.dev ? config.web3.ropsten.contracts.token.abi : config.web3.mainnet.contracts.token.abi;
 let currentProvider = process.env.dev ? config.web3.ropsten.node : config.web3.mainnet.node;
 
-let web3 = new Web3(currentProvider+process.env.infura);
+let web3 = new Web3(currentProvider + process.env.infura);
 let rate = 0;
 
 let interval = setInterval(() => {
@@ -35,6 +35,9 @@ let contractsTransaction = [];
 let contractAddress = currentContractAddress;
 
 async function scanBlocks() {
+  if (firstBlock === 0) {
+    firstBlock = await web3.eth.getBlockNumber();
+  }
   lastBlock = await web3.eth.getBlockNumber();
   if (lastBlock > firstBlock) {
     let count = lastBlock - firstBlock;
@@ -117,7 +120,9 @@ function ethTransactionScanner() {
 getFirstBlock().then(res => {
   try {
     if (res) {
-      firstBlock = res[0].blockNumber;
+      if (res[0].blockNumber == 0) {
+        firstBlock = res[0].blockNumber;
+      }
       ethTransactionScanner();
     }
   } catch (e) {
