@@ -12,8 +12,9 @@ const TOKEN_PRICE = 0.04;
 
 let currentContractAddress = process.env.dev ? config.web3.ropsten.contracts.token.address : config.web3.mainnet.contracts.token.address;
 let currentContractAbi = process.env.dev ? config.web3.ropsten.contracts.token.abi : config.web3.mainnet.contracts.token.abi;
+let currentProvider = process.env.dev ? config.web3.ropsten.node : config.web3.mainnet.node;
 
-let web3 = new Web3(currentContractAddress);
+let web3 = new Web3(currentProvider+process.env.infura);
 let rate = 0;
 
 let interval = setInterval(() => {
