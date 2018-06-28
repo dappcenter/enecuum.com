@@ -41,6 +41,7 @@
     name: "signin",
     data() {
       const validateEmail = validators.email;
+      const validateLimit = validators.limit;
       return {
         loading: false,
         loading2fa: false,
@@ -55,7 +56,7 @@
             {validator: validateEmail, trigger: 'change'}
           ],
           password: [
-            {required: true, message: 'This field can not be empty'}
+            {validator: validateLimit, trigger: 'change'}
           ]
         }
       }
@@ -89,7 +90,6 @@
             this.$store.commit('SET_AUTH', true);
             this.$router.push('/backoffice/kyc');
             this.$refs['signInForm'].resetFields();
-            this.loading2fa = false;
           } else {
             this.$notify({
               message: this.$store.state.lang[res.code],
@@ -97,6 +97,7 @@
               position: 'bottom-left'
             });
           }
+          this.loading2fa = false;
           this.loading = false;
         });
         this.$refs.invisibleRecaptcha.reset();
@@ -138,8 +139,9 @@
               position: 'bottom-left'
             });
           }
-          this.$refs.invisibleRecaptcha.reset();
           this.loading = false;
+          this.loading2fa = false;
+          this.$refs.invisibleRecaptcha.reset();
         }).catch(() => {
           this.$notify({
             title: 'Error',

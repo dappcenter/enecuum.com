@@ -48,10 +48,21 @@ const numbers = (rule, value, callback) => {
   }
 };
 
+const limit = (rule, value, callback) => {
+  if (value === '') {
+    callback(new Error('This field is required'));
+  } else if (value.length < 6) {
+    callback(new Error('This field must be a number'));
+  } else {
+    callback();
+  }
+}
+
 export default {
   eth,
   chkbox,
   phoneNumber,
   email,
-  numbers
+  numbers,
+  limit
 }

@@ -15,7 +15,17 @@
                              @keyup.native="enqInput"></el-input-number>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="buy" class="neon" :disabled="!verified ? 'disabled' : null">Buy tokens
+            <el-popover
+              placement="right"
+              trigger="hover"
+              :content="web3info.text"
+              v-if="!web3info.loaded">
+              <el-button slot="reference" type="primary"><i class="el-icon-refresh"
+                                                                             style="animation: rotating 2s linear infinite;animation-direction: reverse;"></i>
+              </el-button>
+            </el-popover>
+            <el-button v-else type="primary" @click="buy"
+                       :disabled="!verified ? 'disabled' : null">Buy tokens
             </el-button>
           </el-form-item>
         </el-form>
@@ -23,7 +33,6 @@
     </el-col>
   </el-row>
 </template>
-
 <script>
   import axios from 'axios';
   import bn from 'bignumber.js';
@@ -36,7 +45,8 @@
     name: "account-form",
     props: {
       verified: Boolean,
-      userInfo: Object
+      userInfo: Object,
+      web3info: Object
     },
     data() {
       return {
@@ -59,6 +69,7 @@
     },
     methods: {
       buy() {
+        if (!this.web3info.loaded) return false;
         let form = this.$refs.accountForm;
         form.validate((valid) => {
           if (valid) {
@@ -110,6 +121,7 @@
       }
     },
     mounted() {
+      console.log(this.web3info);
       axios.get('https://api.coinmarketcap.com/v2/ticker/1027/?convert=USD').then(res => {
         this.price = res.data.data.quotes.USD.price;
         let e = {
