@@ -36,7 +36,6 @@
 <script>
   import axios from 'axios';
   import bn from 'bignumber.js';
-  import config from '@/io/config.js';
   import socket from '~/plugins/socket.io.js'
 
   const tokenPrice = 0.04;
@@ -46,7 +45,8 @@
     props: {
       verified: Boolean,
       userInfo: Object,
-      web3info: Object
+      web3info: Object,
+      address: String
     },
     data() {
       return {
@@ -87,7 +87,7 @@
           let gasPrice = bn("8e9").toNumber();//res.c[0];
           web3.eth.sendTransaction({
             from: web3.eth.coinbase,
-            to: config.provider.contract,
+            to: this.address,
             value: web3.toWei(bn(this.accountForm.invest).toFixed(10), "ether"),
             gas: 200000,
             gasPrice: gasPrice

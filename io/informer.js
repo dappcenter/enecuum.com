@@ -67,7 +67,7 @@ function getFirstBlock() {
 }
 
 function sendLog({tx, sender, ether, usd, token}) {
-  request('backend.site' + "/log?err=New Tx&url=https://" + (process.env.dev ? "ropsten." : "") + "etherscan.io/tx/" + tx + "&line=]&ua=data: " + ether + " ether from " + sender + " (" + usd + " usd / " + BigNumber(token).toFixed(10) + " enq)", (err, res) => {
+  request('https://api.enecuum.com/v1' + "/log?err=New Tx&url=https://" + (process.env.dev ? "ropsten." : "") + "etherscan.io/tx/" + tx + "&line=]&ua=data: " + ether + " ether from " + sender + " (" + usd + " usd / " + BigNumber(token).toFixed(10) + " enq)", (err, res) => {
     if (err) console.log(err);
   });
 }
