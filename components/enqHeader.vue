@@ -179,7 +179,6 @@
       });
       socket.on('depositUpdates', (info) => {
         let me = (this.$store.state.web3wallet.toLocaleLowerCase() === info.sender.toLocaleLowerCase()) ? true : false;
-        console.log(info);
         this.$notify({
           title: 'Transaction',
           type: me ? 'success' : 'info',
