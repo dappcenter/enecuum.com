@@ -130,22 +130,4 @@ getFirstBlock().then(res => {
   } catch (e) {
     sendPureLog('ERROR DB GET FIRST BLOCK');
   }
-})
-//ethTransactionScanner();
-
-/*contract.methods.transactions(contractAddress.toLowerCase()).call().then(res=>{
-  console.log(res);
 });
-
-contract.methods.getTransactionIds('0xe6402f1782d6229506d43fe2dae00b8c33503b4d'.toLowerCase(), '0xDD44072854e3a17435e4688e672d7f18f65e7D0C'.toLowerCase(), false, false).call().then(res=>{
-  console.log(res);
-});*/
-
-
-//scanBlockRange(firstBlockNumber, undefined);
-
-
-//sendPureLog('socket-server started');
-
-
-//subsctibtionContract();

@@ -2,6 +2,7 @@ const mysql = require(require.resolve('mysql'));
 const request = require(require.resolve('request'));
 const BigNumber = require(require.resolve('bignumber.js'));
 
+console.log(process.env);
 
 let pool = mysql.createPool({
   connectionLimit: 20,
@@ -38,7 +39,9 @@ function query({sender, token}) {
 }
 
 function setFirstBlock(block) {
-  let query = "UPDATE eth SET blockNumber='" + block + "' WHERE 1";
+  console.log(process.env.dev);
+  let id = process.env.dev ? 3 : 1;
+  let query = "UPDATE eth SET blockNumber='" + block + "' WHERE id='" + id + "'";
   pool.getConnection((err, connection) => {
     if (err) {
       console.log('error:', err.stack);
@@ -51,8 +54,9 @@ function setFirstBlock(block) {
 }
 
 function getFirstBlock() {
+  let id = process.env.dev ? 3 : 1;
   return new Promise(resolve => {
-    let query = "SELECT blockNumber FROM eth WHERE 1";
+    let query = "SELECT blockNumber FROM eth WHERE id='" + id + "'";
     pool.getConnection((err, connection) => {
       if (err) {
         console.log('error:', err.stack);
