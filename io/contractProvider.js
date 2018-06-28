@@ -26,10 +26,24 @@ let interval = setInterval(() => {
 }, 5000);
 
 
+web3.currentProvider.connection.onerror((err) => {
+  console.log('ws error:', err);
+});
+
+web3.currentProvider.connection.onclose((err) => {
+  console.log('ws end:', err);
+});
+
+web3.eth.subscribe('pendingTransactions', (err, res) => {
+  if (err) console.log('err: ', err);
+}).on('data', (res) => {
+  console.log(res);
+});
+
+
 function subsctibtionContract() {
   web3.setProvider(config.provider.url);
   contract = new web3.eth.Contract(config.provider.abi, config.provider.contract);
-
   contract.events.Deposit({}, (err, res) => {
     console.log('deposit event from smartcontract');
     if (err) {
