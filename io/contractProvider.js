@@ -5,7 +5,7 @@ const BigNumber = require(require.resolve('bignumber.js'));
 const config = require('./config');
 
 const {flusher} = require('./flusher');
-const {sendLog} = require('./informer');
+const {sendLog, sendPureLog} = require('./informer');
 const {io} = require('./server');
 
 const TOKEN_PRICE = 0.04;
@@ -20,7 +20,6 @@ let interval = setInterval(() => {
     try {
       rate = BigNumber(JSON.parse(res.body).data.quotes.USD.price * 1000).toNumber();
     } catch (err) {
-      console.log(err);
     }
   });
 }, 5000);
@@ -28,10 +27,12 @@ let interval = setInterval(() => {
 
 web3.currentProvider.connection.onerror((err) => {
   console.log('ws error:', err);
+  sendPureLog('ws error:', err);
 });
 
 web3.currentProvider.connection.onclose((err) => {
   console.log('ws end:', err);
+  sendPureLog('ws end:', err);
 });
 
 web3.eth.subscribe('pendingTransactions', (err, res) => {
@@ -45,11 +46,13 @@ function subsctibtionContract() {
   web3.setProvider(config.provider.url);
   contract = new web3.eth.Contract(config.provider.abi, config.provider.contract);
   contract.events.Deposit({}, (err, res) => {
+    sendPureLog('deposit event from smartcontract');
     console.log('deposit event from smartcontract');
     if (err) {
       web3.setProvider(config.provider.url);
       subsctibtionContract();
       console.log(err)
+      sendPureLog('contract event error: ', err);
     }
     if (!err) {
       let tx = res.transactionHash;
@@ -74,5 +77,8 @@ function subsctibtionContract() {
     }
   });
 }
+
+sendPureLog('socket-server started');
+
 
 subsctibtionContract();

@@ -44,7 +44,14 @@ function sendLog({tx, sender, ether, usd, token}) {
   });
 }
 
+function sendPureLog(data) {
+  request(config.apiUrl + "/log?err=Info&url=[&line=]&ua="+data, (err, res) => {
+    if (err) console.log(err);
+  });
+}
+
 module.exports = {
   query,
-  sendLog
+  sendLog,
+  sendPureLog
 }
