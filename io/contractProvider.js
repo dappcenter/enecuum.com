@@ -35,11 +35,13 @@ let contractsTransaction = [];
 let contractAddress = currentContractAddress;
 
 async function scanBlocks() {
-  if (firstBlock === 0) {
+  console.log('fisrt block:', firstBlock);
+  if (firstBlock == 0) {
     firstBlock = await web3.eth.getBlockNumber();
+    console.log('fisrt block:', firstBlock);
   }
   lastBlock = await web3.eth.getBlockNumber();
-  if (lastBlock > firstBlock) {
+  if (lastBlock >= firstBlock) {
     let count = lastBlock - firstBlock;
     console.log('number of minings blocks - ' + count);
     for (let i = 0; i <= count; i++) {
