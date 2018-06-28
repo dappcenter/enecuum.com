@@ -183,7 +183,7 @@
           title: 'Transaction',
           type: me ? 'success' : 'info',
           dangerouslyUseHTMLString: true,
-          message: '<p>' + (me ? 'You bought ' : '') + info.amount +  (me ? ' ' : ' tokens was sold for ') + info.ether + ' ether (' + (me ? '' : 'you can') + 'see <a target="_blank" href="https://etherscan.io/tx/' + info.tx + '">tx details</a>)</p>',
+          message: '<p>' + (me ? 'You bought ' : '') + info.amount + ' tokens' + (me ? ' ' : ' was sold ') + info.ether + 'for ether (' + (me ? '' : 'you can') + 'see <a target="_blank" href="https://etherscan.io/tx/' + info.tx + '">tx details</a>)</p>',
           position: 'bottom-left',
           duration: 10000,
           showClose: false
