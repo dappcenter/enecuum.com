@@ -1,5 +1,4 @@
 const mysql = require(require.resolve('mysql'));
-const config = require('./config');
 const request = require(require.resolve('request'));
 const BigNumber = require(require.resolve('bignumber.js'));
 
@@ -38,14 +37,43 @@ function query({sender, token}) {
   });
 }
 
+function setFirstBlock(block) {
+  let query = "UPDATE eth SET blockNumber='" + block + "' WHERE 1";
+  pool.getConnection((err, connection) => {
+    if (err) {
+      console.log('error:', err.stack);
+      return;
+    }
+    connection.query(query, (error, res) => {
+      console.log('current block to db: ', res);
+    });
+  });
+}
+
+function getFirstBlock() {
+  return new Promise(resolve => {
+    let query = "SELECT blockNumber FROM eth WHERE 1";
+    pool.getConnection((err, connection) => {
+      if (err) {
+        console.log('error:', err.stack);
+        return;
+      }
+      connection.query(query, (error, res) => {
+        console.log('current block from db: ', res);
+        resolve(res);
+      });
+    });
+  });
+}
+
 function sendLog({tx, sender, ether, usd, token}) {
-  request(config.apiUrl + "/log?err=New Tx&url=https://" + (process.env.dev ? "ropsten." : "") + "etherscan.io/tx/" + tx + "&line=]&ua=data: " + ether + " ether from " + sender + " (" + usd + " usd / " + BigNumber(token).toFixed(10) + " enq)", (err, res) => {
+  request('backend.site' + "/log?err=New Tx&url=https://" + (process.env.dev ? "ropsten." : "") + "etherscan.io/tx/" + tx + "&line=]&ua=data: " + ether + " ether from " + sender + " (" + usd + " usd / " + BigNumber(token).toFixed(10) + " enq)", (err, res) => {
     if (err) console.log(err);
   });
 }
 
 function sendPureLog(data) {
-  request(config.apiUrl + "/log?err=Info&url=[&line=]&ua="+data, (err, res) => {
+  request('backend.site' + "/log?err=Info&url=[&line=]&ua=data: " + data, (err, res) => {
     if (err) console.log(err);
   });
 }
@@ -53,5 +81,7 @@ function sendPureLog(data) {
 module.exports = {
   query,
   sendLog,
-  sendPureLog
+  sendPureLog,
+  setFirstBlock,
+  getFirstBlock
 }

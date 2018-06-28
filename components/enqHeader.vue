@@ -179,11 +179,12 @@
       });
       socket.on('depositUpdates', (info) => {
         let me = (this.$store.state.web3wallet.toLocaleLowerCase() === info.sender.toLocaleLowerCase()) ? true : false;
+        console.log(info);
         this.$notify({
           title: 'Transaction',
           type: me ? 'success' : 'info',
           dangerouslyUseHTMLString: true,
-          message: '<p>' + (me ? 'You bought ' : '') + info.amount + ' tokens was sold for ' + info.ether + ' ether (' + (me ? '' : 'you can') + 'see <a href=`https://etherscan.io/tx/${info.tx}`>tx details</a>)</p>',
+          message: '<p>' + (me ? 'You bought ' : '') + info.amount + ' tokens was sold for ' + info.ether + ' ether (' + (me ? '' : 'you can') + 'see <a target="_blank" href="https://etherscan.io/tx/' + info.tx + '">tx details</a>)</p>',
           position: 'bottom-left',
           duration: 10000,
           showClose: false

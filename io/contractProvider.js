@@ -2,17 +2,18 @@ const Web3 = require(require.resolve('web3'));
 const request = require(require.resolve('request'));
 const BigNumber = require(require.resolve('bignumber.js'));
 
-const config = require('./config');
+const config = require('./../config/config');
 
 const {flusher} = require('./flusher');
-const {sendLog, sendPureLog} = require('./informer');
+const {sendLog, sendPureLog, getFirstBlock, setFirstBlock} = require('./informer');
 const {io} = require('./server');
 
 const TOKEN_PRICE = 0.04;
 
-let web3 = new Web3(config.provider.url);
-let contract = new web3.eth.Contract(config.provider.abi, config.provider.contract);
+let currentContractAddress = process.env.dev ? config.web3.ropsten.contracts.token.address : config.web3.mainnet.contracts.token.address;
+let currentContractAbi = process.env.dev ? config.web3.ropsten.contracts.token.abi : config.web3.mainnet.contracts.token.abi;
 
+let web3 = new Web3(currentContractAddress);
 let rate = 0;
 
 let interval = setInterval(() => {
@@ -24,61 +25,119 @@ let interval = setInterval(() => {
   });
 }, 5000);
 
+let pendingDelay = 20000;
+let lastTransaction = {};
+let tmpLastTransaction = {};
+let lastBlock = {};
+let firstBlock = 0;
+let contractsTransaction = [];
+let contractAddress = currentContractAddress;
 
-web3.currentProvider.connection.onerror((err) => {
-  console.log('ws error:', err);
-  sendPureLog('ws error:', err);
-});
-
-web3.currentProvider.connection.onclose((err) => {
-  console.log('ws end:', err);
-  sendPureLog('ws end:', err);
-});
-
-web3.eth.subscribe('pendingTransactions', (err, res) => {
-  if (err) console.log('err: ', err);
-}).on('data', (res) => {
-  console.log(res);
-});
-
-
-function subsctibtionContract() {
-  web3.setProvider(config.provider.url);
-  contract = new web3.eth.Contract(config.provider.abi, config.provider.contract);
-  contract.events.Deposit({}, (err, res) => {
-    sendPureLog('deposit event from smartcontract');
-    console.log('deposit event from smartcontract');
-    if (err) {
-      web3.setProvider(config.provider.url);
-      subsctibtionContract();
-      console.log(err)
-      sendPureLog('contract event error: ', err);
+async function scanBlocks() {
+  lastBlock = await web3.eth.getBlockNumber();
+  if (lastBlock > firstBlock) {
+    let count = lastBlock - firstBlock;
+    console.log('number of minings blocks - ' + count);
+    for (let i = 0; i <= count; i++) {
+      getBlock(lastBlock - i);
     }
-    if (!err) {
-      let tx = res.transactionHash;
-      let sender = res.returnValues.sender;
-      let amount = BigNumber(res.returnValues.value);
-      let ether = amount.dividedBy(BigNumber("1e18")).toNumber();
-      let usd = BigNumber(ether).multipliedBy(rate).dividedBy(1000).toFixed(3);
-      let token = BigNumber(usd).dividedBy(TOKEN_PRICE);
-      console.log('ether', ether);
-      console.log('usd', usd);
-      console.log('token', token);
-      sendLog({tx, sender, ether, usd, token});
-      let data = {sender, token};
-      flusher.setQuery(data);
-      io.sockets.emit('depositUpdates', {
-        tx: tx,
-        sender: sender,
-        amount: token,
-        ether: ether,
-        usd: usd
-      });
+  }
+  setFirstBlock(lastBlock);
+  firstBlock = lastBlock;
+}
+
+function getBlock(currentBlock) {
+  contractsTransaction = [];
+  web3.eth.getBlock(currentBlock, true, (error, block) => {
+    try {
+      for (let i = 0; i <= block.transactions.length - 1; i++) {
+        let scannedBlock = block.transactions[i];
+        if (scannedBlock.to && (scannedBlock.to.toUpperCase() === contractAddress.toUpperCase())) {
+          contractsTransaction.push({
+            block: currentBlock,
+            tx: scannedBlock.hash,
+            from: scannedBlock.from,
+            to: scannedBlock.to,
+            amount: scannedBlock.value,
+          });
+        }
+      }
+    } catch (e) {
+
     }
   });
 }
 
-sendPureLog('socket-server started');
+
+function ethTransactionScanner() {
+  scanBlocks();
+
+  setTimeout(() => {
+    contractsTransaction.sort((a, b) => {
+      return a.block - b.block;
+    });
+    for (let i = 0; i <= contractsTransaction.length - 1; i++) {
+      contractsTransaction[i].ether = BigNumber(contractsTransaction[i].amount).dividedBy(BigNumber("1e18")).toNumber();
+      contractsTransaction[i].usd = BigNumber(contractsTransaction[i].ether).multipliedBy(rate).dividedBy(1000).toNumber();
+      contractsTransaction[i].tokens = BigNumber(contractsTransaction[i].usd).dividedBy(TOKEN_PRICE).toNumber();
+    }
+    tmpLastTransaction = contractsTransaction[contractsTransaction.length - 1];
+    if (tmpLastTransaction && (lastTransaction !== tmpLastTransaction)) {
+      console.log(tmpLastTransaction);
+      sendLog({
+        tx: tmpLastTransaction.tx,
+        sender: tmpLastTransaction.from,
+        ether: tmpLastTransaction.ether,
+        usd: tmpLastTransaction.usd,
+        token: tmpLastTransaction.tokens
+      });
+      io.sockets.emit('depositUpdates', {
+        tx: tmpLastTransaction.tx,
+        sender: tmpLastTransaction.from,
+        ether: tmpLastTransaction.ether,
+        usd: tmpLastTransaction.usd,
+        amount: tmpLastTransaction.tokens
+      });
+      flusher.setQuery({
+        sender: tmpLastTransaction.from,
+        token: tmpLastTransaction.tokens
+      });
+    }
+    lastTransaction = contractsTransaction[contractsTransaction.length - 1];
+    if (pendingDelay !== 20000) {
+      sendPureLog('Number of new transactions after restart - ' + contractsTransaction.length);
+      console.log('First check finish');
+      pendingDelay = 5000;
+    }
+    ethTransactionScanner();
+  }, pendingDelay);
+}
+
+getFirstBlock().then(res => {
+  try {
+    if (res) {
+      firstBlock = res[0].blockNumber;
+      ethTransactionScanner();
+    }
+  } catch (e) {
+    sendPureLog('ERROR DB GET FIRST BLOCK');
+  }
+})
+//ethTransactionScanner();
+
+/*contract.methods.transactions(contractAddress.toLowerCase()).call().then(res=>{
+  console.log(res);
+});
+
+contract.methods.getTransactionIds('0xe6402f1782d6229506d43fe2dae00b8c33503b4d'.toLowerCase(), '0xDD44072854e3a17435e4688e672d7f18f65e7D0C'.toLowerCase(), false, false).call().then(res=>{
+  console.log(res);
+});*/
 
 
-subsctibtionContract();
+//scanBlockRange(firstBlockNumber, undefined);
+
+
+//sendPureLog('socket-server started');
+
+
+//subsctibtionContract();
