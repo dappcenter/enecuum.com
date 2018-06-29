@@ -8,8 +8,8 @@ const origins = ['enecuum.com:*'];
 const io = require('socket.io')(server, {
   path: '/io',
   serveClient: false,
-  pingInterval: 1000,
-  pingTimeout: 1000,
+  pingInterval: 3000,
+  pingTimeout: 3000,
   cookie: true
 });
 

@@ -35,20 +35,20 @@ let contractsTransaction = [];
 let contractAddress = currentContractAddress;
 
 async function scanBlocks() {
-  console.log('fisrt block:', firstBlock);
   if (firstBlock == 0) {
     firstBlock = await web3.eth.getBlockNumber();
-    console.log('fisrt block:', firstBlock);
   }
+  console.log('fisrt block:', firstBlock);
   lastBlock = await web3.eth.getBlockNumber();
-  if (lastBlock >= firstBlock) {
+  console.log('last block:', lastBlock);
+  if (lastBlock > firstBlock) {
     let count = lastBlock - firstBlock;
     console.log('number of minings blocks - ' + count);
     for (let i = 0; i <= count; i++) {
       getBlock(lastBlock - i);
     }
+    setFirstBlock(lastBlock);
   }
-  setFirstBlock(lastBlock);
   firstBlock = lastBlock;
 }
 
@@ -69,7 +69,7 @@ function getBlock(currentBlock) {
         }
       }
     } catch (e) {
-
+      console.log(e);
     }
   });
 }
@@ -86,9 +86,13 @@ function ethTransactionScanner() {
       contractsTransaction[i].ether = BigNumber(contractsTransaction[i].amount).dividedBy(BigNumber("1e18")).toNumber();
       contractsTransaction[i].usd = BigNumber(contractsTransaction[i].ether).multipliedBy(rate).dividedBy(1000).toNumber();
       contractsTransaction[i].tokens = BigNumber(contractsTransaction[i].usd).dividedBy(TOKEN_PRICE).toNumber();
+
+
     }
     tmpLastTransaction = contractsTransaction[contractsTransaction.length - 1];
-    if (tmpLastTransaction && (lastTransaction !== tmpLastTransaction)) {
+    console.log('last transaction: ', lastTransaction);
+    console.log('temp last transaction: ', tmpLastTransaction);
+    if (tmpLastTransaction && (lastTransaction.block !== tmpLastTransaction.block)) {
       console.log(tmpLastTransaction);
       sendLog({
         tx: tmpLastTransaction.tx,
@@ -110,7 +114,7 @@ function ethTransactionScanner() {
       });
     }
     lastTransaction = contractsTransaction[contractsTransaction.length - 1];
-    if (pendingDelay !== 20000) {
+    if (pendingDelay == 20000) {
       sendPureLog('Number of new transactions after restart - ' + contractsTransaction.length);
       console.log('First check finish');
       pendingDelay = 5000;

@@ -1,6 +1,6 @@
 const {query} = require('./informer');
 
-function Flusher() {
+/*function Flusher() {
   this.pending = [];
   this.locked = false;
   this.setQuery = ({sender, token}) => {
@@ -18,6 +18,12 @@ function Flusher() {
         if (this.locked) this.locked = false
       }, 5000);
     }
+  }
+}*/
+
+function Flusher() {
+  this.setQuery = ({sender, token}) => {
+    query({sender, token});
   }
 }
 

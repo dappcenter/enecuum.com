@@ -19,10 +19,14 @@ function query({sender, token}) {
       return;
     }
     console.log('connected to pool');
+    console.log('write to db:', {
+      sender: sender,
+      token: token
+    });
     let initialAmountQuery = "SELECT u.balance FROM users AS u JOIN kyc AS k ON u.id = k.user_id LEFT JOIN kyc_individual AS i ON (k.accountType = 1 AND u.id = i.user_id) LEFT JOIN kyc_company AS c ON (k.accountType = 2 AND u.id = c.user_id) WHERE k.accountType IS NOT NULL AND (EXISTS(SELECT i.user_id FROM kyc_individual AS i WHERE i.user_id = u.id) OR EXISTS(SELECT c.user_id FROM kyc_company WHERE c.user_id = u.id)) AND k.status = 4 AND (i.ethWalletNumber = '" + sender + "' OR c.ethWalletNumber = '" + sender + "') ORDER BY u.id ASC LIMIT 1";
     connection.query(initialAmountQuery, (error, res) => {
       try {
-        console.log(res);
+        console.log('get current balance: ', res);
         if (res) {
           let initialAmount = parseInt(res[0].balance) ? parseInt(res[0].balance) : null;
           console.log(BigNumber(initialAmount).toNumber(), BigNumber(token).shiftedBy(10).toNumber(), BigNumber(initialAmount).plus(BigNumber(token).shiftedBy(10)).toNumber());
