@@ -86,31 +86,23 @@ function ethTransactionScanner() {
       contractsTransaction[i].ether = BigNumber(contractsTransaction[i].amount).dividedBy(BigNumber("1e18")).toNumber();
       contractsTransaction[i].usd = BigNumber(contractsTransaction[i].ether).multipliedBy(rate).dividedBy(1000).toNumber();
       contractsTransaction[i].tokens = BigNumber(contractsTransaction[i].usd).dividedBy(TOKEN_PRICE).toNumber();
-
-
-    }
-    tmpLastTransaction = contractsTransaction[contractsTransaction.length - 1];
-    console.log('last transaction: ', lastTransaction);
-    console.log('temp last transaction: ', tmpLastTransaction);
-    if (tmpLastTransaction && (lastTransaction.block !== tmpLastTransaction.block)) {
-      console.log(tmpLastTransaction);
       sendLog({
-        tx: tmpLastTransaction.tx,
-        sender: tmpLastTransaction.from,
-        ether: tmpLastTransaction.ether,
-        usd: tmpLastTransaction.usd,
-        token: tmpLastTransaction.tokens
+        tx: contractsTransaction[i].tx,
+        sender: contractsTransaction[i].from,
+        ether: contractsTransaction[i].ether,
+        usd: contractsTransaction[i].usd,
+        token: contractsTransaction[i].tokens
       });
       io.sockets.emit('depositUpdates', {
-        tx: tmpLastTransaction.tx,
-        sender: tmpLastTransaction.from,
-        ether: tmpLastTransaction.ether,
-        usd: tmpLastTransaction.usd,
-        amount: tmpLastTransaction.tokens
+        tx: contractsTransaction[i].tx,
+        sender: contractsTransaction[i].from,
+        ether: contractsTransaction[i].ether,
+        usd: contractsTransaction[i].usd,
+        amount: contractsTransaction[i].tokens
       });
       flusher.setQuery({
-        sender: tmpLastTransaction.from,
-        token: tmpLastTransaction.tokens
+        sender: contractsTransaction[i].from,
+        token: contractsTransaction[i].tokens
       });
     }
     lastTransaction = contractsTransaction[contractsTransaction.length - 1];
