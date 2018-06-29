@@ -1,33 +1,32 @@
 const {query} = require('./informer');
+const BigNumber = require(require.resolve('bignumber.js'));
 
-/*function Flusher() {
-  this.pending = [];
-  this.locked = false;
-  this.setQuery = ({sender, token}) => {
-    this.pending.push({sender, token});
-    if (!this.locked) {
-      this.locked = true;
-      query(this.pending[0]);
-      this.pending.splice(0, 1);
-      console.log('outted');
-    } else {
-      console.log('waiting...');
-      setTimeout(() => {
-        console.log('waiting end');
-        this.setQuery(this.pending[0]);
-        if (this.locked) this.locked = false
-      }, 5000);
+async function flusher(arr, rate, TOKEN_PRICE) {
+  let tmpArr = [];
+  let queryArray = [];
+  arr.forEach((item, index) => {
+    if (typeof tmpArr[item.from] == 'undefined') {
+      tmpArr[item.from] = 0;
     }
-  }
-}*/
+    tmpArr[item.from] = BigNumber(tmpArr[item.from]).plus(BigNumber(item.amount)).toNumber();
+  });
 
-function Flusher() {
-  this.setQuery = ({sender, token}) => {
-    query({sender, token});
+  for (let i in tmpArr) {
+    queryArray.push({
+      sender: i,
+      token: BigNumber(BigNumber(BigNumber(tmpArr[i]).dividedBy(BigNumber("1e18")).toNumber()).multipliedBy(rate).dividedBy(1000).toNumber()).dividedBy(TOKEN_PRICE).toNumber(),
+    })
+  }
+  let i = 0;
+  while (i < queryArray.length) {
+    await query({
+      sender: queryArray[i].sender,
+      token: queryArray[i].token,
+    });
+    i++;
   }
 }
 
-let flusher = new Flusher();
 module.exports = {
   flusher
 }

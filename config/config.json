@@ -5,7 +5,7 @@
     "mainnet": {
       "node": "https://mainnet.infura.io/",
       "contracts": {
-        "token": {
+        "wallet": {
           "address": "0xdf26369b419013cba54eb859daff6f8bc167618b",
           "abi": [
             {
@@ -626,21 +626,13 @@
               "type": "event"
             }
           ]
-        },
-        "crowdsale": {
-          "address": "",
-          "abi": ""
-        },
-        "wallet": {
-          "address": "",
-          "abi": ""
         }
       }
     },
     "ropsten": {
       "node": "https://ropsten.infura.io/",
       "contracts": {
-        "token": {
+        "wallet": {
           "address": "0xdd44072854e3a17435e4688e672d7f18f65e7d0c",
           "abi": [
             {
@@ -1261,14 +1253,6 @@
               "type": "event"
             }
           ]
-        },
-        "crowdsale": {
-          "address": "",
-          "abi": ""
-        },
-        "wallet": {
-          "address": "",
-          "abi": ""
         }
       }
     }

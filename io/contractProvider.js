@@ -1,17 +1,19 @@
 const Web3 = require(require.resolve('web3'));
 const request = require(require.resolve('request'));
 const BigNumber = require(require.resolve('bignumber.js'));
+const EventEmitter = require('events').EventEmitter;
 
 const config = require('./../config/config');
 
 const {flusher} = require('./flusher');
-const {sendLog, sendPureLog, getFirstBlock, setFirstBlock} = require('./informer');
+
+const {sendPureLog, sendLog, getFirstBlock, setFirstBlock} = require('./informer');
 const {io} = require('./server');
 
 const TOKEN_PRICE = 0.04;
 
-let currentContractAddress = process.env.dev ? config.web3.ropsten.contracts.token.address : config.web3.mainnet.contracts.token.address;
-let currentContractAbi = process.env.dev ? config.web3.ropsten.contracts.token.abi : config.web3.mainnet.contracts.token.abi;
+let currentContractAddress = process.env.dev ? config.web3.ropsten.contracts.wallet.address : config.web3.mainnet.contracts.wallet.address;
+let currentContractAbi = process.env.dev ? config.web3.ropsten.contracts.wallet.abi : config.web3.mainnet.contracts.wallet.abi;
 let currentProvider = process.env.dev ? config.web3.ropsten.node : config.web3.mainnet.node;
 
 let web3 = new Web3(currentProvider + process.env.infura);
@@ -27,101 +29,102 @@ let interval = setInterval(() => {
 }, 5000);
 
 let pendingDelay = 20000;
+let promisedBlocks = [];
 let lastTransaction = {};
 let tmpLastTransaction = {};
 let lastBlock = {};
-let firstBlock = 0;
-let contractsTransaction = [];
+let firstBlock = null;
+let contractsTransactionArray = [];
 let contractAddress = currentContractAddress;
 
-async function scanBlocks() {
-  if (firstBlock == 0) {
-    firstBlock = await web3.eth.getBlockNumber();
-  }
-  console.log('fisrt block:', firstBlock);
-  lastBlock = await web3.eth.getBlockNumber();
-  console.log('last block:', lastBlock);
-  if (lastBlock > firstBlock) {
-    let count = lastBlock - firstBlock;
-    console.log('number of minings blocks - ' + count);
-    for (let i = 0; i <= count; i++) {
-      getBlock(lastBlock - i);
-    }
-    setFirstBlock(lastBlock);
-  }
-  firstBlock = lastBlock;
-}
+let transaction = new EventEmitter();
 
-function getBlock(currentBlock) {
-  contractsTransaction = [];
-  web3.eth.getBlock(currentBlock, true, (error, block) => {
-    try {
-      for (let i = 0; i <= block.transactions.length - 1; i++) {
-        let scannedBlock = block.transactions[i];
-        if (scannedBlock.to && (scannedBlock.to.toUpperCase() === contractAddress.toUpperCase())) {
-          contractsTransaction.push({
-            block: currentBlock,
-            tx: scannedBlock.hash,
-            from: scannedBlock.from,
-            to: scannedBlock.to,
-            amount: scannedBlock.value,
-          });
-        }
+async function getTransactionsByAccount(to, startBlockNumber, endBlockNumber) {
+  contractsTransactionArray = [];
+  if (endBlockNumber == null) {
+    endBlockNumber = await web3.eth.getBlockNumber();
+    console.log("Using endBlockNumber: " + endBlockNumber);
+  }
+  if (startBlockNumber == null) {
+    startBlockNumber = endBlockNumber - 1;
+    console.log("Using startBlockNumber: " + startBlockNumber);
+  }
+  console.log("Searching for transactions to account \"" + to + "\" within blocks " + startBlockNumber + " and " + endBlockNumber);
+  for (let currentBlock = startBlockNumber; currentBlock < endBlockNumber; currentBlock++) {
+    web3.eth.getBlock(currentBlock, true, (error, block) => {
+      if (error) console.log(error);
+      if (block != null && block.transactions != null) {
+        block.transactions.forEach((e) => {
+          if (e.to && (to.toLowerCase() == e.to.toLowerCase())) {
+            let contractsTransaction = {
+              block: currentBlock,
+              tx: e.hash,
+              from: e.from,
+              to: e.to,
+              amount: e.value,
+            };
+            console.log('log from getBlock', currentBlock, startBlockNumber, endBlockNumber);
+            contractsTransactionArray.push(contractsTransaction);
+          }
+        });
       }
-    } catch (e) {
-      console.log(e);
-    }
-  });
+    });
+  }
+  setTimeout(() => {
+    console.log('transaction emit', contractsTransactionArray.length);
+    transaction.emit('send', contractsTransactionArray, endBlockNumber);
+  }, 10000);
 }
 
+transaction.on('send', (arr, endBlockNumber) => {
+  if (arr.length) {
+    emitterClient(arr);
+    firstBlock = endBlockNumber;
+    setFirstBlock(endBlockNumber);
+    flusher(arr, rate, TOKEN_PRICE);
+  }
+  getTransactionsByAccount(contractAddress, firstBlock);
+});
 
-function ethTransactionScanner() {
-  scanBlocks();
-
-  setTimeout(() => {
-    contractsTransaction.sort((a, b) => {
-      return a.block - b.block;
+function emitterClient(contractsTransaction) {
+  for (let i = 0; i < contractsTransaction.length; i++) {
+    console.log('in emitterClient function', contractsTransaction.length);
+    contractsTransaction[i].ether = BigNumber(contractsTransaction[i].amount).dividedBy(BigNumber("1e18")).toNumber();
+    contractsTransaction[i].usd = BigNumber(contractsTransaction[i].ether).multipliedBy(rate).dividedBy(1000).toNumber();
+    contractsTransaction[i].tokens = BigNumber(contractsTransaction[i].usd).dividedBy(TOKEN_PRICE).toNumber();
+    sendLog({
+      tx: contractsTransaction[i].tx,
+      sender: contractsTransaction[i].from,
+      ether: contractsTransaction[i].ether,
+      usd: contractsTransaction[i].usd,
+      token: contractsTransaction[i].tokens
     });
-    for (let i = 0; i <= contractsTransaction.length - 1; i++) {
-      contractsTransaction[i].ether = BigNumber(contractsTransaction[i].amount).dividedBy(BigNumber("1e18")).toNumber();
-      contractsTransaction[i].usd = BigNumber(contractsTransaction[i].ether).multipliedBy(rate).dividedBy(1000).toNumber();
-      contractsTransaction[i].tokens = BigNumber(contractsTransaction[i].usd).dividedBy(TOKEN_PRICE).toNumber();
-      sendLog({
-        tx: contractsTransaction[i].tx,
-        sender: contractsTransaction[i].from,
-        ether: contractsTransaction[i].ether,
-        usd: contractsTransaction[i].usd,
-        token: contractsTransaction[i].tokens
-      });
-      io.sockets.emit('depositUpdates', {
-        tx: contractsTransaction[i].tx,
-        sender: contractsTransaction[i].from,
-        ether: contractsTransaction[i].ether,
-        usd: contractsTransaction[i].usd,
-        amount: contractsTransaction[i].tokens
-      });
-      flusher.setQuery({
-        sender: contractsTransaction[i].from,
-        token: contractsTransaction[i].tokens
-      });
-    }
-    lastTransaction = contractsTransaction[contractsTransaction.length - 1];
-    if (pendingDelay == 20000) {
-      sendPureLog('Number of new transactions after restart - ' + contractsTransaction.length);
-      console.log('First check finish');
-      pendingDelay = 5000;
-    }
-    ethTransactionScanner();
-  }, pendingDelay);
+    io.sockets.emit('depositUpdates', {
+      tx: contractsTransaction[i].tx,
+      sender: contractsTransaction[i].from,
+      ether: contractsTransaction[i].ether,
+      usd: contractsTransaction[i].usd,
+      amount: contractsTransaction[i].tokens
+    });
+  }
+}
+
+function sleep(ms) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve('sleep');
+    }, ms)
+  })
 }
 
 getFirstBlock().then(res => {
+  console.log('first block: ', res);
   try {
     if (res) {
-      if (res[0].blockNumber == 0) {
+      if (res[0].blockNumber !== 0) {
         firstBlock = res[0].blockNumber;
       }
-      ethTransactionScanner();
+      getTransactionsByAccount(contractAddress, firstBlock);
     }
   } catch (e) {
     sendPureLog('ERROR DB GET FIRST BLOCK');
