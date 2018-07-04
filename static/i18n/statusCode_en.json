@@ -15,7 +15,7 @@
   "422": "Your country is blacklisted, sorry",
   "424": "It seems your email is not exists, sorry",
   "444": "It seems your mail server is not exists, sorry",
-  "451": "Your account was banned, sorry",
+  "451": "Your account is undergoing additional screening. Thank you for your patience!",
   "501": "Something went wrong, please try later",
   "511": "KYC form not filled out"
 }
