@@ -15,6 +15,7 @@ function query({sender, token}) {
     pool.getConnection((err, connection) => {
       if (err) {
         console.log('error:', err.stack);
+        connection.release();
         return;
       }
       console.log('connected to pool');
@@ -32,11 +33,13 @@ function query({sender, token}) {
             let query = "UPDATE users AS u JOIN kyc AS k ON u.id = k.user_id LEFT JOIN kyc_individual AS i ON (k.accountType = 1 AND u.id = i.user_id) LEFT JOIN kyc_company AS c ON (k.accountType = 2 AND u.id = c.user_id) SET u.balance = '" + (BigNumber(initialAmount).isNaN() ? BigNumber(token).shiftedBy(10) : BigNumber(initialAmount).plus(BigNumber(token).shiftedBy(10))) + "' WHERE k.accountType IS NOT NULL AND (EXISTS(SELECT i.user_id FROM kyc_individual AS i WHERE i.user_id = u.id) OR EXISTS(SELECT c.user_id FROM kyc_company WHERE c.user_id = u.id)) AND k.status = 4 AND (i.ethWalletNumber = '" + sender + "' OR c.ethWalletNumber = '" + sender + "') ORDER BY u.id ASC LIMIT 1";
             connection.query(query, (err) => {
               resolve('ok');
+              connection.release();
               if (err) console.log(err);
             })
           }
         } catch (e) {
           console.log('database query errror:', e);
+          connection.release();
         }
       });
     });
@@ -45,17 +48,40 @@ function query({sender, token}) {
 
 function setFirstBlock(block) {
   let id = process.env.dev ? 3 : 1;
+  console.log('start writting block #' + block + ' to id ' + id);
   let query = "UPDATE eth SET blockNumber='" + block + "' WHERE id='" + id + "'";
   pool.getConnection((err, connection) => {
+    console.log('get pool connection');
     if (err) {
-      console.log('error:', err.stack);
+      console.log('error database:', err.stack);
+      connection.release();
       return;
     }
     connection.query(query, (error, res) => {
+      if (error) {
+        console.log('error block to db: ', error);
+      }
       console.log('current block to db: ', res);
+      connection.release();
     });
   });
 }
+
+pool.on('acquire', function (connection) {
+  console.log('Connection %d acquired', connection.threadId);
+});
+
+pool.on('connection', function (connection) {
+  connection.query('SET SESSION auto_increment_increment=1')
+});
+
+pool.on('enqueue', function () {
+  console.log('Waiting for available connection slot');
+});
+
+pool.on('release', function (connection) {
+  console.log('Connection %d released', connection.threadId);
+});
 
 function getFirstBlock() {
   let id = process.env.dev ? 3 : 1;
@@ -68,6 +94,7 @@ function getFirstBlock() {
       }
       connection.query(query, (error, res) => {
         console.log('current block from db: ', res);
+        connection.release();
         resolve(res);
       });
     });
