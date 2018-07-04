@@ -49,8 +49,10 @@ async function getTransactionsByAccount(to, startBlockNumber, endBlockNumber) {
     startBlockNumber = endBlockNumber - 1;
     console.log("Using startBlockNumber: " + startBlockNumber);
   }
+  let currentBlock = startBlockNumber;
+  endBlockNumber = (endBlockNumber - startBlockNumber >= 100) ? (parseInt(startBlockNumber) + 100) : endBlockNumber;
   console.log("Searching for transactions to account \"" + to + "\" within blocks " + startBlockNumber + " and " + endBlockNumber);
-  for (let currentBlock = startBlockNumber; currentBlock < endBlockNumber; currentBlock++) {
+  for (currentBlock = startBlockNumber; currentBlock < endBlockNumber; currentBlock++) {
     web3.eth.getBlock(currentBlock, true, (error, block) => {
       if (error) console.log(error);
       if (block != null && block.transactions != null) {
@@ -71,19 +73,19 @@ async function getTransactionsByAccount(to, startBlockNumber, endBlockNumber) {
     });
   }
   setTimeout(() => {
-    console.log('transaction emit', contractsTransactionArray.length);
-    transaction.emit('send', contractsTransactionArray, endBlockNumber);
+    console.log('transaction emit', contractsTransactionArray.length, currentBlock);
+    transaction.emit('send', contractsTransactionArray, currentBlock);
   }, 10000);
 }
 
-transaction.on('send', (arr, endBlockNumber) => {
+transaction.on('send', (arr, currentBlock) => {
   if (arr.length) {
     emitterClient(arr);
-    firstBlock = endBlockNumber;
-    setFirstBlock(endBlockNumber);
+    firstBlock = currentBlock;
     flusher(arr, rate, TOKEN_PRICE);
   }
-  getTransactionsByAccount(contractAddress, firstBlock);
+  setFirstBlock(currentBlock);
+  getTransactionsByAccount(contractAddress, currentBlock);
 });
 
 function emitterClient(contractsTransaction) {

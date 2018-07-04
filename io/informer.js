@@ -36,6 +36,7 @@ function query({sender, token}) {
             })
           }
         } catch (e) {
+          console.log('database query errror:', e);
         }
       });
     });
