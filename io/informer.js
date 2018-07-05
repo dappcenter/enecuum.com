@@ -89,7 +89,7 @@ function getFirstBlock() {
         return;
       }
       connection.query(query, (error, res) => {
-        console.log('current block from db: ', res);x
+        console.log('current block from db: ', res);
         connection.release();
         resolve(res);
       });
