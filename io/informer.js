@@ -71,10 +71,6 @@ pool.on('acquire', function (connection) {
   console.log('Connection %d acquired', connection.threadId);
 });
 
-pool.on('connection', function (connection) {
-  connection.query('SET SESSION auto_increment_increment=1')
-});
-
 pool.on('enqueue', function () {
   console.log('Waiting for available connection slot');
 });
@@ -93,7 +89,7 @@ function getFirstBlock() {
         return;
       }
       connection.query(query, (error, res) => {
-        console.log('current block from db: ', res);
+        console.log('current block from db: ', res);x
         connection.release();
         resolve(res);
       });

@@ -13,7 +13,6 @@ const {io} = require('./server');
 const TOKEN_PRICE = 0.04;
 
 let currentContractAddress = process.env.dev ? config.web3.ropsten.contracts.wallet.address : config.web3.mainnet.contracts.wallet.address;
-let currentContractAbi = process.env.dev ? config.web3.ropsten.contracts.wallet.abi : config.web3.mainnet.contracts.wallet.abi;
 let currentProvider = process.env.dev ? config.web3.ropsten.node : config.web3.mainnet.node;
 
 let web3 = new Web3(currentProvider + process.env.infura);
@@ -28,11 +27,6 @@ let interval = setInterval(() => {
   });
 }, 5000);
 
-let pendingDelay = 20000;
-let promisedBlocks = [];
-let lastTransaction = {};
-let tmpLastTransaction = {};
-let lastBlock = {};
 let firstBlock = null;
 let contractsTransactionArray = [];
 let contractAddress = currentContractAddress;

@@ -5,7 +5,3 @@ require('./contractProvider');
 server.listen(8081, '0.0.0.0');
 
 console.log('started');
-
-app.get('/ping', (req, res) => {
-  res.send("i'm live man");
-});

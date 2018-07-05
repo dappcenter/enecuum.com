@@ -47,7 +47,9 @@
                 "url": "https://www.linkedin.com/in/ivanvalerevich"
               }
             ]
-          },
+          }
+        ],
+        [
           {
             "avatar": "/img/team/avatars/jev.png",
             "name": "Jev Vainsteins",
@@ -57,6 +59,18 @@
               {
                 "type": "linkedin",
                 "url": "https://www.linkedin.com/in/feranicus/"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/jason_yee.png",
+            "name": "Jason Yee",
+            "position": "CFO",
+            "description": "Finance head with over 20 years of experience providing strategic guidance, quality reporting, insights and leadership for some of the largest multinational banks including BNP Paribas and JPMorgan.  Professionally qualified as a CPA with a MBA degree from the University of Toronto, Jason is thrilled to join the Enecuum team to make a difference.",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/jason-yee-960b64a5/"
               }
             ]
           }
