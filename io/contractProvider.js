@@ -15,7 +15,7 @@ const TOKEN_PRICE = 0.04;
 let currentContractAddress = process.env.dev ? config.web3.ropsten.contracts.wallet.address : config.web3.mainnet.contracts.wallet.address;
 let currentProvider = process.env.dev ? config.web3.ropsten.node : config.web3.mainnet.node;
 
-let web3 = new Web3(currentProvider + process.env.infura);
+//let web3 = new Web3(currentProvider + process.env.infura);
 let rate = 0;
 
 let interval = setInterval(() => {
@@ -34,6 +34,7 @@ let contractAddress = currentContractAddress;
 let transaction = new EventEmitter();
 
 async function getTransactionsByAccount(to, startBlockNumber, endBlockNumber) {
+  let web3 = new Web3(currentProvider + process.env.infura);
   contractsTransactionArray = [];
   if (endBlockNumber == null) {
     endBlockNumber = await web3.eth.getBlockNumber();
