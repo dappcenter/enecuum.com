@@ -33,7 +33,6 @@
     "fingerprintjs2": "^1.8.0",
     "font-awesome": "^4.7.0",
     "gsap": "^2.0.1",
-    "memwatch-next": "^0.3.0",
     "moment": "^2.22.1",
     "mysql": "^2.15.0",
     "nuxt": "^1.0.0",
