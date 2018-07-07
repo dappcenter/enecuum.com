@@ -6,13 +6,8 @@ function restart() {
   let mainInstance = spawn('node', ['./index.js']);
   mainInstance.on('close', (e) => {
     console.log(`server was close with code: ${e}`);
-    //sendPureLog(`server was restarted with code: ${e}`);
-    //restart();
-  });
-  mainInstance.on('exit', (e) => {
-    console.log(`server was exit with code: ${e}`);
-    //sendPureLog(`server was restarted with code: ${e}`);
-    //restart();
+    sendPureLog(`server was restarted with code: ${e}`);
+    restart();
   });
   mainInstance.stdout.on('data', (data) => {
     console.log(data.toString());
