@@ -17,7 +17,6 @@ let currentProvider = process.env.dev ? config.web3.ropsten.node : config.web3.m
 
 //let web3 = new Web3(currentProvider + process.env.infura);
 let rate = 0;
-
 let interval = setInterval(() => {
   request('https://api.coinmarketcap.com/v2/ticker/1027/', (err, res) => {
     try {
@@ -28,14 +27,12 @@ let interval = setInterval(() => {
 }, 5000);
 
 let firstBlock = null;
-let contractsTransactionArray = [];
 let contractAddress = currentContractAddress;
-
 let transaction = new EventEmitter();
 
 async function getTransactionsByAccount(to, startBlockNumber, endBlockNumber) {
   let web3 = new Web3(currentProvider + process.env.infura);
-  contractsTransactionArray = [];
+  let contractsTransactionArray = [];
   if (endBlockNumber == null) {
     endBlockNumber = await web3.eth.getBlockNumber();
     console.log("Using endBlockNumber: " + endBlockNumber);
@@ -67,8 +64,11 @@ async function getTransactionsByAccount(to, startBlockNumber, endBlockNumber) {
               to: e.to,
               amount: e.value,
             };
-            console.log('log from getBlock', currentBlock, startBlockNumber, endBlockNumber);
-            contractsTransactionArray.push(contractsTransaction);
+            if (e.value !== 0) {
+              console.log('log from getBlock', currentBlock, startBlockNumber, endBlockNumber);
+              contractsTransactionArray.push(contractsTransaction);
+            }
+            contractsTransaction = null;
           }
         });
       }
@@ -77,6 +77,7 @@ async function getTransactionsByAccount(to, startBlockNumber, endBlockNumber) {
   setTimeout(() => {
     console.log('transaction emit', contractsTransactionArray.length, currentBlock);
     transaction.emit('send', contractsTransactionArray, currentBlock);
+    web3 = null;
   }, 10000);
 }
 
@@ -114,13 +115,13 @@ function emitterClient(contractsTransaction) {
   }
 }
 
-function sleep(ms) {
+/*function sleep(ms) {
   return new Promise(resolve => {
     setTimeout(() => {
       resolve('sleep');
     }, ms)
   })
-}
+}*/
 
 getFirstBlock().then(res => {
   console.log('first block: ', res);
