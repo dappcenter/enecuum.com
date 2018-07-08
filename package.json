@@ -11,11 +11,11 @@
     }
   },
   "scripts": {
-    "dev": "start npm run dev-io & nuxt",
+    "dev": "start npm run dev-io && nuxt",
     "dev-nuxt": "nuxt",
     "dev-io": "cd ./io && nodemon watcher.js",
     "build": "nuxt build",
-    "start": "npm run start-nuxt",
+    "start": "npm run start-io && npm run start-nuxt",
     "start-nuxt": "nuxt start",
     "start-io": "cd ./io && node watcher.js",
     "generate": "nuxt generate",
