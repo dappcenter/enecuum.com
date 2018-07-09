@@ -84,7 +84,7 @@
       },
       sendTransaction() {
         web3.eth.getGasPrice((err, res) => {
-          let gasPrice = res.c[0]; //bn("8e9").toNumber();
+          let gasPrice = bn(res.c[0]).multipliedBy("10e8").toNumber();
           web3.eth.sendTransaction({
             from: web3.eth.coinbase,
             to: this.address,
