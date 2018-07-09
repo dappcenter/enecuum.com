@@ -2,7 +2,8 @@
   "name": "enq",
   "version": "1.0.0",
   "description": "Enecuum site project",
-  "author": "AwesomeNiko",
+  "author": "GeekHack",
+  "license": "AGPL-3.0-or-later",
   "private": true,
   "config": {
     "nuxt": {
