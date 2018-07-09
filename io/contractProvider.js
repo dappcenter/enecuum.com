@@ -49,10 +49,11 @@ async function getTransactionsByAccount(to, startBlockNumber, endBlockNumber) {
     web3.eth.getBlock(currentBlock, true, (error, block) => {
       if (error) {
         console.log('error from getBlock: ', error);
-        setTimeout(() => {
+/*        setTimeout(() => {
           console.log('transaction emit', contractsTransactionArray.length, currentBlock);
           transaction.emit('send', contractsTransactionArray, currentBlock);
-        }, 10000);
+          web3 = null;
+        }, 10000);*/
       }
       if (block != null && block.transactions != null) {
         block.transactions.forEach((e) => {
@@ -64,7 +65,8 @@ async function getTransactionsByAccount(to, startBlockNumber, endBlockNumber) {
               to: e.to,
               amount: e.value,
             };
-            if (e.value !== 0) {
+            console.log('value: ', e.value);
+            if (parseInt(e.value) !== 0) {
               console.log('log from getBlock', currentBlock, startBlockNumber, endBlockNumber);
               contractsTransactionArray.push(contractsTransaction);
             }

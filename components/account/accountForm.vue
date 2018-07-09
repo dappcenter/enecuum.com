@@ -21,7 +21,7 @@
               :content="web3info.text"
               v-if="!web3info.loaded">
               <el-button slot="reference" type="primary"><i class="el-icon-refresh"
-                                                                             style="animation: rotating 2s linear infinite;animation-direction: reverse;"></i>
+                                                            style="animation: rotating 2s linear infinite;animation-direction: reverse;"></i>
               </el-button>
             </el-popover>
             <el-button v-else type="primary" @click="buy"
@@ -84,7 +84,7 @@
       },
       sendTransaction() {
         web3.eth.getGasPrice((err, res) => {
-          let gasPrice = bn(res.c[0]).multipliedBy("10e8").toNumber();
+          let gasPrice = res.c[0];//bn(res.c[0]).multipliedBy("10e8").toNumber();
           web3.eth.sendTransaction({
             from: web3.eth.coinbase,
             to: this.address,
