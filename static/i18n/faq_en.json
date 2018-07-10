@@ -125,7 +125,7 @@
             },
             {
               "title": "When does the KYC process finish?",
-              "text": "Seeing the great interest in our project, we decided to prolong it till the mid of July."
+              "text": "Seeing the great interest in our project, we decided to prolong it till the mid of August."
             },
             {
               "title": "What is the hardcap?",
@@ -138,6 +138,22 @@
             {
               "title": "What countries are restricted from participating in the private sale?",
               "text": "Afghanistan, Central African Republic, China, Congo, Eritrea, Ethiopia, Guinea-Bissau, Iran, Iraq, Lebanon, Libya, Mali, North Korea, Serbia, Somalia, South Sudan, Sri Lanka, Sudan, Syria, Trinidad and Tobago, Tunisia, Vanuatu, USA, Yemen"
+            },
+            {
+              "title": "How much of ENQ is going to be pre-mined?",
+              "text": "30% of the total emission of ENQ is proposed to be pre-mined by the Enecuum development team in order to create an initial distribution pool. This equates to 1,297,296,000 ENQ."
+            },
+            {
+              "title": "How much ENQ(ERC20) will be available during the private sale?",
+              "text": "596,756,160 ENQ(ERC20). It is intended that it will be possible to exchange ENQ(ERC20) for ENQ at a rate of 1:1, once the Enecuum adaptive decentralized environment is operational."
+            },
+            {
+              "title": "What will happen to the unsold ENQ(ERC20) tokens?",
+              "text": "All unsold ENQ(ERC20) tokens will go to the reserve fund and will be locked at least for one year."
+            },
+            {
+              "title": "Are there any pre-sale bonuses or a lockup on coins?",
+              "text": "We don't have any pre-sale bonuses. There is a 10 months lockup. Each of these 10 months 10% of the tokens are intended to be released to the contributors. There is no preferential treatment - the conditions are the same for all the contributors."
             }
           ]
         },
@@ -159,10 +175,6 @@
             {
               "title": "What a miner can mine in ENQ?",
               "text": "Our system design offers 3 types of mining: PoW, PoA and PoS. \n PoW miners aim to search for a hash satisfying certain requirement to open a macroblock. A Cryptonight modification based on xmr-stak miner is intended for PoW mining.\n PoA miners on their mobile phones aim to form a PoA team and create microblocks with transaction in them and publish them into a macroblock.\n PoS miners rely on the amount of ENQ they have and their stable and wide Internet connection. PoS miners aim to check the changing balances of user accounts in the system.\n Mining of every type is rewarded."
-            },
-            {
-              "title": "How to become a miner team lead in a team of mobile phones?",
-              "text": "A team lead should have the most powerful CPU and a stable and fast Internet connection with low latency - that combination out of all other members in the team."
             },
             {
               "title": "When do you expect first miners?",

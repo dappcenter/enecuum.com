@@ -4,142 +4,18 @@
     "read": "READ",
     "presskitIMG": "",
     "presskitDOC": "",
-    "articles_RU": [
-      {
-        "date": "March 23 2018",
-        "title": "Proof-of-Activity в действии: версия Enecuum",
-        "description": "",
-        "link": "https://bloomchain.ru/blockchain-fintech/proof-of-activity-v-dejstvii-versiya-enecuum/"
-      },
-      {
-        "date": "April 6 2018",
-        "title": "Ассоциация блокчейн-разработчиков Санкт-Петербурга пополнилась за счет платформы ENECUUM",
-        "description": "",
-        "link": "https://blockchain.ru/posts/assotsiatsiya-blokchein-razrabotchikov-sankt-peterburga-popolnilas-za-schet-platformy-enecuum"
-      },
-      {
-        "date": "April 15 2018",
-        "title": "Эпоха цифровой экономики",
-        "description": "",
-        "link": "https://www.kommersant.ru/doc/3515511"
-      },
-      {
-        "date": "April 16 2018",
-        "title": "Proof-of-Activity как перспективный алгоритм работы",
-        "description": "",
-        "link": "https://blockchain.ru/posts/proof-of-activity-kak-perspektivnyi-algoritm-raboty"
-      },
-      {
-        "date": "April 17 2018",
-        "title": "О проблемах масштабирования ведущих блокчейн-сетей и их решениях в Enecuum",
-        "description": "",
-        "link": "https://vc.ru/36523-o-problemah-masshtabirovaniya-vedushchih-blokcheyn-setey-i-ih-resheniyah-v-enecuum"
-      },
-      {
-        "date": "April 22 2018",
-        "title": "Блокчейн: с запада на восток ",
-        "description": "",
-        "link": "https://roem.ru/22-04-2018/270154/3-best-chains-i-q/"
-      }
-    ],
     "articles_EN": [
       {
-        "date": "April 16 2018",
-        "title": "ENQ was mentoring startups in Berlin",
-        "description": "Altcoin Today",
-        "link": "https://altcointoday.com/enq-was-mentoring-startups-in-berlin-april-16-berlin/",
-        "level": 2,
-        "img": "/img/press/post_3.png"
-      },
-      {
-        "date": "April 16 2018",
-        "title": "ENQ was mentoring startups in Berlin",
-        "description": "",
-        "link": "https://coinspectator.com/news/375228/enq-was-mentoring-startups-in-berlin"
-      },
-      {
-        "date": "April 16 2018 ",
-        "title": "ENQ was mentoring startups in Berlin",
-        "description": "",
-        "link": "https://digitalminer.net/enq-was-mentoring-startups-in-berlin/"
-      },
-      {
-        "date": "April 16 2018",
-        "title": "ENQ was mentoring startups in Berlin",
-        "description": "",
-        "link": "https://www.coinmarkets.net/stories/14644/enq-was-mentoring-startups-in-berlin/"
-      },
-      {
-        "date": "April 16 2018",
-        "title": "ENQ was mentoring startups in Berlin",
-        "description": "",
-        "link": "https://cryptocoinunlimited.com/enq-was-mentoring-startups-in-berlin-april-16-berlin/"
-      },
-      {
-        "date": "April 16 2018",
-        "title": "ENQ was mentoring startups in Berlin",
-        "description": "",
-        "link": "http://coinwisdom.org/92086-enq-was-mentoring-startups-in-berlin/"
-      },
-      {
-        "date": "April 16 2018",
-        "title": "ENQ was mentoring startups in Berlin",
-        "description": "",
-        "link": "http://coinfeed.co.uk/enq-was-mentoring-startups-in-berlin"
-      },
-      {
-        "date": "April 24 2018",
-        "title": "Proof-of-Activity as a promising algorithm of work",
-        "description": "",
-        "link": "https://blockchain.ru/en/posts/proof-of-activity-as-a-promising-algorithm-of-work"
-      },
-      {
-        "date": "April 27 2018",
-        "title": "Die globale Blockchain-Avantgarde trifft sich am Zugersee",
-        "description": "",
-        "link": "https://www.inside-it.ch/articles/50944"
-      },
-      {
-        "date": "May 04 2018",
+        "date": "May 08 2018",
         "title": "International business experts awarded an decisive victory to Enecuum.",
         "description": "",
         "link": "https://www.finyear.com/Switzerland-Chooses-The-Blockchain-Of-The-Future_a39402.html"
       },
       {
-        "date": "May 04 2018",
-        "title": "Arch Summit archieves its objectives",
-        "description": "Delano",
-        "link": "http://delano.lu/d/detail/news/arch-summit-achieves-its-objectives/178254",
-        "level": 2,
-        "img": "/img/press/post_2.png"
-      },
-      {
-        "date": "May 08 2018",
-        "title": "Best crypto startup",
-        "description": "Crypto Ninjas",
-        "link": "https://www.cryptoninjas.net/2018/05/08/international-business-experts-award-best-crypto-startup-to-enecuum/",
-        "level": 2,
-        "img": "/img/press/post_1.png"
-      },
-      {
-        "date": "May 15 2018",
+        "date": "May 14 2018",
         "title": "What is Enecuum Cryptocurrency?",
-        "description": "The merkle",
-        "link": "https://themerkle.com/what-is-enecuum-cryptocurrency/",
-        "level": 3,
-        "img": "/img/press/main_post.png"
-      },
-      {
-        "date": "May 20 2018",
-        "title": "BlockShow Europe 2018 Blasts a Massive Update, Days Prior to the Event",
         "description": "",
-        "link": "https://cointelegraph.com/news/blockshow-europe-2018-blasts-a-massive-update-days-prior-to-the-event"
-      },
-      {
-        "date": "May 31 2018",
-        "title": "On the Problems of Scaling the Leading Block-Network and their Solutions in Enecuum - Two Paradigms and Two Key Problems",
-        "description": "",
-        "link": "https://coinidol.com/problems-of-scaling-leading-block-network/"
+        "link": "https://themerkle.com/what-is-enecuum-cryptocurrency/"
       },
       {
         "date": "June 04 2018",
@@ -148,17 +24,17 @@
         "link": "https://www.coinspeaker.com/2018/06/04/enecuum-cto-anton-nikonorov-shares-insight-blockchain-tomorrow/"
       },
       {
-        "date": "June 16 2018",
+        "date": "June 09 2018",
+        "title": "Enecuum appoints Jorge Sebastiaon from Huawei to the advisory board",
+        "description": "",
+        "link": "https://www.cryptoninjas.net/2018/06/09/enecuum-appoints-jorge-sebastiaon-from-huawei-to-advisory-board/"
+      },
+      {
+        "date": "June 15 2018",
         "title": "The most famous crypto trader Mr. Ran Neu-Ner chose Enecuum team as an adviser",
         "description": "",
         "img": "cryptocomes.svg",
         "link": "https://cryptocomes.com/the-most-famous-crypto-trader-mr-ran-neu-ner-chose-enecuum-team-as-an-adviser"
-      },
-      {
-        "date": "June 16 2018",
-        "title": "Enecuum appoints Jorge Sebastiaon from Huawei to the advisory board",
-        "description": "",
-        "link": "https://www.cryptoninjas.net/2018/06/09/enecuum-appoints-jorge-sebastiaon-from-huawei-to-advisory-board/"
       },
       {
         "date": "June 19 2018",
