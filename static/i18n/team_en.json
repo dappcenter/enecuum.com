@@ -78,6 +78,113 @@
       ]
     },
     {
+      "title": "Advisory Board",
+      "members": [
+        [
+          {
+            "avatar": "/img/team/avatars/RanNeu-Ner.png",
+            "name": "Ran Neu-Ner",
+            "position": "",
+            "description": "Founded The Creative Counsel in 2001, South Africa's leading activations agency with an annual turnover of $150 million. Joined the Young Presidents Organisation 2010, a global network of successful CEO’s, sharing learnings and ideas exchange where he is still an active member. He has also taken on an EXCO role for the Johannesburg City Chapter. In 2015 Ran concluded the biggest business transaction in South Africa where he sold The Creative Counsel to a French-owned international business, The Publicis Groupe for just over $150m Ran has been a part of the Blockchain world since 2013 and has advised several projects. He is the founder of Onchain Capital, a Crypto Asset Fund and Advisory service. In 2017 Ran’s launched the world’s first televised cryptocurrency show called Crypto Trader which is aired weekly on a Thursday night at 20:30 on CNBC Africa, DSTV channel 410. The show is the most viewed show on CNBC today. Ran is also ranked in the top 10 most influential people in the Blockchain by Richtopia.",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/ran-neuner-8826a756/"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/jorge.png",
+            "name": "Jorge Sebastiao",
+            "position": "",
+            "description": "CTO Eco-System in Huawei Technologies. Over 30 years of ICT experience, covering, managed services, cyber security, innovation, architecture as well as risk management, compliance, auditing, certification, business continuity, & disaster recovery. He was become infected by Enecuum technological steck.",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/sebastiao/"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/stan.png",
+            "name": "Stan Prihodko",
+            "position": "",
+            "description": "Stan is head of Crypto asset management in <a href=\"https://gem.capital/\">GEM Capital</a>, a fund with over $400m AUM. Prior to joining GEM Stan was engaged in trust management of cryptocurrency assets and consultations on investing in ICOs for high net worth individuals.",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/stan-prikhodko-7a817a36/"
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "avatar": "/img/team/avatars/Lana.png",
+            "name": "Lana Lyu",
+            "position": "",
+            "description": "Lana is a Blockchain Technology aficionado with extensive experience working in the legal, financial and DLT related services sector for German, Russian, Kazakh and Hong Kong private and corporate clients. Passionate about FinTech Startups/SME's and female entrepreneurship, Lana supports the development and growth of FinTech community in Hong Kong, regularly delivers talks on the conferences and universities, organizes monthly events with & for Women in Business. Lana leads Russian Club Hong Kong as Vice President developing the Russian-Hong Kong social and business relationship.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/lan-lyu-64106760/"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/ismail.png",
+            "name": "Ismail Malik",
+            "position": "",
+            "description": "Ismail is a prominent professional in the field of promotion and consulting. His iconic figure along with his deep knowledge help cut Enecuum into a true diamond on the market.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/blockchain/"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/RugaevS.png",
+            "name": "Alexander Rugaev",
+            "position": "",
+            "description": "Alexander Rugaev is a serial entrepreneur and one of the early blockchain supporters. He has experience in creating industrial grade Bitcoin and Ethereum mining farms. He has 16 years of experience in e-commerce and online marketing.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/alexrugaev/"
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "avatar": "/img/team/avatars/tarun.png",
+            "name": "Tarun Jaswani",
+            "position": "",
+            "description": "Tarun Jaswani is partner with Interfacemax, a Digital Asset Fund focussed on blockchain projects that create value through real world application. A techpreneur with past experience in Virtual Reality, Gaming and Adtech.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/tmjaswani/"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/Michael_Kiook.png",
+            "name": "Michael Kiook Jeoung",
+            "position": "",
+            "description": "Michael Kiook Jeoung is an ICT strategist and finance expert. His concentration is blockchain enabled service model and platform. He had a leadership role at Cisco Systems, OECD, Ministry of Land and Transport where he was instrumental to both private and public sector innovative initiatives for the block chain technology(DLT), smart city, cloud platform-services, IoT and ubiquitous computing-sensor network. He has 15+ years of experience in strategic consulting and has created success stories for various edge technologies and services with fundamental business framework and process. He has also worked for the advisory committee for Ministry of Agriculture and Ministry of Defense of Korea.",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/jeoung-kiook-0a15a010/"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
       "title": "Development",
       "members": [
         [
@@ -442,118 +549,6 @@
               {
                 "type": "envelope",
                 "url": "mailto:hr@enecuum.com"
-              }
-            ]
-          }
-        ]
-      ]
-    },
-    {
-      "title": "Advisors and Consultants",
-      "members": [
-        [
-          {
-            "avatar": "/img/team/avatars/ismail.png",
-            "name": "Ismail Malik",
-            "position": "",
-            "description": "Ismail is a prominent professional in the field of promotion and consulting. His iconic figure along with his deep knowledge help cut Enecuum into a true diamond on the market.\n                                ",
-            "social": [
-              {
-                "type": "linkedin",
-                "url": "https://www.linkedin.com/in/blockchain/"
-              }
-            ]
-          },
-          {
-            "avatar": "/img/team/avatars/RugaevS.png",
-            "name": "Alexander Rugaev",
-            "position": "",
-            "description": "Alexander Rugaev is a serial entrepreneur and one of the early blockchain supporters. He has experience in creating industrial grade Bitcoin and Ethereum mining farms. He has 16 years of experience in e-commerce and online marketing.\n                                ",
-            "social": [
-              {
-                "type": "linkedin",
-                "url": "https://www.linkedin.com/in/alexrugaev/"
-              }
-            ]
-          },
-          {
-            "avatar": "/img/team/avatars/Lana.png",
-            "name": "Lana Lyu",
-            "position": "",
-            "description": "Lana is a Blockchain Technology aficionado with extensive experience working in the legal, financial and DLT related services sector for German, Russian, Kazakh and Hong Kong private and corporate clients. Passionate about FinTech Startups/SME's and female entrepreneurship, Lana supports the development and growth of FinTech community in Hong Kong, regularly delivers talks on the conferences and universities, organizes monthly events with & for Women in Business. Lana leads Russian Club Hong Kong as Vice President developing the Russian-Hong Kong social and business relationship.\n                                ",
-            "social": [
-              {
-                "type": "linkedin",
-                "url": "https://www.linkedin.com/in/lan-lyu-64106760/"
-              }
-            ]
-          }
-        ],
-        [
-          {
-            "avatar": "/img/team/avatars/tarun.png",
-            "name": "Tarun Jaswani",
-            "position": "",
-            "description": "Tarun Jaswani is partner with Interfacemax, a Digital Asset Fund focussed on blockchain projects that create value through real world application. A techpreneur with past experience in Virtual Reality, Gaming and Adtech.\n                                ",
-            "social": [
-              {
-                "type": "linkedin",
-                "url": "https://www.linkedin.com/in/tmjaswani/"
-              }
-            ]
-          },
-          {
-            "avatar": "/img/team/avatars/Michael_Kiook.png",
-            "name": "Michael Kiook Jeoung",
-            "position": "",
-            "description": "Michael Kiook Jeoung is an ICT strategist and finance expert. His concentration is blockchain enabled service model and platform. He had a leadership role at Cisco Systems, OECD, Ministry of Land and Transport where he was instrumental to both private and public sector innovative initiatives for the block chain technology(DLT), smart city, cloud platform-services, IoT and ubiquitous computing-sensor network. He has 15+ years of experience in strategic consulting and has created success stories for various edge technologies and services with fundamental business framework and process. He has also worked for the advisory committee for Ministry of Agriculture and Ministry of Defense of Korea.",
-            "social": [
-              {
-                "type": "linkedin",
-                "url": "https://www.linkedin.com/in/jeoung-kiook-0a15a010/"
-              }
-            ]
-          },
-          {
-            "avatar": "/img/team/avatars/jorge.png",
-            "name": "Jorge Sebastiao",
-            "position": "",
-            "description": "CTO Eco-System in Huawei Technologies. Over 30 years of ICT experience, covering, managed services, cyber security, innovation, architecture as well as risk management, compliance, auditing, certification, business continuity, & disaster recovery. He was become infected by Enecuum technological steck.",
-            "social": [
-              {
-                "type": "linkedin",
-                "url": "https://www.linkedin.com/in/sebastiao/"
-              }
-            ]
-          },
-          {
-            "avatar": "/img/team/avatars/RanNeu-Ner.png",
-            "name": "Ran Neu-Ner",
-            "position": "",
-            "description": "Founded The Creative Counsel in 2001, South Africa's leading activations agency with an annual turnover of $150 million. Joined the Young Presidents Organisation 2010, a global network of successful CEO’s, sharing learnings and ideas exchange where he is still an active member. He has also taken on an EXCO role for the Johannesburg City Chapter. In 2015 Ran concluded the biggest business transaction in South Africa where he sold The Creative Counsel to a French-owned international business, The Publicis Groupe for just over $150m Ran has been a part of the Blockchain world since 2013 and has advised several projects. He is the founder of Onchain Capital, a Crypto Asset Fund and Advisory service. In 2017 Ran’s launched the world’s first televised cryptocurrency show called Crypto Trader which is aired weekly on a Thursday night at 20:30 on CNBC Africa, DSTV channel 410. The show is the most viewed show on CNBC today. Ran is also ranked in the top 10 most influential people in the Blockchain by Richtopia.",
-            "social": [
-              {
-                "type": "linkedin",
-                "url": "https://www.linkedin.com/in/ran-neuner-8826a756/"
-              }
-            ]
-          }
-        ]
-      ]
-    },
-    {
-      "title": "Ambassadors",
-      "members": [
-        [
-          {
-            "avatar": "/img/team/avatars/stan.png",
-            "name": "Stan Prihodko",
-            "position": "",
-            "description": "Stan is head of Crypto asset management in <a href=\"https://gem.capital/\">GEM Capital</a>, a fund with over $400m AUM. Prior to joining GEM Stan was engaged in trust management of cryptocurrency assets and consultations on investing in ICOs for high net worth individuals.",
-            "social": [
-              {
-                "type": "linkedin",
-                "url": "https://www.linkedin.com/in/stan-prikhodko-7a817a36/"
               }
             ]
           }
