@@ -161,30 +161,34 @@
       "partners": {
         "title": "Partners",
         "img": [
-          {
-            "link": "http://www.kwm.com/en",
-            "img": "/img/mainpage/partners/kwm.png"
-          },
-          {
-            "link": "http://coinsortium.io",
-            "img": "/img/mainpage/partners/coinsortium.png"
-          },
-          {
-            "link": "http://www.spblockchain.ru",
-            "img": "/img/mainpage/partners/spblockchain.jpg"
-          },
-          {
-            "link": "https://www.trustverse.io/",
-            "img": "/img/mainpage/partners/trustverse.png"
-          },
-          {
-            "link": "https://alphachain.com/",
-            "img": "/img/mainpage/partners/alphachain.png"
-          },
-          {
-            "link": "https://gem.co/",
-            "img": "/img/mainpage/partners/GEM Crypto_black.png"
-          }
+          [
+            {
+              "link": "https://alphachain.com/",
+              "img": "/img/mainpage/partners/alphachain.png"
+            },
+            {
+              "link": "https://gem.capital/",
+              "img": "/img/mainpage/partners/GEM Crypto_black.png"
+            }
+          ],
+          [
+            {
+              "link": "http://www.kwm.com/en",
+              "img": "/img/mainpage/partners/kwm.png"
+            },
+            {
+              "link": "http://coinsortium.io",
+              "img": "/img/mainpage/partners/coinsortium.png"
+            },
+            {
+              "link": "http://www.spblockchain.ru",
+              "img": "/img/mainpage/partners/spblockchain.jpg"
+            },
+            {
+              "link": "https://www.trustverse.io/",
+              "img": "/img/mainpage/partners/trustverse.png"
+            }
+          ]
         ]
       },
       "eco_partners": {

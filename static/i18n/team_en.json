@@ -109,7 +109,13 @@
             "avatar": "/img/team/avatars/henok_tekle.png",
             "name": "Henok \"Hen\" Tekle",
             "position": "",
-            "description": "Co-founder and Managing Partner of AlphaChain, a notable blockchain angel investor, advisor, content creator and public speaker. Hen is a passionate advocate for the disruption brought by token economies and blockchain technology, and regularly speaks at conferences worldwide about these topics. Hen’s angel investment activities have delivered substantial capital and strategic value to early-stage companies in promotion of the development and mainstream adoption of blockchain technology."
+            "description": "Co-founder and Managing Partner of AlphaChain, a notable blockchain angel investor, advisor, content creator and public speaker. Hen is a passionate advocate for the disruption brought by token economies and blockchain technology, and regularly speaks at conferences worldwide about these topics. Hen’s angel investment activities have delivered substantial capital and strategic value to early-stage companies in promotion of the development and mainstream adoption of blockchain technology.",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/henglobal"
+              }
+            ]
           }
         ],
         [
@@ -197,7 +203,7 @@
           {
             "avatar": "/img/team/avatars/mihail_gluhov.png",
             "name": "Mikhail Gluhov",
-            "position": "Tech Lead",
+            "position": "Smart Contract developer",
             "description": "Mike loves to solve complex problems. An effective Tech Lead establishes a technical vision with the development team and works with developers to turn it into reality. Mike takes on traits that other roles may have, such as a Team Lead, Architect or Software Engineering Manager but they remain hands-on with code.\n                                ",
             "social": [
               {
@@ -337,7 +343,7 @@
           {
             "avatar": "/img/team/avatars/constantin.png",
             "name": "Konstantin Zhidanov",
-            "position": "Software Developer",
+            "position": "Tech Lead, Cryptography Specialist",
             "description": "Konstantin is a software developer with the skills on low-level programming and applied cryptography. Besides, he teaches computer science related courses at Saint-Petersburg State University of Airspace Instrumentation. 'To teach something is the best way to be sure that you really understand it'\n                                ",
             "social": [
               {
