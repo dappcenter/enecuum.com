@@ -6,7 +6,7 @@
     <el-col :xs="22" class="flex-center">
       <el-col :xs="16" :sm="22">
         <el-row class="flex-center flex-wrap partner-pure" :gutter="40">
-          <el-col :xs="24" :md="6" :sm="8" :lg="4" :xl="3" v-for="(partn, key) in data.partners.img" :key="key">
+          <el-col :xs="24" :md="6" :sm="8" :lg="4" :xl="3" v-for="(partn, key) in data.partners.img" :key="key" class="flex-middle">
             <div class="partner-item"><a :href="partn.link" target="_blank"><img :src="partn.img" class="partner-item_avatar"></a>
             </div>
           </el-col>
@@ -19,7 +19,7 @@
     <el-col :xs="22" class="flex-center">
       <el-col :xs="16" :sm="22">
         <el-row class="flex-center flex-wrap partner-eco" :gutter="40">
-          <el-col :xs="24" :md="6" :sm="8" :lg="4" v-for="(ecpart, eckey) in data.eco_partners.img" :key="eckey">
+          <el-col :xs="24" :md="6" :sm="8" :lg="4" v-for="(ecpart, eckey) in data.eco_partners.img" :key="eckey" class="flex-middle">
             <div class="partner-item"><a :href="ecpart.link" target="_blank"><img :src="ecpart.img" class="partner-item_avatar"></a>
             </div>
           </el-col>

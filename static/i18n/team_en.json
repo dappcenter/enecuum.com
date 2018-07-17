@@ -106,6 +106,14 @@
             ]
           },
           {
+            "avatar": "/img/team/avatars/henok_tekle.png",
+            "name": "Henok \"Hen\" Tekle",
+            "position": "",
+            "description": "Co-founder and Managing Partner of AlphaChain, a notable blockchain angel investor, advisor, content creator and public speaker. Hen is a passionate advocate for the disruption brought by token economies and blockchain technology, and regularly speaks at conferences worldwide about these topics. Hen’s angel investment activities have delivered substantial capital and strategic value to early-stage companies in promotion of the development and mainstream adoption of blockchain technology."
+          }
+        ],
+        [
+          {
             "avatar": "/img/team/avatars/stan.png",
             "name": "Stan Prihodko",
             "position": "",
@@ -116,9 +124,7 @@
                 "url": "https://www.linkedin.com/in/stan-prikhodko-7a817a36/"
               }
             ]
-          }
-        ],
-        [
+          },
           {
             "avatar": "/img/team/avatars/Lana.png",
             "name": "Lana Lyu",
@@ -142,7 +148,9 @@
                 "url": "https://www.linkedin.com/in/blockchain/"
               }
             ]
-          },
+          }
+        ],
+        [
           {
             "avatar": "/img/team/avatars/RugaevS.png",
             "name": "Alexander Rugaev",
@@ -154,9 +162,7 @@
                 "url": "https://www.linkedin.com/in/alexrugaev/"
               }
             ]
-          }
-        ],
-        [
+          },
           {
             "avatar": "/img/team/avatars/tarun.png",
             "name": "Tarun Jaswani",
