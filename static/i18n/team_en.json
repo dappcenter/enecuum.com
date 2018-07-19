@@ -193,7 +193,12 @@
               }
             ]
           }
-        ],
+        ]
+      ]
+    },
+    {
+      "title": "Cryptographers",
+      "members": [
         [
           {
             "avatar": "/img/team/avatars/afanasyeva_aleksandra.png",
