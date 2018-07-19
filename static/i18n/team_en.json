@@ -193,6 +193,32 @@
               }
             ]
           }
+        ],
+        [
+          {
+            "avatar": "/img/team/avatars/afanasyeva_aleksandra.png",
+            "name": "Afanasyeva Aleksandra",
+            "position": "Cryptography Advisor",
+            "description": "Head teacher of the Department of Mathematics and IT of the Saint Petersburg Academic University. Aleksandra received her M.Sc. in IT in 2003 and trained in the Nokia Research Center in Helsinki, Finland, on Evidence Based Security and Verification of Cryptographic Protocols.\nAleksandra has participated in and led collaborative projects with Samsung, Intel, Dell EMC in InfoSec and Optimization of Resource Management Algorithms in Data Storage Systems.",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/michael-kiook-jeoung-0a15a010/"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/Bezzateev_Sergey.png",
+            "name": "Bezzateev Sergey",
+            "position": "Cryptography Advisor",
+            "description": "PhD in CS, head of the Department of IT Security of the Saint Petersburg State University of Aerospace Instrumentation. Sergey is renown specialist with over 40 materials published in the field of Information Theory, Coding Theory, InfoSec, and one of the leading experts in cryptography.",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.researchgate.net/profile/Sergey_Bezzateev"
+              }
+            ]
+          }
         ]
       ]
     },
@@ -381,6 +407,22 @@
                 "url": "https://www.linkedin.com/in/oleg-karakoz"
               }
             ]
+          },
+          {
+            "avatar": "/img/team/avatars/Sergey_Vanurin.png",
+            "name": "Sergey Vanurin",
+            "position": "Project Manager",
+            "description": "IT specialist with background in development, support, DevOps and delivery. As a project manager Sergey developed online 3D geoinformation system with successful adoption in city planning department. Interested in mathematics and data science Sergey finds Enecuum as the perfect place for personal growth and the world changing.",
+            "social": [
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/Dmitry_Korobenko.png",
+            "name": "Dmitry Korobenko",
+            "position": "QA Engineer",
+            "description": "Dmitry spent several years working as cameraman, film editor and technical specialist in a non-profit educational organization but decided to dive into IT and technology. Nevertheless he still sure that human brain is the most interesting and complicated information system.",
+            "social": [
+            ]
           }
         ]
       ]
@@ -514,7 +556,9 @@
                 "url": "tsybiskin@enecuum.com"
               }
             ]
-          },
+          }
+        ],
+        [
           {
             "avatar": "/img/team/avatars/dmitry.png",
             "name": "Dmitry Rumyantsev",
@@ -528,6 +572,18 @@
               {
                 "type": "twitter",
                 "url": "https://twitter.com/DmRumian"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/Alisa_Kosykh.png",
+            "name": "Alisa Kosykh",
+            "position": "SMM",
+            "description": "Has an experience as SMM manager in several blockchain projects. Works in Enecuum with social networks and freshest information about the project. Got a bachelor degree  in advertisement and public relations. Speaks 4 languages - Russian, English, French and Italian. Wants to get to the social networks on a new level.",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/alisa-kosykh-625b6114b/"
               }
             ]
           }
