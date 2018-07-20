@@ -207,8 +207,12 @@
             "description": "Head teacher of the Department of Mathematics and IT of the Saint Petersburg Academic University. Aleksandra received her M.Sc. in IT in 2003 and trained in the Nokia Research Center in Helsinki, Finland, on Evidence Based Security and Verification of Cryptographic Protocols.\nAleksandra has participated in and led collaborative projects with Samsung, Intel, Dell EMC in InfoSec and Optimization of Resource Management Algorithms in Data Storage Systems.",
             "social": [
               {
-                "type": "linkedin",
-                "url": "https://www.linkedin.com/in/michael-kiook-jeoung-0a15a010/"
+                "type": "university",
+                "url": "http://pro.guap.ru/exters/profile/tab1/1634"
+              },
+              {
+                "type": "university",
+                "url": "http://mit.spbau.ru/node/932"
               }
             ]
           },
