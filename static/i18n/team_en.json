@@ -203,8 +203,8 @@
           {
             "avatar": "/img/team/avatars/afanasyeva_aleksandra.png",
             "name": "Afanasyeva Aleksandra",
-            "position": "Cryptography Advisor",
-            "description": "Head teacher of the Department of Mathematics and IT of the Saint Petersburg Academic University. Aleksandra received her M.Sc. in IT in 2003 and trained in the Nokia Research Center in Helsinki, Finland, on Evidence Based Security and Verification of Cryptographic Protocols.\nAleksandra has participated in and led collaborative projects with Samsung, Intel, Dell EMC in InfoSec and Optimization of Resource Management Algorithms in Data Storage Systems.",
+            "position": "Associate Professor in Cryptography",
+            "description": "Associate professor of the Department of Mathematics and IT of the Saint Petersburg Academic University. Aleksandra received her M.Sc. in IT in 2003 and trained in the Nokia Research Center in Helsinki, Finland, on Evidence Based Security and Verification of Cryptographic Protocols. Aleksandra has participated in and led collaborative projects with Samsung, Intel, Dell EMC in InfoSec and Optimization of Resource Management Algorithms in Data Storage Systems.",
             "social": [
               {
                 "type": "university",
@@ -219,8 +219,8 @@
           {
             "avatar": "/img/team/avatars/Bezzateev_Sergey.png",
             "name": "Bezzateev Sergey",
-            "position": "Cryptography Advisor",
-            "description": "PhD in CS, head of the Department of IT Security of the Saint Petersburg State University of Aerospace Instrumentation. Sergey is renown specialist with over 40 materials published in the field of Information Theory, Coding Theory, InfoSec, and one of the leading experts in cryptography.",
+            "position": "Professor, Doctor of Science in Cryptography",
+            "description": "Sc.D. in CS, head of the Department of IT Security of the Saint Petersburg State University of Aerospace Instrumentation. Sergey is renown specialist with over 40 materials published in the field of Information Theory, Coding Theory, InfoSec, and one of the leading experts in cryptography.",
             "social": [
               {
                 "type": "linkedin",
@@ -236,18 +236,14 @@
       "members": [
         [
           {
-            "avatar": "/img/team/avatars/mihail_gluhov.png",
-            "name": "Mikhail Gluhov",
-            "position": "Smart Contract developer",
-            "description": "Mike loves to solve complex problems. An effective Tech Lead establishes a technical vision with the development team and works with developers to turn it into reality. Mike takes on traits that other roles may have, such as a Team Lead, Architect or Software Engineering Manager but they remain hands-on with code.\n                                ",
+            "avatar": "/img/team/avatars/constantin.png",
+            "name": "Konstantin Zhidanov",
+            "position": "Tech Lead, Cryptography Specialist",
+            "description": "Konstantin is a software developer with the skills on low-level programming and applied cryptography. Besides, he teaches computer science related courses at Saint-Petersburg State University of Airspace Instrumentation. 'To teach something is the best way to be sure that you really understand it'\n                                ",
             "social": [
               {
                 "type": "linkedin",
-                "url": "https://www.linkedin.com/in/mikhail-glukhov-62a07352/"
-              },
-              {
-                "type": "github",
-                "url": "https://github.com/rigidus"
+                "url": "https://www.linkedin.com/in/konstantin-zhidanov/"
               }
             ]
           },
@@ -264,19 +260,11 @@
             ]
           },
           {
-            "avatar": "/img/team/avatars/dmitriy_pavlyuk.png",
-            "name": "Dmitry Pavlyuk",
-            "position": "Software Developer",
-            "description": "A developer-mathematician, Dmitry specializes in functional programming languages. He studied at the Computational Mathematics and Cybernetics faculty of the Lomonosov Moscow State University. He has a hands-on work experience in VPN-client development.\n                                ",
+            "avatar": "/img/team/avatars/Sergey_Vanurin.png",
+            "name": "Sergey Vanurin",
+            "position": "Project Manager",
+            "description": "IT specialist with background in development, support, DevOps and delivery. As a project manager Sergey developed online 3D geoinformation system with successful adoption in city planning department. Interested in mathematics and data science Sergey finds Enecuum as the perfect place for personal growth and the world changing.",
             "social": [
-              {
-                "type": "linkedin",
-                "url": "#"
-              },
-              {
-                "type": "envelope",
-                "url": "#"
-              }
             ]
           }
         ],
@@ -376,14 +364,18 @@
             ]
           },
           {
-            "avatar": "/img/team/avatars/constantin.png",
-            "name": "Konstantin Zhidanov",
-            "position": "Tech Lead, Cryptography Specialist",
-            "description": "Konstantin is a software developer with the skills on low-level programming and applied cryptography. Besides, he teaches computer science related courses at Saint-Petersburg State University of Airspace Instrumentation. 'To teach something is the best way to be sure that you really understand it'\n                                ",
+            "avatar": "/img/team/avatars/mihail_gluhov.png",
+            "name": "Mikhail Gluhov",
+            "position": "Smart Contract developer",
+            "description": "Mike loves to solve complex problems. An effective Tech Lead establishes a technical vision with the development team and works with developers to turn it into reality. Mike takes on traits that other roles may have, such as a Team Lead, Architect or Software Engineering Manager but they remain hands-on with code.\n                                ",
             "social": [
               {
                 "type": "linkedin",
-                "url": "https://www.linkedin.com/in/konstantin-zhidanov/"
+                "url": "https://www.linkedin.com/in/mikhail-glukhov-62a07352/"
+              },
+              {
+                "type": "github",
+                "url": "https://github.com/rigidus"
               }
             ]
           }
@@ -418,11 +410,19 @@
             ]
           },
           {
-            "avatar": "/img/team/avatars/Sergey_Vanurin.png",
-            "name": "Sergey Vanurin",
-            "position": "Project Manager",
-            "description": "IT specialist with background in development, support, DevOps and delivery. As a project manager Sergey developed online 3D geoinformation system with successful adoption in city planning department. Interested in mathematics and data science Sergey finds Enecuum as the perfect place for personal growth and the world changing.",
+            "avatar": "/img/team/avatars/dmitriy_pavlyuk.png",
+            "name": "Dmitry Pavlyuk",
+            "position": "Software Developer",
+            "description": "A developer-mathematician, Dmitry specializes in functional programming languages. He studied at the Computational Mathematics and Cybernetics faculty of the Lomonosov Moscow State University. He has a hands-on work experience in VPN-client development.\n                                ",
             "social": [
+              {
+                "type": "linkedin",
+                "url": "#"
+              },
+              {
+                "type": "envelope",
+                "url": "#"
+              }
             ]
           },
           {
