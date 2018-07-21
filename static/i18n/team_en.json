@@ -266,6 +266,22 @@
             "description": "IT specialist with background in development, support, DevOps and delivery. As a project manager Sergey developed online 3D geoinformation system with successful adoption in city planning department. Interested in mathematics and data science Sergey finds Enecuum as the perfect place for personal growth and the world changing.",
             "social": [
             ]
+          },
+          {
+            "avatar": "/img/team/avatars/Ivan_Zuraev.png",
+            "name": "Ivan Zhuravlev",
+            "position": "Lead developer",
+            "description": "Ivan has over 15 years background in Software Development. Since 2008, he's also been outsourcing numerous projects, including team assembly process, release planning, and project management. Ivan is a CTO, and is also an InfoSec researcher and developer of highload and decentralized systems.",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/ivan-zhuravlev-66150032/"
+              },
+              {
+                "type": "github",
+                "url": "https://github.com/intech"
+              }
+            ]
           }
         ],
         [
