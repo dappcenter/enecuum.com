@@ -30,7 +30,7 @@
       return {
         footerAddress: {
           "LINE_1": "Enecuum HK Limited",
-          "LINE_2": "Address: 21/F, 48 Connaught Road Central, Hong Kong",
+          "LINE_2": "Address: Rm 1202, West Exchange Tower, 322 Des Voeux Road Central, Hong Kong",
           "LINE_3": "hello@enecuum.com",
           "MAILUS": "Email Us",
           "COPYRIGHT": "© 2018 Enecuum HK Ltd.",
