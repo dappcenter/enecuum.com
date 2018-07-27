@@ -429,8 +429,16 @@
             "avatar": "/img/team/avatars/Dmitry_Korobenko.png",
             "name": "Dmitry Korobenko",
             "position": "QA Engineer",
-            "description": "Dmitry spent several years working as cameraman, film editor and technical specialist in a non-profit educational organization but decided to dive into IT and technology. Nevertheless he still sure that human brain is the most interesting and complicated information system.",
+            "description": "Dmitry spent several years working as а cameraman, film editor and technical specialist in a non-profit educational organization but decided to dive into IT and technology. Nevertheless he strongly believes that human nature is the most interesting and complicated information system.",
             "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/dmitry-k-10287a100/"
+              },
+              {
+                "type": "facebook",
+                "url": "https://www.facebook.com/zloy.dimko/"
+              }
             ]
           }
         ]
