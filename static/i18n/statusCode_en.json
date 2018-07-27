@@ -1,6 +1,6 @@
 {
   "200": "Success",
-  "201": "Congratulations! Youve successfully applied for our KYC process. Well notify you about the results after proper screening and monitoring procedures have been completed. Now youll be redirected to the main page!",
+  "201": "Congratulations! Your KYC application has been submitted. We will notify you about the results after the screening and monitoring procedures are completed. Now you will be redirected to the main page.",
   "202": "Your KYC form was successfully approved",
   "302": "Email already in use",
   "400": "Valid wallet address is required",

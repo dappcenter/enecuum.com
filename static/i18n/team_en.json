@@ -364,22 +364,6 @@
             ]
           },
           {
-            "avatar": "/img/team/avatars/ilya_gruzdev.png",
-            "name": "Ilya Gruzdev",
-            "position": "Software Developer",
-            "description": "A geek and mathematician. Ilya studied in Saint Petersburg National Research University of Information Technologies, Mechanics and Optics (ITMO). His main interests are Computer Science, theoretical physics, functional programming languages and its use in practice, and DSL development.\n                                ",
-            "social": [
-              {
-                "type": "linkedin",
-                "url": "https://www.linkedin.com/in/ilya-gruzdev-875297159/"
-              },
-              {
-                "type": "github",
-                "url": "https://github.com/iilyha"
-              }
-            ]
-          },
-          {
             "avatar": "/img/team/avatars/mihail_gluhov.png",
             "name": "Mikhail Gluhov",
             "position": "Smart Contract developer",

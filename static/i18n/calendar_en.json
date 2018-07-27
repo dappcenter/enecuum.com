@@ -164,6 +164,22 @@
         "link": "https://www.eventbrite.com/e/save-the-date-icapital-blockchain-party-tickets-47764715550"
       },
       {
+        "date": "08-03-2018 | 08-05-2018",
+        "img": "img/calendar/ibc.png",
+        "title": "International Blockchain Congress",
+        "place": "India",
+        "description": "Enecuum representatives will be attending the International Blockchain Congress in India. IBC will be the largest congregation of innovators, businesses, technologists, regulators, startups and enthusiasts to pave the way for an open and transparent blockchain powered world. The inaugural edition on the 3rd and 4th of August will take place in Hyderabad.",
+        "link": "https://www.enbloc.media/"
+      },
+      {
+        "date": "08-10-2018",
+        "img": "img/calendar/blockchain_technology.png",
+        "title": "Blockchain Technology Conference",
+        "place": "Pentahotel Hong Kong, Kowloon",
+        "description": "The Blockchain Conference 2018 will bring together a diverse range of experts who will discuss all the opportunities, challenges and exciting possibilities in innovation and disruption that can be leveraged in Hong Kong using this technology.\nThis conference brings together Block Chain technologists in the finance sector, regulators, industry commentators, computer science researchers etc involved in financial innovation.\nEnecuum co-founder Ivan V. Ivanov will perform as a speaker and will discuss the challenges of existing blockchains for business implementation.",
+        "link": "https://1point21gws.com/blockchainsummit/hongkong/"
+      },
+      {
         "date": "08-00-2018",
         "img": "img/calendar/flags/India.png",
         "title": "Enecuum meetup",
