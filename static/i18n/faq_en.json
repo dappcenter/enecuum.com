@@ -46,10 +46,6 @@
               "text": "ENQ offers functionality of both permissionless and permissionned systems. The designed public network is permissionless. The designed private branches users create are permissioned."
             },
             {
-              "title": "Do you have crypto community contributors?",
-              "text": "Projects that use the Enecuum platform: \n\n <a href='https://paytomat.com' _target='blank'>https://paytomat.com</a> \n <a href='https://plasmabank.com' _target='blank'>https://plasmabank.com</a> \n <a href='http://arloid.com/en/' _target='blank'>http://arloid.com/en/</a> \n <a href='http://urbo.pro' _target='blank'>http://urbo.pro</a> \n\n We recommend that you pay attention to our partners <a href='https://paytomat.com/'>Paytomat</a> and <a href='https://bitcointalk.org/index.php?topic=2345298.0'>Urbo</a>. Each of them chose us for their own reasons. For Paytomat, the scalability and speed of transactions is extremely important, because they are engaged in cryptocurrency payments in retail. Urbo is a delivery automation service for HoReCa. They need a compromise between privacy and publicity of data, and high security standards."
-            },
-            {
               "title": "When is the mainnet launch?",
               "text": "Currently, we are improving our testnet. Mainnet and public mining are the next step when we thoroughly performed all the necessary tests. You can check our code on GitHub and wait for the updates on our <a href='https://t.me/Enecuum_EN'>Telegram channel</a>."
             },
@@ -93,10 +89,6 @@
             {
               "title": "What makes ENQ ASIC resistant?",
               "text": "PoW mining in ENQ is designed to use a modified version (Keccak+AES+X4) of the Cryptonight algorithm. AES uses 4 MB L3 CPU cache. This proves the use of ASIC devices non-cost effective."
-            },
-            {
-              "title": "Can I check the MVP?",
-              "text": "PoA and HyperDAG are doing an excellent job. Our historical statistics updated every moment.\n<a href='https://testnet.enecuum.com/dashboard/snapshot/o1B4U1OMG55XD0LRpq94Ph5rWDAFTxPV'>https://testnet.enecuum.com/dashboard/snapshot/o1B4U1OMG55XD0LRpq94Ph5rWDAFTxPV</a>\nIf you want to get up-to-date statistics - feel free to contact us.\n"
             }
           ]
         },
@@ -153,7 +145,7 @@
             },
             {
               "title": "Are there any pre-sale bonuses or a lockup on coins?",
-              "text": "We don't have any pre-sale bonuses. There is a 10 months lockup. Each of these 10 months 10% of the tokens are intended to be released to the contributors. There is no preferential treatment - the conditions are the same for all the contributors."
+              "text": "We don't have any pre-sale bonuses. There is a 90 days lockup."
             }
           ]
         },
