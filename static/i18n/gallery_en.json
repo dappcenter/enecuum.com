@@ -38,6 +38,12 @@
         "preview_url": "img/videos/Plasma_Bank.png",
         "video_url": "https://www.youtube.com/watch?v=qgKzP4cxIo0",
         "description": "Plasma Bank is a platform for banks and financial services both in crypto and fiat. We offer for people and businesses most relevant and personalised financial services in capital management."
+      },
+      {
+        "name": "\"Blockchain cannot have any real world applications\"- Bobby Lee",
+        "preview_url": "img/videos/blockchain_applications.png",
+        "video_url": "https://www.youtube.com/watch?v=VoKptIKvt9A",
+        "description": "Our project won the competition in Zurich and the Enecuum team was invited to Berlin to participate in the final of the BlockShow Oscar 2018 competition"
       }
     ]
   }

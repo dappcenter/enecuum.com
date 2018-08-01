@@ -73,6 +73,26 @@
                 "url": "https://www.linkedin.com/in/jason-yee-960b64a5/"
               }
             ]
+          },
+          {
+            "avatar": "/img/team/avatars/maxim_motin.png",
+            "name": "Max Motin",
+            "position": "CMO",
+            "description": "As a marketing professional with 15+ years experience in global markets, Max combines strong strategic skills with background of works in telecom, finance and NGO. 4 years worked as the Head of business communication for a major telecom operator (more than 70 million customers). Came to the crypto industry in 2017.",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/motinmaxim/"
+              },
+              {
+                "type": "telegram",
+                "url": "@max_motion"
+              },
+              {
+                "type": "envelope",
+                "url": "mailto:motin@enecuum.com"
+              }
+            ]
           }
         ]
       ]
@@ -142,9 +162,7 @@
                 "url": "https://www.linkedin.com/in/lan-lyu-64106760/"
               }
             ]
-          }
-        ],
-        [
+          },
           {
             "avatar": "/img/team/avatars/RugaevS.png",
             "name": "Alexander Rugaev",
@@ -156,7 +174,9 @@
                 "url": "https://www.linkedin.com/in/alexrugaev/"
               }
             ]
-          },
+          }
+        ],
+        [
           {
             "avatar": "/img/team/avatars/tarun.png",
             "name": "Tarun Jaswani",
@@ -178,6 +198,18 @@
               {
                 "type": "linkedin",
                 "url": "https://www.linkedin.com/in/michael-kiook-jeoung-0a15a010/"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/shelly.png",
+            "name": "Shelly Hod Moyal",
+            "position": "",
+            "description": "Shelly Hod Moyal is an Advisor to iCapital, Portfolio Manager of Juno Capital and Founding Partner of iAngels, a VC platform for high-tech startups, with $140M assets under management in divisions and funds that specialize in several tech industry sectors. Prior to iAngels, Shelly was recognized as a promising analyst at Goldman Sachs Investment Bank. Prior to that, Shelly worked as a Research Analyst at a renowned hedge fund, Avenue Capital, covering banks, insurance, real estate and financial institutions. Shelly earned her MBA at Kellogg, Chicago and holds a degree in Economics (summa cum laude) at Hunter College, New York.",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/shelly-hod-moyal-64698824/"
               }
             ]
           }
@@ -437,34 +469,6 @@
       "members": [
         [
           {
-            "avatar": "/img/team/avatars/denis.png",
-            "name": "Denis Lisetskiy",
-            "position": "PR",
-            "description": "A crypto futurist and community developer, Denis joined the team after a hands-on work experience in biotechnology, where he cooperated with Russian and Nicaraguan state companies.\n                                ",
-            "social": [
-              {
-                "type": "linkedin",
-                "url": "https://www.linkedin.com/in/lisetskiy/"
-              },
-              {
-                "type": "envelope",
-                "url": "mailto:pr@enecuum.com"
-              }
-            ]
-          },
-          {
-            "avatar": "/img/team/avatars/evgeniya.png",
-            "name": "Evgeniya Zaslavskaya",
-            "position": "PR",
-            "description": "Came to the crypto industry when 1 bitcoin cost 900 $. The last project (AI-startup) took the second place in the international rating on ICO charges in January 2018. Before that Evgeniya was working as PR specialist in a biotechnology company that worked with government.She has been working in the field of media for more than 10 years. By education - a journalist.\n                                ",
-            "social": [
-              {
-                "type": "linkedin",
-                "url": "https://www.linkedin.com/in/%D0%B5%D0%B2%D0%B3%D0%B5%D0%BD%D0%B8%D1%8F-%D0%B7%D0%B0%D1%81%D0%BB%D0%B0%D0%B2%D1%81%D0%BA%D0%B0%D1%8F-4ba0313b/ "
-              }
-            ]
-          },
-          {
             "avatar": "/img/team/avatars/sergey.png",
             "name": "Sergey Dryamov",
             "position": "Art director",
@@ -481,6 +485,26 @@
               {
                 "type": "facebook",
                 "url": "https://www.facebook.com/dryamov"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/dmitry.png",
+            "name": "Dmitry Rumyantsev",
+            "position": "PR",
+            "description": "Dmitry is a PR specialist with more than 7 years experience in IT, education, crypto and politics spheres. He is not only responsible for PR support, he is a great journalist and passionate person who believes that Enecuum become successful prpject and will change the world.",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/dmitry-rumyantsev-a0218a10b/"
+              },
+              {
+                "type": "twitter",
+                "url": "https://twitter.com/DmRumian"
+              },
+              {
+                "type": "envelope",
+                "url": "dm.rumian@enecuum.com"
               }
             ]
           },
@@ -507,6 +531,30 @@
         ],
         [
           {
+            "avatar": "/img/team/avatars/Alisa_Kosykh.png",
+            "name": "Alisa Kosykh",
+            "position": "SMM",
+            "description": "Has an experience as SMM manager in several blockchain projects. Works in Enecuum with social networks and freshest information about the project. Got a bachelor degree  in advertisement and public relations. Speaks 4 languages - Russian, English, French and Italian. Wants to get to the social networks on a new level.",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/alisa-kosykh-625b6114b/"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/evgeniya.png",
+            "name": "Evgeniya Zaslavskaya",
+            "position": "PR",
+            "description": "Came to the crypto industry when 1 bitcoin cost 900 $. The last project (AI-startup) took the second place in the international rating on ICO charges in January 2018. Before that Evgeniya was working as PR specialist in a biotechnology company that worked with government.She has been working in the field of media for more than 10 years. By education - a journalist.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/%D0%B5%D0%B2%D0%B3%D0%B5%D0%BD%D0%B8%D1%8F-%D0%B7%D0%B0%D1%81%D0%BB%D0%B0%D0%B2%D1%81%D0%BA%D0%B0%D1%8F-4ba0313b/ "
+              }
+            ]
+          },
+          {
             "avatar": "/img/team/avatars/lera.png",
             "name": "Lera Vinokurova",
             "position": "Team Support",
@@ -525,7 +573,9 @@
                 "url": "https://www.facebook.com/valera.vinokurova"
               }
             ]
-          },
+          }
+        ],
+        [
           {
             "avatar": "/img/team/avatars/Pinxuan_Wu.png",
             "name": "Pinxuan Wu",
@@ -559,36 +609,6 @@
               {
                 "type": "envelope",
                 "url": "tsybiskin@enecuum.com"
-              }
-            ]
-          }
-        ],
-        [
-          {
-            "avatar": "/img/team/avatars/dmitry.png",
-            "name": "Dmitry Rumyantsev",
-            "position": "PR",
-            "description": "Dmitry is a PR specialist with more than 7 years experience in IT, education, crypto and politics spheres. He is not only responsible for PR support, he is a great journalist and passionate person who believes that Enecuum become successful prpject and will change the world.",
-            "social": [
-              {
-                "type": "linkedin",
-                "url": "https://www.linkedin.com/in/dmitry-rumyantsev-a0218a10b/"
-              },
-              {
-                "type": "twitter",
-                "url": "https://twitter.com/DmRumian"
-              }
-            ]
-          },
-          {
-            "avatar": "/img/team/avatars/Alisa_Kosykh.png",
-            "name": "Alisa Kosykh",
-            "position": "SMM",
-            "description": "Has an experience as SMM manager in several blockchain projects. Works in Enecuum with social networks and freshest information about the project. Got a bachelor degree  in advertisement and public relations. Speaks 4 languages - Russian, English, French and Italian. Wants to get to the social networks on a new level.",
-            "social": [
-              {
-                "type": "linkedin",
-                "url": "https://www.linkedin.com/in/alisa-kosykh-625b6114b/"
               }
             ]
           }
