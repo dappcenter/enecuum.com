@@ -4,9 +4,9 @@
       <transition name="fade">
         <div class="menu_logo-overlay" v-show="isOpened" @click="closeMenu"></div>
       </transition>
-      <nuxt-link to="/"><img src="/img/logo-white.png" alt="" class="menu_logo-img">
+      <nuxt-link to="/"><img :src="itsHomepage ? '/img/logo-white.png': '/img/logo.svg'" alt="" class="menu_logo-img">
       </nuxt-link>
-      <button class="menu_logo-hamburger" @click="openMenu"><i class="fa fa-bars" aria-hidden="true"></i></button>
+      <button class="menu_logo-hamburger" @click="openMenu" :style="itsHomepage ? 'color: #ffffff;' : ''"><i class="fa fa-bars" aria-hidden="true"></i></button>
     </div>
     <div class="flex-between menu" :class="{'menu-open': isOpened}">
       <el-menu :default-active="activeMenu" mode="horizontal" router class="menu-left">

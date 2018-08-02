@@ -2,7 +2,7 @@
   <el-row class="row banner blue-background" id="enq">
     <div class="banner_img-wrapper">
       <el-carousel :interval="5000" arrow="never" indicator-position="none" height="100%">
-        <el-carousel-item v-for="item in 2" :key="item">
+        <el-carousel-item v-for="item in counter" :key="item">
           <img :src="'/img/mainpage/banner/face-'+item+'.png'" alt="" class="banner_img">
         </el-carousel-item>
       </el-carousel>
@@ -50,6 +50,7 @@
     props: ['data'],
     data() {
       return {
+        counter: 2,
         loading: false,
         whitelist: {
           email: ''
@@ -122,6 +123,11 @@
           });
           this.loading = false;
         });
+      }
+    },
+    mounted() {
+      if (window.innerWidth <= 768) {
+        this.counter = 1;
       }
     }
   }
