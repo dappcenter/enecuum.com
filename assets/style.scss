@@ -1,4 +1,4 @@
-@import 'element-vars.scss';
+//@import 'element-vars.scss';
 @import 'header.scss';
 @import 'footer.scss';
 @import 'homepage.scss';
@@ -146,6 +146,43 @@ p {
   }
 }
 
+.new.title {
+  font-size: 5em;
+  color: #969696;
+  text-align: center;
+  &-semibold {
+    font-size: 20px;
+    font-weight: 400;
+    color: #c8c8c8;
+  }
+  &-bold {
+    font-weight: bold;
+  }
+  &-mini {
+    font-size: 16px;
+    color: #4f4f4f;
+  }
+  &-middle {
+    font-size: 22px;
+    color: #4f4f4f;
+  }
+  &-left {
+    text-align: left;
+  }
+  &-under {
+    color: #6a6a6a;
+    font-size: 13px;
+  }
+  @media screen and (max-width: 1440px) {
+    font-size: 4rem;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 0px;
+  }
+}
+
 .text {
   &-center {
     text-align: center;
@@ -262,6 +299,10 @@ p {
 
 .menu-wrapper + .container {
   padding-top: 76px;
+}
+
+.menu-wrapper.homepage + .container {
+  padding-top: 0px;
 }
 
 .relative {

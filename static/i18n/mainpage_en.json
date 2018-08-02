@@ -1,11 +1,8 @@
 {
   "mainpage": {
     "banner": {
-      "title": "Blockchain of Tomorrow",
-      "subtitle": "Enecuum is an innovative decentralized platform for integrating blockchain into business processes",
-      "wp": "Download whitepaper",
-      "wp_ko": "백서",
-      "onepager": "Onepager",
+      "title": "Blockchain of tomorrow",
+      "subtitle": "Enecuum is the first blockchain in the world to unite millions of smartphones into a single network.",
       "subscribeForm": {
         "description": "Please fill the sign up form to join ENQ. All important information about the project will be available for whitelist members.",
         "input": "Enter Your Email Address",
@@ -118,7 +115,7 @@
         "title": "3 Mining Stages",
         "stages": [
           {
-            "TITLE": "Proof of Work",
+            "TITLE": "Proof-of-Work",
             "IMG": "img/mainpage/mining/hammer.png",
             "TEXT": {
               "BLOCK_1": "Proof of Work at Enecuum is based on an improved version of the Bitcoin-NG protocol modified for effective mining of many block of different types in parallel. This approach ensures high scalability the system.",
@@ -127,7 +124,7 @@
             }
           },
           {
-            "TITLE": "Proof of Activity",
+            "TITLE": "Proof-of-Activity",
             "IMG": "img/mainpage/mining/hammers.png",
             "TEXT": {
               "BLOCK_1": "Proof of Activity at Eneecum is proposed to be applied at two different stages.",
@@ -136,7 +133,7 @@
             }
           },
           {
-            "TITLE": "Proof of Stake",
+            "TITLE": "Proof-of-Stake",
             "IMG": "img/mainpage/mining/safety.png",
             "TEXT": {
               "BLOCK_1": "PoS miners continuously re-check balances of all wallets in the system.",
@@ -147,19 +144,149 @@
       }
     },
     "phonemining": {
-      "title": "Phone Mining",
-      "description": "With Enecuum, you'll be able to perform PoA mining on your phone approving transactions and validating blocks. The reward for PoA mining is equal to the reward received by PoW miners. Effective mining with little computational power.",
-      "button": "Wallet coming soon",
+      "title": "phone mining",
+      "img": "img/mainpage/phone_mining/phone--en.png",
+      "list": [
+        {
+          "title": "Phone mining",
+          "description": "Every smartphone on the network will participate in the publication of microblocks on a daily basis and receive a reward for this. This is open doors of the crypto world to millions of new users. A user simply needs to download the Enecuum App, which places a very light processing load on the smartphone - comparable to a traditional messenger app. "
+        },
+        {
+          "title": "Decentralisation",
+          "description": "Millions of smartphones connect to the Enecuum network from around the world, creating a truly decentralized system. It is impossible to steal any file from the network because the data is chunked and stored on millions of different devices, which makes the network extremely secure."
+        },
+        {
+          "title": "Proof Of Activity node",
+          "description": "According to statistics, on average people utilize only about 10% of the data processing capabilities of their smartphone. Enecuum actually \"leases\" the unused resources of the smartphone and rewards for its use to the device owner. The smartphone becomes part of a huge network, and a special algorithm uses the power of each device most effectively. This algorithm is called Proof-of-Activity."
+        }
+      ]
+    },
+    "breakthroughtech": {
+      "title": "breakthrough technology",
+      "img": "img/mainpage/phone_mining/phone--en.png",
+      "wp": "Download whitepaper",
+      "wp_ko": "백서",
+      "onepager": "Onepager",
+      "list": [
+        {
+          "title": "Breakthrough technology",
+          "description": "Enecuum can provide the facility of individual calculation of insurance policies for each client, offering both full transparency and the inability to \"cheat\" the system on the part of either the policy provider or the client. Our technology will reduce the cost of insurance for the client while protecting insurance companies from fraudsters."
+        },
+        {
+          "title": "HyperDAG",
+          "description": "Imagine if a chef in a restaurant were to cook each meal sequentially, one after the next. In addition, some visitors make identical orders, or even order individual components to create their own dish. In such a scenario, most visitors will not wait for their orders because it takes too long for the chef to get to them.\nIt is therefore more profitable to prepare the meals in parallel. Then many dishes are prepared nearly simultaneously, resulting in a much greater speed of service.\nOur HyperDAG technology does the same as in the example, as it allows the creation of many parallel tasks which are solved by the hundreds of thousands of smartphones that are part of the network. In fact, the greater the number of smartphones exist in the network, the more quickly these parallel tasks are solved. It is thanks to this technology that Enecuum is unique and indeed, a one-of-a-kind blockchain."
+        },
+        {
+          "title": "Hybrid consensus algorithm ",
+          "description": "Most blockchains use one of three types of algorithms: Proof-of-Work (this one is the most secure, but is slow), Proof-of-Stake (the cheapest, but not decentralized enough) and Proof-of-Activity (the fastest and most decentralized). Enecuum took the best of all three algorithms in creating its own Hybrid Consensus Algorithm."
+        },
+        {
+          "title": "SHARDING",
+          "description": "The personal data of millions of people are stored on the Internet. Hackers regularly gain access to bank accounts or personal correspondence of a great number of people. If your photo is on any server, it can be stolen if a hacker gains access to this server. \nThis problem can be solved only in one way – to store personal data in decentralized systems.\nNow imagine that your photo is torn into 1,000 pieces, and each piece resides in a different place. Only you can put them back together, because you have a unique key, which tells you how and where to instantly collect and reassemble this 1000-piece puzzle. Even if attackers were able to steal this information from multiple devices, they would not be able to reassemble it and use it without your key.\nEach of the pieces is duplicated several times on different devices, so that you can access this photo at any time from anywhere in the world. This is done by using a decentralized application and the technology called Sharding."
+        },
+        {
+          "title": "SHARNELL Smart contract",
+          "description": "Smart Contract technology allows you to enter into secure transactions between two or more parties around the world instantly, and without the involvement of expensive lawyers.\nWhy is it called \"smart\"? Until recently, to conclude any deal, you had to draw up a contract, obtain signatures from all interested parties, and then wait several days for payment. All these processes required a lot of time and significant resources. With the introduction of the electronic signature, the process became somewhat faster, but the “red tape” and “human factor” did not disappear.\nLet's say you live in Germany and want to buy 10 tons of bananas from Brazil. Previously, you would need to find a supplier, sign a contract with him, purchase bananas, control logistics, and so on. Each stage in the process would be agreed to by a specific agreement the involved parties had to agree to. At the same time, at every stage there is a risk of fraud by any counterparty.\nWith an \"intelligent\" contract, everything is much simpler and safer. The system will automatically transfer money throughout the chain at the time of the transaction. It is impossible to deceive the contractor in this situation, since all data is contained in the blockchain and any transaction can be checked, if necessary.\nSmart contracts are no longer the province of lawyers, but of good programmers. However, the problem is that the languages of writing smart contracts in different blockchains are at present quite new, and the development community is small. Because of this, the cost of the development of smart contracts is usually very high, and the quality of the code is lower than expected.\nEnecuum solved this problem by using a variatoin of linear logic called SHARNELL to write smart contracts. One of its key feautres is that it simply will not allow the execution of a smart contract that is written with an error. In addition, the main language for creating smart contracts in Enecuum will be the most common language in the world - JavaScript, which will not only allow the programmer to develop contracts faster, but also save substantial money on the development process."
+        }
+      ]
+    },
+    "changingworld": {
+      "title": "changing the world",
+      "img": "img/mainpage/phone_mining/phone--en.png",
+      "list": [
+        [
+          {
+            "title": "Changing the world",
+            "description": "Enecuum is an ideal platform for companies that need a fast, secure, decentralized blockchain. Even for us it is hard to imagine an industry where Enecuum's innovative technologies cannot be applied. We are pleased to create a technology that can radically facilitate the work in various areas of life and business: from the possibility of free mobile communication for subscribers to the organization of fair elections at any level."
+          },
+          {
+            "title": "Science",
+            "description": "The computing power of Enecuum can be used to solve complex scientific problems, the results of which will be available to any international scientific community."
+          },
+          {
+            "title": "Government",
+            "description": "Enecuum facilitates voting of any degree of complexity, the results of which cannot be falsified. The world has already seen elections take place using blockchain technology on an experimental basis. The results of these experiments were found to be successful.\nState organizations have the opportunity to safely store citizens’ personal data, to implement electronic document management everywhere, which greatly facilitates the receipt of public services by the population."
+          },
+          {
+            "title": "Education",
+            "description": "Fake diplomas and certificates, fake academic degrees – these problems are still faced by the scientific community. Enecuum will provide transparency and authenticity of the documents. They cannot be rewritten or partially modified. Records will be stored in a decentralized network and will be accessible to everyone from anywhere in the world."
+          },
+          {
+            "title": "Logistic",
+            "description": "Enecuum technology allows you to easily and safely manage the delivery of goods around the world. Logistics has never been so easy and convenient."
+          },
+          {
+            "title": "Energy",
+            "description": "Each customer will only pay for the amount of electricity that he consumed. Through our SHARNELL Smart Contracts, Enecuum allows companies to create perfectly accurate invoices from the meter of each consumer on the power grid."
+          }
+        ],
+        [
+          {
+            "title": "For developers",
+            "description": "Thanks to Enecuum, developers gain the opportunity to implement applications of any complexity, without having to worry about the power of their physical servers."
+          },
+          {
+            "title": "Telecom",
+            "description": "Enecuum can create opportunity for free mobile communication for subscribers and thousands of new customers for mobile operators. Enecuum opens new horizons for the Telecom sector. For the first time in history, the smartphone will actually generate passive income for its owner."
+          },
+          {
+            "title": "Medicine",
+            "description": "You will now be able to buy prescription medicine in Italy that you were prescribed in Argentina. Enecuum has made this possible thanks to our single decentralized storage network for your health records. This kind of global access never existed before, due to technical limitations. We at Enecuum have removed those limitations forever."
+          },
+          {
+            "title": "Insurance",
+            "description": "Enecuum can provide the facility of individual calculation of insurance policies for each client, offering both full transparency and the inability to \"cheat\" the system on the part of either the policy provider or the client. Our technology will reduce the cost of insurance for the client while protecting insurance companies from fraudsters."
+          }
+        ]
+      ]
+    },
+    "blockchain": {
+      "title": "blockchain of tomorrow",
+      "description": "Enecuum is an ideal platform for companies that need a fast, secure, decentralized blockchain. Even for us it is hard to imagine an industry where Enecuum's innovative technologies cannot be applied. We are pleased to create a technology that can radically facilitate the work in various areas of life and business: from the possibility of free mobile communication for subscribers to the organization of fair elections at any level.",
       "img": "img/mainpage/phone_mining/phone--en.png"
     },
     "roadmap": {
-      "title": "Roadmap",
+      "title": "roadmap",
       "img_desctop": "img/mainpage/roadmap/road_map_desktop.png",
-      "img_mobile": "img/mainpage/roadmap/road_map_mobile.png"
+      "img_mobile": "img/mainpage/roadmap/road_map_mobile.png",
+      "list": [
+        {
+          "date": "2015",
+          "text": "Launch the project. Analyse Form a team of developers the architecture of various known to create a new architecture"
+        },
+        {
+          "date": "2017",
+          "text": "Blockchains for existing problems and ways to solve them"
+        },
+        {
+          "date": "q1 2018",
+          "text": "Implement the system protocol, RPC API, wallets"
+        },
+        {
+          "date": "q2 2018",
+          "text": "Pow + PoA"
+        },
+        {
+          "date": "q3 2018",
+          "text": "Launch the test net, POS"
+        },
+        {
+          "date": "q4 2018",
+          "text": "Smart Contracts SHARNELL"
+        },
+        {
+          "date": "q1 2019",
+          "text": "Create a gateway for an automatic transfer of smart contracts from other systems to Enecuum"
+        },
+        {
+          "date": "q2 2019",
+          "text": "Continuously improve the protocol"
+        }
+      ]
     },
     "partners": {
       "partners": {
-        "title": "Partners",
+        "title": "partners",
         "img": [
           [
             {
@@ -168,21 +295,15 @@
             },
             {
               "link": "https://gem.capital/",
-              "img": "/img/mainpage/partners/GEM_black.png"
-            }
-          ],
-          [
-            {
-              "link": "http://www.kwm.com/en",
-              "img": "/img/mainpage/partners/kwm.png"
+              "img": "/img/mainpage/partners/GEM_Crypto_black.png"
             },
             {
               "link": "http://coinsortium.io",
               "img": "/img/mainpage/partners/coinsortium.png"
             },
             {
-              "link": "https://www.trustverse.io/",
-              "img": "/img/mainpage/partners/trustverse.png"
+              "link": "https://icapital.io/",
+              "img": "/img/mainpage/partners/iCapital.png"
             }
           ]
         ]
@@ -193,6 +314,10 @@
           {
             "link": "https://www.mikado.io/",
             "img": "/img/mainpage/partners/mikado.png"
+          },
+          {
+            "link": "https://www.trustverse.io/",
+            "img": "/img/mainpage/partners/trustverse.png"
           },
           {
             "link": "https://plasmabank.com",
@@ -208,16 +333,12 @@
           }
         ]
       },
-      "media_partners": {
-        "title": "Media partners",
+      "legal_partners": {
+        "title": "Legal Advisor",
         "img": [
           {
-            "link": "http://icocrowd.com/",
-            "img": "/img/mainpage/partners/ico_crowd.png"
-          },
-          {
-            "link": "https://bloomchain.ru/",
-            "img": "/img/mainpage/partners/bloom_chain.png"
+            "link": "http://www.kwm.com/en",
+            "img": "/img/mainpage/partners/kwm.png"
           }
         ]
       },

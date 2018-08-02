@@ -43,6 +43,9 @@ module.exports = {
       {
         src: 'https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit',
         async: true
+      },
+      {
+        src: 'https://unpkg.com/jarallax@1.10/dist/jarallax.min.js'
       }
     ]
   },

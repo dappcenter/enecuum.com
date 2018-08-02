@@ -25,10 +25,6 @@ const createStore = () => {
         "type": "medium",
         "link": 'https://medium.com/@EnqBlockchain'
       }, {
-        "img": 'img/snet/sm.svg',
-        "type": "reddit",
-        "link": 'https://www.reddit.com/user/enecuum'
-      }, {
         "img": 'img/snet/tw.svg',
         "type": "twitter",
         "link": 'https://twitter.com/enq_enecuum'
@@ -48,10 +44,6 @@ const createStore = () => {
         "img": 'img/snet/lk.svg',
         "type": "linkedin",
         "link": 'https://www.linkedin.com/company/enecuum-limited/'
-      }, {
-        "img": 'img/snet/dis.svg',
-        "type": "discord",
-        "link": 'https://discord.gg/aCgCcA2'
       }, {
         "img": 'img/snet/yt.svg',
         "type": "youtube",

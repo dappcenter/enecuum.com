@@ -4,13 +4,14 @@
       <transition name="fade">
         <div class="menu_logo-overlay" v-show="isOpened" @click="closeMenu"></div>
       </transition>
-      <nuxt-link to="/"><img src="/img/logo.svg" alt="" class="menu_logo-img"></nuxt-link>
+      <nuxt-link to="/"><img src="/img/logo-white.png" alt="" class="menu_logo-img">
+      </nuxt-link>
       <button class="menu_logo-hamburger" @click="openMenu"><i class="fa fa-bars" aria-hidden="true"></i></button>
     </div>
     <div class="flex-between menu" :class="{'menu-open': isOpened}">
       <el-menu :default-active="activeMenu" mode="horizontal" router class="menu-left">
         <nuxt-link to="/" class="menu_logo">
-          <img src="/img/logo.svg" alt="" class="menu_logo-img"></nuxt-link>
+          <img :src="itsHomepage ? '/img/logo-white.png': '/img/logo.svg'" alt="" class="menu_logo-img"></nuxt-link>
         <el-menu-item index="/" class="menu-item">Home</el-menu-item>
         <el-menu-item index="/team" class="menu-item">Team</el-menu-item>
         <el-menu-item index="" class="menu-item"><a href="https://medium.com/@EnqBlockchain" target="_blank">Blog</a>
@@ -28,29 +29,34 @@
         <fingerLoader @onEnd="loadingFingerEnd=false"></fingerLoader>
       </ul>
       <ul class="el-menu--horizontal el-menu menu-right" v-else>
-        <nuxt-link to="/auth/login" class="el-menu-item menu-item float-right" v-if="!isAuth">Sign In</nuxt-link>
+        <nuxt-link to="/auth/login" class="el-menu-item menu-item float-right" v-if="!isAuth">
+          <el-button size="small" class="small-mini white">Sign In</el-button>
+        </nuxt-link>
         <nuxt-link to="/auth/join" class="el-menu-item menu-item float-right" v-if="!isAuth">
-          <button class="enq-button--plain-small">Sign Up</button>
+          <el-button size="small" class="small-mini">Sign Up</el-button>
         </nuxt-link>
         <li class="el-menu-item float-right menu-item" v-if="isAuth" @click.prevent="logout">Logout</li>
         <nuxt-link to="/backoffice" class="el-menu-item menu-item float-right" v-if="isAuth">
-          <button class="enq-button--plain-small">Backoffice</button>
+          <el-button type="primary" size="small" class="small-mini">Backoffice</el-button>
         </nuxt-link>
       </ul>
       <div class="menu_submenu-wrapper" v-if="itsHomepage">
         <ul class="menu_submenu">
-          <li class="menu_submenu-item"><a target="_self" href="#features" @click.prevent="scrollTo('features')">Features</a>
+          <li class="menu_submenu-item"><a target="_self" href="#enq" @click.prevent="scrollTo('enq')">What is
+            Enq</a>
           </li>
-          <li class="menu_submenu-item"><a target="_self" href="#business" @click.prevent="scrollTo('business')">Business
-            cases</a></li>
-          <li class="menu_submenu-item"><a target="_self" href="#mining"
-                                           @click.prevent="scrollTo('mining')">Mining</a></li>
+          <li class="menu_submenu-item"><a target="_self" href="#mining" @click.prevent="scrollTo('mining')">Phone
+            mining</a></li>
+          <li class="menu_submenu-item"><a target="_self" href="#tech"
+                                           @click.prevent="scrollTo('tech')">Tech</a></li>
+          <li class="menu_submenu-item"><a target="_self" href="#world"
+                                           @click.prevent="scrollTo('world')">Changing the world</a></li>
+          <li class="menu_submenu-item"><a target="_self" href="#bot"
+                                           @click.prevent="scrollTo('bot')">BOT</a></li>
           <li class="menu_submenu-item"><a target="_self" href="#roadmap"
                                            @click.prevent="scrollTo('roadmap')">Roadmap</a></li>
           <li class="menu_submenu-item"><a target="_self" href="#partners" @click.prevent="scrollTo('partners')">Partners</a>
           </li>
-          <li class="menu_submenu-item"><a target="_self" href="#feedback"
-                                           @click.prevent="scrollTo('feedback')">Contact</a></li>
         </ul>
       </div>
     </div>
@@ -192,6 +198,12 @@
       setTimeout(() => {
         this.checkingAuth = false;
       }, 2000);
+      document.addEventListener('scroll', (e) => {
+        console.log();
+        if (document.querySelector('.menu-wrapper.homepage')) {
+          document.querySelector('.menu-wrapper.homepage').style.background = 'rgba(68, 195, 230, ' + window.scrollY / 100 + ')';
+        }
+      });
     },
     created() {
       this.activeMenu = this.$route.path;
@@ -210,6 +222,11 @@
     position: relative;
     background-color: #f8f9fa;
     border-bottom: 0px;
+    &-item {
+      &.is-active {
+        border-color: #f97520;
+      }
+    }
     &-left {
       flex-grow: 1;
       z-index: 1;
@@ -257,32 +274,58 @@
       right: 0px;
       z-index: 1000;
       background-color: #f8f9fa;
-      box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.15);
+      //box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.15);
       & + .container {
         padding-top: 85px;
       }
-      &.homepage:hover {
-        .menu_submenu {
-          &-wrapper {
-            box-shadow: inset 0px 10px 40px -6px rgba(0, 0, 0, .10), 0px 2px 40px rgba(0, 0, 0, .10);
-            background: #ffffff;
-            top: 80px;
+      &.homepage {
+        background: transparent;
+        .menu {
+          background: transparent;
+          &-item {
+            color: #ffffff;
+            &:hover {
+              color: #2f8198;
+            }
+            &.is-active {
+              color: #ffffff;
+            }
+          }
+          &-left {
+            background: transparent;
+          }
+          &-right {
+            background: transparent;
+          }
+          @media screen and (max-width: 991px) {
+            background: #27a7d1;
+          }
+        }
+        &:hover {
+          .menu_submenu {
+            &-wrapper {
+              //box-shadow: inset 0px 10px 40px -6px rgba(0, 0, 0, .10), 0px 2px 40px rgba(0, 0, 0, .10);
+              background: #69cde7;
+              opacity: 1;
+              top: 80px;
+            }
           }
         }
       }
     }
     &_submenu {
+      //display: none;
       display: flex;
       padding-top: 10px;
       padding-bottom: 10px;
       &-wrapper {
         position: absolute;
         z-index: 0;
-        padding-left: 238px;
+        padding-left: 150px;
         top: 20px;
         left: 0px;
         background: transparent;
-        opacity: 0.9;
+        opacity: 0;
         width: 100%;
         transition: all 0.2s ease 0s;
         @media screen and (max-width: 991px) {
@@ -295,11 +338,21 @@
         a {
           display: block;
           padding: .5rem 1rem;
-          color: rgba(0, 0, 0, 0.5);
+          color: #ffffff;
         }
       }
     }
-    @media screen and (max-width: 1200px) {
+    @media screen and (max-width: 1280px) {
+      &_submenu {
+        &-wrapper {
+          padding-left: 50px;
+        }
+        &-item {
+          a {
+            font-size: 14px;
+          }
+        }
+      }
       &-item {
         font-size: 14px;
         padding-left: 5px;
