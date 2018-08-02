@@ -35,11 +35,11 @@
             },
             {
               "title": "Does ENQ have a cryptocurrency?",
-              "text": "The ENQ token (“ENQ”, consistent with the company name) is the native token of the environment and is also the main medium of exchange for the Tickets, Tokens and other cryptocurrencies in it. ENQ’s are proposed to be generated according to system specific parameters and paid out to miners as a reward for spending their computational power. ENQ’s can be received and sent with no fees. They can also be used as payment for publishing smart contracts to the network, performing complex mathematical computations via a smart contract, creating custom macroblocks, new Tokens and private branches, and participation in PoS mining."
+              "text": "The ENQ token (“ENQ”, consistent with the company name) is the native token of the environment and is also the main medium of exchange for the Tickets and Tokens. ENQ’s are proposed to be generated according to system specific parameters and paid out to miners as a reward for spending their computational power. ENQ’s can be received and sent with no fees. They can also be used as payment for publishing smart contracts to the network, performing complex mathematical computations via a smart contract, creating custom macroblocks, new Tokens and private branches, and participation in PoS mining."
             },
             {
               "title": "Where do I get the latest news?",
-              "text": "Subscribe to our Telegram channel: https://t.me/Enecuum_EN\nYou will be up-to-date with the latest news and details about the project and can get straight answers and advice in case of any questions.\nWe also aim to cover all the necessary media channels. Here is the full list of our media sources:\n\n<a href='https://medium.com/@EnqBlockchain'>https://medium.com/@EnqBlockchain</a>\n<a href='https://t.me/Enecuum_EN'>https://t.me/Enecuum_EN</a>\n<a href='https://bitcointalk.org/index.php?topic=2939909.0;topicseen'>https://bitcointalk.org/index.php?topic=2939909.0;topicseen</a>\n<a href='https://twitter.com/enq_enecuum'>https://twitter.com/enq_enecuum</a>\n<a href='https://www.facebook.com/enecuum.EN/?ref=bookmarks'>https://www.facebook.com/enecuum.EN/?ref=bookmarks</a>\n<a href='https://www.instagram.com/enecuum/'>https://www.instagram.com/enecuum/</a>\n<a href='https://www.linkedin.com/company/enecuum-limited/'>https://www.linkedin.com/company/enecuum-limited/</a>\n<a href='https://www.youtube.com/channel/UCyZqNfzK_PP82nkAVOlmN4Q?view_as=subscriber'>https://www.youtube.com/channel/UCyZqNfzK_PP82nkAVOlmN4Q?view_as=subscriber</a>\n<a href='https://www.reddit.com/user/enecuum'>https://www.reddit.com/user/enecuum</a>\n<a href='https://github.com/Enecuum'>https://github.com/Enecuum</a>\n<a href='https://discordapp.com/invite/aCgCcA2'>https://discordapp.com/invite/aCgCcA2</a>\n\nConsider any source <b>outside</b> of this list fake. All ENQ official media sources are listed above"
+              "text": "Subscribe to our Telegram channel: https://t.me/Enecuum_EN\nYou will be up-to-date with the latest news and details about the project and can get straight answers and advice in case of any questions.\nWe also aim to cover all the necessary media channels. Here is the full list of our media sources:\n\n<a href='https://medium.com/@EnqBlockchain'>https://medium.com/@EnqBlockchain</a>\n<a href='https://t.me/Enecuum_EN'>https://t.me/Enecuum_EN</a>\n<a href='https://bitcointalk.org/index.php?topic=2939909.0;topicseen'>https://bitcointalk.org/index.php?topic=2939909.0;topicseen</a>\n<a href='https://twitter.com/enq_enecuum'>https://twitter.com/enq_enecuum</a>\n<a href='https://www.facebook.com/enecuum.EN/?ref=bookmarks'>https://www.facebook.com/enecuum.EN/?ref=bookmarks</a>\n<a href='https://www.instagram.com/enecuum/'>https://www.instagram.com/enecuum/</a>\n<a href='https://www.linkedin.com/company/enecuum-limited/'>https://www.linkedin.com/company/enecuum-limited/</a>\n<a href='https://www.youtube.com/channel/UCyZqNfzK_PP82nkAVOlmN4Q?view_as=subscriber'>https://www.youtube.com/channel/UCyZqNfzK_PP82nkAVOlmN4Q?view_as=subscriber</a>\n<a href='https://www.reddit.com/user/enecuum'>https://www.reddit.com/user/enecuum</a>\n<a href='https://github.com/Enecuum'>https://github.com/Enecuum</a>\n<a href='https://discordapp.com/invite/aCgCcA2'>https://discordapp.com/invite/aCgCcA2</a>\n\nConsider any sources <b>outside</b> of this list fake. All ENQ official media sources are listed above"
             },
             {
               "title": "Are you a permissioned blockchain?",
@@ -49,17 +49,21 @@
               "title": "When is the mainnet launch?",
               "text": "Currently, we are improving our testnet. Mainnet and public mining are the next step when we thoroughly performed all the necessary tests. You can check our code on GitHub and wait for the updates on our <a href='https://t.me/Enecuum_EN'>Telegram channel</a>."
             },
+           {
+              "title": "Okay, can I help before the mainnet launch?",
+              "text": "We plan to invite miners to our TestNet and reward them for helping improving it. Follow us on <a href='https://t.me/Enecuum_EN'>our Telegram channel</a> to keep up-to-date with the specific dates."
+            },
             {
               "title": "Do you have any bounties? What will the airdrop be like?",
               "text": "We don't have a bounty program. Aidrop is intended for the users that help testing the network."
             },
             {
-              "title": "Is there any video materials?",
-              "text": "You can find our video materials here: <a href='https://enecuum.com/video'>video</a>"
+              "title": "Are there any video materials?",
+              "text": "Yes. You can find them in our <a href='https://enecuum.com/video'>Gallery</a>."
             },
             {
               "title": "Where is the Company located?",
-              "text": "Enecuum HK Limited\nAddress: 21/F, 48 Connaught Road Central, Hong Kong"
+              "text": "Enecuum HK Limited is located in Hong Kong. The full address is <b>21/F, 48 Connaught Road Central, Hong Kong</b>."
             }
           ]
         },
@@ -68,7 +72,7 @@
           "content": [
             {
               "title": "What is ENQ written in?",
-              "text": "The languages we’re using are Haskell, Kotlin, C++. Part of the smart contract functionality (including the SHARNELL Smart Contracts) we intend to implement in JavaScript."
+              "text": "The languages we’re using are Haskell, Kotlin, C++, JavaScript. We also intend to use JavaScript in the smart contract implementation."
             },
             {
               "title": "Is your technology open source or proprietary?",
@@ -83,8 +87,8 @@
               "text": "You can find all the necessary guidelines in <a href='https://github.com/Enecuum/Node'>our Node repository</a>."
             },
             {
-              "title": "Is there a testnet?",
-              "text": "Yes, there is and it is being improved as you read these lines. <a href='https://testnet.enecuum.com/dashboard/snapshot/o1B4U1OMG55XD0LRpq94Ph5rWDAFTxPV'>Here</a> you can see some useful stats."
+              "title": "Is there a TestNet?",
+              "text": "Yes, there is and it is being improved as you read these lines."
             },
             {
               "title": "What makes ENQ ASIC resistant?",
@@ -97,11 +101,11 @@
           "content": [
             {
               "title": "How to start?",
-              "text": "You can sign up for an account and pass the KYC for the token sale. Follow us on our Telegram channel to learn about the exact release dates and token sale dates."
+              "text": "You can sign up for an account at <a href='https://enecuum.com/auth/join'>https://enecuum.com/auth/join</a> and pass the KYC screening to become eligible for the Token Sale."
             },
             {
-              "title": "Where can I find details about the token sale?",
-              "text": "We intend to carry a private token sale. You can add your email to the whitelist on <a href='https://enecuum.com'>our website</a> to receive all the necessary details concerning the process."
+              "title": "Where can I find details about the Token Sale?",
+              "text": "We have already started the Sale. You can find the necessary details on the <a href='https://enecuum.com/token'>Token page</a> and in the second part of <a href='https://medium.com/@ENQBlockchain/enecuum-announces-new-partnerships-extends-its-private-sale-period-and-shortens-the-lock-in-period-b73129ed7934'>this Medium article</a>."
             },
             {
               "title": "When is the Presale or Crowdsale?",
@@ -113,11 +117,23 @@
             },
             {
               "title": "Is there a minimum contribution for the private sale?",
-              "text": "No, there isn't"
+              "text": "We decided to impose no minumum limit. You're welcome to contribute as much as you deem apropriate. Just mind the max limit."
             },
             {
-              "title": "When does the KYC process finish?",
-              "text": "Seeing the great interest in our project, we decided to prolong it till the mid of October."
+              "title": "What is the maximum limit per contributor?",
+              "text": "We intend different max limits per member at different stages of the Sale. You can read about them in <a href='https://medium.com/@ENQBlockchain/enecuum-announces-new-partnerships-extends-its-private-sale-period-and-shortens-the-lock-in-period-b73129ed7934'>this Medium article</a>."
+            },
+            {
+              "title": "I'm a new member. Can I contribute right now?",
+              "text": "The Sale is currently at the Stage 1. This stage is intended for funds and early backers. You will be able to contribute very soon. For the dates, again, please refer to <a href='https://medium.com/@ENQBlockchain/enecuum-announces-new-partnerships-extends-its-private-sale-period-and-shortens-the-lock-in-period-b73129ed7934'>this Medium article</a>."
+            },
+            {
+              "title": "When does the KYC process finish? Can I still apply?",
+              "text": "Seeing the great interest in our project, we decided to prolong it till the mid of October, 2018."
+            },
+            {
+              "title": "When does the Sale finish?",
+              "text": "We intend to finish the Sale on October 31, 2018."
             },
             {
               "title": "What is the hardcap?",
@@ -141,11 +157,15 @@
             },
             {
               "title": "What will happen to the unsold ENQ(ERC20) tokens?",
-              "text": "All unsold ENQ(ERC20) tokens will go to the reserve fund and will be locked at least for one year."
+              "text": "All unsold ENQ(ERC20) tokens will go to the reserve fund and will be locked for at least one year."
             },
             {
-              "title": "Are there any pre-sale bonuses or a lockup on coins?",
-              "text": "We don't have any pre-sale bonuses. There is a 90 days lockup."
+              "title": "Are there any pre-sale bonuses?",
+              "text": "We don't have any pre-sale bonuses."
+            },
+            {
+              "title": "When does the distribution of tokens start? Is there any lockup or will they be distributed at once?",
+              "text": " The distribution of tokens will begin on November 1, 2018. We intend a lockup period of 90 calendar days. During each day of these 90 days, a portion of tockens will be distributed."
             }
           ]
         },
@@ -154,23 +174,28 @@
           "content": [
             {
               "title": "What can ENQ offer miners?",
-              "text": "Miners are the backbone of our decentralized environment. Besides Cryptonight-like mining on dedicated machines, our project offers mobile mining. If we are ASIC-resistant as envisioned, it means everybody, from mobile users to users on powerful dedicated machines, can benefit from participation."
+              "text": "Miners are the backbone of our decentralized environment. Besides Cryptonight-like mining on dedicated machines, our project offers mobile mining. If we are ASIC-resistant as envisioned, it means everybody, from mobile users to users on powerful dedicated machines, can benefit from participation.</br>Users on powerful machines will be able to engage in PoW and PoS mining</br>Users on mobile devices will be able to engage in PoA mining</br> "
+            },
+            {
+              "title": "What a miner can mine in ENQ?",
+              "text": "Our system design offers 3 types of mining: PoW, PoA and PoS. Mining of every type is rewarded. <br/> <br/>  PoW miners aim to search for a hash satisfying certain requirement to open a macroblock. A Cryptonight modification based on xmr-stak miner is intended for PoW mining. <br/>  PoA miners on their mobile phones aim to form a PoA team and create microblocks with transaction in them and publish them into a macroblock. <br/> PoS miners rely on the amount of ENQ they have and their stable and wide Internet connection. PoS miners aim to check the changing balances of user accounts in the system."
             },
             {
               "title": "What is phone mining?",
-              "text": "Phone mining in ENQ is teaming up with other mobile users and publishing microblocks with transactions in them. Phone mining is envisioned to be lightweight and easy. A mobile miner should have minimum 1GB RAM, 1GHz CPU and Android 5.0."
+              "text": "Phone mining in ENQ is teaming up with other mobile users for publishing microblocks with transactions in them. Phone mining is envisioned to be lightweight and easy. A mobile miner should have minimum 1GB RAM, 1GHz CPU and Android 5.0."
             },
             {
               "title": "How to become a miner team lead in a team of mobile phones?",
               "text": "A team lead should have the most powerful CPU and a stable and fast Internet connection with low latency - that combination out of all other members in the team."
             },
             {
-              "title": "What a miner can mine in ENQ?",
-              "text": "Our system design offers 3 types of mining: PoW, PoA and PoS. \n PoW miners aim to search for a hash satisfying certain requirement to open a macroblock. A Cryptonight modification based on xmr-stak miner is intended for PoW mining.\n PoA miners on their mobile phones aim to form a PoA team and create microblocks with transaction in them and publish them into a macroblock.\n PoS miners rely on the amount of ENQ they have and their stable and wide Internet connection. PoS miners aim to check the changing balances of user accounts in the system.\n Mining of every type is rewarded."
+              "title": "If I have a small farm of mobile devices, can I organize a PoA team and do PoA mining?",
+              "text": "A specific algorithm randomizing devices to assemble a PoA team, based on various parameters, is intended to balance the network for users, so there is no guarantee that even 2 of your phones will end up in the same team, let alone your whole farm. We want the network to be fair to everybody."
             },
+
             {
               "title": "When do you expect first miners?",
-              "text": "We expect public mining to be open after the initial public release of our mainnet. Follow us on <a href='https://t.me/Enecuum_EN'>our Telegram channel</a> to keep up-to-date with the release dates."
+              "text": "We expect public mining to be open after the initial public release of our mainnet. Follow us on <a href='https://t.me/Enecuum_EN'>our Telegram channel</a> to keep up-to-date with the release dates. However, you're also welcome to help us improving our TestNet and be rewarded for it. Again, follow us on the Telegram channel for the specific dates."
             },
             {
               "title": "What will phone mining cost my gadget? Any battery drain of connection overload?",
@@ -183,7 +208,7 @@
           "content": [
             {
               "title": "Where I can learn more about ENQ team?",
-              "text": "You can learn about ENQ team members on <a href='https://enecuum.com/team'>the team page.</a>"
+              "text": "You can learn about ENQ team members on the <a href='https://enecuum.com/team'>Team page.</a>"
             },
             {
               "title": "I want to work at ENQ, hire me.",
