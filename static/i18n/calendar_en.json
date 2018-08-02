@@ -178,38 +178,6 @@
         "place": "Pentahotel Hong Kong, Kowloon",
         "description": "The Blockchain Conference 2018 will bring together a diverse range of experts who will discuss all the opportunities, challenges and exciting possibilities in innovation and disruption that can be leveraged in Hong Kong using this technology.\nThis conference brings together Block Chain technologists in the finance sector, regulators, industry commentators, computer science researchers etc involved in financial innovation.\nEnecuum co-founder Ivan V. Ivanov will perform as a speaker and will discuss the challenges of existing blockchains for business implementation.",
         "link": "https://1point21gws.com/blockchainsummit/hongkong/"
-      },
-      {
-        "date": "08-00-2018",
-        "img": "img/calendar/flags/India.png",
-        "title": "Enecuum meetup",
-        "place": "India",
-        "description": "Coming soon...",
-        "link": ""
-      },
-      {
-        "date": "08-00-2018",
-        "img": "img/calendar/flags/Japan.png",
-        "title": "Enecuum meetup",
-        "place": "Japan",
-        "description": "Coming soon...",
-        "link": ""
-      },
-      {
-        "date": "08-00-2018",
-        "img": "img/calendar/flags/Indonesia.png",
-        "title": "Enecuum meetup",
-        "place": "Indonesia",
-        "description": "Coming soon...",
-        "link": ""
-      },
-      {
-        "date": "08-00-2018",
-        "img": "img/calendar/flags/Malaysia.png",
-        "title": "Enecuum meetup",
-        "place": "Malaysia",
-        "description": "Coming soon...",
-        "link": ""
       }
     ]
   }
