@@ -1,5 +1,5 @@
 <template>
-  <div class="roadmap pureBlock" id="roadmap">
+  <div class="breakThrought pureBlock" id="bot">
     <div id="dna" class="jarallax" data-speed="-0.4">
       <img src="/img/dnaLong-2.png" alt="" class="jarallax-img">
     </div>
@@ -14,28 +14,29 @@
         </el-row>
       </el-col>
     </el-row>
-    <el-row type="flex" justify="center" class="roadmap_block-preimage">
-      <el-col :md="22" :lg="18">
+    <el-row type="flex" justify="center">
+      <el-col :md="22" :lg="18" class="pureBlock-description blue-background">
+        <div class="dna-img">
+          <img src="/img/mainpage/dna-4.png" alt="">
+        </div>
         <el-row>
-          <el-col :xs="24" :sm="24" class="roadmap_block">
-            <ul>
-              <li v-for="(li, key) in data.list" :key="key" class="roadmap_block-li">
-                <div class="roadmap_block-date">{{li.date}}</div>
-                <div class="roadmap_block-text">{{li.text}}</div>
-              </li>
-            </ul>
-            <img src="/img/mainpage/roadmap/DNA.png" alt="">
+          <el-col :xs="24" :sm="8" class="breakThrought-description">
+            <div class="man-img">
+              <img src="/img/mainpage/man.png" alt="">
+            </div>
+            <div class="pureBlock-description-text">
+              {{data.description}}
+            </div>
           </el-col>
         </el-row>
       </el-col>
     </el-row>
-    <div class="roadmap_block-image"></div>
   </div>
 </template>
 
 <script>
   export default {
-    name: "roadmap",
+    name: "blockchain",
     props: ['data']
   }
 </script>
