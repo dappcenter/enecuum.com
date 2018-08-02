@@ -88,7 +88,7 @@
             },
             {
               "title": "What makes ENQ ASIC resistant?",
-              "text": "PoW mining in ENQ is designed to use a modified version (Keccak+AES+X4) of the Cryptonight algorithm. AES uses 4 MB L3 CPU cache. This proves the use of ASIC devices non-cost effective."
+              "text": "PoW mining in ENQ is designed to use a modified version (Keccak+AES+X11) of the Cryptonight algorithm. AES uses 4 MB L3 CPU cache. This proves the use of ASIC devices non-cost effective."
             }
           ]
         },
@@ -117,7 +117,7 @@
             },
             {
               "title": "When does the KYC process finish?",
-              "text": "Seeing the great interest in our project, we decided to prolong it till the mid of August."
+              "text": "Seeing the great interest in our project, we decided to prolong it till the mid of October."
             },
             {
               "title": "What is the hardcap?",

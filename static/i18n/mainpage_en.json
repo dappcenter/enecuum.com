@@ -144,7 +144,7 @@
       }
     },
     "phonemining": {
-      "title": "phone mining",
+      "title": "Phone mining",
       "img": "img/mainpage/phone_mining/phone--en.png",
       "list": [
         {
@@ -162,7 +162,7 @@
       ]
     },
     "breakthroughtech": {
-      "title": "breakthrough technology",
+      "title": "Breakthrough technology",
       "img": "img/mainpage/phone_mining/phone--en.png",
       "wp": "Download whitepaper",
       "wp_ko": "백서",
@@ -191,7 +191,7 @@
       ]
     },
     "changingworld": {
-      "title": "changing the world",
+      "title": "Changing the world",
       "img": "img/mainpage/phone_mining/phone--en.png",
       "list": [
         [
@@ -214,13 +214,13 @@
           {
             "title": "Logistic",
             "description": "Enecuum technology allows you to easily and safely manage the delivery of goods around the world. Logistics has never been so easy and convenient."
-          },
-          {
-            "title": "Energy",
-            "description": "Each customer will only pay for the amount of electricity that he consumed. Through our SHARNELL Smart Contracts, Enecuum allows companies to create perfectly accurate invoices from the meter of each consumer on the power grid."
           }
         ],
         [
+          {
+            "title": "Energy",
+            "description": "Each customer will only pay for the amount of electricity that he consumed. Through our SHARNELL Smart Contracts, Enecuum allows companies to create perfectly accurate invoices from the meter of each consumer on the power grid."
+          },
           {
             "title": "For developers",
             "description": "Thanks to Enecuum, developers gain the opportunity to implement applications of any complexity, without having to worry about the power of their physical servers."
@@ -241,12 +241,12 @@
       ]
     },
     "blockchain": {
-      "title": "blockchain of tomorrow",
-      "description": "Enecuum is an ideal platform for companies that need a fast, secure, decentralized blockchain. Even for us it is hard to imagine an industry where Enecuum's innovative technologies cannot be applied. We are pleased to create a technology that can radically facilitate the work in various areas of life and business: from the possibility of free mobile communication for subscribers to the organization of fair elections at any level.",
+      "title": "Blockchain of tomorrow",
+      "description": "Enecuum allows each smartphone owner to become part of a global network and get rewarded for it. Crypto technologies should not belong to a small community of technological elite. On the contrary, everyone should have the opportunity to become part of a beautiful future. We make access to this advanced technology simple and easy. This is what the Blockchain of Tomorrow should be.",
       "img": "img/mainpage/phone_mining/phone--en.png"
     },
     "roadmap": {
-      "title": "roadmap",
+      "title": "Roadmap",
       "img_desctop": "img/mainpage/roadmap/road_map_desktop.png",
       "img_mobile": "img/mainpage/roadmap/road_map_mobile.png",
       "list": [
@@ -286,7 +286,7 @@
     },
     "partners": {
       "partners": {
-        "title": "partners",
+        "title": "Partners",
         "img": [
           [
             {
