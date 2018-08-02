@@ -6,7 +6,7 @@ function restart() {
   mainInstance.on('close', (e) => {
     setTimeout(() => {
       console.log(`server was close with code: ${e}`);
-      sendPureLog(`server was restarted with code: ${e}`);
+      process.env.dev ? sendPureLog(`server was restarted with code: ${e}`) : null;
       restart();
     }, 5000);
   });
