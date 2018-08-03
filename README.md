@@ -8,7 +8,7 @@
 $ npm install # Or yarn install
 
 # serve with hot reload at localhost:80
-$ npm run dev
+$ npm run dev-nuxt
 
 # build for production and launch server
 $ npm run build
