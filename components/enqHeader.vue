@@ -43,7 +43,7 @@
       <div class="menu_submenu-wrapper" v-if="itsHomepage">
         <ul class="menu_submenu">
           <li class="menu_submenu-item"><a target="_self" href="#enq" @click.prevent="scrollTo('enq')">What is
-            Enq</a>
+            ENQ</a>
           </li>
           <li class="menu_submenu-item"><a target="_self" href="#mining" @click.prevent="scrollTo('mining')">Phone
             mining</a></li>

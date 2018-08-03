@@ -4,7 +4,7 @@
       "title": "Blockchain of tomorrow",
       "subtitle": "Enecuum is the first blockchain in the world to unite millions of smartphones into a single network.",
       "subscribeForm": {
-        "description": "Please fill the sign up form to join ENQ. All important information about the project will be available for whitelist members.",
+        "description": "Please fill the sign up form to join ENQ. All important information about the project will be available to whitelist members.",
         "input": "Enter Your Email Address",
         "button": "Join"
       }
@@ -149,15 +149,15 @@
       "list": [
         {
           "title": "Phone mining",
-          "description": "Every smartphone on the network will participate in the publication of microblocks on a daily basis and receive a reward for this. This is open doors of the crypto world to millions of new users. A user simply needs to download the Enecuum App, which places a very light processing load on the smartphone - comparable to a traditional messenger app. "
+          "description": "Every smartphone on the network will participate in the publication of microblocks on a daily basis and receive a reward for this. This opens doors of the crypto world to millions of new users. A user simply needs to download the Enecuum App, which places a light processing load on the smartphone - comparable to a traditional messenger app. "
         },
         {
-          "title": "Decentralisation",
+          "title": "Decentralization",
           "description": "Millions of smartphones connect to the Enecuum network from around the world, creating a truly decentralized system. It is impossible to steal any file from the network because the data is chunked and stored on millions of different devices, which makes the network extremely secure."
         },
         {
-          "title": "Proof Of Activity node",
-          "description": "According to statistics, on average people utilize only about 10% of the data processing capabilities of their smartphone. Enecuum actually \"leases\" the unused resources of the smartphone and rewards for its use to the device owner. The smartphone becomes part of a huge network, and a special algorithm uses the power of each device most effectively. This algorithm is called Proof-of-Activity."
+          "title": "Proof-of-Activity node",
+          "description": "According to statistics, on average people utilize only about 10% of the data processing capabilities of their smartphone. Enecuum actually \"leases\" the unused resources of the smartphone and rewards the device owner for this. The smartphone becomes part of a huge network, and a special algorithm uses the power of each device most effectively. This algorithm is called Proof-of-Activity."
         }
       ]
     },
@@ -174,7 +174,7 @@
         },
         {
           "title": "HyperDAG",
-          "description": "Imagine if a chef in a restaurant were to cook each meal sequentially, one after the next. In addition, some visitors make identical orders, or even order individual components to create their own dish. In such a scenario, most visitors will not wait for their orders because it takes too long for the chef to get to them.\nIt is therefore more profitable to prepare the meals in parallel. Then many dishes are prepared nearly simultaneously, resulting in a much greater speed of service.\nOur HyperDAG technology does the same as in the example, as it allows the creation of many parallel tasks which are solved by the hundreds of thousands of smartphones that are part of the network. In fact, the greater the number of smartphones exist in the network, the more quickly these parallel tasks are solved. It is thanks to this technology that Enecuum is unique and indeed, a one-of-a-kind blockchain."
+          "description": "Imagine if a chef in a restaurant were to cook each meal sequentially, one after the another. In addition, some visitors made identical orders, or even ordered individual components to create their own dish. In such a scenario, most visitors will not wait for their orders because it takes too long for the chef to get to them.\n\nIt is therefore more profitable to prepare the meals in parallel. Then many dishes are prepared nearly simultaneously, resulting in a much greater speed of service.\n\nOur HyperDAG technology does exactly that, as it allows the creation of many parallel tasks which are solved by the hundreds of thousands of smartphones that are part of the network. In fact, the greater the number of smartphones exist in the network, the more quickly these parallel tasks are solved. It is thanks to this technology that Enecuum is unique and indeed, a one-of-a-kind blockchain."
         },
         {
           "title": "Hybrid consensus algorithm ",
@@ -182,11 +182,11 @@
         },
         {
           "title": "SHARDING",
-          "description": "The personal data of millions of people are stored on the Internet. Hackers regularly gain access to bank accounts or personal correspondence of a great number of people. If your photo is on any server, it can be stolen if a hacker gains access to this server. \nThis problem can be solved only in one way – to store personal data in decentralized systems.\nNow imagine that your photo is torn into 1,000 pieces, and each piece resides in a different place. Only you can put them back together, because you have a unique key, which tells you how and where to instantly collect and reassemble this 1000-piece puzzle. Even if attackers were able to steal this information from multiple devices, they would not be able to reassemble it and use it without your key.\nEach of the pieces is duplicated several times on different devices, so that you can access this photo at any time from anywhere in the world. This is done by using a decentralized application and the technology called Sharding."
+          "description": "The personal data of millions of people are stored on the Internet. Hackers regularly gain access to bank accounts or personal correspondence of a great number of people. If your photo is on any server, it can be stolen if a hacker gains access to this server. \n\nThis problem can be solved only in one way – to store personal data in decentralized systems.\nNow imagine that your photo is torn into 1,000 pieces, and each piece resides in a different place. Only you can put them back together, because you have a unique key, which tells you how and where to instantly collect and reassemble this 1000-piece puzzle. Even if attackers were able to steal this information from multiple devices, they would not be able to reassemble it and use it without your key.\n\nEach of the pieces is duplicated several times on different devices, so that you can access this photo at any time from anywhere in the world. This is done by using a decentralized application and the technology called Sharding."
         },
         {
-          "title": "SHARNELL Smart contract",
-          "description": "Smart Contract technology allows you to enter into secure transactions between two or more parties around the world instantly, and without the involvement of expensive lawyers.\nWhy is it called \"smart\"? Until recently, to conclude any deal, you had to draw up a contract, obtain signatures from all interested parties, and then wait several days for payment. All these processes required a lot of time and significant resources. With the introduction of the electronic signature, the process became somewhat faster, but the “red tape” and “human factor” did not disappear.\nLet's say you live in Germany and want to buy 10 tons of bananas from Brazil. Previously, you would need to find a supplier, sign a contract with him, purchase bananas, control logistics, and so on. Each stage in the process would be agreed to by a specific agreement the involved parties had to agree to. At the same time, at every stage there is a risk of fraud by any counterparty.\nWith an \"intelligent\" contract, everything is much simpler and safer. The system will automatically transfer money throughout the chain at the time of the transaction. It is impossible to deceive the contractor in this situation, since all data is contained in the blockchain and any transaction can be checked, if necessary.\nSmart contracts are no longer the province of lawyers, but of good programmers. However, the problem is that the languages of writing smart contracts in different blockchains are at present quite new, and the development community is small. Because of this, the cost of the development of smart contracts is usually very high, and the quality of the code is lower than expected.\nEnecuum solved this problem by using a variatoin of linear logic called SHARNELL to write smart contracts. One of its key feautres is that it simply will not allow the execution of a smart contract that is written with an error. In addition, the main language for creating smart contracts in Enecuum will be the most common language in the world - JavaScript, which will not only allow the programmer to develop contracts faster, but also save substantial money on the development process."
+          "title": "SHARNELL smart contracts",
+          "description": "Smart Contract technology allows you to enter into secure transactions between two or more parties around the world instantly, and without the involvement of expensive lawyers.\nWhy is it called \"smart\"? Until recently, to conclude any deal, you had to draw up a contract, obtain signatures from all interested parties, and then wait several days for payment. All these processes required a lot of time and significant resources. With the introduction of the electronic signature, the process became somewhat faster, but the “red tape” and “human factor” did not disappear.\n\nLet's say you live in Germany and want to buy 10 tons of bananas from Brazil. Previously, you would need to find a supplier, sign a contract with him, purchase bananas, control logistics, and so on. Each stage in the process would be agreed to by a specific agreement the involved parties had to agree to. At the same time, at every stage there is a risk of fraud by any counterparty.\n\nWith an \"intelligent\" contract, everything is much simpler and safer. The system will automatically transfer money throughout the chain at the time of the transaction. It is impossible to deceive the contractor in this situation, since all data is contained in the blockchain and any transaction can be checked if necessary.\nSmart contracts are no longer the province of lawyers, but of good programmers. However, the problem is that the languages for writing smart contracts in different blockchains are at present quite new, and the development community is small. Because of this, the cost of the development of smart contracts is usually very high, and the quality of the code is lower than expected.\n\nEnecuum solved this problem by using a variation of linear logic called SHARNELL to write smart contracts. One of its key feautres is that it simply will not allow the execution of a smart contract that is written with an error. In addition, the main language for creating smart contracts in Enecuum will be the most common programming language in the world - JavaScript, which will not only allow the programmer to develop contracts faster, but also save substantial money on it."
         }
       ]
     },
@@ -197,15 +197,15 @@
         [
           {
             "title": "Changing the world",
-            "description": "Enecuum is an ideal platform for companies that need a fast, secure, decentralized blockchain. Even for us it is hard to imagine an industry where Enecuum's innovative technologies cannot be applied. We are pleased to create a technology that can radically facilitate the work in various areas of life and business: from the possibility of free mobile communication for subscribers to the organization of fair elections at any level."
+            "description": "Enecuum is an ideal platform for companies that need a fast, secure, decentralized blockchain. The scope of industries where Enecuum's innovative technologies can be applied is vast. We are pleased to create a technology that can radically facilitate the work so many areas of life and business: from the possibility of free mobile communication for subscribers to the organization of fair elections at any level."
           },
           {
             "title": "Science",
-            "description": "The computing power of Enecuum can be used to solve complex scientific problems, the results of which will be available to any international scientific community."
+            "description": "The computing power of Enecuum can be used to solve complex scientific problems, with the results available to any international scientific community."
           },
           {
             "title": "Government",
-            "description": "Enecuum facilitates voting of any degree of complexity, the results of which cannot be falsified. The world has already seen elections take place using blockchain technology on an experimental basis. The results of these experiments were found to be successful.\nState organizations have the opportunity to safely store citizens’ personal data, to implement electronic document management everywhere, which greatly facilitates the receipt of public services by the population."
+            "description": "Enecuum facilitates voting of any degree of complexity, and protects the voting results from falsification. The world has already seen elections take place using blockchain technology on an experimental basis. The outcomes of these experiments were found to be successful.\nState organizations have the opportunity to safely store citizens’ personal data, to implement electronic document management everywhere, which greatly facilitates the receipt of public services by the population."
           },
           {
             "title": "Education",
@@ -222,8 +222,8 @@
             "description": "Each customer will only pay for the amount of electricity that he consumed. Through our SHARNELL Smart Contracts, Enecuum allows companies to create perfectly accurate invoices from the meter of each consumer on the power grid."
           },
           {
-            "title": "For developers",
-            "description": "Thanks to Enecuum, developers gain the opportunity to implement applications of any complexity, without having to worry about the power of their physical servers."
+            "title": "Software",
+            "description": "Thanks to Enecuum, developers gain the opportunity to implement distributed applications of any complexity, without having to worry about the power of their physical servers."
           },
           {
             "title": "Telecom",
@@ -231,7 +231,7 @@
           },
           {
             "title": "Medicine",
-            "description": "You will now be able to buy prescription medicine in Italy that you were prescribed in Argentina. Enecuum has made this possible thanks to our single decentralized storage network for your health records. This kind of global access never existed before, due to technical limitations. We at Enecuum have removed those limitations forever."
+            "description": "You will now be able to get a prescription for a medicine in Argentina and purchase this medicine in Italy. Enecuum has made this possible thanks to our single decentralized storage network for your health records. This kind of global access never existed before, due to technical limitations. We at Enecuum have removed those limitations forever."
           },
           {
             "title": "Insurance",
@@ -252,35 +252,35 @@
       "list": [
         {
           "date": "2015",
-          "text": "Launch the project. Analyse Form a team of developers the architecture of various known to create a new architecture"
+          "text": "Launch the project. Analyse existing blockchains for critical problems and ways to solve them."
         },
         {
           "date": "2017",
-          "text": "Blockchains for existing problems and ways to solve them"
+          "text": "Assemble the core development team."
         },
         {
           "date": "q1 2018",
-          "text": "Implement the system protocol, RPC API, wallets"
+          "text": "Implement the network protocol, RPC API, wallets."
         },
         {
           "date": "q2 2018",
-          "text": "Pow + PoA"
+          "text": "Implement PoW and PoA."
         },
         {
           "date": "q3 2018",
-          "text": "Launch the test net, POS"
+          "text": "Launch the TestNet. Implement PoS."
         },
         {
           "date": "q4 2018",
-          "text": "Smart Contracts SHARNELL"
+          "text": "Implement Smart Contracts on Petri Nets and start working on SHARNELL Smart Contracts."
         },
         {
           "date": "q1 2019",
-          "text": "Create a gateway for an automatic transfer of smart contracts from other systems to Enecuum"
+          "text": "Create a gateway for automatic transfer of smart contracts from other systems to Enecuum."
         },
         {
           "date": "q2 2019",
-          "text": "Continuously improve the protocol"
+          "text": "Continuously improve the protocol."
         }
       ]
     },
