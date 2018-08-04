@@ -1,7 +1,9 @@
 const {spawn} = require('child_process');
 const {sendPureLog} = require('./informer');
 
-function restart() {
+require('./index.js');
+
+/*function restart() {
   let mainInstance = spawn('node', ['./index.js']);
   mainInstance.on('close', (e) => {
     setTimeout(() => {
@@ -13,7 +15,7 @@ function restart() {
   mainInstance.stdout.on('data', (data) => {
     console.log(data.toString());
   });
-}
+}*/
 
-restart();
+//restart();
 console.log('start main instance');
