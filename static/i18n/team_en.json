@@ -344,18 +344,6 @@
                 "url": "https://www.linkedin.com/in/msubbotin"
               }
             ]
-          },
-          {
-            "avatar": "/img/team/avatars/mihail_zabelin.png",
-            "name": "Mikhail Zabelin",
-            "position": "Software Developer",
-            "description": "A software developer with a degree in Solid-state Physics from the St. Petersburg Polytechnic University.\n                                ",
-            "social": [
-              {
-                "type": "github",
-                "url": "https://travmaturg.github.io/"
-              }
-            ]
           }
         ],
         [
@@ -539,18 +527,6 @@
               {
                 "type": "linkedin",
                 "url": "https://www.linkedin.com/in/alisa-kosykh-625b6114b/"
-              }
-            ]
-          },
-          {
-            "avatar": "/img/team/avatars/evgeniya.png",
-            "name": "Evgeniya Zaslavskaya",
-            "position": "PR",
-            "description": "Came to the crypto industry when 1 bitcoin cost 900 $. The last project (AI-startup) took the second place in the international rating on ICO charges in January 2018. Before that Evgeniya was working as PR specialist in a biotechnology company that worked with government.She has been working in the field of media for more than 10 years. By education - a journalist.\n                                ",
-            "social": [
-              {
-                "type": "linkedin",
-                "url": "https://www.linkedin.com/in/%D0%B5%D0%B2%D0%B3%D0%B5%D0%BD%D0%B8%D1%8F-%D0%B7%D0%B0%D1%81%D0%BB%D0%B0%D0%B2%D1%81%D0%BA%D0%B0%D1%8F-4ba0313b/ "
               }
             ]
           },
