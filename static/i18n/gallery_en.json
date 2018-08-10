@@ -44,6 +44,12 @@
         "preview_url": "img/videos/blockchain_applications.png",
         "video_url": "https://www.youtube.com/watch?v=VoKptIKvt9A",
         "description": "Our project won the competition in Zurich and the Enecuum team was invited to Berlin to participate in the final of the BlockShow Oscar 2018 competition"
+      },
+      {
+        "name": "The Blockchain Breakfast Club Event - Enecuum",
+        "preview_url": "img/videos/breakfast.png",
+        "video_url": "https://www.youtube.com/watch?v=L5fsKgyhyVI",
+        "description": "iAngels and iCapital founding partner, Mor Assia talks with Jev Vainsteins, founder of Enecuum at the iCapital Blockchain Breakfast Club event in Tel Aviv."
       }
     ]
   }
