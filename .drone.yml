@@ -58,7 +58,7 @@ pipeline:
       - source: rancher_secret_key
         target: PLUGIN_SECRET_KEY
     docker_image: dev.enecuum.com:2087/site/frontend:beta
-    service: site/frontend-dev-beta
+    service: site/frontend-beta
     confirm: true
     timeout: 240
     when:
