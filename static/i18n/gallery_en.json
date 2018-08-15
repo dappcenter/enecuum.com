@@ -4,48 +4,56 @@
     "playButton": "PLAY",
     "videos": [
       {
+        "id": 1,
         "name": "Speech by Anton Nikonorov about Enecuum. With Q&A",
         "preview_url": "img/videos/Speech by Anton Nikonorov.png",
         "video_url": "https://www.youtube.com/watch?v=kthw_TQJc6U",
         "description": "Anton Nikonorov at the fifth anniversary meet-up of blockchain developers in St. Petersburg, Russia."
       },
       {
+        "id": 2,
         "name": "ENQ presentation on Blockchshow Meetup, Zurich by Cointelegraph",
         "preview_url": "img/videos/ENQ pres.png",
         "video_url": "https://www.youtube.com/watch?v=RSisLcOfqhA",
         "description": "Switzerland - the home of Crypto Valley and one of the strongest Blockchain ecosystems of the world. It would be a big mistake not to come here during this massive trip - and there’s no way we can allow it!"
       },
       {
+        "id": 3,
         "name": "Proving your Project: Proof of Concept/Work/State/Space & Time",
         "preview_url": "img/videos/Panel 3.png",
         "video_url": "https://www.youtube.com/watch?v=Cz8RTuW6CDk",
         "description": "Moderator: Samson Lee – Founder & CEO, CoinStreet Partners, Panelists: Dr. Tagir Aushev – Head of Laboratory of High Energy Physics, Moscow Phystech (MIPT), Jonathan Chou – Co-founder & CEO, The Bee Token, Jev Vainsteins - Chief Business Development Officer, Enecuum"
       },
       {
+        "id": 4,
         "name": "Jev Vainsteins in Luxembourg, The Arch Summit",
         "preview_url": "img/videos/The_Arch_Summit.png",
         "video_url": "https://www.youtube.com/watch?v=KJt9yr_qw4E",
         "description": "The Arch Summit is tailored to bring together the corporate and startup world, giving both parties an opportunity to network and partner to drive innovation. The stage is built for innovation and entrepreneurial spirit where you have the chance to be inspired by industry leading speakers, compete to fund your business, network directly with corporate key decision makers and drive the change."
       },
       {
+        "id": 5,
         "name": "Vladimir Pushmin, Arloid Automation about Enecuum platform",
         "preview_url": "img/videos/Arloid_Automation.png",
         "video_url": "https://www.youtube.com/watch?v=Bsnc9MZkuk4",
         "description": "Arloid Automation builds The First Community Backed IoT Ecosystem."
       },
       {
+        "id": 6,
         "name": "Ilia Maksimenka, Plasma Bank about Enecuum platform",
         "preview_url": "img/videos/Plasma_Bank.png",
         "video_url": "https://www.youtube.com/watch?v=qgKzP4cxIo0",
         "description": "Plasma Bank is a platform for banks and financial services both in crypto and fiat. We offer for people and businesses most relevant and personalised financial services in capital management."
       },
       {
+        "id": 7,
         "name": "\"Blockchain cannot have any real world applications\"- Bobby Lee",
         "preview_url": "img/videos/blockchain_applications.png",
         "video_url": "https://www.youtube.com/watch?v=VoKptIKvt9A",
         "description": "Our project won the competition in Zurich and the Enecuum team was invited to Berlin to participate in the final of the BlockShow Oscar 2018 competition"
       },
       {
+        "id": 8,
         "name": "The Blockchain Breakfast Club Event - Enecuum",
         "preview_url": "img/videos/breakfast.png",
         "video_url": "https://www.youtube.com/watch?v=L5fsKgyhyVI",

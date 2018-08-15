@@ -23,6 +23,17 @@
   import videoCard from '@/components/video/video';
   import axios from 'axios';
 
+  function gallerySort(data) {
+    data.videos.sort((a, b) => {
+      if (a.id < b.id) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    return data;
+  }
+
   export default {
     name: "vid",
     data() {
@@ -41,8 +52,9 @@
       }
     },
     async asyncData() {
-      const {data} = await axios.get('/i18n/gallery_' + 'en' + '.json');
-      return {gallery: data.gallery}
+      const {data} = await
+        axios.get('/i18n/gallery_' + 'en' + '.json');
+      return {gallery: gallerySort(data.gallery)}
     }
   }
 </script>
