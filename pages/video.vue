@@ -33,7 +33,6 @@
     });
     return data;
   }
-
   export default {
     name: "vid",
     data() {
