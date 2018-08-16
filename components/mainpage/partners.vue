@@ -5,7 +5,7 @@
         <div>{{item.title}}</div>
       </div>
       <div class="partner-items">
-        <el-col class="item" v-for="(partner, pkey) in item.items" :key="pkey"
+        <el-col :class="'item bg'+random(4)" v-for="(partner, pkey) in item.items" :key="pkey"
                 :style="'max-width: calc('+ (100/(item.items.length>3 ? 3 : item.items.length)) +'%)'">
           <div class="item-text">{{partner.text}}</div>
           <div class="item-img">
@@ -124,10 +124,24 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: #cacaca;
         overflow: hidden;
         min-height: 260px;
         max-width: 33.33%;
+        &.bg1 {
+          background-color: rgba(202, 202, 202, .9);
+        }
+        &.bg2 {
+          background-color: rgba(202, 202, 202, .8);
+        }
+        &.bg3 {
+          background-color: rgba(202, 202, 202, .7);
+        }
+        &.bg4 {
+          background-color: rgba(202, 202, 202, .6);
+        }
+        &.bg5 {
+          background-color: rgba(202, 202, 202, .5);
+        }
         &-text {
           position: absolute;
           display: flex;
@@ -136,7 +150,7 @@
           text-align: center;
           height: 100%;
           width: 100%;
-          transition: .2s all ease-out;
+          transition: .4s all ease-out;
           transform: translateX(-100%);
           padding: 40px;
           color: #ffffff;
@@ -148,7 +162,7 @@
           width: 100%;
           align-items: center;
           justify-content: center;
-          transition: .2s all ease-out;
+          transition: .4s all ease-out;
           transform: translateX(0%);
           position: absolute;
           img {

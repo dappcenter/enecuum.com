@@ -1,6 +1,6 @@
 <template>
     <div>
-      <img src="/img/mainpage/landings/07_team.jpg" alt="">
+      <img src="/img/mainpage/landings/07_team.jpg" alt="" style="width: 100%;">
     </div>
 </template>
 

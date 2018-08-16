@@ -198,9 +198,10 @@
       });
       setTimeout(() => {
         this.checkingAuth = false;
-        document.addEventListener('wheel', (e) => {
-          console.log(e.offsetY, e.pageY, e);
-          if (e.pageY >= 2077 && e.pageY <= 5758) {
+        document.addEventListener('scroll', () => {
+          let el = document.getElementById('scrollingBlock');
+          console.log(window.scrollY + 80, el.offsetTop);
+          if (window.scrollY + 80 >= el.offsetTop && window.scrollY + 80 <= el.offsetTop + el.offsetHeight) {
             this.isfixedcolor = 'true';
           } else {
             this.isfixedcolor = 'false';
@@ -234,7 +235,7 @@
     &-item {
       height: 80px;
       line-height: 80px;
-      font-size: 22px;
+      font-size: 20px;
       &.is-active {
         border-color: transparent;
       }

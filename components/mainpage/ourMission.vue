@@ -1,5 +1,5 @@
 <template>
-  <div style="height: calc(200vh + 1730px);">
+  <div style="height: calc(200vh + 1730px);" id="scrollingBlock">
     <div class="scene0" id="mining">
       <img src="/img/mainpage/landings/03_phone-mining.jpg" alt="">
     </div>
