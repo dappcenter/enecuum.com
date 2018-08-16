@@ -1,55 +1,18 @@
 <template>
   <div class="partner pureBlock" id="partners">
-    <el-row type="flex" justify="center">
-      <el-col :md="22" :lg="18" class="pureBlock-title">
-        <el-row>
-          <el-col :xs="24" :sm="24">
-            <div class="new title title-center title-bold">
-              {{data.partners.title}}
-            </div>
-          </el-col>
-        </el-row>
-        <el-row class="flex-wrap partner-pure flex-center" v-for="(block, key) in data.partners.img"
-                :key="key">
-          <el-col :xs="24" :md="6" :sm="8" :lg="5" v-for="(partn, bkey) in block" :key="bkey"
-                  class="flex-middle">
-            <div class="partner-item"><a :href="partn.link" target="_blank"><img :src="partn.img"
-                                                                                 class="partner-item_avatar"></a>
-            </div>
-          </el-col>
-        </el-row>
-        <el-row class="flex-wrap partner-eco flex-center">
-          <el-col :xs="24" :sm="22">
-            <div class="page-sub-title text-center">Ecosystem and business partners</div>
-          </el-col>
-          <el-col :xs="24" :md="6" :sm="8" :lg="5" v-for="(ecpart, eckey) in data.eco_partners.img" :key="eckey"
-                  class="flex-middle">
-            <div class="partner-item"><a :href="ecpart.link" target="_blank"><img :src="ecpart.img"
-                                                                                  class="partner-item_avatar"></a>
-            </div>
-          </el-col>
-        </el-row>
-        <el-row class="flex-wrap partner-eco flex-center">
-          <el-col :xs="24" :sm="22">
-            <div class="page-sub-title text-center">Legal advisor</div>
-          </el-col>
-          <el-col :xs="24" :md="6" :sm="8" :lg="5" v-for="(legal, legkey) in data.legal_partners.img" :key="legkey">
-            <div class="partner-item"><a :href="legal.link" target="_blank"><img :src="legal.img"
-                                                                                 class="partner-item_avatar"></a>
-            </div>
-          </el-col>
-        </el-row>
-        <el-row class="flex-wrap partner-eco flex-center">
-          <el-col :xs="24" :sm="22">
-            <div class="page-sub-title text-center">We are member of Fintech Association of Hong Kong</div>
-          </el-col>
-          <el-col :xs="24" :md="6" :sm="8" :lg="5" v-for="(medpart, medkey) in data.members.img" :key="medkey">
-            <div class="partner-item"><a :href="medpart.link" target="_blank"><img :src="medpart.img"
-                                                                                   class="partner-item_avatar"></a>
-            </div>
-          </el-col>
-        </el-row>
-      </el-col>
+    <el-row type="flex" v-for="(item, key) in partners" :key="key">
+      <div :class="'partner-title bg'+random(2)+(key===0 ? ' fr' : '')">
+        <div>{{item.title}}</div>
+      </div>
+      <div class="partner-items">
+        <el-col class="item" v-for="(partner, pkey) in item.items" :key="pkey"
+                :style="'max-width: calc('+ (100/(item.items.length>3 ? 3 : item.items.length)) +'%)'">
+          <div class="item-text">{{partner.text}}</div>
+          <div class="item-img">
+            <img :src="partner.img" alt="">
+          </div>
+        </el-col>
+      </div>
     </el-row>
   </div>
 </template>
@@ -57,6 +20,151 @@
 <script>
   export default {
     name: "partners",
-    props: ['data']
+    props: ['data'],
+    data() {
+      return {
+        partners: [{
+          title: 'Partners',
+          items: [{
+            text: 'Paytomat - Crypto-payment system for everyday needs',
+            img: 'img/mainpage/partners/alphachain.png'
+          }, {
+            text: 'Paytomat - Crypto-payment system for everyday needs',
+            img: 'img/mainpage/partners/GEM_Crypto_black.png'
+          }, {
+            text: 'Paytomat - Crypto-payment system for everyday needs',
+            img: 'img/mainpage/partners/coinsortium.png'
+          }]
+        }, {
+          title: 'Ecosystem and business partners',
+          items: [{
+            text: 'Paytomat - Crypto-payment system for everyday needs',
+            img: 'img/mainpage/partners/mikado.png'
+          }, {
+            text: 'Paytomat - Crypto-payment system for everyday needs',
+            img: 'img/mainpage/partners/trustverse.png'
+          }, {
+            text: 'Paytomat - Crypto-payment system for everyday needs',
+            img: 'img/mainpage/partners/paytomat.png'
+          }, {
+            text: 'Paytomat - Crypto-payment system for everyday needs',
+            img: 'img/mainpage/partners/plasmapay.png'
+          }, {
+            text: 'Paytomat - Crypto-payment system for everyday needs',
+            img: 'img/mainpage/partners/upstudy.png'
+          }, {
+            text: 'Paytomat - Crypto-payment system for everyday needs',
+            img: 'img/mainpage/partners/arloid.png'
+          }]
+        }, {
+          title: 'Media partners',
+          items: [{
+            text: 'Paytomat - Crypto-payment system for everyday needs',
+            img: 'img/mainpage/partners/ico_crowd.png'
+          }, {
+            text: 'Paytomat - Crypto-payment system for everyday needs',
+            img: 'img/mainpage/partners/bloom_chain.png'
+          }]
+        }, {
+          title: 'Legal Advisor',
+          items: [{
+            text: 'Paytomat - Crypto-payment system for everyday needs',
+            img: 'img/mainpage/partners/king-wood-malleson.png'
+          }]
+        }, {
+          title: 'We are member of fintech association of Hong Kong',
+          items: [{
+            text: 'Paytomat - Crypto-payment system for everyday needs',
+            img: 'img/mainpage/partners/fintechhh.png'
+          }]
+        }]
+      }
+    },
+    methods: {
+      random(to) {
+        return Math.round(Math.random() * to) + 1;
+      }
+    }
   }
 </script>
+<style scoped lang="scss">
+  .partner {
+    &-title {
+      min-width: 605px;
+      width: 605px;
+      min-height: 260px;
+      display: flex;
+      padding: 50px 85px;
+      font-size: 25px;
+      text-transform: uppercase;
+      &.fr {
+        align-items: center;
+        text-transform: initial;
+        color: #ffffff;
+        font-size: 90px;
+        font-weight: bold;
+      }
+      &.bg1 {
+        background-color: #009fca;
+      }
+      &.bg2 {
+        background-color: #14a7ce;
+      }
+      &.bg3 {
+        background-color: #0da4cd;
+      }
+    }
+    &-items {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      .item {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #cacaca;
+        overflow: hidden;
+        min-height: 260px;
+        max-width: 33.33%;
+        &-text {
+          position: absolute;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          height: 100%;
+          width: 100%;
+          transition: .2s all ease-out;
+          transform: translateX(-100%);
+          padding: 40px;
+          color: #ffffff;
+          background-color: #FF7400;
+        }
+        &-img {
+          display: flex;
+          height: 100%;
+          width: 100%;
+          align-items: center;
+          justify-content: center;
+          transition: .2s all ease-out;
+          transform: translateX(0%);
+          position: absolute;
+          img {
+            width: auto;
+            padding: 40px;
+          }
+        }
+        &:hover {
+          .item-text {
+            transform: translateX(0%);
+          }
+          .item-img {
+            transform: translateX(100%);
+          }
+        }
+      }
+    }
+  }
+</style>

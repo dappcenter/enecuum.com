@@ -1,13 +1,14 @@
 .row.banner {
-  padding: 150px 150px 190px;
+  padding: 0px;
+/*  padding: 150px 150px 190px;*/
   /*  background: url('/img/mainpage/banner/face-1.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position-x: 100%;*/
   color: #fff;
-  @media screen and (max-width: 768px) {
+/*  @media screen and (max-width: 768px) {
     padding: 20px 15px 90px;
-  }
+  }*/
 }
 
 .banner {
@@ -70,6 +71,9 @@
         height: 100%;
       }
     }
+  }
+  img {
+    width: 100%;
   }
 }
 
@@ -347,7 +351,6 @@
 
 .partner {
   flex-wrap: wrap;
-  padding: 48px 0 40px;
   &-item {
     display: flex;
     align-items: center;

@@ -46,6 +46,12 @@ module.exports = {
       },
       {
         src: 'https://unpkg.com/jarallax@1.10/dist/jarallax.min.js'
+      },
+      {
+        src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/ScrollMagic.js'
+      },
+      {
+        src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/plugins/animation.gsap.js'
       }
     ]
   },

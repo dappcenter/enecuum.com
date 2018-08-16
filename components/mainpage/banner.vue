@@ -1,44 +1,6 @@
 <template>
-  <el-row class="row banner blue-background" id="enq">
-    <div class="banner_img-wrapper">
-      <el-carousel :interval="5000" arrow="never" indicator-position="none" height="100%">
-        <el-carousel-item v-for="item in counter" :key="item">
-          <img :src="'/img/mainpage/banner/face-'+item+'.png'" alt="" class="banner_img">
-        </el-carousel-item>
-      </el-carousel>
-    </div>
-    <div class="banner_content">
-      <h1 class="banner_title">
-        {{data.title}}
-      </h1>
-      <div class="banner_text">
-        <div>
-          {{data.subtitle}}
-        </div>
-      </div>
-      <el-form class="subscribe" :model="whitelist" :rules="rules" ref="whiteListForm"
-               @submit.native.prevent="submitWL">
-        <div class="subscribe_text">
-          {{data.subscribeForm.description}}
-        </div>
-        <div class="subscribe_footer">
-          <el-form-item prop="email" class="subscribe_footer-item">
-            <el-input type="email" name="email" v-model="whitelist.email"
-                      :placeholder="data.subscribeForm.input" class="input"></el-input>
-          </el-form-item>
-          <el-button type="primary" @click="submitWL" class="join" :loading="loading">{{data.subscribeForm.button}}
-          </el-button>
-        </div>
-      </el-form>
-      <div class="banner_networks">
-        <a v-for="(item, key) in social" :key="key" :href="item.link" target="_blank"
-           @click="a({category: 'social', eventAction: 'click', eventLabel: item.type})">
-          <img :src="item.img" alt="">
-        </a>
-      </div>
-      <vue-recaptcha size="invisible" :sitekey="recaptchaKey" @verify="onVerify"
-                     ref="invisibleRecaptcha"></vue-recaptcha>
-    </div>
+  <el-row class="row banner" id="enq">
+    <img src="/img/mainpage/banner/01_Blockchain-of-tomorrow.jpg" alt="">
   </el-row>
 </template>
 

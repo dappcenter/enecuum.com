@@ -1,41 +1,26 @@
 <template>
   <div class="roadmap pureBlock" id="roadmap">
-    <div id="dna" class="jarallax" data-speed="-0.4">
-      <img src="/img/dnaLong-2.png" alt="" class="jarallax-img">
-    </div>
-    <el-row type="flex" justify="center">
-      <el-col :md="22" :lg="18" class="pureBlock-title">
-        <el-row>
-          <el-col :xs="24" :sm="24">
-            <div class="new title title-left title-bold">
-              {{data.title}}
-            </div>
-          </el-col>
-        </el-row>
-      </el-col>
-    </el-row>
-    <el-row type="flex" justify="center" class="roadmap_block-preimage">
-      <el-col :md="22" :lg="18">
-        <el-row>
-          <el-col :xs="24" :sm="24" class="roadmap_block">
-            <ul>
-              <li v-for="(li, key) in data.list" :key="key" class="roadmap_block-li">
-                <div class="roadmap_block-date">{{li.date}}</div>
-                <div class="roadmap_block-text">{{li.text}}</div>
-              </li>
-            </ul>
-            <img src="/img/mainpage/roadmap/DNA.png" alt="">
-          </el-col>
-        </el-row>
-      </el-col>
-    </el-row>
-    <div class="roadmap_block-image"></div>
+    <img src="/img/mainpage/landings/06_roadmap.jpg" alt="">
   </div>
 </template>
 
 <script>
+
   export default {
     name: "roadmap",
-    props: ['data']
+    props: ['data'],
+    mounted() {
+      setTimeout(() => {
+        let widthDiff = window.innerWidth - document.querySelector('.roadmap img').offsetWidth;
+        let controller = new ScrollMagic.Controller();
+        let wipeAnim = new TimelineMax()
+          .fromTo(".roadmap img", 1, {x: "0px"}, {x: widthDiff + 'px', ease: Linear.easeNote});
+        new ScrollMagic.Scene({
+          triggerElement: '#roadmap',
+          triggerHook: '0.10',
+          duration: '200%'
+        }).setPin("#roadmap").setTween(wipeAnim).addTo(controller);
+      }, 1300);
+    }
   }
 </script>
