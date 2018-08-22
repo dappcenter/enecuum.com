@@ -22,7 +22,7 @@
     name: "citates",
     data() {
       return {
-        height: '878px',
+        height: '978px',
         carousel: [{
           title: 'This Hyper DAG thing is great!',
           person: 'Ran Neu-Ner',

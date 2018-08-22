@@ -6,7 +6,7 @@
       <el-row class="flex-center" v-for="(row, rkey) in department.reducedMembers" :key="rkey">
         <el-col :xs="12" :md="18" :lg="20" :xl="12">
           <el-row :gutter="0" class="flex-center flex-wrap">
-            <el-col :sm="6" :md="6" :lg="6" v-for="(member, key) in row" :key="key">
+            <el-col :sm="6" :md="6" :lg="5" v-for="(member, key) in row" :key="key">
               <div class="member-item"><img :src="member.avatar" class="member-item_avatar">
                 <div class="member-item_name">{{member.name}}</div>
                 <div class="member-item_position">{{member.position}}</div>
