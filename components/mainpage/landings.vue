@@ -143,11 +143,19 @@
         width: 100%;
         text-align: center;
         padding: 0px 15px;
+        &.full {
+          width: 100%;
+        }
       }
       &-img {
         img {
           width: auto;
         }
+      }
+      &-button {
+        right: 0px;
+        width: 100%;
+        text-align: center;
       }
     }
   }
