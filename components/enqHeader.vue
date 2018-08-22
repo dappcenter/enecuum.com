@@ -6,58 +6,65 @@
       </transition>
     </div>
     <div class="flex-between menu">
+      <div class="menu_submenu-wrapper" :class="{'menu-open': isOpened}">
+        <el-menu class="menu_mobile">
+          <el-menu-item index="/" class="menu-item">Home</el-menu-item>
+          <el-menu-item index="/" class="menu-item">Team</el-menu-item>
+          <el-menu-item index="/" class="menu-item">Blog</el-menu-item>
+          <el-menu-item index="/" class="menu-item">Calendar</el-menu-item>
+          <el-menu-item index="/" class="menu-item">Video</el-menu-item>
+          <el-menu-item index="/" class="menu-item">Press</el-menu-item>
+          <el-menu-item index="/" class="menu-item">Token</el-menu-item>
+          <el-menu-item index="/" class="menu-item">FAQ</el-menu-item>
+        </el-menu>
+        <ul class="menu_submenu">
+          <li class="menu_submenu-item"><a target="_self" href="#enq" @click.prevent="scrollTo('enq')">What is
+            ENQ</a>
+          </li>
+          <li class="menu_submenu-item"><a target="_self" href="#mining" @click.prevent="scrollTo('mining')">Phone
+            mining</a></li>
+          <li class="menu_submenu-item"><a target="_self" href="#tech"
+                                           @click.prevent="scrollTo('tech')">Tech</a></li>
+          <li class="menu_submenu-item"><a target="_self" href="#world"
+                                           @click.prevent="scrollTo('world')">Changing the world</a></li>
+          <li class="menu_submenu-item"><a target="_self" href="#bot"
+                                           @click.prevent="scrollTo('bot')">BOT</a></li>
+          <li class="menu_submenu-item"><a target="_self" href="#roadmap"
+                                           @click.prevent="scrollTo('roadmap')">Roadmap</a></li>
+          <li class="menu_submenu-item"><a target="_self" href="#partners"
+                                           @click.prevent="scrollTo('partners')">Partners</a>
+          </li>
+        </ul>
+      </div>
       <el-menu :default-active="activeMenu" mode="horizontal" router class="menu-left">
         <button class="menu_logo menu_logo-hamburger" @click="openMenu"><i class="fa fa-bars" aria-hidden="true"></i>
         </button>
         <nuxt-link to="/" class="menu_logo">
-          <img :src="'/img/logo.svg'" alt="" class="menu_logo-img"></nuxt-link>
-        <el-menu-item index="/" class="menu-item">Vision</el-menu-item>
-        <el-menu-item index="/" class="menu-item">My Enecuum</el-menu-item>
-        <el-menu-item index="/" class="menu-item">News</el-menu-item>
+          <img :src="isfixedcolor==='false' ? '/img/logo.svg' : '/img/logo-white.png'" alt="" class="menu_logo-img">
+        </nuxt-link>
+        <el-menu-item index="/" class="menu-item">Home</el-menu-item>
         <el-menu-item index="/" class="menu-item">Team</el-menu-item>
-        <el-menu-item index="/" class="menu-item">Technology</el-menu-item>
-        <el-menu-item index="/" class="menu-item">Docs</el-menu-item>
-        <el-menu-item index="/" class="menu-item">Contact us</el-menu-item>
-        <el-menu-item index="/" class="menu-item">Sign in</el-menu-item>
-        <el-menu-item index="/" class="menu-item">Sign up</el-menu-item>
-        <!--<nuxt-link to="/privatesale" class="el-menu-item menu-item">
-          <button class="enq-button default gold small">Private Sale</button>
-        </nuxt-link>-->
+        <el-menu-item index="/" class="menu-item">Blog</el-menu-item>
+        <el-menu-item index="/" class="menu-item">Calendar</el-menu-item>
+        <el-menu-item index="/" class="menu-item">Video</el-menu-item>
+        <el-menu-item index="/" class="menu-item">Press</el-menu-item>
+        <el-menu-item index="/" class="menu-item">Token</el-menu-item>
+        <el-menu-item index="/" class="menu-item">FAQ</el-menu-item>
       </el-menu>
-      <!--      <ul class="el-menu&#45;&#45;horizontal el-menu menu-right text-right" v-if="loadingFingerEnd || checkingAuth">
-              <fingerLoader @onEnd="loadingFingerEnd=false"></fingerLoader>
-            </ul>
-            <ul class="el-menu&#45;&#45;horizontal el-menu menu-right" v-else>
-              <nuxt-link to="/auth/login" class="el-menu-item menu-item float-right" v-if="!isAuth">
-                <el-button size="small" class="small-mini white">Sign In</el-button>
-              </nuxt-link>
-              <nuxt-link to="/auth/join" class="el-menu-item menu-item float-right" v-if="!isAuth">
-                <el-button size="small" class="small-mini">Sign Up</el-button>
-              </nuxt-link>
-              <li class="el-menu-item float-right menu-item" v-if="isAuth" @click.prevent="logout">Logout</li>
-              <nuxt-link to="/backoffice" class="el-menu-item menu-item float-right" v-if="isAuth">
-                <el-button type="primary" size="small" class="small-mini">Backoffice</el-button>
-              </nuxt-link>
-            </ul>-->
-    </div>
-    <div class="menu_submenu-wrapper" :class="{'menu-open': isOpened}">
-      <ul class="menu_submenu">
-        <li class="menu_submenu-item"><a target="_self" href="#enq" @click.prevent="scrollTo('enq')">What is
-          ENQ</a>
-        </li>
-        <li class="menu_submenu-item"><a target="_self" href="#mining" @click.prevent="scrollTo('mining')">Phone
-          mining</a></li>
-        <li class="menu_submenu-item"><a target="_self" href="#tech"
-                                         @click.prevent="scrollTo('tech')">Tech</a></li>
-        <li class="menu_submenu-item"><a target="_self" href="#world"
-                                         @click.prevent="scrollTo('world')">Changing the world</a></li>
-        <li class="menu_submenu-item"><a target="_self" href="#bot"
-                                         @click.prevent="scrollTo('bot')">BOT</a></li>
-        <li class="menu_submenu-item"><a target="_self" href="#roadmap"
-                                         @click.prevent="scrollTo('roadmap')">Roadmap</a></li>
-        <li class="menu_submenu-item"><a target="_self" href="#partners"
-                                         @click.prevent="scrollTo('partners')">Partners</a>
-        </li>
+      <ul class="el-menu--horizontal el-menu menu-right text-right" v-if="loadingFingerEnd || checkingAuth">
+        <fingerLoader @onEnd="loadingFingerEnd=false"></fingerLoader>
+      </ul>
+      <ul class="el-menu--horizontal el-menu menu-right" v-else>
+        <nuxt-link to="/auth/login" class="el-menu-item menu-item float-right" v-if="!isAuth">
+          <el-button type="text">Sign In</el-button>
+        </nuxt-link>
+        <nuxt-link to="/auth/join" class="el-menu-item menu-item float-right" v-if="!isAuth">
+          <el-button type="text">Sign Up</el-button>
+        </nuxt-link>
+        <li class="el-menu-item float-right menu-item" v-if="isAuth" @click.prevent="logout">Logout</li>
+        <nuxt-link to="/backoffice" class="el-menu-item menu-item float-right" v-if="isAuth">
+          <el-button type="text">Backoffice</el-button>
+        </nuxt-link>
       </ul>
     </div>
   </div>
@@ -200,7 +207,6 @@
         this.checkingAuth = false;
         document.addEventListener('scroll', () => {
           let el = document.getElementById('scrollingBlock');
-          console.log(window.scrollY + 80, el.offsetTop);
           if (window.scrollY + 80 >= el.offsetTop && window.scrollY + 80 <= el.offsetTop + el.offsetHeight) {
             this.isfixedcolor = 'true';
           } else {
@@ -228,14 +234,18 @@
 </script>
 
 <style scoped lang="scss">
+  $color-header: #ffffff;
   .menu {
     position: relative;
-    background-color: #f8f9fa;
+    background-color: $color-header;
     border-bottom: 0px;
     &-item {
       height: 80px;
       line-height: 80px;
       font-size: 20px;
+      button {
+        font-size: 20px;
+      }
       &.is-active {
         border-color: transparent;
       }
@@ -244,22 +254,15 @@
       flex-grow: 1;
       z-index: 1;
       border-bottom: transparent;
-      background-color: #f8f9fa;
-      @media screen and (min-width: 991px) {
-        padding-left: 54px;
-      }
+      background-color: $color-header;
+      padding-left: 54px;
     }
     &-right {
       flex-grow: 1;
       z-index: 1;
       border-bottom: transparent;
-      background-color: #f8f9fa;
-      @media screen and (min-width: 991px) {
-        padding-right: 54px;
-      }
-      @media screen and (max-width: 991px) {
-        padding-bottom: 60px;
-      }
+      background-color: $color-header;
+      padding-right: 54px;
     }
     &_logo {
       margin-right: 40px;
@@ -280,17 +283,17 @@
       left: 0px;
       right: 0px;
       z-index: 1000;
-      background-color: #f8f9fa;
-      //box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.15);
+      background-color: $color-header;
       & + .container {
         padding-top: 85px;
       }
       &.true {
-        .menu-left {
+        .menu-left, .menu-right {
           background-color: rgba(0, 159, 202, 1);
-        }
-        .el-menu--horizontal > .el-menu-item.is-active {
-          color: #003E4F;
+          .el-menu-item,
+          .el-button--text {
+            color: #ffffff;
+          }
         }
       }
       /*      &.homepage {
@@ -381,7 +384,7 @@
         height: 100%;
         overflow-y: scroll;
         position: fixed;
-        right: 0px;
+        left: 0px;
         top: 0px;
         padding: 0px;
         width: 400px;
@@ -490,6 +493,59 @@
         z-index: 1;
       }
     }*/
+    @media screen and (max-width: 1440px) {
+      &_logo {
+        margin-right: 20px;
+      }
+      &-item {
+        font-size: 16px;
+        button {
+          font-size: 16px;
+          min-width: auto;
+        }
+      }
+      &-left {
+        padding-left: 24px;
+      }
+      &-right {
+        padding-right: 24px;
+        display: flex;
+      }
+    }
+    @media screen and (max-width: 1080px) {
+      &-left {
+        padding-left: 0px;
+      }
+      &-right {
+        padding-right: 0px;
+      }
+    }
+    @media screen and (max-width: 991px) {
+      &_submenu {
+        display: none;
+        &-wrapper {
+          width: 300px;
+          &.menu-open {
+            .menu-item {
+              display: block;
+              text-align: center;
+              background-color: #bebebe;
+            }
+          }
+        }
+      }
+      &-item {
+        display: none;
+      }
+      &-right {
+        display: none;
+      }
+    }
+    @media screen and (min-width: 991px) {
+      &_mobile {
+        display: none;
+      }
+    }
   }
 
   .float-right {
@@ -498,7 +554,7 @@
 
   @keyframes slideInRight {
     0% {
-      transform: translateX(100%);
+      transform: translateX(-100%);
       visibility: visible;
     }
     100% {
@@ -512,7 +568,7 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(100%);
+      transform: translateX(-100%);
       visibility: hidden;
       display: flex;
     }

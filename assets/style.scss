@@ -14,6 +14,7 @@
 @import 'account.scss';
 @import 'error.scss';
 @import 'press.scss';
+@import 'enqvstyle';
 
 * {
   padding: 0px;
@@ -206,6 +207,9 @@ p {
   font-weight: lighter;
   color: #4F4F4F;
   margin: 62px 0 50px;
+  @media screen and (max-width: 768px) {
+    font-size: 28px;
+  }
 }
 
 .page-sub-title {

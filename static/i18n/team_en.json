@@ -2,6 +2,228 @@
   "team": [
     {
       "title": "Our team",
+      "reducedMembers": [
+        [
+          {
+            "avatar": "/img/team/avatars/anton_nikonorov.png",
+            "name": "Anton Nikonorov",
+            "position": "CTO",
+            "description": "Experienced Chief Executive Officer with a demonstrated history of experience in the Information Technology & Services industry. Skilled in Oracle DB, C++, Agile Methodologies, SCADA and Apache Cordova. A strong entrepreneur and a professional with a degree in Electrical Egineering from the St. Petersburg Polytechnic University.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/anton-nikonorov-4067a384/"
+              },
+              {
+                "type": "facebook",
+                "url": "https://ru-ru.facebook.com/anton.nikonorov"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/mikhail_sayfulin.png",
+            "name": "Mikhail Sayfullin",
+            "position": "CEO",
+            "description": "Entrepreneur since 2002. Founded and developed a marketing agency that successfully delivered high quality services to the largest international corporations. Since 2014, Michail has been successfully working in the IT field launching a popular marketplace in the entertainment sector. One of the founders of the Enecuum Limited and our strategic manager since 2017.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/mikhail-sayfullin-a5271436/"
+              },
+              {
+                "type": "envelope",
+                "url": "mailto:ceo@enecuum.com"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/ivaniv_v_ivanov.png",
+            "name": "Ivan V. Ivanov",
+            "position": "Co-founder",
+            "description": "Founder of the UPSTUDY GROUP, co-Founder of EE24.COM, managing director of the YUKUMA GROUP. A prominent professional with more than 13 years experience of business development and management in High Tech, IT and Web projects. With his strong entrepreneurial skills and multiple international business connections, Ivan is proud to be a board member of Enecuum helping make the project an international success.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/ivanvalerevich"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/jev.png",
+            "name": "Jev Vainsteins",
+            "position": "CBDO",
+            "description": "BD Exec Cloud Evangelist, Blockchain Enthusiast, ICO & VC Advisor. 16-years experience in technical marketing (Business Development, Sales & Presales to Carriers, Distributors, VAR's, System Integrators).      Indirect Channel development for Telecom Products within CEE/CIS and EMEA. Establish new relationships with Distributors, System integrators, Service providers and Solution Partners within CEE/CIS and EMEA. Strong relationships with decision makers in the data centre, cloud and  telecommunications sectors within EMEA.Jev is perfect visioner and speaker <a href='https://youtu.be/PWo0W9vdc-U' target=_blank>https://youtu.be/PWo0W9vdc-U</a>. Responsible for business development of ENQ platform. Ex Huawei IT Solutions Sales Executive Responsible for Cloud in EMEA Global Solution Elite Team. Canonical Ubuntu Business Development Executive responsible for Partner Programs and Sales EMEA & APAC. Ex Senior Sales Engineering Leader in Cogent Communications 3rd largest ISP provider in the world carrying over 20% of World internet traffic present in 2500 data centers, having its own 53 data centers and having one of the largest fiber network in the world.",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/feranicus/"
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "avatar": "/img/team/avatars/jason_yee.png",
+            "name": "Jason Yee",
+            "position": "CFO",
+            "description": "Finance head with over 20 years of experience providing strategic guidance, quality reporting, insights and leadership for some of the largest multinational banks including BNP Paribas and JPMorgan.  Professionally qualified as a CPA with a MBA degree from the University of Toronto, Jason is thrilled to join the Enecuum team to make a difference.",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/jason-yee-960b64a5/"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/maxim_motin.png",
+            "name": "Max Motin",
+            "position": "CMO",
+            "description": "As a marketing professional with 15+ years experience in global markets, Max combines strong strategic skills with background of works in telecom, finance and NGO. 4 years worked as the Head of business communication for a major telecom operator (more than 70 million customers). Came to the crypto industry in 2017.",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/motinmaxim/"
+              },
+              {
+                "type": "telegram",
+                "url": "@max_motion"
+              },
+              {
+                "type": "envelope",
+                "url": "mailto:motin@enecuum.com"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/RanNeu-Ner.png",
+            "name": "Ran Neu-Ner",
+            "position": "",
+            "description": "Founded The Creative Counsel in 2001, South Africa's leading activations agency with an annual turnover of $150 million. Joined the Young Presidents Organisation 2010, a global network of successful CEO’s, sharing learnings and ideas exchange where he is still an active member. He has also taken on an EXCO role for the Johannesburg City Chapter. In 2015 Ran concluded the biggest business transaction in South Africa where he sold The Creative Counsel to a French-owned international business, The Publicis Groupe for just over $150m Ran has been a part of the Blockchain world since 2013 and has advised several projects. He is the founder of Onchain Capital, a Crypto Asset Fund and Advisory service. In 2017 Ran’s launched the world’s first televised cryptocurrency show called Crypto Trader which is aired weekly on a Thursday night at 20:30 on CNBC Africa, DSTV channel 410. The show is the most viewed show on CNBC today. Ran is also ranked in the top 10 most influential people in the Blockchain by Richtopia.",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/ran-neuner-8826a756/"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/jorge.png",
+            "name": "Jorge Sebastiao",
+            "position": "",
+            "description": "CTO Eco-System in Huawei Technologies. Over 30 years of ICT experience, covering, managed services, cyber security, innovation, architecture as well as risk management, compliance, auditing, certification, business continuity, & disaster recovery. He was become infected by Enecuum technological steck.",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/sebastiao/"
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "avatar": "/img/team/avatars/henok_tekle.png",
+            "name": "Henok \"Hen\" Tekle",
+            "position": "",
+            "description": "Co-founder and Managing Partner of AlphaChain, a notable blockchain angel investor, advisor, content creator and public speaker. Hen is a passionate advocate for the disruption brought by token economies and blockchain technology, and regularly speaks at conferences worldwide about these topics. Hen’s angel investment activities have delivered substantial capital and strategic value to early-stage companies in promotion of the development and mainstream adoption of blockchain technology.",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/henglobal"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/stan.png",
+            "name": "Stan Prihodko",
+            "position": "",
+            "description": "Stan is head of Crypto asset management in <a href=\"https://gem.capital/\">GEM Capital</a>, a fund with over $400m AUM. Prior to joining GEM Stan was engaged in trust management of cryptocurrency assets and consultations on investing in ICOs for high net worth individuals.",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/stan-prikhodko-7a817a36/"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/Lana.png",
+            "name": "Lana Lyu",
+            "position": "",
+            "description": "Lana is a Blockchain Technology aficionado with extensive experience working in the legal, financial and DLT related services sector for German, Russian, Kazakh and Hong Kong private and corporate clients. Passionate about FinTech Startups/SME's and female entrepreneurship, Lana supports the development and growth of FinTech community in Hong Kong, regularly delivers talks on the conferences and universities, organizes monthly events with & for Women in Business. Lana leads Russian Club Hong Kong as Vice President developing the Russian-Hong Kong social and business relationship.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/lan-lyu-64106760/"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/RugaevS.png",
+            "name": "Alexander Rugaev",
+            "position": "",
+            "description": "Alexander Rugaev is a serial entrepreneur and one of the early blockchain supporters. He has experience in creating industrial grade Bitcoin and Ethereum mining farms. He has 16 years of experience in e-commerce and online marketing.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/alexrugaev/"
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "avatar": "/img/team/avatars/tarun.png",
+            "name": "Tarun Jaswani",
+            "position": "",
+            "description": "Tarun Jaswani is partner with Interfacemax, a Digital Asset Fund focussed on blockchain projects that create value through real world application. A techpreneur with past experience in Virtual Reality, Gaming and Adtech.\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/tmjaswani/"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/Michael_Kiook.png",
+            "name": "Michael Kiook Jeoung",
+            "position": "",
+            "description": "Michael Kiook Jeoung is an ICT strategist and finance expert. His concentration is blockchain enabled service model and platform. He had a leadership role at Cisco Systems, OECD, Ministry of Land and Transport where he was instrumental to both private and public sector innovative initiatives for the block chain technology(DLT), smart city, cloud platform-services, IoT and ubiquitous computing-sensor network. He has 15+ years of experience in strategic consulting and has created success stories for various edge technologies and services with fundamental business framework and process. He has also worked for the advisory committee for Ministry of Agriculture and Ministry of Defense of Korea.",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/michael-kiook-jeoung-0a15a010/"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/shelly.png",
+            "name": "Shelly Hod Moyal",
+            "position": "",
+            "description": "Shelly Hod Moyal is an Advisor to iCapital, Portfolio Manager of Juno Capital and Founding Partner of iAngels, a VC platform for high-tech startups, with $140M assets under management in divisions and funds that specialize in several tech industry sectors. Prior to iAngels, Shelly was recognized as a promising analyst at Goldman Sachs Investment Bank. Prior to that, Shelly worked as a Research Analyst at a renowned hedge fund, Avenue Capital, covering banks, insurance, real estate and financial institutions. Shelly earned her MBA at Kellogg, Chicago and holds a degree in Economics (summa cum laude) at Hunter College, New York.",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/shelly-hod-moyal-64698824/"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/afanasyeva_aleksandra.png",
+            "name": "Afanasyeva Aleksandra",
+            "position": "Associate Professor in Cryptography",
+            "description": "Associate professor of the Department of Mathematics and IT of the Saint Petersburg Academic University. Aleksandra received her M.Sc. in IT in 2003 and trained in the Nokia Research Center in Helsinki, Finland, on Evidence Based Security and Verification of Cryptographic Protocols. Aleksandra has participated in and led collaborative projects with Samsung, Intel, Dell EMC in InfoSec and Optimization of Resource Management Algorithms in Data Storage Systems.",
+            "social": [
+              {
+                "type": "university",
+                "url": "http://pro.guap.ru/exters/profile/tab1/1634"
+              },
+              {
+                "type": "university",
+                "url": "http://mit.spbau.ru/node/932"
+              }
+            ]
+          }
+        ]
+      ],
       "members": [
         [
           {

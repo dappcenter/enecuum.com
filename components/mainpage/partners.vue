@@ -1,12 +1,12 @@
 <template>
-  <div class="partner pureBlock" id="partners">
-    <el-row type="flex" v-for="(item, key) in partners" :key="key">
+  <div class="partner pureBlock" id="partners" v-if="loaded">
+    <el-row type="flex" v-for="(item, key) in partners" :key="key" class="partner-flex">
       <div :class="'partner-title bg'+random(2)+(key===0 ? ' fr' : '')">
         <div>{{item.title}}</div>
       </div>
       <div class="partner-items">
         <el-col :class="'item bg'+random(4)" v-for="(partner, pkey) in item.items" :key="pkey"
-                :style="'max-width: calc('+ (100/(item.items.length>3 ? 3 : item.items.length)) +'%)'">
+                :style="calcWidth(item)" :xs="24">
           <div class="item-text">{{partner.text}}</div>
           <div class="item-img">
             <img :src="partner.img" alt="">
@@ -23,6 +23,7 @@
     props: ['data'],
     data() {
       return {
+        loaded: false,
         partners: [{
           title: 'Partners',
           items: [{
@@ -81,9 +82,17 @@
       }
     },
     methods: {
+      calcWidth(item) {
+        if (window.outerWidth > 768) {
+          return 'max-width: calc(' + (100 / (item.items.length > 3 ? 3 : item.items.length)) + '%)';
+        }
+      },
       random(to) {
         return Math.round(Math.random() * to) + 1;
       }
+    },
+    mounted() {
+      this.loaded = true;
     }
   }
 </script>
@@ -97,10 +106,10 @@
       padding: 50px 85px;
       font-size: 25px;
       text-transform: uppercase;
+      color: #ffffff;
       &.fr {
         align-items: center;
         text-transform: initial;
-        color: #ffffff;
         font-size: 90px;
         font-weight: bold;
       }
@@ -126,7 +135,6 @@
         justify-content: center;
         overflow: hidden;
         min-height: 260px;
-        max-width: 33.33%;
         &.bg1 {
           background-color: rgba(202, 202, 202, .9);
         }
@@ -150,8 +158,8 @@
           text-align: center;
           height: 100%;
           width: 100%;
-          transition: .4s all ease-out;
-          transform: translateX(-100%);
+          transition: .4s transform ease-out;
+          transform: translateX(-101%);
           padding: 40px;
           color: #ffffff;
           background-color: #FF7400;
@@ -178,6 +186,22 @@
             transform: translateX(100%);
           }
         }
+      }
+    }
+    @media screen and (max-width: 768px) {
+      &-title {
+        font-size: 36px;
+        min-width: auto;
+        padding: 50px 15px;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        &.fr {
+          font-size: 46px;
+        }
+      }
+      &-flex {
+        flex-wrap: wrap;
       }
     }
   }

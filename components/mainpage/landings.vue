@@ -1,17 +1,17 @@
 <template>
   <el-row>
-    <el-col :span="12" v-for="(item, key) in landingsArr" :key="key">
+    <el-col :xs="24" :sm="12" v-for="(item, key) in landingsArr" :key="key">
       <div class="landing-wrapper">
         <div class="landing-img">
           <img :src="item.img" alt="">
         </div>
         <div class="landing-overlay"></div>
         <div class="landing-title">{{item.title}}</div>
-        <div class="landing-description " :class="(key===0 || key===3) ? (key===0) ? 'full white' : 'white' : ''">
+        <div class="landing-description white" :class="(key===0 || key===3) ? (key===0) ? 'full' : '' : ''">
           {{item.description}}
         </div>
         <div class="landing-button">
-          <button>{{item.button}}</button>
+          <button class="button-link">{{item.button}}</button>
         </div>
       </div>
     </el-col>
@@ -118,16 +118,29 @@
       position: absolute;
       right: 40px;
       bottom: 40px;
-      button {
-        transition: .2s all ease-out;
-        padding: 14px 30px;
-        font-size: 16px;
-        width: 300px;
-        text-transform: uppercase;
-        color: #ffffff;
-        border: 1px solid #ffffff;
-        background-color: transparent;
-        cursor: pointer;
+    }
+    @media screen and (max-width: 991px) {
+      &-wrapper {
+        min-height: 400px;
+      }
+      &-title {
+        top: 25px;
+        left: 0px;
+        width: 100%;
+        text-align: center;
+      }
+      &-description,
+      &-description.full {
+        left: 0px;
+        top: 100px;
+        width: 100%;
+        text-align: center;
+        padding: 0px 15px;
+      }
+      &-img {
+        img {
+          width: auto;
+        }
       }
     }
   }

@@ -2,11 +2,8 @@
   <section class="container">
     <banner :data="mainpage.banner"></banner>
     <landings></landings>
-<!--    <phmining :data="mainpage.phonemining"></phmining>-->
     <ourmis></ourmis>
     <team></team>
-    <!--    <breakthroughTech :data="mainpage.breakthroughtech"></breakthroughTech>
-        <blockchain :data="mainpage.blockchain"></blockchain>-->
     <roadmap :data="mainpage.roadmap"></roadmap>
     <partners :data="mainpage.partners"></partners>
     <citates></citates>

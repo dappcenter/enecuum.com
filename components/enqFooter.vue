@@ -1,6 +1,21 @@
 <template>
-  <section class="footer flex-between">
-    <div class="">
+  <section class="footer">
+    <el-row :gutter="30" class="footer_links">
+      <el-col :sm="12" :md="6" :lg="4" v-for="(item, key) in footerLinks" :key="key">
+        <div class="footer_links-title">{{item.page}}</div>
+        <ul class="footer_links-wrapper">
+          <li class="footer_links-link" v-for="(link, lkey) in item.links" :key="lkey">
+            {{link}}
+          </li>
+        </ul>
+      </el-col>
+    </el-row>
+    <!--           -->
+    <div class="footer_networks">
+      <a v-for="(item, key) in social" :key="key" :href="item.link" target="_blank"
+         @click="a({category: 'social', eventAction: 'click', eventLabel: item.type})">
+        <img :src="'/'+item.img" alt="">
+      </a>
       <div>
         {{footerAddress.LINE_1}}
       </div>
@@ -14,12 +29,6 @@
         <a href="mailto:hello@enecuum.com">{{footerAddress.MAILUS}}</a>
       </div>
     </div>
-    <div class="footer_networks">
-      <a v-for="(item, key) in social" :key="key" :href="item.link" target="_blank"
-         @click="a({category: 'social', eventAction: 'click', eventLabel: item.type})">
-        <img :src="'/'+item.img" alt="">
-      </a>
-    </div>
   </section>
 </template>
 
@@ -28,6 +37,22 @@
     name: "enq-footer",
     data() {
       return {
+        footerLinks: [{
+          page: 'Enecuum',
+          links: ['What is Enecuum', 'Phone Mining', 'Technology', 'Usecases', 'Vision', 'Roadmap', 'Partners']
+        }, {
+          page: 'Team',
+          links: ['C-level', 'Advisory board', 'Cryptographers', 'Development', 'Marketing', 'Operations', 'Join the team']
+        }, {
+          page: 'News and media',
+          links: ['Blog', 'Calendar', 'Video', 'Press', 'Press-kit']
+        }, {
+          page: 'FAQ',
+          links: ['General FAQ', 'Private sale', 'FAQ', 'Token FAQ']
+        }, {
+          page: 'Enter',
+          links: ['Sign in', 'Sign up']
+        }],
         footerAddress: {
           "LINE_1": "Enecuum HK Limited",
           "LINE_2": "Address: Rm 1202, West Exchange Tower, 322 Des Voeux Road Central, Hong Kong",
