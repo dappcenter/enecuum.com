@@ -39,6 +39,14 @@ $fullHeight: calc(100vh - 80px);
     left: 0px;
     right: 0px;
   }
+  @media screen and (max-width: 1440px) {
+    &-title {
+      font-size: 30px;
+    }
+    &-description {
+      font-size: 24px;
+    }
+  }
   @media screen and (max-width: 768px) {
     &-wrapper {
       height: auto;
@@ -365,19 +373,30 @@ $fullHeight: calc(100vh - 80px);
 .block {
   max-width: 650px;
   &-wrapper {
+    position: relative;
     height: $fullHeight;
     background-repeat: no-repeat;
     background-position: right;
     background-size: contain;
     background-color: #ffffff;
     padding: 0px 15px;
-    &.mining {
+    &:after {
+      content: '';
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0px;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: right;
+    }
+    &.mining:after {
       background-image: url('/img/mainpage/landings/phone-mining.png');
     }
-    &.mission {
+    &.mission:after {
       background-image: url('/img/mainpage/landings/our-mission.png');
     }
-    &.changeworld {
+    &.changeworld:after {
       background-image: url('/img/mainpage/landings/changing-world.png');
     }
   }
@@ -396,6 +415,13 @@ $fullHeight: calc(100vh - 80px);
   &-description {
     font-size: 20px;
     padding: 40px 0px;
+  }
+  @media screen and (max-width: 1440px) {
+    &-wrapper {
+      &:after {
+        opacity: .2;
+      }
+    }
   }
   @media screen and (max-width: 991px) {
     &-wrapper {
@@ -455,6 +481,14 @@ $fullHeight: calc(100vh - 80px);
   .page-title {
     color: #009dc8;
     font-weight: bold;
+  }
+  &_button {
+    padding-bottom: 30px;
+    width: 100%;
+    text-align: center;
+  }
+  @media screen and (max-width: 1440px) {
+    padding: 0px 50px;
   }
   @media screen and (max-width: 991px) {
     padding: 15px;

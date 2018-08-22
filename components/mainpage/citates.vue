@@ -45,6 +45,11 @@
       }
     },
     mounted() {
+      console.log(window.innerWidth);
+      if (window.innerWidth <= 1440) {
+        this.height = window.innerHeight - 80 + 'px';
+        console.log('true', this.height);
+      }
       if (window.outerWidth < 768) {
         this.height = '585px';
       }

@@ -4,8 +4,8 @@
       <h1 class="page-title" v-if="mkey===0">Team and Advisors</h1>
       <h2 class="text-center page-sub-title" v-else>Team and Advisors</h2>
       <el-row class="flex-center" v-for="(row, rkey) in department.reducedMembers" :key="rkey">
-        <el-col :xs="12" :md="18" :lg="18" :xl="12">
-          <el-row :gutter="40" class="flex-center flex-wrap">
+        <el-col :xs="12" :md="18" :lg="20" :xl="12">
+          <el-row :gutter="0" class="flex-center flex-wrap">
             <el-col :sm="6" :md="6" :lg="6" v-for="(member, key) in row" :key="key">
               <div class="member-item"><img :src="member.avatar" class="member-item_avatar">
                 <div class="member-item_name">{{member.name}}</div>
@@ -28,6 +28,9 @@
           </el-row>
         </el-col>
       </el-row>
+    </div>
+    <div class="subteam_button">
+      <button class="button-link blue">View all</button>
     </div>
   </div>
 </template>

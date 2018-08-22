@@ -188,6 +188,22 @@
         }
       }
     }
+    @media screen and (max-width: 1440px) {
+      &-title {
+        min-width: 260px;
+        width: 260px;
+        min-height: 180px;
+        padding: 30px 15px;
+        &.fr {
+          font-size: 42px;
+        }
+      }
+      &-items {
+        &-item {
+          min-height: 180px;
+        }
+      }
+    }
     @media screen and (max-width: 768px) {
       &-title {
         font-size: 36px;

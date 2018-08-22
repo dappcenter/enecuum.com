@@ -531,9 +531,9 @@
               text-align: center;
               background-color: #bebebe;
             }
-          }
         }
       }
+
       &-item {
         display: none;
       }

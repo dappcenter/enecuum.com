@@ -7,7 +7,7 @@
         </div>
         <div class="landing-overlay"></div>
         <div class="landing-title">{{item.title}}</div>
-        <div class="landing-description white" :class="(key===0 || key===3) ? (key===0) ? 'full' : '' : ''">
+        <div class="landing-description white full">
           {{item.description}}
         </div>
         <div class="landing-button">
@@ -119,6 +119,14 @@
       right: 40px;
       bottom: 40px;
     }
+    @media screen and (max-width: 1440px) {
+      &-title {
+        font-size: 30px;
+      }
+      &-description {
+        font-size: 12px;
+      }
+    }
     @media screen and (max-width: 991px) {
       &-wrapper {
         min-height: 400px;
@@ -129,8 +137,7 @@
         width: 100%;
         text-align: center;
       }
-      &-description,
-      &-description.full {
+      &-description {
         left: 0px;
         top: 100px;
         width: 100%;
