@@ -24,12 +24,6 @@
       return {
         height: '878px',
         carousel: [{
-          title: 'I left the Enecuum and now I\'m tearing my hair. Oh, what a pity, what a pity.',
-          person: 'Ismail Malik',
-          subtitle: 'Serial investor, advisor of many projects',
-          avatar: '/img/mainpage/landings/carousel1-avatar.png',
-          img: '/img/mainpage/landings/carousel1.png'
-        }, {
           title: 'This Hyper DAG thing is great!',
           person: 'Ran Neu-Ner',
           subtitle: 'Serial advisor, blockchain evangelist',

@@ -55,6 +55,9 @@
         <fingerLoader @onEnd="loadingFingerEnd=false"></fingerLoader>
       </ul>
       <ul class="el-menu--horizontal el-menu menu-right" v-else>
+        <nuxt-link to="/" class="special-a">
+          <button class="button-link orange">Private Sale</button>
+        </nuxt-link>
         <nuxt-link to="/auth/login" class="el-menu-item menu-item float-right" v-if="!isAuth">
           <el-button type="text">Sign In</el-button>
         </nuxt-link>
@@ -263,6 +266,15 @@
       border-bottom: transparent;
       background-color: $color-header;
       padding-right: 54px;
+      .special-a {
+        position: absolute;
+        top: 65px;
+        left: -25px;
+        .orange {
+          width: 200px;
+          padding: 5px 15px;
+        }
+      }
     }
     &_logo {
       margin-right: 40px;
@@ -375,6 +387,9 @@
       }
       &-right {
         padding-right: 0px;
+        .orange-a {
+          display: none;
+        }
       }
     }
     @media screen and (max-width: 991px) {
