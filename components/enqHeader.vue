@@ -386,48 +386,47 @@
             .menu-item {
               display: block;
               text-align: center;
-
             }
           }
         }
-        &-item {
-          display: none;
-        }
-        &-right {
-          display: none;
-        }
       }
-      @media screen and (min-width: 991px) {
-        &_mobile {
-          display: none;
-        }
+      &-item {
+        display: none;
+      }
+      &-right {
+        display: none;
       }
     }
-
-    .float-right {
-      float: right;
-    }
-
-    @keyframes slideInRight {
-      0% {
-        transform: translateX(-100%);
-        visibility: visible;
-      }
-      100% {
-        transform: translateX(0);
+    @media screen and (min-width: 991px) {
+      &_mobile {
+        display: none;
       }
     }
+  }
 
-    @keyframes slideInLeft {
-      0% {
-        display: flex;
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-100%);
-        visibility: hidden;
-        display: flex;
-      }
+  .float-right {
+    float: right;
+  }
+
+  @keyframes slideInRight {
+    0% {
+      transform: translateX(-100%);
+      visibility: visible;
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInLeft {
+    0% {
+      display: flex;
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+      visibility: hidden;
+      display: flex;
     }
   }
 

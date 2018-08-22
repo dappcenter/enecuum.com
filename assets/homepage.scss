@@ -386,6 +386,7 @@ $fullHeight: calc(100vh - 80px);
       height: 100%;
       width: 100%;
       top: 0px;
+      right: 0px;
       background-repeat: no-repeat;
       background-size: contain;
       background-position: right;
@@ -457,7 +458,7 @@ $fullHeight: calc(100vh - 80px);
     }
   }
   @media screen and (max-width: 768px) {
-    overflow-x: hidden;
+    overflow-x: auto;
     position: relative;
     &-title {
       font-size: 66px;
