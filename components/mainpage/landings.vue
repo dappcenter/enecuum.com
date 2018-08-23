@@ -127,6 +127,14 @@
         font-size: 12px;
       }
     }
+    @media screen and (max-width: 1280px) {
+      &-title {
+        top: 25px;
+      }
+      &-description {
+        top: 80px;
+      }
+    }
     @media screen and (max-width: 991px) {
       &-wrapper {
         min-height: 400px;
