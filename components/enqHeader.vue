@@ -208,21 +208,7 @@
       });
       setTimeout(() => {
         this.checkingAuth = false;
-        document.addEventListener('scroll', () => {
-          let el = document.getElementById('scrollingBlock');
-          if (window.scrollY + 80 >= el.offsetTop && window.scrollY + 80 <= el.offsetTop + el.offsetHeight) {
-            this.isfixedcolor = 'true';
-          } else {
-            this.isfixedcolor = 'false';
-          }
-        });
       }, 2000);
-      /*document.addEventListener('scroll', (e) => {
-        console.log();
-        if (document.querySelector('.menu-wrapper.homepage')) {
-          document.querySelector('.menu-wrapper.homepage').style.background = 'rgba(68, 195, 230, ' + window.scrollY / 100 + ')';
-        }
-      });*/
     },
     created() {
       this.activeMenu = this.$route.path;
@@ -269,7 +255,7 @@
       .special-a {
         position: absolute;
         top: 65px;
-        left: -25px;
+        right: 220px;
         .orange {
           width: 200px;
           padding: 5px 15px;
@@ -379,6 +365,9 @@
       &-right {
         padding-right: 24px;
         display: flex;
+        .special-a {
+          right: 170px;
+        }
       }
     }
     @media screen and (max-width: 1080px) {

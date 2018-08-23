@@ -6,7 +6,7 @@
       </div>
       <div class="partner-items">
         <el-col :class="'item bg'+random(4)" v-for="(partner, pkey) in item.items" :key="pkey"
-                :style="calcWidth(item)" :xs="24">
+                :style="calcWidth(item, pkey)" :xs="24">
           <div class="item-text">{{partner.text}}</div>
           <div class="item-img">
             <img :src="partner.img" alt="">
@@ -35,7 +35,10 @@
           }, {
             text: 'Paytomat - Crypto-payment system for everyday needs',
             img: 'img/mainpage/partners/coinsortium.png'
-          }]
+          }, {
+            text: 'Paytomat - Crypto-payment system for everyday needs',
+            img: 'img/mainpage/partners/iCapital.png'
+          },]
         }, {
           title: 'Ecosystem and business partners',
           items: [{
@@ -44,9 +47,6 @@
           }, {
             text: 'Paytomat - Crypto-payment system for everyday needs',
             img: 'img/mainpage/partners/trustverse.png'
-          }, {
-            text: 'Paytomat - Crypto-payment system for everyday needs',
-            img: 'img/mainpage/partners/paytomat.png'
           }, {
             text: 'Paytomat - Crypto-payment system for everyday needs',
             img: 'img/mainpage/partners/plasmapay.png'
@@ -82,9 +82,39 @@
       }
     },
     methods: {
-      calcWidth(item) {
+      calcWidth(item, index) {
+        let incol = 3;
+        let length = item.items.length;
+        let resid = length % incol;
         if (window.outerWidth > 768) {
-          return 'max-width: calc(' + (100 / (item.items.length > 3 ? 3 : item.items.length)) + '%)';
+          console.log(resid, length, index);
+          if (length < 3) {
+            return 'width: calc(' + (100 / length) + '%)';
+          }
+          if (resid === 0) {
+            return 'width: calc(' + (100 / length) + '%)';
+          }
+          if (resid === 1) {
+            if (index === length - 1) {
+              return 'width: calc(' + (100 / 1) + '%)';
+            } else {
+              return 'width: calc(' + (100 / incol) + '%)';
+            }
+          }
+          if (resid === 2) {
+            if (index >= length - 2) {
+              return 'width: calc(' + (100 / 2) + '%)';
+            } else {
+              return 'width: calc(' + (100 / incol) + '%)';
+            }
+          }
+          /*          if (resid === 1 && index === length - resid) {
+                      return 'width: calc(' + (100 / incol - 2) + '%)';
+                    }
+                    if (resid === 2 && index === length - resid) {
+                      return 'width: calc(' + (100 / incol - 1) + '%)';
+                    }*/
+          //return 'width: calc(' + (100 / (length > 3 ? 3 : length)) + '%)';
         }
       },
       random(to) {

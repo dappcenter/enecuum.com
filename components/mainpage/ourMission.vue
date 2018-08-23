@@ -73,6 +73,7 @@
         setTimeout(() => {
           let controller = new ScrollMagic.Controller();
           let wipeAnim = new TimelineMax()
+            .fromTo(".scene0", 1, {y: "0%"}, {y: "0%", ease: Linear.easeNote})
             .fromTo(".scene1", 1, {y: "0%"}, {y: "-100%", ease: Linear.easeNote})
             .fromTo(".scene2", 1, {y: "-100%"}, {y: "-200%", ease: Linear.easeNote});
           window.scene = new ScrollMagic.Scene({

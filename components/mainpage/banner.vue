@@ -6,12 +6,12 @@
           <div class="banner-title">{{data.title}}</div>
           <div class="banner-description">{{data.subtitle}}</div>
         </div>
-      </div>
-      <div class="social">
-        <a v-for="(item, key) in social" :key="key" :href="item.link" target="_blank"
-           @click="a({category: 'social', eventAction: 'click', eventLabel: item.type})">
-          <img :src="'/'+item.img" alt="">
-        </a>
+        <div class="social">
+          <a v-for="(item, key) in social" :key="key" :href="item.link" target="_blank"
+             @click="a({category: 'social', eventAction: 'click', eventLabel: item.type})">
+            <img :src="'/'+item.img" alt="">
+          </a>
+        </div>
       </div>
     </div>
   </el-row>

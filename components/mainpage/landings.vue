@@ -54,6 +54,7 @@
     &-wrapper {
       position: relative;
       height: calc((100vh - 80px) / 2);
+      min-height: 400px;
       overflow: hidden;
       &:hover {
         .landing-img {
@@ -124,10 +125,13 @@
         font-size: 30px;
       }
       &-description {
-        font-size: 12px;
+        font-size: 14px;
       }
     }
     @media screen and (max-width: 1280px) {
+      &-wrapper {
+        min-height: 300px;
+      }
       &-title {
         top: 25px;
       }

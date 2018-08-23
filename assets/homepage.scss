@@ -1,6 +1,7 @@
 $color-title: #009dc8;
-$fullHeight: calc(100vh - 80px);
+$fullHeight: auto;
 .banner {
+  padding: 50px 0px;
   &-wrapper {
     display: flex;
     align-items: center;
@@ -9,6 +10,7 @@ $fullHeight: calc(100vh - 80px);
     &:after {
       content: '';
       position: absolute;
+      z-index: -1;
       height: 100%;
       width: 100%;
       top: 0px;
@@ -23,7 +25,7 @@ $fullHeight: calc(100vh - 80px);
     height: 100%;
     width: 100%;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     max-width: 1440px;
     margin: 0px auto;
   }
@@ -42,10 +44,6 @@ $fullHeight: calc(100vh - 80px);
     font-size: 31px;
   }
   .social {
-    position: absolute;
-    bottom: 40px;
-    left: 0px;
-    right: 0px;
   }
   @media screen and (max-width: 1440px) {
     &-title {
@@ -54,15 +52,20 @@ $fullHeight: calc(100vh - 80px);
     &-description {
       font-size: 34px;
     }
+    &-wrapper {
+      padding: 0px 40px;
+    }
   }
   @media screen and (max-width: 991px) {
     &-wrapper {
       &:after {
+        background-size: cover;
         opacity: 0.2;
       }
     }
   }
   @media screen and (max-width: 768px) {
+    padding: 0px;
     &-wrapper {
       height: auto;
       padding: 100px 15px;
@@ -76,6 +79,7 @@ $fullHeight: calc(100vh - 80px);
       font-size: 20px;
     }
     .social {
+      margin-top: 30px;
       bottom: 10px;
     }
   }
@@ -85,8 +89,11 @@ $fullHeight: calc(100vh - 80px);
   display: flex;
   justify-content: center;
   a {
-    width: 85px;
-    height: 85px;
+    width: 55px;
+    height: 55px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    margin: 0px 5px;
     img {
       width: 100%;
     }
@@ -387,9 +394,10 @@ $fullHeight: calc(100vh - 80px);
 
 .block {
   max-width: 650px;
+  margin-bottom: 50px;
   &-wrapper {
     position: relative;
-    height: $fullHeight;
+    height: calc(100vh - 40px);
     background-repeat: no-repeat;
     background-position: right;
     background-size: contain;
@@ -423,6 +431,10 @@ $fullHeight: calc(100vh - 80px);
     max-width: 1440px;
     margin: 0px auto;
   }
+  &-button {
+    position: absolute;
+    z-index: 1;
+  }
   &-title {
     color: $color-title;
     font-weight: bold;
@@ -434,6 +446,7 @@ $fullHeight: calc(100vh - 80px);
   }
   @media screen and (max-width: 1440px) {
     &-wrapper {
+      padding: 0px 40px;
       &:after {
         opacity: .2;
       }
@@ -454,6 +467,10 @@ $fullHeight: calc(100vh - 80px);
     &-title {
       font-size: 40px;
     }
+    &-button {
+      left: 0px;
+      right: 0px;
+    }
   }
 }
 
@@ -470,6 +487,7 @@ $fullHeight: calc(100vh - 80px);
       width: 100%;
       top: 50px;
       z-index: 1;
+      padding: 0px 40px;
     }
   }
   @media screen and (max-width: 768px) {
@@ -486,8 +504,8 @@ $fullHeight: calc(100vh - 80px);
 
 .scene {
   @media screen and (min-width: 768px) {
-    &2 {
-      box-shadow: rgba(1, 1, 1, 0.2) 0px -3px 25px -10px;
+    &1, &2 {
+      box-shadow: rgba(1, 1, 1, .2) 0px -10px 25px -15px;
     }
   }
 }
@@ -575,6 +593,14 @@ $fullHeight: calc(100vh - 80px);
   @media screen and (max-width: 1440px) {
     &-title {
       font-size: 50px;
+    }
+    &-wrapper {
+      padding: 0px 40px;
+    }
+  }
+  @media screen and (max-width: 991px) {
+    &-wrapper {
+      padding: 0px 15px;
     }
   }
   @media screen and (max-height: 800px) {

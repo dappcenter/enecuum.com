@@ -39,7 +39,7 @@
       }
     },
     mounted() {
-      if (window.innerWidth <= 1440) {
+      if (window.outerWidth >= 768) {
         this.height = window.innerHeight - 80 + 'px';
       }
       if (window.outerWidth < 768) {
