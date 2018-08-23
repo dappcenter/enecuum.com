@@ -70,6 +70,7 @@
     name: "our-mission",
     mounted() {
       if (window.outerWidth > 991) {
+
         setTimeout(() => {
           let controller = new ScrollMagic.Controller();
           let wipeAnim = new TimelineMax()
@@ -82,6 +83,9 @@
             duration: '200%'
           }).setPin("#firstScene").setTween(wipeAnim).addTo(controller);
           document.getElementById('scrollingBlock').style.height = document.getElementById('firstScene').offsetHeight + 100 + 'px';
+          window.onresize = () => {
+            document.getElementById('scrollingBlock').style.height = document.getElementById('firstScene').offsetHeight + 100 + 'px';
+          }
         }, 1000);
       }
     }
