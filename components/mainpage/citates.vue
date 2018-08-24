@@ -41,7 +41,6 @@
     methods: {
       resize() {
         if (window.innerWidth >= 768) {
-          console.log('resize');
           this.height = window.innerHeight - 80 + 'px';
         }
         if (window.innerWidth < 768) {
