@@ -38,13 +38,20 @@
         }]
       }
     },
+    methods: {
+      resize() {
+        if (window.innerWidth >= 768) {
+          console.log('resize');
+          this.height = window.innerHeight - 80 + 'px';
+        }
+        if (window.innerWidth < 768) {
+          this.height = '605px';
+        }
+      }
+    },
     mounted() {
-      if (window.outerWidth >= 768) {
-        this.height = window.innerHeight - 80 + 'px';
-      }
-      if (window.outerWidth < 768) {
-        this.height = '605px';
-      }
+      this.resize();
+      window.addEventListener('resize', this.resize);
     }
   }
 </script>
