@@ -36,6 +36,7 @@
           <nuxt-link to="/backoffice" class="el-menu-item menu-item float-right" v-if="isAuth">
             <el-button type="text">Backoffice</el-button>
           </nuxt-link>-->
+
         </el-menu>
         <ul class="menu_submenu">
           <li class="menu_submenu-item"><a target="_self" href="#enq" @click.prevent="scrollTo('enq')">What is
