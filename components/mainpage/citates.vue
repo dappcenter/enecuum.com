@@ -32,7 +32,7 @@
         }, {
           title: 'Phone mining - is next big thing in blockchain technologiy. All this computational power must be used for humanity good',
           person: 'Jorge Sebastio',
-          subtitle: 'Ex-huawei security, Enecuum advisor',
+          subtitle: 'Ex-Huawei security, Enecuum advisor',
           avatar: '/img/mainpage/landings/carousel3-avatar.png',
           img: '/img/mainpage/landings/carousel1.png'
         }]

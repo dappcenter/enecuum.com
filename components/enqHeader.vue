@@ -16,6 +16,26 @@
           <el-menu-item index="/" class="menu-item">Press</el-menu-item>
           <el-menu-item index="/" class="menu-item">Token</el-menu-item>
           <el-menu-item index="/" class="menu-item">FAQ</el-menu-item>
+          <el-menu-item index="/" class="menu-item" v-if="!isAuth">
+            <el-button type="text">Sign In</el-button>
+          </el-menu-item>
+          <el-menu-item index="/" class="menu-item" v-if="!isAuth">
+            <el-button type="text">Sign Up</el-button>
+          </el-menu-item>
+          <el-menu-item v-if="isAuth" @click.prevent="logout">Logout</el-menu-item>
+          <el-menu-item index="/" class="menu-item" v-if="isAuth">
+            <el-button type="text">Backoffice</el-button>
+          </el-menu-item>
+<!--          <nuxt-link to="/auth/login" class="el-menu-item menu-item float-right" v-if="!isAuth">
+            <el-button type="text">Sign In</el-button>
+          </nuxt-link>
+          <nuxt-link to="/auth/join" class="el-menu-item menu-item float-right" v-if="!isAuth">
+            <el-button type="text">Sign Up</el-button>
+          </nuxt-link>
+          <li class="el-menu-item float-right menu-item" v-if="isAuth" @click.prevent="logout">Logout</li>
+          <nuxt-link to="/backoffice" class="el-menu-item menu-item float-right" v-if="isAuth">
+            <el-button type="text">Backoffice</el-button>
+          </nuxt-link>-->
         </el-menu>
         <ul class="menu_submenu">
           <li class="menu_submenu-item"><a target="_self" href="#enq" @click.prevent="scrollTo('enq')">What is
