@@ -17,6 +17,10 @@
               {
                 "type": "facebook",
                 "url": "https://ru-ru.facebook.com/anton.nikonorov"
+              },
+              {
+                "type": "github",
+                "url": "https://github.com/dDoom"
               }
             ]
           },
@@ -330,6 +334,10 @@
               {
                 "type": "linkedin",
                 "url": "https://www.linkedin.com/in/ksenia-pozdnyakova"
+              },
+              {
+                "type": "github",
+                "url": "https://github.com/ksenia-portu"
               }
             ]
           },
@@ -346,6 +354,10 @@
               {
                 "type": "facebook",
                 "url": "https://www.facebook.com/melnikovad"
+              },
+              {
+                "type": "github",
+                "url": "https://github.com/DariaMelnikova"
               }
             ]
           }
@@ -400,12 +412,8 @@
             "description": "A developer-mathematician, Dmitry specializes in functional programming languages. He studied at the Computational Mathematics and Cybernetics faculty of the Lomonosov Moscow State University. He has a hands-on work experience in VPN-client development.\n                                ",
             "social": [
               {
-                "type": "linkedin",
-                "url": "#"
-              },
-              {
-                "type": "envelope",
-                "url": "#"
+                "type": "github",
+                "url": "https://github.com/vojiranto"
               }
             ]
           },
