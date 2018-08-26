@@ -27,34 +27,34 @@
         partners: [{
           title: 'Partners',
           items: [{
-            text: 'Paytomat - Crypto-payment system for everyday needs',
+            text: 'AlphaChain specializes in platform and protocol level projects that will eventually form the foundation of the new internet of value.',
             img: 'img/mainpage/partners/alphachain.png'
           }, {
-            text: 'Paytomat - Crypto-payment system for everyday needs',
+            text: 'Team of investment professionals with more than $400m in assets under management.',
             img: 'img/mainpage/partners/GEM_Crypto_black.png'
           }, {
-            text: 'Paytomat - Crypto-payment system for everyday needs',
+            text: 'A consortium of the industry’s leading advisors and influencers scaling world-class blockchain projects with a focus on exchanges, protocols and infrastructure.',
             img: 'img/mainpage/partners/coinsortium.png'
           }, {
-            text: 'Paytomat - Crypto-payment system for everyday needs',
+            text: 'Home of Blockchain Opportunities',
             img: 'img/mainpage/partners/iCapital.png'
           },]
         }, {
           title: 'Ecosystem and business partners',
           items: [{
-            text: 'Paytomat - Crypto-payment system for everyday needs',
+            text: 'Mikado\'s Mission is to improve and standardize the blockchain industry by importing proven practices from the traditional capital market.',
             img: 'img/mainpage/partners/mikado.png'
           }, {
-            text: 'Paytomat - Crypto-payment system for everyday needs',
+            text: 'World\'s 1st AI-Wealth Management & Digital Estate Planning Protocol backed by Blockchain',
             img: 'img/mainpage/partners/trustverse.png'
           }, {
-            text: 'Paytomat - Crypto-payment system for everyday needs',
+            text: 'Offline mobile blockchain with banks partnership and crypto-fiat license',
             img: 'img/mainpage/partners/plasmapay.png'
           }, {
-            text: 'Paytomat - Crypto-payment system for everyday needs',
+            text: 'Site for the search for teachers.',
             img: 'img/mainpage/partners/upstudy.png'
           }, {
-            text: 'Paytomat - Crypto-payment system for everyday needs',
+            text: 'Site coming soon',
             img: 'img/mainpage/partners/arloid.png'
           }]
         }, {
@@ -75,7 +75,7 @@
         }, {
           title: 'We are member of fintech association of Hong Kong',
           items: [{
-            text: 'Paytomat - Crypto-payment system for everyday needs',
+            text: 'Independent non-for-profit membership based association representing Hong Kong’s local and global FinTech community.',
             img: 'img/mainpage/partners/fintechhh.png'
           }]
         }]
