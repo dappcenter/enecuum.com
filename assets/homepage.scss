@@ -427,7 +427,7 @@ $fullHeight: auto;
   &-inner {
     height: 100%;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     max-width: 1440px;
     margin: 0px auto;
     background-color: #ffffff;
@@ -446,11 +446,20 @@ $fullHeight: auto;
     padding: 40px 0px;
   }
   @media screen and (max-width: 1440px) {
+    &-inner {
+      padding-top: 50px;
+      min-height: 580px;
+    }
     &-wrapper {
       padding: 0px 40px;
       &:after {
         opacity: .2;
       }
+    }
+  }
+  @media screen and (max-height: 590px) {
+    &-title {
+      font-size: 50px;
     }
   }
   @media screen and (max-width: 991px) {
