@@ -12,7 +12,8 @@
                 <div class="member-item_position">{{member.position}}</div>
                 <div class="member-item_contacts_links">
                   <a v-for="(soc, skey) in member.social" :key="skey" :href="soc.url" target="_blank">
-                    <i :class="'fa fa-'+soc.type" aria-hidden="true"></i>
+                    <i v-if="soc.type" :class="'fa fa-'+soc.type" aria-hidden="true"></i>
+                    <img v-else :src="'img/icons/'+soc.img" alt="" class="fa">
                   </a>
                 </div>
                 <div class="member-item_contacts_description">
