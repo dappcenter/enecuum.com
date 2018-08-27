@@ -26,16 +26,16 @@
           <el-menu-item index="/" class="menu-item" v-if="isAuth">
             <el-button type="text">Backoffice</el-button>
           </el-menu-item>
-<!--          <nuxt-link to="/auth/login" class="el-menu-item menu-item float-right" v-if="!isAuth">
-            <el-button type="text">Sign In</el-button>
-          </nuxt-link>
-          <nuxt-link to="/auth/join" class="el-menu-item menu-item float-right" v-if="!isAuth">
-            <el-button type="text">Sign Up</el-button>
-          </nuxt-link>
-          <li class="el-menu-item float-right menu-item" v-if="isAuth" @click.prevent="logout">Logout</li>
-          <nuxt-link to="/backoffice" class="el-menu-item menu-item float-right" v-if="isAuth">
-            <el-button type="text">Backoffice</el-button>
-          </nuxt-link>-->
+          <!--          <nuxt-link to="/auth/login" class="el-menu-item menu-item float-right" v-if="!isAuth">
+                      <el-button type="text">Sign In</el-button>
+                    </nuxt-link>
+                    <nuxt-link to="/auth/join" class="el-menu-item menu-item float-right" v-if="!isAuth">
+                      <el-button type="text">Sign Up</el-button>
+                    </nuxt-link>
+                    <li class="el-menu-item float-right menu-item" v-if="isAuth" @click.prevent="logout">Logout</li>
+                    <nuxt-link to="/backoffice" class="el-menu-item menu-item float-right" v-if="isAuth">
+                      <el-button type="text">Backoffice</el-button>
+                    </nuxt-link>-->
 
         </el-menu>
         <ul class="menu_submenu">
@@ -276,9 +276,9 @@
       .special-a {
         position: absolute;
         top: 65px;
-        right: 220px;
+        right: 110px;
         .orange {
-          width: 200px;
+          width: 255px;
           padding: 5px 15px;
         }
       }
@@ -387,7 +387,12 @@
         padding-right: 24px;
         display: flex;
         .special-a {
-          right: 170px;
+          right: auto;
+          left: 10px;
+          .orange {
+            font-size: 14px;
+            width: 150px;
+          }
         }
       }
     }

@@ -53,23 +53,11 @@
           }, {
             text: 'Site for the search for teachers.',
             img: 'img/mainpage/partners/upstudy.png'
-          }, {
-            text: 'Site coming soon',
-            img: 'img/mainpage/partners/arloid.png'
-          }]
-        }, {
-          title: 'Media partners',
-          items: [{
-            text: 'Paytomat - Crypto-payment system for everyday needs',
-            img: 'img/mainpage/partners/ico_crowd.png'
-          }, {
-            text: 'Paytomat - Crypto-payment system for everyday needs',
-            img: 'img/mainpage/partners/bloom_chain.png'
           }]
         }, {
           title: 'Legal Advisor',
           items: [{
-            text: 'Paytomat - Crypto-payment system for everyday needs',
+            text: 'Recognised as one of the world’s most innovative law firms, King & Wood Mallesons offers a different perspective to commercial thinking and the client experience.',
             img: 'img/mainpage/partners/king-wood-malleson.png'
           }]
         }, {
@@ -87,7 +75,6 @@
         let length = item.items.length;
         let resid = length % incol;
         if (window.outerWidth > 768) {
-          console.log(resid, length, index);
           if (length < 3) {
             return 'width: calc(' + (100 / length) + '%)';
           }
