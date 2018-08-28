@@ -1,16 +1,22 @@
 <template>
   <section class="footer">
     <el-row :gutter="30" class="footer_links">
-      <el-col :sm="12" :md="6" :lg="4" v-for="(item, key) in footerLinks" :key="key">
+      <el-col :sm="24" :md="24" :lg="24">
+        <ul class="footer_links-wrapper">
+          <li class="footer_links-link" v-for="(item, key) in links" :key="key">
+            <a :href="item.link">{{item.title}}</a>
+          </li>
+        </ul>
+      </el-col>
+      <!--<el-col :sm="12" :md="6" :lg="4" v-for="(item, key) in footerLinks" :key="key">
         <div class="footer_links-title">{{item.page}}</div>
         <ul class="footer_links-wrapper">
           <li class="footer_links-link" v-for="(link, lkey) in item.links" :key="lkey">
             {{link}}
           </li>
         </ul>
-      </el-col>
+      </el-col>-->
     </el-row>
-    <!--           -->
     <div class="footer_networks">
       <a v-for="(item, key) in social" :key="key" :href="item.link" target="_blank"
          @click="a({category: 'social', eventAction: 'click', eventLabel: item.type})">
@@ -37,6 +43,25 @@
     name: "enq-footer",
     data() {
       return {
+        links: [{
+          title: 'Enecuum',
+          url: '/'
+        }, {
+          title: 'Team',
+          url: '/team'
+        }, {
+          title: 'News and media',
+          url: '/press'
+        }, {
+          title: 'FAQ',
+          url: '/faq'
+        }, {
+          title: 'Sign in',
+          url: '/auth/signin'
+        }, {
+          title: 'Sign up',
+          url: '/auth/signup'
+        }],
         footerLinks: [{
           page: 'Enecuum',
           links: ['What is Enecuum', 'Phone Mining', 'Technology', 'Usecases', 'Vision', 'Roadmap', 'Partners']
