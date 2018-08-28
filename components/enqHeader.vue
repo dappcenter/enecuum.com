@@ -9,21 +9,22 @@
       <div class="menu_submenu-wrapper" :class="{'menu-open': isOpened}">
         <el-menu class="menu_mobile">
           <el-menu-item index="/" class="menu-item">Home</el-menu-item>
-          <el-menu-item index="/" class="menu-item">Team</el-menu-item>
-          <el-menu-item index="/" class="menu-item">Blog</el-menu-item>
-          <el-menu-item index="/" class="menu-item">Calendar</el-menu-item>
-          <el-menu-item index="/" class="menu-item">Video</el-menu-item>
-          <el-menu-item index="/" class="menu-item">Press</el-menu-item>
-          <el-menu-item index="/" class="menu-item">Token</el-menu-item>
-          <el-menu-item index="/" class="menu-item">FAQ</el-menu-item>
-          <el-menu-item index="/" class="menu-item" v-if="!isAuth">
+          <el-menu-item index="/team" class="menu-item">Team</el-menu-item>
+          <el-menu-item index="" class="menu-item"><a href="https://medium.com/@EnqBlockchain" target="_blank">Blog</a>
+          </el-menu-item>
+          <el-menu-item index="/calendar" class="menu-item">Calendar</el-menu-item>
+          <el-menu-item index="/video" class="menu-item">Video</el-menu-item>
+          <el-menu-item index="/press" class="menu-item">Press</el-menu-item>
+          <el-menu-item index="/token" class="menu-item">Token</el-menu-item>
+          <el-menu-item index="/faq" class="menu-item">FAQ</el-menu-item>
+          <el-menu-item index="/auth/login" class="menu-item" v-if="!isAuth">
             <el-button type="text">Sign In</el-button>
           </el-menu-item>
-          <el-menu-item index="/" class="menu-item" v-if="!isAuth">
+          <el-menu-item index="/auth/join" class="menu-item" v-if="!isAuth">
             <el-button type="text">Sign Up</el-button>
           </el-menu-item>
           <el-menu-item v-if="isAuth" @click.prevent="logout">Logout</el-menu-item>
-          <el-menu-item index="/" class="menu-item" v-if="isAuth">
+          <el-menu-item index="/backoffice" class="menu-item" v-if="isAuth">
             <el-button type="text">Backoffice</el-button>
           </el-menu-item>
           <!--          <nuxt-link to="/auth/login" class="el-menu-item menu-item float-right" v-if="!isAuth">
@@ -64,19 +65,20 @@
           <img :src="isfixedcolor==='false' ? '/img/logo.svg' : '/img/logo-white.png'" alt="" class="menu_logo-img">
         </nuxt-link>
         <el-menu-item index="/" class="menu-item">Home</el-menu-item>
-        <el-menu-item index="/" class="menu-item">Team</el-menu-item>
-        <el-menu-item index="/" class="menu-item">Blog</el-menu-item>
-        <el-menu-item index="/" class="menu-item">Calendar</el-menu-item>
-        <el-menu-item index="/" class="menu-item">Video</el-menu-item>
-        <el-menu-item index="/" class="menu-item">Press</el-menu-item>
-        <el-menu-item index="/" class="menu-item">Token</el-menu-item>
-        <el-menu-item index="/" class="menu-item">FAQ</el-menu-item>
+        <el-menu-item index="/team" class="menu-item">Team</el-menu-item>
+        <el-menu-item index="" class="menu-item"><a href="https://medium.com/@EnqBlockchain" target="_blank">Blog</a>
+        </el-menu-item>
+        <el-menu-item index="/calendar" class="menu-item">Calendar</el-menu-item>
+        <el-menu-item index="/video" class="menu-item">Video</el-menu-item>
+        <el-menu-item index="/press" class="menu-item">Press</el-menu-item>
+        <el-menu-item index="/token" class="menu-item">Token</el-menu-item>
+        <el-menu-item index="/faq" class="menu-item">FAQ</el-menu-item>
       </el-menu>
       <ul class="el-menu--horizontal el-menu menu-right text-right" v-if="loadingFingerEnd || checkingAuth">
         <fingerLoader @onEnd="loadingFingerEnd=false"></fingerLoader>
       </ul>
       <ul class="el-menu--horizontal el-menu menu-right" v-else>
-        <nuxt-link to="/" class="special-a">
+        <nuxt-link to="/privatesale" class="special-a">
           <button class="button-link orange">Private Sale</button>
         </nuxt-link>
         <nuxt-link to="/auth/login" class="el-menu-item menu-item float-right" v-if="!isAuth">
@@ -258,6 +260,9 @@
       }
       &.is-active {
         border-color: transparent;
+      }
+      a {
+        display: block;
       }
     }
     &-left {

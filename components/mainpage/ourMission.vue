@@ -20,9 +20,6 @@
                 is
                 comparable to that of a messenger app.
               </div>
-              <div class="block-button">
-                <button class="button-link blue">HOW IT WORKS</button>
-              </div>
             </div>
           </div>
         </div>
@@ -37,9 +34,6 @@
                 On the contrary, everyone should have the opportunity to become a part of a beautiful future. We make
                 access to this advanced technology simple and easy. This is what the Blockchain of tomorrow should be.
               </div>
-              <div class="block-button">
-                <button class="button-link blue">HOW IT WORKS</button>
-              </div>
             </div>
           </div>
         </div>
@@ -53,9 +47,6 @@
                 decentralized blockchain. We are pleased to have created a technology that can radically ease various
                 areas of life and business: from providing free mobile communication for subscribers to putting
                 scientific breakthroughs within reach with unlimited computing capacity.
-              </div>
-              <div class="block-button">
-                <button class="button-link blue">MORE ABOUT USECASES</button>
               </div>
             </div>
           </div>

@@ -11,7 +11,7 @@
           {{item.description}}
         </div>
         <div class="landing-button">
-          <button class="button-link">{{item.button}}</button>
+          <nuxt-link :to="item.btnLink" class="button-link">{{item.button}}</nuxt-link>
         </div>
       </div>
     </el-col>
@@ -27,22 +27,26 @@
           title: 'Earn tokens',
           description: 'Any smartphone owner can join the Enecuum blockchain. Be amongst the first, download the Enecuum App today and start earning tokens',
           img: '/img/mainpage/landings/ln1.png',
-          button: 'About app'
+          button: 'About app',
+          btnLink: '/appairdrop'
         }, {
           title: 'Why Enecuum',
           description: 'Enecuum is an ideal platform for companies that need a fast, secure, and decentralized blockchain. We are pleased to have created a technology that can radically ease various areas of life and business: from providing free mobile communication for subscribers to putting scientific breakthroughs within reach with unlimited computing capacity',
           img: '/img/mainpage/landings/ln2.png',
-          button: 'About platform'
+          button: 'About platform',
+          btnLink: '#world',
         }, {
           title: 'Trinity algorithm',
           description: 'Enecuum is the first blockchain enterprise to combine PoW, PoA, and PoS technologies in the blockchain of the future, providing unlimited speed, unlimited scalability, maximum decentralization and security. We called it the Trinity algorithm',
           img: '/img/mainpage/landings/ln3.png',
-          button: 'About Technology'
+          button: 'About Technology',
+          btnLink: '#mining'
         }, {
           title: 'Private sale',
           description: 'ENQ tokens are available to both private traders and larger funds upon successful KYC procedure completion',
           img: '/img/mainpage/landings/ln4.png',
-          button: 'How to participate'
+          button: 'How to participate',
+          btnLink: '/backoffice'
         }]
       }
     }

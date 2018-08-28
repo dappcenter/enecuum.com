@@ -30,7 +30,7 @@
       </el-row>
     </div>
     <div class="subteam_button">
-      <button class="button-link blue">View all</button>
+      <nuxt-link to="/team" class="button-link blue">View all</nuxt-link>
     </div>
   </div>
 </template>

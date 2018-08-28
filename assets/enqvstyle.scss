@@ -8,6 +8,8 @@
   border: 1px solid #ffffff;
   background-color: transparent;
   cursor: pointer;
+  display: inline-block;
+  text-align: center;
   &:hover {
     background-color: #009fca;
   }
