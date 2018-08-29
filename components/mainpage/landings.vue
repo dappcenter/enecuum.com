@@ -11,7 +11,7 @@
           {{item.description}}
         </div>
         <div class="landing-button">
-          <nuxt-link :to="item.btnLink" class="button-link">{{item.button}}</nuxt-link>
+          <a :href="item.btnLink" class="button-link">{{item.button}}</a>
         </div>
       </div>
     </el-col>

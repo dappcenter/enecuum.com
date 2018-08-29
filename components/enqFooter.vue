@@ -2,11 +2,11 @@
   <section class="footer">
     <el-row :gutter="30" class="footer_links">
       <el-col :sm="24" :md="24" :lg="24">
-        <ul class="footer_links-wrapper">
-          <li class="footer_links-link" v-for="(item, key) in links" :key="key">
-            <a :href="item.link">{{item.title}}</a>
-          </li>
-        </ul>
+        <el-row class="footer_links-wrapper" type="flex" justify="space-around">
+          <el-col :sm="3" :md="4" v-for="(item, key) in links" :key="key">
+            <nuxt-link :to="item.url">{{item.title}}</nuxt-link>
+          </el-col>
+        </el-row>
       </el-col>
       <!--<el-col :sm="12" :md="6" :lg="4" v-for="(item, key) in footerLinks" :key="key">
         <div class="footer_links-title">{{item.page}}</div>
@@ -57,10 +57,10 @@
           url: '/faq'
         }, {
           title: 'Sign in',
-          url: '/auth/signin'
+          url: '/auth/login'
         }, {
           title: 'Sign up',
-          url: '/auth/signup'
+          url: '/auth/join'
         }],
         footerLinks: [{
           page: 'Enecuum',

@@ -45,12 +45,8 @@
           </li>
           <li class="menu_submenu-item"><a target="_self" href="#mining" @click.prevent="scrollTo('mining')">Phone
             mining</a></li>
-          <li class="menu_submenu-item"><a target="_self" href="#tech"
-                                           @click.prevent="scrollTo('tech')">Tech</a></li>
           <li class="menu_submenu-item"><a target="_self" href="#world"
                                            @click.prevent="scrollTo('world')">Changing the world</a></li>
-          <li class="menu_submenu-item"><a target="_self" href="#bot"
-                                           @click.prevent="scrollTo('bot')">BOT</a></li>
           <li class="menu_submenu-item"><a target="_self" href="#roadmap"
                                            @click.prevent="scrollTo('roadmap')">Roadmap</a></li>
           <li class="menu_submenu-item"><a target="_self" href="#partners"
@@ -165,8 +161,8 @@
           t--;
           return -c / 2 * (t * (t - 2) - 1) + b;
         };
-
-        to = document.getElementById(to).offsetTop;
+        to = document.getElementById(to).getBoundingClientRect().top;
+        console.log(to);
         let duration = 1000;
         let start = document.documentElement.scrollTop + 100,
           change = to - start,
