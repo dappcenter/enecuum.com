@@ -368,20 +368,6 @@
                 "url": "https://github.com/DariaMelnikova"
               }
             ]
-          }
-        ],
-        [
-          {
-            "avatar": "/img/team/avatars/vladislav.png",
-            "name": "Vladislav Svolskiy",
-            "position": "Cyber Security Specialist",
-            "description": "A young, ambitious cybersecurity specialist taking pride in designing elegant and secure systems, and devising methods and means of ensuring a strong information security culture. He likes to be actively engaged in the development and implementation of cyber security in the project as well as auditing the level of security of each product in the company and the company infrastructure on the whole.\n                                ",
-            "social": [
-              {
-                "type": "github",
-                "url": "https://github.com/633kh4ck"
-              }
-            ]
           },
           {
             "avatar": "/img/team/avatars/mihail_gluhov.png",
@@ -398,7 +384,9 @@
                 "url": "https://github.com/rigidus"
               }
             ]
-          },
+          }
+        ],
+        [
           {
             "avatar": "/img/team/avatars/oleg_kazakov.png",
             "name": "Oleg Karakoz",
@@ -410,9 +398,7 @@
                 "url": "https://www.linkedin.com/in/oleg-karakoz"
               }
             ]
-          }
-        ],
-        [
+          },
           {
             "avatar": "/img/team/avatars/dmitriy_pavlyuk.png",
             "name": "Dmitry Pavlyuk",
@@ -449,26 +435,6 @@
       "members": [
         [
           {
-            "avatar": "/img/team/avatars/sergey.png",
-            "name": "Sergey Dryamov",
-            "position": "Art director",
-            "description": "Experience more than 10 years in creative agencies, last 10 years as the creative director. Has extensive experience in brand-architecture. He created concepts for more than 100 events, 30 brands, and more than 50 communication strategies.\n                                ",
-            "social": [
-              {
-                "type": "linkedin",
-                "url": "https://www.linkedin.com/in/sergey-dryamov-415a1669/"
-              },
-              {
-                "type": "envelope",
-                "url": "mailto:svdryamov@enecuum.com"
-              },
-              {
-                "type": "facebook",
-                "url": "https://www.facebook.com/dryamov"
-              }
-            ]
-          },
-          {
             "avatar": "/img/team/avatars/dmitry.png",
             "name": "Dmitry Rumyantsev",
             "position": "PR",
@@ -485,26 +451,6 @@
               {
                 "type": "envelope",
                 "url": "dm.rumian@enecuum.com"
-              }
-            ]
-          },
-          {
-            "avatar": "/img/team/avatars/ewan.png",
-            "name": "Ivan Abramov",
-            "position": "Email Developer",
-            "description": "Technically minded email developer. Studied in Saint-Petersburg State University of Economics. Ivan have more than 3 years experience in digital marketing including development of web projects from scratch. Build adaptive emails in html/css ensuring adherence to usability, accessibility and best practice guidelines.\n                                ",
-            "social": [
-              {
-                "type": "linkedin",
-                "url": "https://www.linkedin.com/in/ivan-abramov-abb07b79/"
-              },
-              {
-                "type": "envelope",
-                "url": "mailto:abramov@enecuum.com"
-              },
-              {
-                "type": "facebook",
-                "url": "https://www.facebook.com/ivan.abramov.311"
               }
             ]
           }
