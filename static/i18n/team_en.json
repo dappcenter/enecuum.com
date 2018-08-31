@@ -413,6 +413,20 @@
       ]
     },
     {
+      "title": "C-Level",
+      "members": [
+        [
+          {
+            "avatar": "/img/team/avatars/adrian.png",
+            "name": "Adrian Guye",
+            "position": "General Counsel",
+            "description": "General Counsel with 13 years of experience in London, Paris, Moscow and Hong Kong advising leading global financial institutions on a broad range of complex cross-border transactions, regulation and legal structuring. Previously with UBS, Barclays, Societe Generale, Credit Agricole and Citibank.\n                                ",
+            "social": []
+          }
+        ]
+      ]
+    },
+    {
       "title": "Cryptographers",
       "members": [
         [
@@ -544,30 +558,6 @@
         ],
         [
           {
-            "avatar": "/img/team/avatars/artem.png",
-            "name": "Artem Kravchenko",
-            "position": "DevOps",
-            "description": "DevOps. Techno guru. Interested in process automation, AI and software development. Now proving his high skill in blockchain projects. His work is his hobby. He's very good at solving any business problems.\n                                ",
-            "social": [
-              {
-                "type": "github",
-                "url": "https://github.com/scytem"
-              }
-            ]
-          },
-          {
-            "avatar": "/img/team/avatars/vladislav.png",
-            "name": "Vladislav Svolskiy",
-            "position": "Cyber Security Specialist",
-            "description": "A young, ambitious cybersecurity specialist taking pride in designing elegant and secure systems, and devising methods and means of ensuring a strong information security culture. He likes to be actively engaged in the development and implementation of cyber security in the project as well as auditing the level of security of each product in the company and the company infrastructure on the whole.\n                                ",
-            "social": [
-              {
-                "type": "github",
-                "url": "https://github.com/633kh4ck"
-              }
-            ]
-          },
-          {
             "avatar": "/img/team/avatars/mihail_gluhov.png",
             "name": "Mikhail Gluhov",
             "position": "Smart Contract developer",
@@ -585,22 +575,6 @@
           }
         ],
         [
-          {
-            "avatar": "/img/team/avatars/julia_osipova.png",
-            "name": "Julia Osipova",
-            "position": "UX/UI designer",
-            "description": "A UX/UI designer of web and mobile applications. Julia studied at the Saint Petersburg State University of Technology and Design (faculty of Graphic Design in Advertisement and Business). Julia has two years of work experience during which she created UX/UI designs for WIX platform web apps and web apps for cryptocurrency projects.\n                                ",
-            "social": [
-              {
-                "type": "behance",
-                "url": "https://www.behance.net/osipova_ju7b5e"
-              },
-              {
-                "type": "linkedin",
-                "url": "https://www.linkedin.com/in/julia-osipova-392567158/"
-              }
-            ]
-          },
           {
             "avatar": "/img/team/avatars/oleg_kazakov.png",
             "name": "Oleg Karakoz",
