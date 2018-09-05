@@ -1,27 +1,27 @@
 <template>
   <section class="footer">
     <el-row :gutter="30" class="footer_links">
-      <el-col :sm="24" :md="24" :lg="24">
-        <el-row class="footer_links-wrapper" type="flex" justify="space-around">
-          <el-col :sm="3" :md="4" v-for="(item, key) in links" :key="key">
-            <nuxt-link :to="item.url">{{item.title}}</nuxt-link>
-          </el-col>
-        </el-row>
-      </el-col>
-      <!--<el-col :sm="12" :md="6" :lg="4" v-for="(item, key) in footerLinks" :key="key">
+      <!--      <el-col :sm="24" :md="24" :lg="24">
+              <el-row class="footer_links-wrapper" type="flex" justify="space-around">
+                <el-col :sm="3" :md="4" v-for="(item, key) in links" :key="key">
+                  <nuxt-link :to="item.url">{{item.title}}</nuxt-link>
+                </el-col>
+              </el-row>
+            </el-col>-->
+      <el-col :sm="12" :md="6" :lg="4" v-for="(item, key) in footerLinks" :key="key">
         <div class="footer_links-title">{{item.page}}</div>
         <ul class="footer_links-wrapper">
           <li class="footer_links-link" v-for="(link, lkey) in item.links" :key="lkey">
-            {{link}}
+            <nuxt-link :to="link.url">{{link.title}}</nuxt-link>
           </li>
         </ul>
-      </el-col>-->
+      </el-col>
     </el-row>
     <div class="footer_networks">
-      <a v-for="(item, key) in social" :key="key" :href="item.link" target="_blank"
-         @click="a({category: 'social', eventAction: 'click', eventLabel: item.type})">
-        <img :src="'/'+item.img" alt="">
-      </a>
+      <!--      <a v-for="(item, key) in social" :key="key" :href="item.link" target="_blank"
+               @click="a({category: 'social', eventAction: 'click', eventLabel: item.type})">
+              <img :src="'/'+item.img" alt="">
+            </a>-->
       <div>
         {{footerAddress.LINE_1}}
       </div>
@@ -43,40 +43,90 @@
     name: "enq-footer",
     data() {
       return {
-        links: [{
-          title: 'Enecuum',
-          url: '/'
-        }, {
-          title: 'Team',
-          url: '/team'
-        }, {
-          title: 'News and media',
-          url: '/press'
-        }, {
-          title: 'FAQ',
-          url: '/faq'
-        }, {
-          title: 'Sign in',
-          url: '/auth/login'
-        }, {
-          title: 'Sign up',
-          url: '/auth/join'
-        }],
         footerLinks: [{
           page: 'Enecuum',
-          links: ['What is Enecuum', 'Phone Mining', 'Technology', 'Usecases', 'Vision', 'Roadmap', 'Partners']
+          links: [{
+            title: 'What is Enecuum',
+            url: '/#enq'
+          }, {
+            title: 'Phone Mining',
+            url: '/#mining'
+          }, {
+            title: 'Technology',
+            url: '/#mining'
+          }, {
+            title: 'Usecases',
+            url: ''
+          }, {
+            title: 'Vision',
+            url: '/#world'
+          }, {
+            title: 'Roadmap',
+            url: '/#roadmap'
+          }, {
+            title: 'Partners',
+            url: '/#partners'
+          }]
         }, {
           page: 'Team',
-          links: ['C-level', 'Advisory board', 'Cryptographers', 'Development', 'Marketing', 'Operations', 'Join the team']
+          links: [{
+            title: 'C-level',
+            url: '/team#Our'
+          }, {
+            title: 'Advisory board',
+            url: '/team#Advisory'
+          }, {
+            title: 'Cryptographers',
+            url: '/team#Cryptographers'
+          }, {
+            title: 'Development',
+            url: '/team#Development'
+          }, {
+            title: 'Marketing',
+            url: '/team#Marketing'
+          }, {
+            title: 'Operations',
+            url: '/team#Operations'
+          }, {
+            title: 'Join the team',
+            url: '/team#joinTeam'
+          }]
         }, {
           page: 'News and media',
-          links: ['Blog', 'Calendar', 'Video', 'Press', 'Press-kit']
+          links: [{
+            title: 'Blog',
+            url: 'https://medium.com/@EnqBlockchain'
+          }, {
+            title: 'Calendar',
+            url: '/calendar'
+          }, {
+            title: 'Video',
+            url: '/video'
+          }, {
+            title: 'Press',
+            url: '/press'
+          }]
         }, {
           page: 'FAQ',
-          links: ['General FAQ', 'Private sale', 'FAQ', 'Token FAQ']
+          links: [{
+            title: 'Private sale',
+            url: '/privatesale'
+          }, {
+            title: 'FAQ',
+            url: '/faq'
+          }, {
+            title: 'Token FAQ',
+            url: '/token'
+          }]
         }, {
           page: 'Enter',
-          links: ['Sign in', 'Sign up']
+          links: [{
+            title: 'Sign in',
+            url: '/auth/login'
+          }, {
+            title: 'Sign up',
+            url: '/auth/join'
+          }]
         }],
         footerAddress: {
           "LINE_1": "Enecuum HK Limited",

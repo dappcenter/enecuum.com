@@ -13,24 +13,11 @@
 <script>
   import banner from '@/components/mainpage/banner';
   import landings from '@/components/mainpage/landings';
-  import phmining from '@/components/mainpage/phonemining';
   import ourmis from '@/components/mainpage/ourMission.vue';
-  import changingWorld from '@/components/mainpage/changingWorld';
   import roadmap from '@/components/mainpage/roadmap';
   import team from '@/components/mainpage/team';
   import partners from '@/components/mainpage/partners';
   import citates from '@/components/mainpage/citates';
-
-  /*  import features from '@/components/mainpage/features';
-    import businesscase from '@/components/mainpage/businesscase';
-    import mining from '@/components/mainpage/mining';
-    import phmining from '@/components/mainpage/phonemining';
-
-
-
-    import feedback from '@/components/mainpage/feedback';
-    import breakthroughTech from '@/components/mainpage/breakthroughTech';
-    import blockchain from '@/components/mainpage/blockchain';*/
 
 
   import axios from 'axios';
@@ -39,25 +26,11 @@
     components: {
       banner,
       landings,
-      phmining,
       ourmis,
-      changingWorld,
       roadmap,
       team,
       partners,
       citates
-      /*      banner,
-            features,
-            businesscase,
-            mining,
-            phmining,
-            roadmap,
-            partners,
-            feedback,
-            breakthroughTech,
-            changingWorld,
-            blockchain,
-            landings*/
     },
     mounted() {
       jarallax(document.querySelectorAll('.jarallax'), {

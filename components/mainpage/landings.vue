@@ -28,7 +28,7 @@
           description: 'Any smartphone owner can join the Enecuum blockchain. Be amongst the first, download the Enecuum App today and start earning tokens',
           img: '/img/mainpage/landings/ln1.png',
           button: 'About app',
-          btnLink: '/appairdrop'
+          btnLink: '/airdrop'
         }, {
           title: 'Why Enecuum',
           description: 'Enecuum is an ideal platform for companies that need a fast, secure, and decentralized blockchain. We are pleased to have created a technology that can radically ease various areas of life and business: from providing free mobile communication for subscribers to putting scientific breakthroughs within reach with unlimited computing capacity',

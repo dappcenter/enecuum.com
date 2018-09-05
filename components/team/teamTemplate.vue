@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="(department, mkey) in team" :key="mkey">
+    <div v-for="(department, mkey) in team" :key="mkey" :id="department.title.split(' ')[0]">
       <h1 class="text-center page-title" v-if="mkey===0">{{department.title}}</h1>
       <h2 class="text-center page-sub-title" v-else>{{department.title}}</h2>
       <el-row class="flex-center" v-for="(row, rkey) in department.members" :key="rkey">

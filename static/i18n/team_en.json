@@ -243,9 +243,7 @@
                 "url": "https://www.linkedin.com/in/ivanvalerevich"
               }
             ]
-          }
-        ],
-        [
+          },
           {
             "avatar": "/img/team/avatars/jev.png",
             "name": "Jev Vainsteins",
@@ -257,6 +255,15 @@
                 "url": "https://www.linkedin.com/in/feranicus/"
               }
             ]
+          }
+        ],
+        [
+          {
+            "avatar": "/img/team/avatars/adrian.png",
+            "name": "Adrian Guye",
+            "position": "General Counsel",
+            "description": "General Counsel with 13 years of experience in London, Paris, Moscow and Hong Kong advising leading global financial institutions on a broad range of complex cross-border transactions, regulation and legal structuring. Previously with UBS, Barclays, Societe Generale, Credit Agricole and Citibank.\n                                ",
+            "social": []
           },
           {
             "avatar": "/img/team/avatars/jason_yee.png",
@@ -408,20 +415,6 @@
                 "url": "https://www.linkedin.com/in/shelly-hod-moyal-64698824/"
               }
             ]
-          }
-        ]
-      ]
-    },
-    {
-      "title": "C-Level",
-      "members": [
-        [
-          {
-            "avatar": "/img/team/avatars/adrian.png",
-            "name": "Adrian Guye",
-            "position": "General Counsel",
-            "description": "General Counsel with 13 years of experience in London, Paris, Moscow and Hong Kong advising leading global financial institutions on a broad range of complex cross-border transactions, regulation and legal structuring. Previously with UBS, Barclays, Societe Generale, Credit Agricole and Citibank.\n                                ",
-            "social": []
           }
         ]
       ]
