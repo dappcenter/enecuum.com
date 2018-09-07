@@ -31,13 +31,16 @@
     "dotenv": "^6.0.0",
     "element-ui": "^2.3.7",
     "express": "^4.16.3",
-    "fingerprintjs2": "^1.8.0",
+    "fingerprintjs2": "^1.8.1",
     "font-awesome": "^4.7.0",
     "gsap": "^2.0.1",
     "moment": "^2.22.1",
     "mysql": "^2.15.0",
     "nuxt": "^1.0.0",
+    "passport": "^0.4.0",
+    "passport-facebook": "^2.1.1",
     "request": "^2.87.0",
+    "scrollmagic": "^2.0.5",
     "socket.io": "^2.1.1",
     "socket.io-client": "^2.1.1",
     "twix": "^1.2.1",
@@ -53,7 +56,7 @@
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.7.1",
     "eslint-plugin-vue": "^4.0.0",
-    "node-sass": "^4.9.0",
+    "node-sass": "^4.9.3",
     "sass-loader": "^7.0.1"
   }
 }

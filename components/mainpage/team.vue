@@ -1,19 +1,18 @@
 <template>
-  <div>
-    <div v-for="(department, mkey) in team" :key="mkey" :id="department.title.split(' ')[0]">
-      <h1 class="text-center page-title" v-if="mkey===0">{{department.title}}</h1>
-      <h2 class="text-center page-sub-title" v-else>{{department.title}}</h2>
-      <el-row class="flex-center" v-for="(row, rkey) in department.members" :key="rkey">
-        <el-col :xs="12" :md="16" :lg="14" :xl="12">
-          <el-row :gutter="50" class="flex-center flex-wrap">
-            <el-col :sm="6" :md="6" :lg="6" v-for="(member, key) in row" :key="key">
+  <div class="subteam">
+    <div v-for="(department, mkey) in team" :key="mkey" v-if="mkey===0">
+      <h1 class="page-title" v-if="mkey===0">Team and Advisors</h1>
+      <h2 class="text-center page-sub-title" v-else>Team and Advisors</h2>
+      <el-row class="flex-center" v-for="(row, rkey) in department.reducedMembers" :key="rkey">
+        <el-col :xs="12" :md="18" :lg="20" :xl="12">
+          <el-row :gutter="0" class="flex-center flex-wrap">
+            <el-col :sm="6" :md="6" :lg="5" :xl="6" v-for="(member, key) in row" :key="key">
               <div class="member-item"><img :src="member.avatar" class="member-item_avatar">
                 <div class="member-item_name">{{member.name}}</div>
                 <div class="member-item_position">{{member.position}}</div>
                 <div class="member-item_contacts_links">
                   <a v-for="(soc, skey) in member.social" :key="skey" :href="soc.url" target="_blank">
-                    <i v-if="soc.type" :class="'fa fa-'+soc.type" aria-hidden="true"></i>
-                    <img v-else :src="'img/icons/'+soc.img" alt="" class="fa">
+                    <i :class="'fa fa-'+soc.type" aria-hidden="true"></i>
                   </a>
                 </div>
                 <div class="member-item_contacts_description">
@@ -30,19 +29,32 @@
         </el-col>
       </el-row>
     </div>
+    <div class="subteam_button">
+      <nuxt-link to="/team" class="button-link blue">View all</nuxt-link>
+    </div>
   </div>
 </template>
 
 <script>
+  import department from '@/components/team/teamTemplate';
+  import axios from 'axios';
+
   export default {
-    name: "team-template",
+    name: "team",
     data() {
       return {
-        active: ''
+        team: []
       }
     },
-    props: {
-      team: Array
+    components: {
+      department
+    },
+    mounted() {
+      const data = axios.get('/i18n/team_' + 'en' + '.json');
+      data.then(res => {
+        console.log(res.data.team);
+        this.team = res.data.team;
+      });
     }
   }
 </script>

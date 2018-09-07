@@ -1,43 +1,36 @@
 <template>
   <section class="container">
     <banner :data="mainpage.banner"></banner>
-    <phmining :data="mainpage.phonemining"></phmining>
-    <breakthroughTech :data="mainpage.breakthroughtech"></breakthroughTech>
-    <changingWorld :data="mainpage.changingworld"></changingWorld>
-    <blockchain :data="mainpage.blockchain"></blockchain>
+    <landings></landings>
+    <ourmis></ourmis>
+    <team></team>
     <roadmap :data="mainpage.roadmap"></roadmap>
     <partners :data="mainpage.partners"></partners>
+    <citates></citates>
   </section>
 </template>
 
 <script>
   import banner from '@/components/mainpage/banner';
-  import features from '@/components/mainpage/features';
-  import businesscase from '@/components/mainpage/businesscase';
-  import mining from '@/components/mainpage/mining';
-  import phmining from '@/components/mainpage/phonemining';
+  import landings from '@/components/mainpage/landings';
+  import ourmis from '@/components/mainpage/ourMission.vue';
   import roadmap from '@/components/mainpage/roadmap';
+  import team from '@/components/mainpage/team';
   import partners from '@/components/mainpage/partners';
-  import feedback from '@/components/mainpage/feedback';
-  import breakthroughTech from '@/components/mainpage/breakthroughTech';
-  import changingWorld from '@/components/mainpage/changingWorld';
-  import blockchain from '@/components/mainpage/blockchain';
+  import citates from '@/components/mainpage/citates';
+
 
   import axios from 'axios';
 
   export default {
     components: {
       banner,
-      features,
-      businesscase,
-      mining,
-      phmining,
+      landings,
+      ourmis,
       roadmap,
+      team,
       partners,
-      feedback,
-      breakthroughTech,
-      changingWorld,
-      blockchain
+      citates
     },
     mounted() {
       jarallax(document.querySelectorAll('.jarallax'), {

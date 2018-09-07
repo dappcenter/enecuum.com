@@ -11,12 +11,25 @@ pipeline:
       event:
         - push
         - tag
+  build-beta:
+    image: plugins/docker
+    secrets: [docker_username, docker_password]
+    registry: dev.enecuum.com:2087
+    repo: dev.enecuum.com:2087/site/frontend
+    tags: beta
+    when:
+      branch:
+        - beta
+      event:
+        - push
+        - tag
   notify-build-telegram:
     image: dev.enecuum.com:2087/library/drone-telegram:v1.0.0
     secrets: [telegram_token, telegram_id]
     when:
       branch:
         - dev
+        - beta
       status:
         - success
         - failure
@@ -29,9 +42,30 @@ pipeline:
     when:
       branch:
         - dev
+        - beta
       status:
         - success
         - failure
+      event:
+        - push
+        - tag
+  deploy-beta:
+    image: peloton/drone-rancher
+    url: https://dev.enecuum.com:2096
+    secrets:
+      - source: rancher_access_key
+        target: PLUGIN_ACCESS_KEY
+      - source: rancher_secret_key
+        target: PLUGIN_SECRET_KEY
+    docker_image: dev.enecuum.com:2087/site/frontend:beta
+    service: site/frontend-beta
+    confirm: true
+    timeout: 240
+    when:
+      branch:
+        - beta
+      status:
+        - success
       event:
         - push
         - tag
@@ -82,6 +116,7 @@ pipeline:
     when:
       branch:
         - dev
+        - beta
       status:
         - success
       event:
@@ -94,6 +129,7 @@ pipeline:
     when:
       branch:
         - dev
+        - beta
       status:
         - success
       event:
