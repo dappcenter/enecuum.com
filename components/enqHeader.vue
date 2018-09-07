@@ -40,17 +40,17 @@
 
         </el-menu>
         <ul class="menu_submenu">
-          <li class="menu_submenu-item"><a target="_self" href="#enq" @click.prevent="scrollTo('enq')">What is
-            ENQ</a>
+          <li class="menu_submenu-item"><nuxt-link target="_self" to="/#enq" @click.native="scrollTo('enq')">What is
+            ENQ</nuxt-link>
           </li>
-          <li class="menu_submenu-item"><a target="_self" href="#mining" @click.prevent="scrollTo('mining')">Phone
-            mining</a></li>
-          <li class="menu_submenu-item"><a target="_self" href="#world"
-                                           @click.prevent="scrollTo('world')">Changing the world</a></li>
-          <li class="menu_submenu-item"><a target="_self" href="#roadmap"
-                                           @click.prevent="scrollTo('roadmap')">Roadmap</a></li>
-          <li class="menu_submenu-item"><a target="_self" href="#partners"
-                                           @click.prevent="scrollTo('partners')">Partners</a>
+          <li class="menu_submenu-item"><nuxt-link target="_self" to="/#mining" @click.native="scrollTo('mining')">Phone
+            mining</nuxt-link></li>
+          <li class="menu_submenu-item"><nuxt-link target="_self" to="/#world"
+                                           @click.native="scrollTo('world')">Changing the world</nuxt-link></li>
+          <li class="menu_submenu-item"><nuxt-link target="_self" to="/#roadmap"
+                                           @click.native="scrollTo('roadmap')">Roadmap</nuxt-link></li>
+          <li class="menu_submenu-item"><nuxt-link target="_self" to="/#partners"
+                                           @click.native="scrollTo('partners')">Partners</nuxt-link>
           </li>
         </ul>
       </div>
@@ -155,6 +155,7 @@
         this.$router.push('/auth/login');
       },
       scrollTo(to) {
+        if (!document.getElementById(to)) return false;
         Math.easeInOutQuad = function (t, b, c, d) {
           t /= d / 2;
           if (t < 1) return c / 2 * t * t + b;
@@ -162,7 +163,6 @@
           return -c / 2 * (t * (t - 2) - 1) + b;
         };
         to = window.scrollY + document.getElementById(to).getBoundingClientRect().top;
-        console.log(to);
         let duration = 1000;
         let start = document.documentElement.scrollTop + 100,
           change = to - start,
