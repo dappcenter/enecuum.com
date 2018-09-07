@@ -65,6 +65,13 @@
         "preview_url": "img/videos/EnqVietnam.png",
         "video_url": "https://www.youtube.com/watch?v=9VDHtphCB7w",
         "description": "First meetup with community in Hanoi"
+      },
+      {
+        "id": 9,
+        "name": "iCapital.io Blockchain Party in Korea",
+        "preview_url": "img/videos/iCapital.png",
+        "video_url": "https://www.youtube.com/embed/4rnRTGau8EI",
+        "description": "#2 Panel - What needs to happen for Crypto to go mainstream? iCapital.io's Blockchain Party during Korea Blockchain Week, July 17th, 2018."
       }
     ]
   }
