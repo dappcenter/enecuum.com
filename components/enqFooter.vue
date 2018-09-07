@@ -12,9 +12,7 @@
         <div class="footer_links-title">{{item.page}}</div>
         <ul class="footer_links-wrapper">
           <li class="footer_links-link" v-for="(link, lkey) in item.links" :key="lkey">
-            <a :href="link.url"
-               v-if="link.url[1]==='#' || link.url[0]!=='/'">{{link.title}}</a>
-            <nuxt-link :to="link.url" v-else>{{link.title}}</nuxt-link>
+            <nuxt-link :to="link.url" @click.native="scrollTo(link.url)">{{link.title}}</nuxt-link>
           </li>
         </ul>
       </el-col>
@@ -59,7 +57,7 @@
             url: '/#mining'
           }, {
             title: 'Usecases',
-            url: ''
+            url: '/'
           }, {
             title: 'Vision',
             url: '/#world'
@@ -147,9 +145,34 @@
         return this.$store.state.social;
       }
     },
-    watch: {
-      '$route': function () {
-        console.log(this.$route);
+    methods: {
+      scrollTo(to) {
+        let paths = to.split('#');
+        if (this.$route.path === paths[0]) {
+          to = paths[1];
+          Math.easeInOutQuad = function (t, b, c, d) {
+            t /= d / 2;
+            if (t < 1) return c / 2 * t * t + b;
+            t--;
+            return -c / 2 * (t * (t - 2) - 1) + b;
+          };
+          to = window.scrollY + document.getElementById(to).getBoundingClientRect().top;
+          let duration = 1000;
+          let start = document.documentElement.scrollTop + 100,
+            change = to - start,
+            currentTime = 0,
+            increment = 20;
+
+          let animateScroll = function () {
+            currentTime += increment;
+            let val = Math.easeInOutQuad(currentTime, start, change, duration);
+            document.documentElement.scrollTop = val - 100;
+            if (currentTime < duration) {
+              setTimeout(animateScroll, increment);
+            }
+          };
+          animateScroll();
+        }
       }
     },
     head: {

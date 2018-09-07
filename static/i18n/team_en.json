@@ -143,18 +143,6 @@
                 "url": "https://www.linkedin.com/in/tmjaswani/"
               }
             ]
-          },
-          {
-            "avatar": "/img/team/avatars/Michael_Kiook.png",
-            "name": "Michael Kiook Jeoung",
-            "position": "",
-            "description": "Michael Kiook Jeoung is an ICT strategist and finance expert. His concentration is blockchain enabled service model and platform. He had a leadership role at Cisco Systems, OECD, Ministry of Land and Transport where he was instrumental to both private and public sector innovative initiatives for the block chain technology(DLT), smart city, cloud platform-services, IoT and ubiquitous computing-sensor network. He has 15+ years of experience in strategic consulting and has created success stories for various edge technologies and services with fundamental business framework and process. He has also worked for the advisory committee for Ministry of Agriculture and Ministry of Defense of Korea.",
-            "social": [
-              {
-                "type": "linkedin",
-                "url": "https://www.linkedin.com/in/michael-kiook-jeoung-0a15a010/"
-              }
-            ]
           }
         ],
         [
@@ -213,6 +201,10 @@
               {
                 "type": "facebook",
                 "url": "https://ru-ru.facebook.com/anton.nikonorov"
+              },
+              {
+                "type": "github",
+                "url": "https://github.com/dDoom"
               }
             ]
           },
@@ -393,18 +385,6 @@
             ]
           },
           {
-            "avatar": "/img/team/avatars/Michael_Kiook.png",
-            "name": "Michael Kiook Jeoung",
-            "position": "",
-            "description": "Michael Kiook Jeoung is an ICT strategist and finance expert. His concentration is blockchain enabled service model and platform. He had a leadership role at Cisco Systems, OECD, Ministry of Land and Transport where he was instrumental to both private and public sector innovative initiatives for the block chain technology(DLT), smart city, cloud platform-services, IoT and ubiquitous computing-sensor network. He has 15+ years of experience in strategic consulting and has created success stories for various edge technologies and services with fundamental business framework and process. He has also worked for the advisory committee for Ministry of Agriculture and Ministry of Defense of Korea.",
-            "social": [
-              {
-                "type": "linkedin",
-                "url": "https://www.linkedin.com/in/michael-kiook-jeoung-0a15a010/"
-              }
-            ]
-          },
-          {
             "avatar": "/img/team/avatars/shelly.png",
             "name": "Shelly Hod Moyal",
             "position": "",
@@ -446,7 +426,7 @@
             "description": "Sc.D. in CS, head of the Department of IT Security of the Saint Petersburg State University of Aerospace Instrumentation. Sergey is renown specialist with over 40 materials published in the field of Information Theory, Coding Theory, InfoSec, and one of the leading experts in cryptography.",
             "social": [
               {
-                "type": "linkedin",
+                "img": "researchgate.svg",
                 "url": "https://www.researchgate.net/profile/Sergey_Bezzateev"
               }
             ]
@@ -467,6 +447,26 @@
               {
                 "type": "linkedin",
                 "url": "https://www.linkedin.com/in/konstantin-zhidanov/"
+              },
+              {
+                "img": "researchgate.svg",
+                "url": "https://www.researchgate.net/profile/Konstantin_Zhidanov"
+              }
+            ]
+          },
+          {
+            "avatar": "/img/team/avatars/granin.png",
+            "name": "Alexander Granin",
+            "position": "Haskell team lead",
+            "description": "Functional programming developer, researcher and writer'\n                                ",
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/alexander-granin-46889236/"
+              },
+              {
+                "type": "github",
+                "url": "https://github.com/graninas"
               }
             ]
           },
@@ -488,8 +488,14 @@
             "position": "Project Manager",
             "description": "IT specialist with background in development, support, DevOps and delivery. As a project manager Sergey developed online 3D geoinformation system with successful adoption in city planning department. Interested in mathematics and data science Sergey finds Enecuum as the perfect place for personal growth and the world changing.",
             "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/sergey-vanurin-673601167/"
+              }
             ]
-          },
+          }
+        ],
+        [
           {
             "avatar": "/img/team/avatars/Ivan_Zuraev.png",
             "name": "Ivan Zhuravlev",
@@ -505,9 +511,7 @@
                 "url": "https://github.com/intech"
               }
             ]
-          }
-        ],
-        [
+          },
           {
             "avatar": "/img/team/avatars/ksenia.png",
             "name": "Kseniya Pozdnyakova",
@@ -517,6 +521,10 @@
               {
                 "type": "linkedin",
                 "url": "https://www.linkedin.com/in/ksenia-pozdnyakova"
+              },
+              {
+                "type": "github",
+                "url": "https://github.com/ksenia-portu"
               }
             ]
           },
@@ -533,23 +541,13 @@
               {
                 "type": "facebook",
                 "url": "https://www.facebook.com/melnikovad"
+              },
+              {
+                "type": "github",
+                "url": "https://github.com/DariaMelnikova"
               }
             ]
           },
-          {
-            "avatar": "/img/team/avatars/mikhail_subbotin.png",
-            "name": "Mikhail Subbotin",
-            "position": "Software Developer",
-            "description": "Mikhail has six years experience in Java, but he prefers Haskell, which he finds to be very elegant. He is a third year student of Applied Mathematics at the Bauman Moscow State Technical University, but this is not his first degree. His aim is to achieve a PhD in math.\n                                ",
-            "social": [
-              {
-                "type": "linkedin",
-                "url": "https://www.linkedin.com/in/msubbotin"
-              }
-            ]
-          }
-        ],
-        [
           {
             "avatar": "/img/team/avatars/mihail_gluhov.png",
             "name": "Mikhail Gluhov",
@@ -587,12 +585,8 @@
             "description": "A developer-mathematician, Dmitry specializes in functional programming languages. He studied at the Computational Mathematics and Cybernetics faculty of the Lomonosov Moscow State University. He has a hands-on work experience in VPN-client development.\n                                ",
             "social": [
               {
-                "type": "linkedin",
-                "url": "#"
-              },
-              {
-                "type": "envelope",
-                "url": "#"
+                "type": "github",
+                "url": "https://github.com/vojiranto"
               }
             ]
           },
@@ -620,26 +614,6 @@
       "members": [
         [
           {
-            "avatar": "/img/team/avatars/sergey.png",
-            "name": "Sergey Dryamov",
-            "position": "Art director",
-            "description": "Experience more than 10 years in creative agencies, last 10 years as the creative director. Has extensive experience in brand-architecture. He created concepts for more than 100 events, 30 brands, and more than 50 communication strategies.\n                                ",
-            "social": [
-              {
-                "type": "linkedin",
-                "url": "https://www.linkedin.com/in/sergey-dryamov-415a1669/"
-              },
-              {
-                "type": "envelope",
-                "url": "mailto:svdryamov@enecuum.com"
-              },
-              {
-                "type": "facebook",
-                "url": "https://www.facebook.com/dryamov"
-              }
-            ]
-          },
-          {
             "avatar": "/img/team/avatars/dmitry.png",
             "name": "Dmitry Rumyantsev",
             "position": "PR",
@@ -659,28 +633,6 @@
               }
             ]
           },
-          {
-            "avatar": "/img/team/avatars/ewan.png",
-            "name": "Ivan Abramov",
-            "position": "Email Developer",
-            "description": "Technically minded email developer. Studied in Saint-Petersburg State University of Economics. Ivan have more than 3 years experience in digital marketing including development of web projects from scratch. Build adaptive emails in html/css ensuring adherence to usability, accessibility and best practice guidelines.\n                                ",
-            "social": [
-              {
-                "type": "linkedin",
-                "url": "https://www.linkedin.com/in/ivan-abramov-abb07b79/"
-              },
-              {
-                "type": "envelope",
-                "url": "mailto:abramov@enecuum.com"
-              },
-              {
-                "type": "facebook",
-                "url": "https://www.facebook.com/ivan.abramov.311"
-              }
-            ]
-          }
-        ],
-        [
           {
             "avatar": "/img/team/avatars/Alisa_Kosykh.png",
             "name": "Alisa Kosykh",

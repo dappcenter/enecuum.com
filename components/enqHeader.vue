@@ -161,7 +161,7 @@
           t--;
           return -c / 2 * (t * (t - 2) - 1) + b;
         };
-        to = document.getElementById(to).getBoundingClientRect().top;
+        to = window.scrollY + document.getElementById(to).getBoundingClientRect().top;
         console.log(to);
         let duration = 1000;
         let start = document.documentElement.scrollTop + 100,
