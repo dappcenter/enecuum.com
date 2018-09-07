@@ -12,7 +12,9 @@
         <div class="footer_links-title">{{item.page}}</div>
         <ul class="footer_links-wrapper">
           <li class="footer_links-link" v-for="(link, lkey) in item.links" :key="lkey">
-            <nuxt-link :to="link.url">{{link.title}}</nuxt-link>
+            <a :href="link.url"
+               v-if="link.url[1]==='#' || link.url[0]!=='/'">{{link.title}}</a>
+            <nuxt-link :to="link.url" v-else>{{link.title}}</nuxt-link>
           </li>
         </ul>
       </el-col>
@@ -43,6 +45,7 @@
     name: "enq-footer",
     data() {
       return {
+        currentLocation: '/',
         footerLinks: [{
           page: 'Enecuum',
           links: [{
@@ -142,6 +145,11 @@
     computed: {
       social() {
         return this.$store.state.social;
+      }
+    },
+    watch: {
+      '$route': function () {
+        console.log(this.$route);
       }
     },
     head: {

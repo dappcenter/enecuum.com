@@ -27,7 +27,8 @@ module.exports = {
         name: "twitter:description",
         content: "Enecuum is a decentralized environment that aims to integrate blockchain technologies into both business and state structures. The technologies used in the project allow for solving various tasks: fintech, banking, document processing, insurance, logistics, IoT, DApps, ICO and more."
       },
-      {name: "twitter:image", content: "/head/favicon-32x32.png"}
+      {name: "twitter:image", content: "/head/favicon-32x32.png"},
+      {name: "google-site-verification", content: "YdciQD31shGvSVhhjgKmnyGSNbfmWGE90KotyXN2wpM"}
     ],
     link: [
       {rel: 'icon', type: "image/x-icon", href: '/head/favicon.ico'},
