@@ -1,8 +1,9 @@
 .footer {
-  padding: 30px 150px;
-  background: #313e48;
+  padding: 30px 80px;
+  background: #7a7a7a;
   font-size: 13px;
   color: #dbdbdb;
+  display: flex;
   a {
     color: #dbdbdb;
   }
@@ -11,6 +12,8 @@
   }
   &_networks {
     padding-top: 9px;
+    max-width: 400px;
+    text-align: right;
     a {
       margin-right: 5px;
     }
@@ -25,5 +28,25 @@
     left: 0px;
     right: 0px;
     z-index: 9;
+  }
+  &_links {
+    color: #ffffff;
+    flex-grow: 1;
+    padding-right: 40px;
+    &-link {
+      list-style-type: none;
+      padding: 2px 0px;
+      //text-align: right;
+    }
+    &-title {
+      font-weight: bold;
+      padding-bottom: 30px;
+    }
+    &-wrapper {
+
+    }
+    @media screen and (max-width: 991px) {
+      display: none;
+    }
   }
 }

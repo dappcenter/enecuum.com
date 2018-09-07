@@ -40,14 +40,6 @@ const createStore = () => {
         "img": 'img/snet/bt.svg',
         "type": "bitcointalk",
         "link": 'https://bitcointalk.org/index.php?topic=2939909.0;topicseen'
-      }, {
-        "img": 'img/snet/lk.svg',
-        "type": "linkedin",
-        "link": 'https://www.linkedin.com/company/enecuum-limited/'
-      }, {
-        "img": 'img/snet/yt.svg',
-        "type": "youtube",
-        "link": 'https://www.youtube.com/channel/UCyZqNfzK_PP82nkAVOlmN4Q?view_as=subscriber'
       }],
       "calendar": {
         "title": "Calendar",

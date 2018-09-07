@@ -1,5 +1,5 @@
 <template>
-  <el-row class="flex-center teamForm">
+  <el-row class="flex-center teamForm" id="joinTeam">
     <el-col :xs="20" :md="16" :lg="14" :xl="14">
       <el-collapse v-model="active">
         <el-collapse-item name="1" class="collapse-header">

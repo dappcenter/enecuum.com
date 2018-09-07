@@ -284,74 +284,64 @@
         }
       ]
     },
-    "partners": {
-      "partners": {
-        "title": "Partners",
-        "img": [
-          [
-            {
-              "link": "https://alphachain.com/",
-              "img": "/img/mainpage/partners/alphachain.png"
-            },
-            {
-              "link": "https://gem.capital/",
-              "img": "/img/mainpage/partners/GEM_Crypto_black.png"
-            },
-            {
-              "link": "http://coinsortium.io",
-              "img": "/img/mainpage/partners/coinsortium.png"
-            },
-            {
-              "link": "https://icapital.io/",
-              "img": "/img/mainpage/partners/iCapital.png"
-            }
-          ]
-        ]
-      },
-      "eco_partners": {
-        "title": "Ecosystem partners",
-        "img": [
+    "partners": [
+      {
+        "title": "Partners ",
+        "items": [
           {
-            "link": "https://www.mikado.io/",
-            "img": "/img/mainpage/partners/mikado.png"
+            "text": "AlphaChain specializes in platform and protocol level projects that will eventually form the foundation of the new internet of value. ",
+            "img": "img/mainpage/partners/alphachain.png "
           },
           {
-            "link": "https://www.trustverse.io/",
-            "img": "/img/mainpage/partners/trustverse.png"
+            "text": "Team of investment professionals with more than $400m in assets under management. ",
+            "img": "img/mainpage/partners/GEM_Crypto_black.png "
           },
           {
-            "link": "https://plasmabank.com",
-            "img": "/img/mainpage/partners/plasmapay.png"
+            "text": "A consortium of the industry’s leading advisors and influencers scaling world-class blockchain projects with a focus on exchanges, protocols and infrastructure. ",
+            "img": "img/mainpage/partners/coinsortium.png "
           },
           {
-            "link": "https://upstudy.ru",
-            "img": "/img/mainpage/partners/upstudy_2.svg"
-          },
-          {
-            "link": "http://Arloid.com",
-            "img": "/img/mainpage/partners/arloid.png"
+            "text": "Home of Blockchain Opportunities ",
+            "img": "img/mainpage/partners/iCapital.png "
           }
         ]
       },
-      "legal_partners": {
-        "title": "Legal Advisor",
-        "img": [
+      {
+        "title": "Ecosystem and business partners ",
+        "items": [
           {
-            "link": "http://www.kwm.com/en",
-            "img": "/img/mainpage/partners/kwm.png"
+            "text": "Mikado's Mission is to improve and standardize the blockchain industry by importing proven practices from the traditional capital market. ",
+            "img": "img/mainpage/partners/mikado.png "
+          },
+          {
+            "text": "Offline mobile blockchain with banks partnership and crypto-fiat license ",
+            "img": "img/mainpage/partners/plasmapay.png "
+          },
+          {
+            "text": "Site for the search for teachers. ",
+            "img": "img/mainpage/partners/upstudy.png "
           }
         ]
       },
-      "members": {
-        "title": "We are member of Fintech Association of Hong Kong",
-        "img": [
+      {
+        "title": "Legal Advisor ",
+        "items": [
           {
-            "link": "http://hkfintech.org/",
-            "img": "/img/mainpage/partners/fintechhh.png"
+            "text": "Recognised as one of the world’s most innovative law firms, King & Wood Mallesons offers a different perspective to commercial thinking and the client experience. ",
+            "img": "img/mainpage/partners/king-wood-malleson.png "
+          }
+        ]
+      },
+      {
+        "title": "We are member of fintech association of Hong Kong ",
+        "items": [
+          {
+            "text": "Independent non-for-profit membership based association representing Hong Kong’s local and global FinTech community. ",
+            "img": "img/mainpage/partners/fintechhh.png "
           }
         ]
       }
-    },
+    ],
     "feedback": {
       "title": "Contact Us",
       "button": "Send"
