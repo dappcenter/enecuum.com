@@ -52,7 +52,6 @@
     mounted() {
       const data = axios.get('/i18n/team_' + 'en' + '.json');
       data.then(res => {
-        console.log(res.data.team);
         this.team = res.data.team;
       });
     }
