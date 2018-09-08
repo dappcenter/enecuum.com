@@ -6,7 +6,6 @@
     <team></team>
     <roadmap :data="mainpage.roadmap"></roadmap>
     <partners :data="mainpage.partners"></partners>
-    <citates></citates>
   </section>
 </template>
 
