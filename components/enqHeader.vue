@@ -17,6 +17,9 @@
           <el-menu-item index="/press" class="menu-item">Press</el-menu-item>
           <el-menu-item index="/token" class="menu-item">Token</el-menu-item>
           <el-menu-item index="/faq" class="menu-item">FAQ</el-menu-item>
+          <nuxt-link to="/privatesale" class="special-a">
+            <button class="button-link orange">Private Sale</button>
+          </nuxt-link>
           <el-menu-item index="/auth/login" class="menu-item" v-if="!isAuth">
             <el-button type="text">Sign In</el-button>
           </el-menu-item>
@@ -27,30 +30,32 @@
           <el-menu-item index="/backoffice" class="menu-item" v-if="isAuth">
             <el-button type="text">Backoffice</el-button>
           </el-menu-item>
-          <!--          <nuxt-link to="/auth/login" class="el-menu-item menu-item float-right" v-if="!isAuth">
-                      <el-button type="text">Sign In</el-button>
-                    </nuxt-link>
-                    <nuxt-link to="/auth/join" class="el-menu-item menu-item float-right" v-if="!isAuth">
-                      <el-button type="text">Sign Up</el-button>
-                    </nuxt-link>
-                    <li class="el-menu-item float-right menu-item" v-if="isAuth" @click.prevent="logout">Logout</li>
-                    <nuxt-link to="/backoffice" class="el-menu-item menu-item float-right" v-if="isAuth">
-                      <el-button type="text">Backoffice</el-button>
-                    </nuxt-link>-->
-
         </el-menu>
         <ul class="menu_submenu">
-          <li class="menu_submenu-item"><nuxt-link target="_self" to="/#enq" @click.native="scrollTo('enq')">What is
-            ENQ</nuxt-link>
+          <li class="menu_submenu-item">
+            <nuxt-link target="_self" to="/#enq" @click.native="scrollTo('enq')">What is
+              ENQ
+            </nuxt-link>
           </li>
-          <li class="menu_submenu-item"><nuxt-link target="_self" to="/#mining" @click.native="scrollTo('mining')">Phone
-            mining</nuxt-link></li>
-          <li class="menu_submenu-item"><nuxt-link target="_self" to="/#world"
-                                           @click.native="scrollTo('world')">Changing the world</nuxt-link></li>
-          <li class="menu_submenu-item"><nuxt-link target="_self" to="/#roadmap"
-                                           @click.native="scrollTo('roadmap')">Roadmap</nuxt-link></li>
-          <li class="menu_submenu-item"><nuxt-link target="_self" to="/#partners"
-                                           @click.native="scrollTo('partners')">Partners</nuxt-link>
+          <li class="menu_submenu-item">
+            <nuxt-link target="_self" to="/#mining" @click.native="scrollTo('mining')">Phone
+              mining
+            </nuxt-link>
+          </li>
+          <li class="menu_submenu-item">
+            <nuxt-link target="_self" to="/#world"
+                       @click.native="scrollTo('world')">Changing the world
+            </nuxt-link>
+          </li>
+          <li class="menu_submenu-item">
+            <nuxt-link target="_self" to="/#roadmap"
+                       @click.native="scrollTo('roadmap')">Roadmap
+            </nuxt-link>
+          </li>
+          <li class="menu_submenu-item">
+            <nuxt-link target="_self" to="/#partners"
+                       @click.native="scrollTo('partners')">Partners
+            </nuxt-link>
           </li>
         </ul>
       </div>
@@ -431,6 +436,14 @@
     @media screen and (min-width: 991px) {
       &_mobile {
         display: none;
+      }
+    }
+    @media screen and (max-width: 768px) {
+      .special-a {
+        width: 100%;
+        button {
+          width: 100%;
+        }
       }
     }
   }
