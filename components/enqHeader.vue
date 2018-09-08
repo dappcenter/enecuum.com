@@ -7,7 +7,7 @@
     </div>
     <div class="flex-between menu">
       <div class="menu_submenu-wrapper" :class="{'menu-open': isOpened}">
-        <el-menu class="menu_mobile">
+        <el-menu class="menu_mobile" :default-active="activeMenu" router>
           <el-menu-item index="/" class="menu-item">Home</el-menu-item>
           <el-menu-item index="/team" class="menu-item">Team</el-menu-item>
           <el-menu-item index="" class="menu-item"><a href="https://medium.com/@EnqBlockchain" target="_blank">Blog</a>

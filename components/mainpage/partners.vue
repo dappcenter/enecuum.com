@@ -9,7 +9,7 @@
                 :style="calcWidth(item, pkey)" :xs="24">
           <div class="item-text">{{partner.text}}</div>
           <div class="item-img">
-            <img :src="partner.img" alt="">
+            <img :src="partner.img+'?v=0.0.1'" alt="">
           </div>
         </el-col>
       </div>
