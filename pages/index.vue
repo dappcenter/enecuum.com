@@ -31,6 +31,11 @@
       partners,
       citates
     },
+    methods: {
+      facebook() {
+        window.open('/oauth/facebook', '_blank', 'height=400,width=500');
+      }
+    },
     mounted() {
       jarallax(document.querySelectorAll('.jarallax'), {
         imgSize: 'contain'

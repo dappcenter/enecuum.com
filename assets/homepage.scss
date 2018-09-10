@@ -433,8 +433,13 @@ $fullHeight: auto;
     background-color: #ffffff;
   }
   &-button {
-    position: absolute;
+    //position: absolute;
     z-index: 1;
+    float: left;
+    position: relative;
+    display: block;
+    clear: both;
+    margin-bottom: 10px;
   }
   &-title {
     color: $color-title;
