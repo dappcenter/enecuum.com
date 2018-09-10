@@ -92,9 +92,6 @@ module.exports = {
   env: {
     dev: process.env.dev
   },
-  serverMiddleware: [
-    '~/oauth'
-  ],
   /*
   ** Run ESLint on save
   */
