@@ -170,7 +170,10 @@
             "name": "Adrian Guye",
             "position": "General Counsel",
             "description": "General Counsel with 13 years of experience in London, Paris, Moscow and Hong Kong advising leading global financial institutions on a broad range of complex cross-border transactions, regulation and legal structuring. Previously with UBS, Barclays, Societe Generale, Credit Agricole and Citibank.\n                                ",
-            "social": []
+            "social": [{
+              "type": "linkedin",
+              "url": "https://www.linkedin.com/in/adrian-guye-6976a3170/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BP%2BCwlkdMR6aR%2BNEdWjrapQ%3D%3D"
+            }]
           },
           {
             "avatar": "/img/team/avatars/stefan.png",
@@ -255,7 +258,10 @@
             "name": "Adrian Guye",
             "position": "General Counsel",
             "description": "General Counsel with 13 years of experience in London, Paris, Moscow and Hong Kong advising leading global financial institutions on a broad range of complex cross-border transactions, regulation and legal structuring. Previously with UBS, Barclays, Societe Generale, Credit Agricole and Citibank.\n                                ",
-            "social": []
+            "social": [{
+              "type": "linkedin",
+              "url": "https://www.linkedin.com/in/adrian-guye-6976a3170/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BP%2BCwlkdMR6aR%2BNEdWjrapQ%3D%3D"
+            }]
           },
           {
             "avatar": "/img/team/avatars/jason_yee.png",
