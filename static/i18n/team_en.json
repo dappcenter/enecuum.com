@@ -170,10 +170,12 @@
             "name": "Adrian Guye",
             "position": "General Counsel",
             "description": "General Counsel with 13 years of experience in London, Paris, Moscow and Hong Kong advising leading global financial institutions on a broad range of complex cross-border transactions, regulation and legal structuring. Previously with UBS, Barclays, Societe Generale, Credit Agricole and Citibank.\n                                ",
-            "social": [{
-              "type": "linkedin",
-              "url": "https://www.linkedin.com/in/adrian-guye-6976a3170/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BP%2BCwlkdMR6aR%2BNEdWjrapQ%3D%3D"
-            }]
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/adrian-guye-6976a3170/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BP%2BCwlkdMR6aR%2BNEdWjrapQ%3D%3D"
+              }
+            ]
           },
           {
             "avatar": "/img/team/avatars/stefan.png",
@@ -258,10 +260,12 @@
             "name": "Adrian Guye",
             "position": "General Counsel",
             "description": "General Counsel with 13 years of experience in London, Paris, Moscow and Hong Kong advising leading global financial institutions on a broad range of complex cross-border transactions, regulation and legal structuring. Previously with UBS, Barclays, Societe Generale, Credit Agricole and Citibank.\n                                ",
-            "social": [{
-              "type": "linkedin",
-              "url": "https://www.linkedin.com/in/adrian-guye-6976a3170/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BP%2BCwlkdMR6aR%2BNEdWjrapQ%3D%3D"
-            }]
+            "social": [
+              {
+                "type": "linkedin",
+                "url": "https://www.linkedin.com/in/adrian-guye-6976a3170/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BP%2BCwlkdMR6aR%2BNEdWjrapQ%3D%3D"
+              }
+            ]
           },
           {
             "avatar": "/img/team/avatars/jason_yee.png",
@@ -553,7 +557,9 @@
                 "url": "https://github.com/DariaMelnikova"
               }
             ]
-          },
+          }
+        ],
+        [
           {
             "avatar": "/img/team/avatars/mihail_gluhov.png",
             "name": "Mikhail Gluhov",
@@ -570,20 +576,6 @@
               }
             ]
           }
-        ],
-        [
-          {
-            "avatar": "/img/team/avatars/oleg_kazakov.png",
-            "name": "Oleg Karakoz",
-            "position": "Technical Writer",
-            "description": "Oleg is a Technical Writer with a passion for new concepts. He has knowledge of several European languages and likes English for its universal application and professional versatility. He received a B.A. in Linguistics, but is now interested in CS and is learning Java.\n                                ",
-            "social": [
-              {
-                "type": "linkedin",
-                "url": "https://www.linkedin.com/in/oleg-karakoz"
-              }
-            ]
-          },
           {
             "avatar": "/img/team/avatars/dmitriy_pavlyuk.png",
             "name": "Dmitry Pavlyuk",
