@@ -20,15 +20,6 @@
                 is
                 comparable to that of a messenger app.
               </div>
-              <div class="block-button">
-                <a href="./docs/Enecuum_WP_EN.pdf" target="_blank" class="button-link blue">Whitepaper EN</a>
-              </div>
-              <div class="block-button">
-                <a href="./docs/Enecuum_WP_KO.pdf" target="_blank" class="button-link blue">Whitepaper KO</a>
-              </div>
-              <div class="block-button">
-                <a href="./docs/onepager.pdf" target="_blank" class="button-link blue">Onepager</a>
-              </div>
             </div>
           </div>
         </div>
