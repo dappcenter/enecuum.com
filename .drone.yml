@@ -112,7 +112,7 @@ pipeline:
   notify-deploy-dev-telegram:
     image: dev.enecuum.com:2087/library/drone-telegram:v1.0.0
     secrets: [telegram_token, telegram_id]
-    message: \u2705 ${DRONE_REPO}:`${DRONE_COMMIT_BRANCH}` ${DRONE_BUILD_NUMBER} deployment successful
+    message: \u2705 ${DRONE_REPO}:`${DRONE_COMMIT_BRANCH}` ${DRONE_BUILD_NUMBER} staging deployment successful
     when:
       branch:
         - dev
@@ -125,7 +125,7 @@ pipeline:
   notify-deploy-dev-zulip:
     image: dev.enecuum.com:2087/library/drone-zulip:v1.0.0
     secrets: [zulip_domain, zulip_bot_email, zulip_bot_api_key, zulip_stream]
-    message: \u2705 ${DRONE_REPO}:`${DRONE_COMMIT_BRANCH}` ${DRONE_BUILD_NUMBER} deployment successful
+    message: \u2705 ${DRONE_REPO}:`${DRONE_COMMIT_BRANCH}` ${DRONE_BUILD_NUMBER} staging deployment successful
     when:
       branch:
         - dev
@@ -138,7 +138,7 @@ pipeline:
   notify-deploy-prod-telegram:
     image: dev.enecuum.com:2087/library/drone-telegram:v1.0.0
     secrets: [telegram_token, telegram_id]
-    message: \u2705 ${DRONE_REPO}:`${DRONE_COMMIT_BRANCH}` ${DRONE_BUILD_NUMBER} deployment successful
+    message: \u2705 ${DRONE_REPO}:`${DRONE_COMMIT_BRANCH}` ${DRONE_BUILD_NUMBER} production deployment successful
     when:
       branch:
         - master
@@ -150,7 +150,7 @@ pipeline:
   notify-deploy-prod-zulip:
     image: dev.enecuum.com:2087/library/drone-zulip:v1.0.0
     secrets: [zulip_domain, zulip_bot_email, zulip_bot_api_key, zulip_stream]
-    message: \u2705 ${DRONE_REPO}:`${DRONE_COMMIT_BRANCH}` ${DRONE_BUILD_NUMBER} deployment successful
+    message: \u2705 ${DRONE_REPO}:`${DRONE_COMMIT_BRANCH}` ${DRONE_BUILD_NUMBER} production deployment successful
     when:
       branch:
         - master
