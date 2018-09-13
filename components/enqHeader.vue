@@ -196,9 +196,6 @@
       }
     },
     mounted() {
-      socket.on('facebook', (data) => {
-        console.log(data);
-      });
       this.ainit();
       this.setHomeClass();
       socket.on('checked', (data) => {
