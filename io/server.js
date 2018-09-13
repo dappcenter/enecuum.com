@@ -1,10 +1,12 @@
 const app = require(require.resolve('express'))();
 const server = require(require.resolve('http')).Server(app);
 const checkUserInfo = require('./checkUserInfo');
+const bodyParser = require(require.resolve('body-parser'));
 
 const startTimestamp = new Date().getTime();
 const origins = ['enecuum.com:*'];
 
+app.use(bodyParser.json());
 const io = require('socket.io')(server, {
   path: '/io',
   serveClient: false,

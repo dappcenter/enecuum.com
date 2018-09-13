@@ -4,6 +4,10 @@
       <div class="banner-inner">
         <div class="banner-content">
           <div class="banner-title">{{data.title}}</div>
+          <div class="enq-video">
+            <iframe src="https://www.youtube.com/embed/w828eSmspIg" frameborder="0" style="width: 100%; height: 360px;"
+                    allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
           <div class="banner-description">{{data.subtitle}}</div>
           <div class="block-button">
             <a href="./docs/Enecuum_WP_EN.pdf" target="_blank" class="button-link blue">Whitepaper EN</a>
@@ -31,7 +35,9 @@
     name: "banner",
     props: ['data'],
     data() {
-      return {}
+      return {
+        activeAirdrop: []
+      }
     },
     computed: {
       social() {

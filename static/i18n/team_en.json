@@ -561,22 +561,6 @@
         ],
         [
           {
-            "avatar": "/img/team/avatars/mihail_gluhov.png",
-            "name": "Mikhail Gluhov",
-            "position": "Smart Contract developer",
-            "description": "Mike loves to solve complex problems. An effective Tech Lead establishes a technical vision with the development team and works with developers to turn it into reality. Mike takes on traits that other roles may have, such as a Team Lead, Architect or Software Engineering Manager but they remain hands-on with code.\n                                ",
-            "social": [
-              {
-                "type": "linkedin",
-                "url": "https://www.linkedin.com/in/mikhail-glukhov-62a07352/"
-              },
-              {
-                "type": "github",
-                "url": "https://github.com/rigidus"
-              }
-            ]
-          },
-          {
             "avatar": "/img/team/avatars/dmitriy_pavlyuk.png",
             "name": "Dmitry Pavlyuk",
             "position": "Software Developer",

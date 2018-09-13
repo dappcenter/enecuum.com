@@ -99,8 +99,8 @@
 
 <script>
   import axios from 'axios';
-  import socket from '~/plugins/socket.io.js'
-  import fingerLoader from '@/components/authorize/loader'
+  import socket from '~/plugins/socket.io.js';
+  import fingerLoader from '@/components/authorize/loader';
 
   export default {
     name: "enq-header",
@@ -196,6 +196,9 @@
       }
     },
     mounted() {
+      socket.on('facebook', (data) => {
+        console.log(data);
+      });
       this.ainit();
       this.setHomeClass();
       socket.on('checked', (data) => {
