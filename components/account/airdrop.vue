@@ -1,15 +1,16 @@
 <template>
   <el-row class="flex-center">
     <el-col :xs="22" :sm="10" :md="12" :xl="10">
+      {{getLang}}
       <el-row :gutter="30" class="flex-center flex-wrap flex-column">
-        <iframe src="//enecuum.com:8081/oauth/facebook" frameborder="0"
-                style="width: 400px; height: 300px;"></iframe>
+        <!--        <iframe src="//enecuum.com:8081/oauth/facebook" frameborder="0"
+                        style="width: 400px; height: 300px;"></iframe>-->
         <el-card class="airdrop" shadow="hover" v-for="(item, key) in airdropData" :key="key">
           <div class="airdrop_background">
             <i :class="'fa fa-'+item.type" aria-hidden="true"></i>
           </div>
           <div class="airdrop_join" v-if="!item.joined">
-            <el-button type="primary" @click="item.joined=true">Join</el-button>
+            <el-button type="primary" @click="joinAirdrop(item)">Join</el-button>
           </div>
           <div class="airdrop_items" v-else>
             <div class="airdrop_items-block-wrapper" v-for="(task, tkey) in item.tasks" :key="tkey">
@@ -48,6 +49,12 @@
 </template>
 
 <script>
+  import socket from '~/plugins/socket.io.js';
+
+  socket.on('facebook', (data) => {
+    console.log(data);
+  });
+
   export default {
     name: "airdrop",
     data() {
@@ -100,6 +107,21 @@
           }],
           reward: 25
         }]
+      }
+    },
+    computed: {
+      getLang() {
+        return this.$store.state.curLang;
+      }
+    },
+    methods: {
+      joinAirdrop(item) {
+        switch (item.type) {
+          case 'facebook':
+            window.open("//enecuum.com:8081/oauth/facebook", "", "width=400,height=300");
+            break;
+        }
+        item.joined = true
       }
     }
   }

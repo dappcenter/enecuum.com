@@ -4,13 +4,6 @@
     "playButton": "PLAY",
     "videos": [
       {
-        "id": 1,
-        "name": "Speech by Anton Nikonorov about Enecuum. With Q&A",
-        "preview_url": "img/videos/Speech by Anton Nikonorov.png",
-        "video_url": "https://www.youtube.com/watch?v=kthw_TQJc6U",
-        "description": "Anton Nikonorov at the fifth anniversary meet-up of blockchain developers in St. Petersburg, Russia."
-      },
-      {
         "id": 2,
         "name": "ENQ presentation on Blockchshow Meetup, Zurich by Cointelegraph",
         "preview_url": "img/videos/ENQ pres.png",
