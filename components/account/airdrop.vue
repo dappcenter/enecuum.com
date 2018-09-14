@@ -1,7 +1,6 @@
 <template>
   <el-row class="flex-center">
     <el-col :xs="22" :sm="10" :md="12" :xl="10">
-      {{getLang}}
       <el-row :gutter="30" class="flex-center flex-wrap flex-column">
         <!--        <iframe src="//enecuum.com:8081/oauth/facebook" frameborder="0"
                         style="width: 400px; height: 300px;"></iframe>-->
@@ -107,11 +106,6 @@
           }],
           reward: 25
         }]
-      }
-    },
-    computed: {
-      getLang() {
-        return this.$store.state.curLang;
       }
     },
     methods: {
