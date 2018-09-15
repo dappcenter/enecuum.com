@@ -10,8 +10,7 @@ class Mail {
    *
    * @param apikey - apikey of service
    */
-  constructor(apikey) {
-    if (!apikey) throw 'apikey required';
+  constructor(apikey = '') {
     this.url = 'https://mail.enecuum.com';
     this.apikey = apikey
   }
