@@ -10,7 +10,7 @@ passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
     profileFields: ['id', 'displayName', 'email', 'likes'],
-    callbackURL: "http://localhost:8081/oauth/facebook/callback"
+    callbackURL: "http://enecuum:8081/oauth/facebook/callback"
   },
   (accessToken, refreshToken, profile, cb) => {
     request.get(facebookGraph + 'me/feed?format=json&access_token=' + accessToken, (err, res) => {

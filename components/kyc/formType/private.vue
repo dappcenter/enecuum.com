@@ -291,6 +291,9 @@
   import validators from '../validators';
   import VueRecaptcha from 'vue-recaptcha';
 
+  import axios from 'axios';
+
+
   export default {
     name: "private",
     props: {
@@ -534,6 +537,9 @@
       sendKyc(captcha) {
         let data = this.privateForm;
         data.recaptcha = captcha;
+        if (this.$store.state.kyc.message) {
+          data.email = this.$store.state.kyc.message.email;
+        }
         this.loading = true;
         let isSended = this.$store.dispatch('submitKyc', data);
         isSended.then(res => {

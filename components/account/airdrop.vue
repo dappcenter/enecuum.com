@@ -54,6 +54,9 @@
     console.log(data);
   });
 
+  socket.on('twitter', (data) => {
+    console.log(data);
+  });
   export default {
     name: "airdrop",
     data() {
@@ -110,11 +113,7 @@
     },
     methods: {
       joinAirdrop(item) {
-        switch (item.type) {
-          case 'facebook':
-            window.open("//enecuum.com:8081/oauth/facebook", "", "width=400,height=300");
-            break;
-        }
+        window.open("//enecuum.com:8081/oauth/" + item.type, "", "width=400,height=300");
         item.joined = true
       }
     }

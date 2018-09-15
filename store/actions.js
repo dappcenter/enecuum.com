@@ -122,6 +122,15 @@ const actions = {
         withCredentials: true,
       }).then(res => {
         if (res.data.code === 401) state.dispatch('logoutServer');
+        axios.request({
+          url: '//enecuum.com' + '/mail/reg',
+          data: data,
+          method: 'post',
+          withCredentials: true,
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+          }
+        });
         resolve(res.data);
       })
     });
@@ -190,6 +199,17 @@ const actions = {
         }
       }).then(res => {
         if (res.data.code === 401) state.dispatch('logoutServer');
+        if (res.data.ok) {
+          axios.request({
+            url: '//enecuum.com' + '/mail/kyc',
+            data: data,
+            method: 'post',
+            withCredentials: true,
+            headers: {
+              'X-Requested-With': 'XMLHttpRequest',
+            }
+          });
+        }
         resolve(res.data);
       })
     })

@@ -92,6 +92,9 @@ module.exports = {
   env: {
     dev: process.env.dev
   },
+  serverMiddleware: [
+    '~/mail'
+  ],
   /*
   ** Run ESLint on save
   */
