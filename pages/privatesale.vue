@@ -1,31 +1,19 @@
 <template>
   <section class="container faq">
-    <h1 class="text-center page-title">Private Sale FAQ</h1>
-    <el-row class="flex-center events enq-tabs faq-tabs">
-      <el-col :xs="22" :sm="16" :md="16" :lg="14" :xl="14">
-        <el-collapse v-model="activeCollapse" accordion class="enq-collapse privatesale">
-          <el-collapse-item v-for="(item, key) in faq" :key="key" :title="item.title" :name="item.title"
-                            :id="item.title">
-            <div class="faq-tabs_content">
-              <p v-html="item.text"></p>
-            </div>
-          </el-collapse-item>
-        </el-collapse>
-      </el-col>
-    </el-row>
+    <faq :faq="faq"></faq>
   </section>
 </template>
 
 <script>
+  import faq from '@/components/privatesale/faq';
+  import tokensale from '@/components/privatesale/tokensale';
   import axios from 'axios';
-  import helpBlock from '@/components/faq/helpBlock';
 
   export default {
-    name: "faq",
-    data() {
-      return {
-        activeCollapse: ''
-      }
+    name: "privatesale",
+    components: {
+      faq,
+      tokensale
     },
     async asyncData() {
       const {data} = await axios.get('/i18n/salerules_' + 'en' + '.json');

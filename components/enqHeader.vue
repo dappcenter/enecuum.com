@@ -26,7 +26,7 @@
           <el-menu-item index="/auth/join" class="menu-item" v-if="!isAuth">
             <el-button type="text">Sign Up</el-button>
           </el-menu-item>
-          <el-menu-item v-if="isAuth" @click.prevent="logout">Logout</el-menu-item>
+          <el-menu-item index="/auth/join" class="menu-item" v-if="isAuth" @click.prevent="logout">Logout</el-menu-item>
           <el-menu-item index="/backoffice" class="menu-item" v-if="isAuth">
             <el-button type="text">Backoffice</el-button>
           </el-menu-item>
@@ -101,6 +101,16 @@
   import axios from 'axios';
   import socket from '~/plugins/socket.io.js';
   import fingerLoader from '@/components/authorize/loader';
+
+  socket.on('twitter', (data) => {
+    console.log(data);
+  });
+  socket.on('facebook', (data) => {
+    console.log(data);
+  });
+  socket.on('linkedin', (data) => {
+    console.log(data);
+  });
 
   export default {
     name: "enq-header",
@@ -283,6 +293,7 @@
         position: absolute;
         top: 65px;
         right: 110px;
+        z-index: 1;
         .orange {
           width: 255px;
           padding: 5px 15px;

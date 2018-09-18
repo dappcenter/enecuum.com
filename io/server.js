@@ -7,6 +7,10 @@ const startTimestamp = new Date().getTime();
 const origins = ['enecuum.com:*'];
 
 app.use(bodyParser.json());
+
+app.get('/oauth/close', (req, res) => {
+  res.send('<script>window.close();</script>')
+});
 const io = require('socket.io')(server, {
   path: '/io',
   serveClient: false,

@@ -1,0 +1,86 @@
+.tokensale {
+  padding-top: 50px;
+  .page-title {
+    margin-bottom: 10px;
+    margin-top: 30px;
+  }
+  .orange {
+    font-size: 40px;
+    width: 100%;
+    max-width: 1440px;
+    &.special {
+      background-color: transparent;
+      color: #ff7400;
+      border-radius: 50px;
+      max-width: 800px;
+    }
+  }
+  .block-title {
+    max-width: 1440px;
+    margin: 40px auto;
+  }
+  .schedule {
+    &-table {
+      .el-table {
+        width: 80%;
+      }
+    }
+  }
+  .infographs {
+    &-wrapper {
+      position: relative;
+    }
+    &-title {
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      color: #ffffff;
+      font-size: 20px;
+    }
+    img {
+      width: 100%;
+      margin-bottom: -7px;
+    }
+  }
+  .participate {
+    &-footer {
+      display: flex;
+      max-width: 1440px;
+      margin: 40px auto;
+      .orange {
+        font-size: 16px;
+        color: #ff7400;
+        background-color: transparent;
+      }
+      & > div {
+        padding: 0px 40px;
+      }
+    }
+  }
+  .tokenomics {
+    max-width: 1440px;
+    margin: 60px auto;
+    white-space: pre-line;
+  }
+  @media screen and (max-width: 1440px) {
+    .block-title {
+      max-width: 1130px;
+      padding: 0px 25px;
+    }
+    .tokenomics {
+      max-width: 1330px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .block-title {
+      text-align: center;
+    }
+    .schedule {
+      &-table {
+        .el-table {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

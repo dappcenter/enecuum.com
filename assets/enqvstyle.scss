@@ -25,4 +25,22 @@
     color: #ffffff;
     background-color: #ff7400;
   }
+  &-lang {
+    padding: 0px 20px;
+    display: flex;
+    flex-direction: column;
+    .flag {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      img {
+        width: 100%;
+      }
+    }
+  }
+  @media screen and (max-width: 768px) {
+    &-lang {
+      margin-bottom: 10px;
+    }
+  }
 }

@@ -5,7 +5,7 @@
         <div class="banner-content">
           <div class="banner-title">{{data.title}}</div>
           <div class="enq-video">
-            <iframe src="https://www.youtube.com/embed/w828eSmspIg" frameborder="0" style="width: 100%; height: 360px;"
+            <iframe src="https://www.youtube.com/embed/GpPAfyFqbAE" frameborder="0" style="width: 100%; height: 360px;"
                     allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
           <div class="banner-description">{{data.subtitle}}</div>
