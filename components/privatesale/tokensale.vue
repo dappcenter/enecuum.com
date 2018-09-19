@@ -20,7 +20,7 @@
           Whitepaper
         </a>
         <div class="flag">
-          <a :href="item.url" v-for="(item, key) in wp" :key="key"><img
+          <a :href="item.url" v-for="(item, key) in wp" :key="key" target="_blank"><img
             :src="'/img/flags/'+item.flag+'.png'" alt=""></a>
         </div>
       </div>
@@ -29,7 +29,7 @@
           Onepager
         </a>
         <div class="flag">
-          <a :href="item.url" v-for="(item, key) in op" :key="key"><img
+          <a :href="item.url" v-for="(item, key) in op" :key="key" target="_blank"><img
             :src="'/img/flags/'+item.flag+'.png'" alt=""></a>
         </div>
       </div>
@@ -82,25 +82,16 @@
     <div class="participate-footer flex-wrap">
       <div><a href="" class="button-link orange">Join token sale</a>
       </div>
-      <div>Also you can <a href="" class="button-link blue">Download app</a> and mine ENQ</div>
+      <div v-if="false">Also you can <a href="" class="button-link blue">Download app</a> and mine ENQ</div>
     </div>
     <h2 class="text-left block-title">Tokenomics</h2>
     <el-row class="tokenomics">
       <el-col :xs="24" :sm="24" :md="12">
-        As the Enecuum adaptive decentralized environment is still under development, we aim to conduct the ENQ token
-        Sale on Ethereum using an Ethereum-based smart contract. It is proposed that ENQ(ERC20) will initially be issued
-        as part of the ENQ token Sale.
-
-        596,756,160 ENQ(ERC20) are proposed to be available for sale under the ENQ token Sale, which will be subject to
-        the ENQ token Sale terms and conditions (available upon successful completion of the token sale KYC process).
-        The price for the sale is proposed to be 1 ENQ(ERC20) = 0.04 USD. It is intended that it will be possible to
-        exchange ENQ(ERC20) for ENQ at a rate of 1:1, once the Enecuum adaptive decentralized environment is
-        operational;
-
-        See Diagram for further detail regarding the breakdown of ENQ Stage 1 emission and connected proposed exchange
-        of ENQ(ERC20) to ENQ.
+        <div style="padding: 10px;">ENQ - utility token to access network functionality and reward TRINITY miners for transaction verification and smart contract publishing.</div>
       </el-col>
-      <el-col :xs="24" :sm="24" :md="12"></el-col>
+      <el-col :xs="24" :sm="24" :md="12">
+        <img src="/img/privatesale/emismodel.png" alt="">
+      </el-col>
     </el-row>
   </div>
 </template>
@@ -111,30 +102,30 @@
     data() {
       return {
         wp: [{
-          flag: 'ko',
-          url: '/docs/pp_cn.pdf'
-        }, {
-          flag: 'rus',
-          url: '/docs/pp_cn.pdf'
-        }, {
-          flag: 'britain',
-          url: '/docs/pp_cn.pdf'
-        }, {
-          flag: 'spain',
-          url: '/docs/pp_cn.pdf'
-        }],
-        op: [{
-          flag: 'ko',
-          url: '/docs/op_ko.pdf'
-        }, {
-          flag: 'rus',
-          url: '/docs/op_jp.pdf'
-        }, {
-          flag: 'britain',
+          flag: 'cn',
           url: '/docs/op_cn.pdf'
         }, {
-          flag: 'spain',
-          url: '/docs/pp_cn.pdf'
+          flag: 'en',
+          url: '/docs/op_en.pdf'
+        }, {
+          flag: 'jp',
+          url: '/docs/op_jp.pdf'
+        }, {
+          flag: 'ko',
+          url: '/docs/pp_ko.pdf'
+        }],
+        op: [{
+          flag: 'cn',
+          url: '/docs/op_cn.pdf'
+        }, {
+          flag: 'en',
+          url: '/docs/op_en.pdf'
+        }, {
+          flag: 'jp',
+          url: '/docs/op_jp.pdf'
+        }, {
+          flag: 'ko',
+          url: '/docs/pp_ko.pdf'
         }],
         infographs: ['Sign up www.enecuum.com', 'Fill in the form KYC (know more about KYC)', 'Wait for your KYC form approval', 'Choose amount of contribution', 'Buy your ENQ* tokens for ETH', 'Now you have your own part of the future'],
         scheduleData: [{

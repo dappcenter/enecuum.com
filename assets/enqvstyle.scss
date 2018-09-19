@@ -33,7 +33,12 @@
       margin-top: 10px;
       display: flex;
       justify-content: space-between;
+      a {
+        display: flex;
+        align-items: center;
+      }
       img {
+        border: 1px solid #b9b9b9;
         width: 100%;
       }
     }
