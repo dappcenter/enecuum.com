@@ -9,14 +9,25 @@
                     allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
           <div class="banner-description">{{data.subtitle}}</div>
-          <div class="block-button">
-            <a href="./docs/Enecuum_WP_EN.pdf" target="_blank" class="button-link blue">Whitepaper EN</a>
-          </div>
-          <div class="block-button">
-            <a href="./docs/Enecuum_WP_KO.pdf" target="_blank" class="button-link blue">Whitepaper KO</a>
-          </div>
-          <div class="block-button">
-            <a href="./docs/onepager.pdf" target="_blank" class="button-link blue">Onepager</a>
+          <div class="banner-links">
+            <div class="button-link-lang">
+              <a href="/docs/pp_en.pdf" class="button-link blue" target="_blank">
+                Whitepaper
+              </a>
+              <div class="flag">
+                <a :href="item.url" v-for="(item, key) in wp" :key="key" target="_blank"><img
+                  :src="'/img/flags/'+item.flag+'.png'" alt=""></a>
+              </div>
+            </div>
+            <div class="button-link-lang">
+              <a href="/docs/op_en.pdf" class="button-link blue" target="_blank">
+                Onepager
+              </a>
+              <div class="flag">
+                <a :href="item.url" v-for="(item, key) in op" :key="key" target="_blank"><img
+                  :src="'/img/flags/'+item.flag+'.png'" alt=""></a>
+              </div>
+            </div>
           </div>
         </div>
         <div class="social">
@@ -36,6 +47,32 @@
     props: ['data'],
     data() {
       return {
+        wp: [{
+          flag: 'cn',
+          url: '/docs/pp_cn.pdf'
+        }, {
+          flag: 'en',
+          url: '/docs/pp_en.pdf'
+        }, {
+          flag: 'jp',
+          url: '/docs/pp_jp.pdf'
+        }, {
+          flag: 'ko',
+          url: '/docs/pp_ko.pdf'
+        }],
+        op: [{
+          flag: 'cn',
+          url: '/docs/op_cn.pdf'
+        }, {
+          flag: 'en',
+          url: '/docs/op_en.pdf'
+        }, {
+          flag: 'jp',
+          url: '/docs/op_jp.pdf'
+        }, {
+          flag: 'ko',
+          url: '/docs/op_ko.pdf'
+        }],
         activeAirdrop: []
       }
     },

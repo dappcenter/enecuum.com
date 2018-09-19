@@ -2,6 +2,11 @@ $color-title: #009dc8;
 $fullHeight: auto;
 .banner {
   padding: 50px 0px;
+  &-links {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
   &-wrapper {
     display: flex;
     align-items: center;
@@ -81,6 +86,17 @@ $fullHeight: auto;
     .social {
       margin-top: 30px;
       bottom: 10px;
+    }
+    &-links {
+      flex-wrap: wrap;
+      .button-link {
+        width: 100%;
+      }
+      .flag {
+        a {
+          padding: 0px 10px;
+        }
+      }
     }
   }
 }

@@ -16,7 +16,7 @@
     </div>
     <div class="flex-center flex-wrap">
       <div class="button-link-lang">
-        <a href="" class="button-link blue">
+        <a href="/docs/pp_en.pdf" class="button-link blue" target="_blank">
           Whitepaper
         </a>
         <div class="flag">
@@ -25,7 +25,7 @@
         </div>
       </div>
       <div class="button-link-lang">
-        <a href="" class="button-link blue">
+        <a href="/docs/op_en.pdf" class="button-link blue" target="_blank">
           Onepager
         </a>
         <div class="flag">
@@ -85,13 +85,13 @@
       <div v-if="false">Also you can <a href="" class="button-link blue">Download app</a> and mine ENQ</div>
     </div>
     <h2 class="text-left block-title">Tokenomics</h2>
-    <el-row class="tokenomics">
-      <el-col :xs="24" :sm="24" :md="12">
-        <div style="padding: 10px;">ENQ - utility token to access network functionality and reward TRINITY miners for transaction verification and smart contract publishing.</div>
-      </el-col>
-      <el-col :xs="24" :sm="24" :md="12">
-        <img src="/img/privatesale/emismodel.png" alt="">
-      </el-col>
+    <el-row class="tokenomics" type="flex" justify="center">
+      <div style="padding: 10px;">ENQ - utility token to access network functionality and reward TRINITY miners for
+        transaction verification and smart contract publishing.
+      </div>
+    </el-row>
+    <el-row class="tokenomics" type="flex" justify="center">
+      <img src="/img/privatesale/emismodel.png" alt="">
     </el-row>
   </div>
 </template>
@@ -103,13 +103,13 @@
       return {
         wp: [{
           flag: 'cn',
-          url: '/docs/op_cn.pdf'
+          url: '/docs/pp_cn.pdf'
         }, {
           flag: 'en',
-          url: '/docs/op_en.pdf'
+          url: '/docs/pp_en.pdf'
         }, {
           flag: 'jp',
-          url: '/docs/op_jp.pdf'
+          url: '/docs/pp_jp.pdf'
         }, {
           flag: 'ko',
           url: '/docs/pp_ko.pdf'
@@ -125,7 +125,7 @@
           url: '/docs/op_jp.pdf'
         }, {
           flag: 'ko',
-          url: '/docs/pp_ko.pdf'
+          url: '/docs/op_ko.pdf'
         }],
         infographs: ['Sign up www.enecuum.com', 'Fill in the form KYC (know more about KYC)', 'Wait for your KYC form approval', 'Choose amount of contribution', 'Buy your ENQ* tokens for ETH', 'Now you have your own part of the future'],
         scheduleData: [{
