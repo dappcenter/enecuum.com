@@ -1,6 +1,6 @@
 <template>
   <section class="container faq">
-    <tokensale v-if="false"></tokensale>
+    <tokensale></tokensale>
     <faq :faq="faq"></faq>
   </section>
 </template>
