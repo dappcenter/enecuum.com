@@ -9,7 +9,6 @@
   import faq from '@/components/privatesale/faq';
   import tokensale from '@/components/privatesale/tokensale';
   import axios from 'axios';
-
   export default {
     name: "privatesale",
     components: {
