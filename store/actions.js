@@ -67,15 +67,19 @@ const actions = {
   subscribeWP(state, data) {
     return new Promise(resolve => {
       axios.request({
-        url: apiUrl + '/whitelist',
-        method: 'post',
+        url: '//enecuum.com' + '/mail/sb',
         data: data,
+        method: 'post',
+        withCredentials: true,
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
-          'Content-Type': 'application/json'
         }
       }).then(res => {
-        resolve(res.data);
+        if (res.status === 200) {
+          resolve('success')
+        } else {
+          resolve('error');
+        }
       });
     })
   },

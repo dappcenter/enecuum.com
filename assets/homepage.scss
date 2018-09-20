@@ -6,6 +6,8 @@ $fullHeight: auto;
     display: flex;
     margin-top: 20px;
     margin-bottom: 20px;
+    margin-left: -20px;
+    marign-right: -20px;
   }
   &-wrapper {
     display: flex;
@@ -19,7 +21,7 @@ $fullHeight: auto;
       height: 100%;
       width: 100%;
       top: 0px;
-      right: 0px;
+      right: -10%;
       background-repeat: no-repeat;
       background-size: contain;
       background-position: right;
@@ -66,6 +68,7 @@ $fullHeight: auto;
       &:after {
         background-size: cover;
         opacity: 0.2;
+        right: 0%;
       }
     }
   }
@@ -188,8 +191,7 @@ $fullHeight: auto;
   }
 }*/
 
-/*.subscribe {
-  padding-top: 90px;
+.subscribe {
   @media screen and (max-width: 768px) {
     padding-top: 10px;
   }
@@ -218,7 +220,7 @@ $fullHeight: auto;
       }
     }
   }
-}*/
+}
 
 /*.business {
   padding: 50px 0px;

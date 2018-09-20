@@ -34,4 +34,17 @@ app.post('/mail/kyc', (req, res) => {
   }
 });
 
+app.post('/mail/sb', (req, res) => {
+  if (req.body) {
+    let {email} = req.body;
+    let data = {
+      EMAIL: email
+    };
+    let isSended = mail.send('sb', data);
+    isSended.then(msg => {
+      res.send(msg);
+    });
+  }
+});
+
 module.exports = app;
