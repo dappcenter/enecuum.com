@@ -48,16 +48,19 @@
         <el-table-column
           prop="start"
           label="Start"
+          width="100"
           header-align="center">
         </el-table-column>
         <el-table-column
           prop="end"
           label="End"
+          width="100"
           header-align="center">
         </el-table-column>
         <el-table-column
           prop="max"
           label="Max"
+          width="150"
           header-align="center">
         </el-table-column>
         <el-table-column
@@ -68,6 +71,7 @@
         <el-table-column
           prop="limit"
           label="Stage limit"
+          width="200"
           header-align="center">
         </el-table-column>
       </el-table>
