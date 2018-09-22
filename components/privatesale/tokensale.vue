@@ -48,19 +48,16 @@
         <el-table-column
           prop="start"
           label="Start"
-          width="100"
           header-align="center">
         </el-table-column>
         <el-table-column
           prop="end"
           label="End"
-          width="100"
           header-align="center">
         </el-table-column>
         <el-table-column
           prop="max"
           label="Max"
-          width="150"
           header-align="center">
         </el-table-column>
         <el-table-column
@@ -124,6 +121,9 @@
         }, {
           flag: 'en',
           url: '/docs/op_en.pdf'
+        }, {
+          flag: 'es',
+          url: '/docs/op_es.pdf'
         }, {
           flag: 'jp',
           url: '/docs/op_jp.pdf'
