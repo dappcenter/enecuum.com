@@ -3,7 +3,7 @@ const request = require(require.resolve('request'));
 const BigNumber = require(require.resolve('bignumber.js'));
 const EventEmitter = require('events').EventEmitter;
 
-const config = require('./../config/config');
+/*const config = require('./../config/config');
 
 const {flusher} = require('./flusher');
 
@@ -49,11 +49,11 @@ async function getTransactionsByAccount(to, startBlockNumber, endBlockNumber) {
     web3.eth.getBlock(currentBlock, true, (error, block) => {
       if (error) {
         console.log('error from getBlock: ', error);
-/*        setTimeout(() => {
+/!*        setTimeout(() => {
           console.log('transaction emit', contractsTransactionArray.length, currentBlock);
           transaction.emit('send', contractsTransactionArray, currentBlock);
           web3 = null;
-        }, 10000);*/
+        }, 10000);*!/
       }
       if (block != null && block.transactions != null) {
         block.transactions.forEach((e) => {
@@ -115,7 +115,7 @@ function emitterClient(contractsTransaction) {
       amount: contractsTransaction[i].tokens
     });
   }
-}
+}*/
 
 /*function sleep(ms) {
   return new Promise(resolve => {
@@ -125,6 +125,7 @@ function emitterClient(contractsTransaction) {
   })
 }*/
 
+/*
 getFirstBlock().then(res => {
   console.log('first block: ', res);
   try {
@@ -138,3 +139,4 @@ getFirstBlock().then(res => {
     sendPureLog('ERROR DB GET FIRST BLOCK');
   }
 });
+*/
