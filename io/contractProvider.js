@@ -2,8 +2,13 @@ const Web3 = require(require.resolve('web3'));
 const request = require(require.resolve('request'));
 const BigNumber = require(require.resolve('bignumber.js'));
 const EventEmitter = require('events').EventEmitter;
+const config = require('./../config/config');
 
-/*const config = require('./../config/config');
+/*let currentContractAddress = process.env.dev ? config.web3.ropsten.contracts.wallet.address : config.web3.mainnet.contracts.wallet.address;
+let currentProvider = process.env.dev ? config.web3.ropsten.node : config.web3.mainnet.node;*/
+
+
+/*
 
 const {flusher} = require('./flusher');
 

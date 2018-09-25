@@ -5,22 +5,31 @@
     "mainnet": {
       "node": "https://mainnet.infura.io/",
       "contracts": {
-        "wallet": {
-          "address": "0xdf26369b419013cba54eb859daff6f8bc167618b",
+        "token": {
+          "address": "0x16ea01acb4b0bca2000ee5473348b6937ee6f72f",
           "abi": [
             {
               "constant": true,
-              "inputs": [
-                {
-                  "name": "",
-                  "type": "uint256"
-                }
-              ],
-              "name": "owners",
+              "inputs": [],
+              "name": "mintingFinished",
               "outputs": [
                 {
                   "name": "",
-                  "type": "address"
+                  "type": "bool"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "name",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "string"
                 }
               ],
               "payable": false,
@@ -31,127 +40,29 @@
               "constant": false,
               "inputs": [
                 {
-                  "name": "owner",
+                  "name": "_spender",
                   "type": "address"
-                }
-              ],
-              "name": "removeOwner",
-              "outputs": [],
-              "payable": false,
-              "stateMutability": "nonpayable",
-              "type": "function"
-            },
-            {
-              "constant": false,
-              "inputs": [
+                },
                 {
-                  "name": "transactionId",
+                  "name": "_value",
                   "type": "uint256"
                 }
               ],
-              "name": "revokeConfirmation",
-              "outputs": [],
+              "name": "approve",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "bool"
+                }
+              ],
               "payable": false,
               "stateMutability": "nonpayable",
               "type": "function"
             },
             {
               "constant": true,
-              "inputs": [
-                {
-                  "name": "",
-                  "type": "address"
-                }
-              ],
-              "name": "isOwner",
-              "outputs": [
-                {
-                  "name": "",
-                  "type": "bool"
-                }
-              ],
-              "payable": false,
-              "stateMutability": "view",
-              "type": "function"
-            },
-            {
-              "constant": true,
-              "inputs": [
-                {
-                  "name": "",
-                  "type": "uint256"
-                },
-                {
-                  "name": "",
-                  "type": "address"
-                }
-              ],
-              "name": "confirmations",
-              "outputs": [
-                {
-                  "name": "",
-                  "type": "bool"
-                }
-              ],
-              "payable": false,
-              "stateMutability": "view",
-              "type": "function"
-            },
-            {
-              "constant": true,
               "inputs": [],
-              "name": "calcMaxWithdraw",
-              "outputs": [
-                {
-                  "name": "",
-                  "type": "uint256"
-                }
-              ],
-              "payable": false,
-              "stateMutability": "view",
-              "type": "function"
-            },
-            {
-              "constant": true,
-              "inputs": [
-                {
-                  "name": "pending",
-                  "type": "bool"
-                },
-                {
-                  "name": "executed",
-                  "type": "bool"
-                }
-              ],
-              "name": "getTransactionCount",
-              "outputs": [
-                {
-                  "name": "count",
-                  "type": "uint256"
-                }
-              ],
-              "payable": false,
-              "stateMutability": "view",
-              "type": "function"
-            },
-            {
-              "constant": true,
-              "inputs": [],
-              "name": "dailyLimit",
-              "outputs": [
-                {
-                  "name": "",
-                  "type": "uint256"
-                }
-              ],
-              "payable": false,
-              "stateMutability": "view",
-              "type": "function"
-            },
-            {
-              "constant": true,
-              "inputs": [],
-              "name": "lastDay",
+              "name": "totalSupply",
               "outputs": [
                 {
                   "name": "",
@@ -166,79 +77,37 @@
               "constant": false,
               "inputs": [
                 {
-                  "name": "owner",
+                  "name": "_from",
                   "type": "address"
+                },
+                {
+                  "name": "_to",
+                  "type": "address"
+                },
+                {
+                  "name": "_value",
+                  "type": "uint256"
                 }
               ],
-              "name": "addOwner",
-              "outputs": [],
+              "name": "transferFrom",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "bool"
+                }
+              ],
               "payable": false,
               "stateMutability": "nonpayable",
               "type": "function"
             },
             {
               "constant": true,
-              "inputs": [
-                {
-                  "name": "transactionId",
-                  "type": "uint256"
-                }
-              ],
-              "name": "isConfirmed",
+              "inputs": [],
+              "name": "INITIAL_SUPPLY",
               "outputs": [
                 {
                   "name": "",
-                  "type": "bool"
-                }
-              ],
-              "payable": false,
-              "stateMutability": "view",
-              "type": "function"
-            },
-            {
-              "constant": true,
-              "inputs": [
-                {
-                  "name": "transactionId",
                   "type": "uint256"
-                }
-              ],
-              "name": "getConfirmationCount",
-              "outputs": [
-                {
-                  "name": "count",
-                  "type": "uint256"
-                }
-              ],
-              "payable": false,
-              "stateMutability": "view",
-              "type": "function"
-            },
-            {
-              "constant": true,
-              "inputs": [
-                {
-                  "name": "",
-                  "type": "uint256"
-                }
-              ],
-              "name": "transactions",
-              "outputs": [
-                {
-                  "name": "destination",
-                  "type": "address"
-                },
-                {
-                  "name": "value",
-                  "type": "uint256"
-                },
-                {
-                  "name": "data",
-                  "type": "bytes"
-                },
-                {
-                  "name": "executed",
-                  "type": "bool"
                 }
               ],
               "payable": false,
@@ -248,11 +117,11 @@
             {
               "constant": true,
               "inputs": [],
-              "name": "getOwners",
+              "name": "decimals",
               "outputs": [
                 {
                   "name": "",
-                  "type": "address[]"
+                  "type": "uint8"
                 }
               ],
               "payable": false,
@@ -261,178 +130,428 @@
             },
             {
               "constant": true,
+              "inputs": [],
+              "name": "cap",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [],
+              "name": "unpause",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": false,
               "inputs": [
                 {
-                  "name": "from",
-                  "type": "uint256"
+                  "name": "_to",
+                  "type": "address"
                 },
                 {
+                  "name": "_amount",
+                  "type": "uint256"
+                }
+              ],
+              "name": "mint",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "bool"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "paused",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "bool"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_spender",
+                  "type": "address"
+                },
+                {
+                  "name": "_subtractedValue",
+                  "type": "uint256"
+                }
+              ],
+              "name": "decreaseApproval",
+              "outputs": [
+                {
+                  "name": "success",
+                  "type": "bool"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [
+                {
+                  "name": "_owner",
+                  "type": "address"
+                }
+              ],
+              "name": "balanceOf",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [],
+              "name": "renounceOwnership",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [],
+              "name": "finishMinting",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "bool"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [],
+              "name": "pause",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "owner",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "address"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "symbol",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "string"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_to",
+                  "type": "address"
+                },
+                {
+                  "name": "_value",
+                  "type": "uint256"
+                }
+              ],
+              "name": "transfer",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "bool"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_spender",
+                  "type": "address"
+                },
+                {
+                  "name": "_addedValue",
+                  "type": "uint256"
+                }
+              ],
+              "name": "increaseApproval",
+              "outputs": [
+                {
+                  "name": "success",
+                  "type": "bool"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [
+                {
+                  "name": "_owner",
+                  "type": "address"
+                },
+                {
+                  "name": "_spender",
+                  "type": "address"
+                }
+              ],
+              "name": "allowance",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_newOwner",
+                  "type": "address"
+                }
+              ],
+              "name": "transferOwnership",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "name": "_wallet",
+                  "type": "address"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "constructor"
+            },
+            {
+              "anonymous": false,
+              "inputs": [],
+              "name": "Pause",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [],
+              "name": "Unpause",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": true,
                   "name": "to",
-                  "type": "uint256"
-                },
-                {
-                  "name": "pending",
-                  "type": "bool"
-                },
-                {
-                  "name": "executed",
-                  "type": "bool"
-                }
-              ],
-              "name": "getTransactionIds",
-              "outputs": [
-                {
-                  "name": "_transactionIds",
-                  "type": "uint256[]"
-                }
-              ],
-              "payable": false,
-              "stateMutability": "view",
-              "type": "function"
-            },
-            {
-              "constant": true,
-              "inputs": [
-                {
-                  "name": "transactionId",
-                  "type": "uint256"
-                }
-              ],
-              "name": "getConfirmations",
-              "outputs": [
-                {
-                  "name": "_confirmations",
-                  "type": "address[]"
-                }
-              ],
-              "payable": false,
-              "stateMutability": "view",
-              "type": "function"
-            },
-            {
-              "constant": true,
-              "inputs": [],
-              "name": "transactionCount",
-              "outputs": [
-                {
-                  "name": "",
-                  "type": "uint256"
-                }
-              ],
-              "payable": false,
-              "stateMutability": "view",
-              "type": "function"
-            },
-            {
-              "constant": false,
-              "inputs": [
-                {
-                  "name": "_required",
-                  "type": "uint256"
-                }
-              ],
-              "name": "changeRequirement",
-              "outputs": [],
-              "payable": false,
-              "stateMutability": "nonpayable",
-              "type": "function"
-            },
-            {
-              "constant": false,
-              "inputs": [
-                {
-                  "name": "transactionId",
-                  "type": "uint256"
-                }
-              ],
-              "name": "confirmTransaction",
-              "outputs": [],
-              "payable": false,
-              "stateMutability": "nonpayable",
-              "type": "function"
-            },
-            {
-              "constant": false,
-              "inputs": [
-                {
-                  "name": "destination",
                   "type": "address"
                 },
                 {
-                  "name": "value",
-                  "type": "uint256"
-                },
-                {
-                  "name": "data",
-                  "type": "bytes"
-                }
-              ],
-              "name": "submitTransaction",
-              "outputs": [
-                {
-                  "name": "transactionId",
+                  "indexed": false,
+                  "name": "amount",
                   "type": "uint256"
                 }
               ],
-              "payable": false,
-              "stateMutability": "nonpayable",
-              "type": "function"
+              "name": "Mint",
+              "type": "event"
             },
             {
-              "constant": false,
+              "anonymous": false,
+              "inputs": [],
+              "name": "MintFinished",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
               "inputs": [
                 {
-                  "name": "_dailyLimit",
-                  "type": "uint256"
+                  "indexed": true,
+                  "name": "previousOwner",
+                  "type": "address"
                 }
               ],
-              "name": "changeDailyLimit",
-              "outputs": [],
-              "payable": false,
-              "stateMutability": "nonpayable",
-              "type": "function"
+              "name": "OwnershipRenounced",
+              "type": "event"
             },
             {
-              "constant": true,
-              "inputs": [],
-              "name": "MAX_OWNER_COUNT",
-              "outputs": [
-                {
-                  "name": "",
-                  "type": "uint256"
-                }
-              ],
-              "payable": false,
-              "stateMutability": "view",
-              "type": "function"
-            },
-            {
-              "constant": true,
-              "inputs": [],
-              "name": "required",
-              "outputs": [
-                {
-                  "name": "",
-                  "type": "uint256"
-                }
-              ],
-              "payable": false,
-              "stateMutability": "view",
-              "type": "function"
-            },
-            {
-              "constant": false,
+              "anonymous": false,
               "inputs": [
                 {
-                  "name": "owner",
+                  "indexed": true,
+                  "name": "previousOwner",
                   "type": "address"
                 },
                 {
+                  "indexed": true,
                   "name": "newOwner",
                   "type": "address"
                 }
               ],
-              "name": "replaceOwner",
+              "name": "OwnershipTransferred",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": true,
+                  "name": "owner",
+                  "type": "address"
+                },
+                {
+                  "indexed": true,
+                  "name": "spender",
+                  "type": "address"
+                },
+                {
+                  "indexed": false,
+                  "name": "value",
+                  "type": "uint256"
+                }
+              ],
+              "name": "Approval",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": true,
+                  "name": "from",
+                  "type": "address"
+                },
+                {
+                  "indexed": true,
+                  "name": "to",
+                  "type": "address"
+                },
+                {
+                  "indexed": false,
+                  "name": "value",
+                  "type": "uint256"
+                }
+              ],
+              "name": "Transfer",
+              "type": "event"
+            }
+          ]
+        },
+        "ico": {
+          "address": "0x4ddda3157cf37327539a18bc844c6de887ba2573",
+          "abi": [
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "fiatOraclizeQueryURL",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "string"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_scale",
+                  "type": "uint256"
+                }
+              ],
+              "name": "setFiatScale",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [
+                {
+                  "name": "_operator",
+                  "type": "address"
+                },
+                {
+                  "name": "_role",
+                  "type": "string"
+                }
+              ],
+              "name": "checkRole",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_duration",
+                  "type": "uint256"
+                }
+              ],
+              "name": "setVestingDuration",
               "outputs": [],
               "payable": false,
               "stateMutability": "nonpayable",
@@ -442,11 +561,11 @@
               "constant": false,
               "inputs": [
                 {
-                  "name": "transactionId",
+                  "name": "_start",
                   "type": "uint256"
                 }
               ],
-              "name": "executeTransaction",
+              "name": "setVestingStart",
               "outputs": [],
               "payable": false,
               "stateMutability": "nonpayable",
@@ -455,7 +574,21 @@
             {
               "constant": true,
               "inputs": [],
-              "name": "spentToday",
+              "name": "vestingRevocable",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "bool"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "vestingDuration",
               "outputs": [
                 {
                   "name": "",
@@ -467,22 +600,995 @@
               "type": "function"
             },
             {
-              "inputs": [
+              "constant": true,
+              "inputs": [],
+              "name": "hasClosed",
+              "outputs": [
                 {
-                  "name": "_owners",
-                  "type": "address[]"
-                },
+                  "name": "",
+                  "type": "bool"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [],
+              "name": "addFiatOraclizeQueryBalance",
+              "outputs": [],
+              "payable": true,
+              "stateMutability": "payable",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "ROLE_WHITELISTED",
+              "outputs": [
                 {
-                  "name": "_required",
-                  "type": "uint256"
-                },
+                  "name": "",
+                  "type": "string"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "fiatOraclizeQueryDelay",
+              "outputs": [
                 {
-                  "name": "_dailyLimit",
+                  "name": "",
                   "type": "uint256"
                 }
               ],
               "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [
+                {
+                  "name": "_operator",
+                  "type": "address"
+                },
+                {
+                  "name": "_role",
+                  "type": "string"
+                }
+              ],
+              "name": "hasRole",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "bool"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_operators",
+                  "type": "address[]"
+                }
+              ],
+              "name": "removeAddressesFromWhitelist",
+              "outputs": [],
+              "payable": false,
               "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "vestingStart",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "myid",
+                  "type": "bytes32"
+                },
+                {
+                  "name": "result",
+                  "type": "string"
+                }
+              ],
+              "name": "__callback",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_operator",
+                  "type": "address"
+                }
+              ],
+              "name": "removeAddressFromWhitelist",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "rate",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "cap",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_queryId",
+                  "type": "bytes32"
+                },
+                {
+                  "name": "_result",
+                  "type": "string"
+                },
+                {
+                  "name": "_proof",
+                  "type": "bytes"
+                }
+              ],
+              "name": "__callback",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [
+                {
+                  "name": "_beneficiary",
+                  "type": "address"
+                }
+              ],
+              "name": "hasVestingWallet",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "bool"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "getTokenRate",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [],
+              "name": "unpause",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "weiRaised",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "fiatPrice",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_price",
+                  "type": "uint256"
+                }
+              ],
+              "name": "setFiatOraclizeQueryGasPrice",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [
+                {
+                  "name": "",
+                  "type": "address"
+                }
+              ],
+              "name": "contributions",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_operators",
+                  "type": "address[]"
+                }
+              ],
+              "name": "removeAddressesFromManagerList",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "closingTime",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [],
+              "name": "finalize",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [
+                {
+                  "name": "_weiAmount",
+                  "type": "uint256"
+                }
+              ],
+              "name": "getFiatAmount",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "capReached",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "bool"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [
+                {
+                  "name": "_operator",
+                  "type": "address"
+                }
+              ],
+              "name": "hasManagerRole",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "bool"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "wallet",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "address"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "paused",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "bool"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_delay",
+                  "type": "uint256"
+                }
+              ],
+              "name": "setFiatOraclizeQueryDelay",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [
+                {
+                  "name": "",
+                  "type": "address"
+                }
+              ],
+              "name": "caps",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "fiatScale",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [],
+              "name": "renounceOwnership",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_operator",
+                  "type": "address"
+                }
+              ],
+              "name": "addAddressToWhitelist",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_operator",
+                  "type": "address"
+                }
+              ],
+              "name": "addAddressToManagerList",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [
+                {
+                  "name": "_tokenAmount",
+                  "type": "uint256"
+                }
+              ],
+              "name": "getWeiAmount",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [],
+              "name": "pause",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_url",
+                  "type": "string"
+                }
+              ],
+              "name": "setFiatOraclizeQueryURL",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [
+                {
+                  "name": "_beneficiary",
+                  "type": "address"
+                }
+              ],
+              "name": "getUserCap",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "isFinalized",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "bool"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "owner",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "address"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [
+                {
+                  "name": "_operator",
+                  "type": "address"
+                }
+              ],
+              "name": "whitelist",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "bool"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_beneficiaries",
+                  "type": "address[]"
+                },
+                {
+                  "name": "_cap",
+                  "type": "uint256"
+                }
+              ],
+              "name": "setGroupCap",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "openingTime",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_price",
+                  "type": "uint256"
+                }
+              ],
+              "name": "updateFiatPrice",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_beneficiary",
+                  "type": "address"
+                },
+                {
+                  "name": "_vesting",
+                  "type": "address"
+                }
+              ],
+              "name": "setVestingWallet",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [
+                {
+                  "name": "",
+                  "type": "address"
+                }
+              ],
+              "name": "vestingWallets",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "address"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [
+                {
+                  "name": "_beneficiary",
+                  "type": "address"
+                }
+              ],
+              "name": "getUserContribution",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_revocable",
+                  "type": "bool"
+                }
+              ],
+              "name": "setVestingRevocable",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [
+                {
+                  "name": "_weiAmount",
+                  "type": "uint256"
+                }
+              ],
+              "name": "getTokenAmount",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_cliff",
+                  "type": "uint256"
+                }
+              ],
+              "name": "setVestingCliff",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_beneficiary",
+                  "type": "address"
+                },
+                {
+                  "name": "_cap",
+                  "type": "uint256"
+                }
+              ],
+              "name": "setUserCap",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [
+                {
+                  "name": "_beneficiary",
+                  "type": "address"
+                }
+              ],
+              "name": "getVestingWallet",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "address"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [],
+              "name": "updateFiatPrice",
+              "outputs": [],
+              "payable": true,
+              "stateMutability": "payable",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_operators",
+                  "type": "address[]"
+                }
+              ],
+              "name": "addAddressesToWhitelist",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_beneficiary",
+                  "type": "address"
+                }
+              ],
+              "name": "buyTokens",
+              "outputs": [],
+              "payable": true,
+              "stateMutability": "payable",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "getFiatPrice",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_limit",
+                  "type": "uint256"
+                }
+              ],
+              "name": "setFiatOraclizeQueryGasLimit",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_newOwner",
+                  "type": "address"
+                }
+              ],
+              "name": "transferOwnership",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "vestingCliff",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_operators",
+                  "type": "address[]"
+                }
+              ],
+              "name": "addAddressesToManagerList",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_operator",
+                  "type": "address"
+                }
+              ],
+              "name": "removeAddressFromManagerList",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "ROLE_MANAGER",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "string"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "getFiatRate",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "token",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "address"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "name": "_rate",
+                  "type": "uint256"
+                },
+                {
+                  "name": "_wallet",
+                  "type": "address"
+                },
+                {
+                  "name": "_token",
+                  "type": "address"
+                },
+                {
+                  "name": "_cap",
+                  "type": "uint256"
+                },
+                {
+                  "name": "_openingTime",
+                  "type": "uint256"
+                },
+                {
+                  "name": "_closingTime",
+                  "type": "uint256"
+                },
+                {
+                  "name": "_url",
+                  "type": "string"
+                },
+                {
+                  "name": "_scale",
+                  "type": "uint256"
+                },
+                {
+                  "name": "_delay",
+                  "type": "uint256"
+                },
+                {
+                  "name": "_lockup",
+                  "type": "uint256"
+                }
+              ],
+              "payable": true,
+              "stateMutability": "payable",
               "type": "constructor"
             },
             {
@@ -495,11 +1601,51 @@
               "inputs": [
                 {
                   "indexed": false,
-                  "name": "dailyLimit",
+                  "name": "beneficiary",
+                  "type": "address"
+                },
+                {
+                  "indexed": false,
+                  "name": "wallet",
+                  "type": "address"
+                }
+              ],
+              "name": "VestingWalletCreated",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [],
+              "name": "Finalized",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
+                  "name": "code",
                   "type": "uint256"
                 }
               ],
-              "name": "DailyLimitChange",
+              "name": "FiatOraclizeQuery",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
+                  "name": "price",
+                  "type": "uint256"
+                },
+                {
+                  "indexed": false,
+                  "name": "proof",
+                  "type": "bytes"
+                }
+              ],
+              "name": "FiatPriceTicker",
               "type": "event"
             },
             {
@@ -507,86 +1653,38 @@
               "inputs": [
                 {
                   "indexed": true,
-                  "name": "sender",
+                  "name": "purchaser",
                   "type": "address"
                 },
                 {
                   "indexed": true,
-                  "name": "transactionId",
-                  "type": "uint256"
-                }
-              ],
-              "name": "Confirmation",
-              "type": "event"
-            },
-            {
-              "anonymous": false,
-              "inputs": [
-                {
-                  "indexed": true,
-                  "name": "sender",
-                  "type": "address"
-                },
-                {
-                  "indexed": true,
-                  "name": "transactionId",
-                  "type": "uint256"
-                }
-              ],
-              "name": "Revocation",
-              "type": "event"
-            },
-            {
-              "anonymous": false,
-              "inputs": [
-                {
-                  "indexed": true,
-                  "name": "transactionId",
-                  "type": "uint256"
-                }
-              ],
-              "name": "Submission",
-              "type": "event"
-            },
-            {
-              "anonymous": false,
-              "inputs": [
-                {
-                  "indexed": true,
-                  "name": "transactionId",
-                  "type": "uint256"
-                }
-              ],
-              "name": "Execution",
-              "type": "event"
-            },
-            {
-              "anonymous": false,
-              "inputs": [
-                {
-                  "indexed": true,
-                  "name": "transactionId",
-                  "type": "uint256"
-                }
-              ],
-              "name": "ExecutionFailure",
-              "type": "event"
-            },
-            {
-              "anonymous": false,
-              "inputs": [
-                {
-                  "indexed": true,
-                  "name": "sender",
+                  "name": "beneficiary",
                   "type": "address"
                 },
                 {
                   "indexed": false,
                   "name": "value",
                   "type": "uint256"
+                },
+                {
+                  "indexed": false,
+                  "name": "amount",
+                  "type": "uint256"
                 }
               ],
-              "name": "Deposit",
+              "name": "TokenPurchase",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [],
+              "name": "Pause",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [],
+              "name": "Unpause",
               "type": "event"
             },
             {
@@ -594,11 +1692,16 @@
               "inputs": [
                 {
                   "indexed": true,
-                  "name": "owner",
+                  "name": "operator",
                   "type": "address"
+                },
+                {
+                  "indexed": false,
+                  "name": "role",
+                  "type": "string"
                 }
               ],
-              "name": "OwnerAddition",
+              "name": "RoleAdded",
               "type": "event"
             },
             {
@@ -606,24 +1709,492 @@
               "inputs": [
                 {
                   "indexed": true,
-                  "name": "owner",
+                  "name": "operator",
+                  "type": "address"
+                },
+                {
+                  "indexed": false,
+                  "name": "role",
+                  "type": "string"
+                }
+              ],
+              "name": "RoleRemoved",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": true,
+                  "name": "previousOwner",
                   "type": "address"
                 }
               ],
-              "name": "OwnerRemoval",
+              "name": "OwnershipRenounced",
               "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": true,
+                  "name": "previousOwner",
+                  "type": "address"
+                },
+                {
+                  "indexed": true,
+                  "name": "newOwner",
+                  "type": "address"
+                }
+              ],
+              "name": "OwnershipTransferred",
+              "type": "event"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_cap",
+                  "type": "uint256"
+                }
+              ],
+              "name": "setCap",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_closingTime",
+                  "type": "uint256"
+                }
+              ],
+              "name": "setClosingTime",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [],
+              "name": "withdrawBalance",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_operator",
+                  "type": "address"
+                }
+              ],
+              "name": "managerAddAddressToWhitelist",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_operators",
+                  "type": "address[]"
+                }
+              ],
+              "name": "managerAddAddressesToWhitelist",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_beneficiary",
+                  "type": "address"
+                },
+                {
+                  "name": "_cap",
+                  "type": "uint256"
+                }
+              ],
+              "name": "managerSetUserCap",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_beneficiaries",
+                  "type": "address[]"
+                },
+                {
+                  "name": "_cap",
+                  "type": "uint256"
+                }
+              ],
+              "name": "managerSetGroupCap",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            }
+          ]
+        },
+        "vesting": {
+          "abi": [
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "duration",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "cliff",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "beneficiary",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "address"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [],
+              "name": "renounceOwnership",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "revocable",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "bool"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "owner",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "address"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [
+                {
+                  "name": "",
+                  "type": "address"
+                }
+              ],
+              "name": "released",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_newOwner",
+                  "type": "address"
+                }
+              ],
+              "name": "transferOwnership",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [
+                {
+                  "name": "",
+                  "type": "address"
+                }
+              ],
+              "name": "revoked",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "bool"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "name": "_beneficiary",
+                  "type": "address"
+                },
+                {
+                  "name": "_start",
+                  "type": "uint256"
+                },
+                {
+                  "name": "_cliff",
+                  "type": "uint256"
+                },
+                {
+                  "name": "_duration",
+                  "type": "uint256"
+                },
+                {
+                  "name": "_revocable",
+                  "type": "bool"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "constructor"
             },
             {
               "anonymous": false,
               "inputs": [
                 {
                   "indexed": false,
-                  "name": "required",
+                  "name": "amount",
                   "type": "uint256"
                 }
               ],
-              "name": "RequirementChange",
+              "name": "Released",
               "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [],
+              "name": "Revoked",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": true,
+                  "name": "previousOwner",
+                  "type": "address"
+                }
+              ],
+              "name": "OwnershipRenounced",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": true,
+                  "name": "previousOwner",
+                  "type": "address"
+                },
+                {
+                  "indexed": true,
+                  "name": "newOwner",
+                  "type": "address"
+                }
+              ],
+              "name": "OwnershipTransferred",
+              "type": "event"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_token",
+                  "type": "address"
+                }
+              ],
+              "name": "release",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": false,
+              "inputs": [
+                {
+                  "name": "_token",
+                  "type": "address"
+                }
+              ],
+              "name": "revoke",
+              "outputs": [],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "getBeneficiary",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "address"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "getStart",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "getCliff",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "getDuration",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [],
+              "name": "isRevocable",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "bool"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [
+                {
+                  "name": "_token",
+                  "type": "address"
+                }
+              ],
+              "name": "releasableAmount",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "constant": true,
+              "inputs": [
+                {
+                  "name": "_token",
+                  "type": "address"
+                }
+              ],
+              "name": "vestedAmount",
+              "outputs": [
+                {
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "payable": false,
+              "stateMutability": "view",
+              "type": "function"
             }
           ]
         }

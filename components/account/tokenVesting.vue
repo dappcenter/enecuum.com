@@ -34,28 +34,22 @@
             {{vestingInfo.endDate}}
           </el-col>
           <el-col :xs="22" :sm="10" :md="8" :lg="8" :xl="8" class="vesting-cell">
-            Total vesting
-          </el-col>
-          <el-col :xs="22" :sm="12" :md="14" :lg="14" :xl="14" class="text-center vesting-cell">
-            {{getTotal(vestingInfo.releasable, vestingInfo.alreadyReleased)}} enq
-          </el-col>
-          <el-col :xs="22" :sm="10" :md="8" :lg="8" :xl="8" class="vesting-cell">
             Already vesting
           </el-col>
           <el-col :xs="22" :sm="12" :md="14" :lg="14" :xl="14" class="text-center vesting-cell">
-            {{vestingInfo.alreadyVesting}} enq
+            {{vestingInfo.alreadyVesting}} ENQ
           </el-col>
           <el-col :xs="22" :sm="10" :md="8" :lg="8" :xl="8" class="vesting-cell">
             Already released
           </el-col>
           <el-col :xs="22" :sm="12" :md="14" :lg="14" :xl="14" class="text-center vesting-cell">
-            {{vestingInfo.alreadyReleased}} enq
+            {{vestingInfo.alreadyReleased}} ENQ
           </el-col>
           <el-col :xs="22" :sm="10" :md="8" :lg="8" :xl="8" class="vesting-cell">
             Releasable
           </el-col>
           <el-col :xs="22" :sm="12" :md="14" :lg="14" :xl="14" class="text-center vesting-cell">
-            {{vestingInfo.releasable}} enq
+            {{vestingInfo.releasable}} ENQ
           </el-col>
         </el-row>
       </el-col>

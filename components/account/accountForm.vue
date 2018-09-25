@@ -151,7 +151,13 @@
         if (!err) {
           console.log('user cap: ', bn(res).dividedBy(1e3).toString());
         }
-      })
+      });
+      let input = {
+        srcElement: {
+          value: 1
+        }
+      };
+      this.ethInput(input);
     }
   }
 </script>
