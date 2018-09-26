@@ -121,7 +121,7 @@
         this.$notify({
           title: 'Confirmation',
           type: 'info',
-          message: 'Please waiting for to whitelist',
+          message: 'Please wait for whitelist',
           position: 'bottom-left',
           duration: 10000
         });
