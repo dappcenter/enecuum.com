@@ -34,6 +34,7 @@ module.exports = {
       {rel: 'icon', type: "image/x-icon", href: '/head/favicon.ico'},
       {rel: 'apple-touch-icon', sizes: "180x180", href: '/head/apple-touch-icon.png'},
       {rel: 'icon', type: 'image/png', sizes: "16x16", href: '/head/favicon-16x16.png'},
+      {rel: 'icon', type: 'image/png', sizes: "28x28", href: '/head/favicon-28x28.png'},
       {rel: 'icon', type: 'image/png', sizes: "32x32", href: '/head/favicon-32x32.png'},
       {rel: 'icon', type: 'image/png', sizes: "192x192", href: '/head//android-chrome-192x192.png'},
       {rel: 'icon', type: 'image/png', sizes: "194x194", href: '/head/favicon-194x194.png'},
