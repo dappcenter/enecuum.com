@@ -47,8 +47,8 @@
     data() {
       return {
         loading: false,
-        read: false,
-        agree: false,
+        read: true,
+        agree: true,
         errorAgree: '',
         timer: 0,
         walletForm: {
@@ -118,30 +118,59 @@
         });
       },
       sendWallet(captcha) {
+        this.$notify({
+          title: 'Confirmation',
+          type: 'info',
+          message: 'Please waiting for to whitelist',
+          position: 'bottom-left',
+          duration: 10000
+        });
         let data = this.walletForm;
-        this.loading = true;
         data.recaptcha = captcha;
-        let isVerify = this.$store.dispatch('walletVerification', data);
-        isVerify.then(res => {
-          if (res.code === 200 || res.code === 423) {
+        this.loading = true;
+        let isWhitelisted = this.$store.dispatch('setWhiteList', data);
+        isWhitelisted.then(res => {
+          console.log(res);
+          if (res.ok) {
             this.$notify({
-              title: 'Success',
+              title: 'Confirmation',
               type: 'success',
-              message: this.$store.state.lang[res.code],
+              message: 'You are in whitelist!',
               position: 'bottom-left'
             });
             this.$router.push('/backoffice');
           } else {
             this.$notify({
-              title: 'Error',
-              type: 'error',
-              message: this.$store.state.lang[res.code],
+              title: 'Confirmation',
+              type: 'warning',
+              message: 'Something went wrong please try later',
               position: 'bottom-left'
             });
             this.$refs.invisibleRecaptcha.reset();
           }
           this.loading = false;
         });
+        /*        return false;
+                this.loading = true;
+                let isVerify = this.$store.dispatch('walletVerification', data);
+                isVerify.then(res => {
+                  if (res.code === 200 || res.code === 423) {
+                    this.$notify({
+                      title: 'Success',
+                      type: 'success',
+                      message: this.$store.state.lang[res.code],
+                      position: 'bottom-left'
+                    });
+                  } else {
+                    this.$notify({
+                      title: 'Error',
+                      type: 'error',
+                      message: this.$store.state.lang[res.code],
+                      position: 'bottom-left'
+                    });
+                  }
+                  this.loading = false;
+                });*/
       }
     },
     mounted() {
