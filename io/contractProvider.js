@@ -11,15 +11,19 @@ class ManagerWorker {
     let web3 = new Web3(provider);
     this.contract = new web3.eth.Contract(abi, contractAddress);
     this.managerAddress = this.contract.currentProvider.getAddress(0);
-    this.USERCAP = 1000000000;
+    this.USERCAP = process.env.ICO_USER_CAP;
   }
 
   /**
    *
    * @param usercap = Number
    */
-  setUserCap(usercap) {
+  setCap(usercap) {
     this.USERCAP = usercap;
+  }
+
+  getCap() {
+    return this.USERCAP;
   }
 
   /**
@@ -62,7 +66,10 @@ class ManagerWorker {
    */
   setUserCap(wallet) {
     return new Promise(resolve => {
-      this.contract.methods.managerSetUserCap(wallet, this.USERCAP).call().then((res) => {
+      this.contract.methods.managerSetUserCap(wallet, this.USERCAP).send({
+        from: this.managerAddress
+      }).then((res) => {
+        console.log('from cap: ', res);
         resolve({ok: true, status: res.status, data: res});
       }).catch(e => {
         resolve({ok: true, status: e.status, data: e});

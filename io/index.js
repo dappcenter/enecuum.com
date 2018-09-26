@@ -22,24 +22,30 @@ app.post('/backoffice/whitelist', (req, resp) => {
       managerWorker.addToWhiteList(body.success.wallet).then(res => {
         console.log(res.ok);
         if (res.ok) {
-          request.post({
-            url: apiUrl + '/wallet',
-            method: 'post',
-            form: data,
-            withCredentials: true,
-            headers: {
-              'X-Requested-With': 'XMLHttpRequest',
-              'Content-Type': 'application/json',
-              Cookie: req.headers.cookie
+          console.log(body.success.wallet, managerWorker.getCap());
+          managerWorker.setUserCap(body.success.wallet, managerWorker.getCap()).then(res => {
+            console.log(res.ok);
+            if (res.ok) {
+              request.post({
+                url: apiUrl + '/wallet',
+                method: 'post',
+                form: data,
+                withCredentials: true,
+                headers: {
+                  'X-Requested-With': 'XMLHttpRequest',
+                  'Content-Type': 'application/json',
+                  Cookie: req.headers.cookie
+                }
+              }, (err, res, body) => {
+                let data = JSON.parse(body);
+                if (data.code !== 401) {
+                  resp.send({ok: true});
+                } else {
+                  resp.send({ok: false});
+                }
+              })
             }
-          }, (err, res, body) => {
-            let data = JSON.parse(body);
-            if (data.code !== 401) {
-              resp.send({ok: true});
-            } else {
-              resp.send({ok: false});
-            }
-          })
+          });
         } else {
           resp.send({ok: res.ok});
         }
