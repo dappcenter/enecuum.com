@@ -8,11 +8,15 @@
         type="info"
         :closable="false">
       </el-alert>
-      <el-form :model="walletForm" :rules="walletFormRules" ref="walletForm">
+      <el-alert :title="'The wallet address should not be an exchange'" type="warning" center
+                :closable="false">
+      </el-alert>
+      <el-form :model="walletForm" :rules="walletFormRules" ref="walletForm" class="mt40">
         <el-row class="flex-center">
           <el-col :span="22">
             <el-form-item prop="wallet">
-              <el-input v-model="walletForm.ethWalletNumber" placeholder="Wallet address"></el-input>
+              <el-input v-model="walletForm.ethWalletNumber" placeholder="Wallet address"
+                        :disabled="loading"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
