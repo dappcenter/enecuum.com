@@ -6,7 +6,7 @@ const mail = require('./../mail/mailer.js');
 const {managerWorker} = require('./checkingBot');
 
 const apiUrl = 'https://api.enecuum.com/v1';
-app.post((process.env.dev ? '' : '/io') + '/backoffice/whitelist', (req, resp) => {
+app.post('/backoffice/whitelist', (req, resp) => {
   let data = req.body;
   return request({
     url: apiUrl + '/lk',

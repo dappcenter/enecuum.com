@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiUrl = 'https://api.enecuum.com/v1';
-const pureUrl = '//enecuum.com/io';
+const pureUrl = '//enecuum.com';
 const actions = {
   setWhiteList(store, data) {
     return new Promise(resolve => {
