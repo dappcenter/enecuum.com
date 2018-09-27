@@ -1,9 +1,11 @@
 <template>
   <div class="tokensale">
     <div class="text-center">
-      <button class="button-link orange">
-        Join the token sale
-      </button>
+      <nuxt-link :to="'/backoffice'">
+        <button class="button-link orange">
+          Join the token sale
+        </button>
+      </nuxt-link>
     </div>
     <div class="text-center mt60 mb60">
       <h2 class="page-title">End of token sale</h2>
@@ -81,7 +83,8 @@
       </el-col>
     </el-row>
     <div class="participate-footer flex-wrap">
-      <div><a href="" class="button-link orange">Join token sale</a>
+      <div>
+        <nuxt-link :to="'/backoffice'" class="button-link orange">Join token sale</nuxt-link>
       </div>
       <div v-if="false">Also you can <a href="" class="button-link blue">Download app</a> and mine ENQ</div>
     </div>

@@ -46,7 +46,7 @@
           description: 'ENQ tokens are available to both private traders and larger funds upon successful KYC procedure completion',
           img: '/img/mainpage/landings/ln4.png',
           button: 'How to participate',
-          btnLink: '/backoffice'
+          btnLink: '/privatesale'
         }]
       }
     }
