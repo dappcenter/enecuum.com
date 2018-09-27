@@ -88,11 +88,13 @@ class ManagerWorker {
    */
   setGroupCap(wallets) {
     return new Promise(resolve => {
-      this.contract.methods.managerSetUserCap(wallets, this.USERCAP).call().then((res) => {
-        resolve({ok: true, status: res.status, data: res});
-      }).catch(e => {
-        resolve({ok: true, status: e.status, data: e});
-      });
+      setTimeout(() => {
+        this.contract.methods.managerSetUserCap(wallets, this.USERCAP).call().then((res) => {
+          resolve({ok: true, status: res.status, data: res});
+        }).catch(e => {
+          resolve({ok: true, status: e.status, data: e});
+        });
+      }, 60 * 1000);
     });
   }
 
@@ -108,6 +110,22 @@ class ManagerWorker {
       }).catch(e => {
         resolve({ok: true, data: e});
       });
+    })
+  }
+
+  /**
+   *
+   * @returns {Promise<any>}
+   */
+  getGasPrice() {
+    return new Promise(resolve => {
+      this.web3.eth.getGasPrice((err, res) => {
+        if (!err) {
+          resolve(parseInt(res * 1.2));
+        } else {
+          resolve(10000000000);
+        }
+      })
     })
   }
 }
