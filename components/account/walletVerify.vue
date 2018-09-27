@@ -119,11 +119,11 @@
       },
       sendWallet(captcha) {
         this.$notify({
-          title: 'Confirmation',
+          title: 'Verification',
           type: 'info',
-          message: 'Please wait for whitelist',
+          message: 'Waiting for wallet to be added to whitelist',
           position: 'bottom-left',
-          duration: 10000
+          duration: 0
         });
         let data = this.walletForm;
         data.recaptcha = captcha;
@@ -150,27 +150,6 @@
           }
           this.loading = false;
         });
-        /*        return false;
-                this.loading = true;
-                let isVerify = this.$store.dispatch('walletVerification', data);
-                isVerify.then(res => {
-                  if (res.code === 200 || res.code === 423) {
-                    this.$notify({
-                      title: 'Success',
-                      type: 'success',
-                      message: this.$store.state.lang[res.code],
-                      position: 'bottom-left'
-                    });
-                  } else {
-                    this.$notify({
-                      title: 'Error',
-                      type: 'error',
-                      message: this.$store.state.lang[res.code],
-                      position: 'bottom-left'
-                    });
-                  }
-                  this.loading = false;
-                });*/
       }
     },
     mounted() {

@@ -9,6 +9,7 @@ const actions = {
         url: pureUrl + '/backoffice/whitelist',
         method: 'POST',
         data: data,
+        timeout: 360 * 1000,
         withCredentials: true,
       }).then((res) => {
         resolve(res.data);

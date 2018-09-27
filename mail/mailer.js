@@ -3,7 +3,8 @@ const request = require('request');
 const lists = {
   reg: 'KdFtUDXv0',
   kc: 'fAg3ovh9j',
-  sb: 'LZysw0SR0'
+  sb: 'LZysw0SR0',
+  wl: 'Qonag6BtT'
 };
 
 class Mail {

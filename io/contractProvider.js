@@ -8,8 +8,8 @@ class ManagerWorker {
    * @param contractAddress
    */
   constructor({provider, abi, contractAddress}) {
-    let web3 = new Web3(provider);
-    this.contract = new web3.eth.Contract(abi, contractAddress);
+    this.web3 = new Web3(provider);
+    this.contract = new this.web3.eth.Contract(abi, contractAddress);
     this.managerAddress = this.contract.currentProvider.getAddress(0);
     this.USERCAP = process.env.ICO_USER_CAP;
   }
@@ -29,13 +29,15 @@ class ManagerWorker {
   /**
    *
    * @param wallet = String
+   * @param gas = Int
    * @returns {Promise<any>} = data:Object
    */
-  addToWhiteList(wallet) {
+  addToWhiteList(wallet, gas) {
     console.log('sending from: ', this.managerAddress);
     return new Promise(resolve => {
       this.contract.methods.managerAddAddressToWhitelist(wallet).send({
-        from: this.managerAddress
+        from: this.managerAddress,
+        gasPrice: gas
       }).then(res => {
         resolve({ok: true, status: res.status, data: res});
       }).catch(e => {
@@ -62,12 +64,14 @@ class ManagerWorker {
   /**
    *
    * @param wallet = String
+   * @param gas = Int
    * @returns {Promise<any>} = data:Object
    */
-  setUserCap(wallet) {
+  setUserCap(wallet, gas) {
     return new Promise(resolve => {
       this.contract.methods.managerSetUserCap(wallet, this.USERCAP).send({
-        from: this.managerAddress
+        from: this.managerAddress,
+        gasPrice: gas
       }).then((res) => {
         console.log('from cap: ', res);
         resolve({ok: true, status: res.status, data: res});
