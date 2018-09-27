@@ -1,12 +1,12 @@
 import axios from 'axios';
 
 const apiUrl = 'https://api.enecuum.com/v1';
-const pureUrl = '//enecuum.com:8081';
+const pureUrl = '//enecuum.com';
 const actions = {
   setWhiteList(store, data) {
     return new Promise(resolve => {
       axios.request({
-        url: pureUrl + '/backoffice/whitelist',
+        url: pureUrl + '/api/backoffice/whitelist',
         method: 'POST',
         data: data,
         timeout: 360 * 1000,
