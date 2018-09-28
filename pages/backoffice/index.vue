@@ -165,7 +165,7 @@
       },
       copy() {
         let inp = document.createElement('input');
-        inp.value = this.contractInfo.contractAddress;
+        inp.value = this.contractInfo.icoAddress;
         inp.classList.add('forselect');
         inp.style.position = 'fixed';
         inp.style.top = '-100%';
