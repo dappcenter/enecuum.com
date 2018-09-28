@@ -164,13 +164,10 @@
       getVestingBalance() {
         return new Promise(resolve => {
           this.token.balanceOf(this.vestingWallet, (err, res) => {
-            console.log('vesting balance', bn(res).dividedBy(1e10).toString());
-            //this.userIndo.balance = bn(res).dividedBy(1e10).toString();
             this.$emit('setVestingBalance', bn(res).dividedBy(1e10).toString());
             resolve(bn(res).dividedBy(1e10).toString());
             if (!err) {
               resolve('error');
-              //this.vesting = res;
             }
           });
         })
@@ -179,7 +176,6 @@
     mounted() {
       this.ico.getVestingWallet(this.userInfo.currentWallet, (err, res) => {
         if (!err) {
-          console.log('address of vesting wallet: ', res);
           this.vestingContract = web3.eth.contract(this.contractInfo.vestingAbi).at(res);
           this.vestingWallet = res;
 
@@ -189,9 +185,7 @@
               this.vestingContract.getDuration((err, res) => {
                 if (!err) {
                   this.vestingInfo.endDate = moment(this.vestingInfo.startDate, 'MMMM Do YYYY HH:mm').add(bn(res).toNumber(), 'seconds').format('MMMM Do YYYY HH:mm');
-                  console.log('vesting duration: ', bn(res).toNumber());
                 } else {
-                  console.log('vesting duration error: ', err);
                 }
               });
               this.vestingContract.getCliff((err, res) => {
@@ -205,15 +199,12 @@
                   balance.then(res => {
                     this.chartdata.datasets[0].data.push(bn(this.userInfo.balance).plus(bn(res)).toNumber());
                     this.$refs.linechart.renderChart(this.chartdata, this.options);
-                    console.log('vesting get cliff: ', this.chartdata);
                   });
                   //this.vestingInfo.alreadyVesting = bn(res).dividedBy(1e10).toString();
                 } else {
-                  console.log('vesting get cliff error: ', err);
                 }
               });
             } else {
-              console.log('vesting start error: ', err);
             }
           });
           this.getReleased();
