@@ -137,7 +137,7 @@
         this.waitingNotif = this.$notify({
           title: 'Verification',
           type: 'info',
-          message: 'Waiting for wallet to be added to whitelist. Synchronization may take up to 5 minutes depending on the load of the etherium network',
+          message: 'Waiting for wallet to be added to whitelist. Synchronization may take up to 5 minutes depending on the load of the ethereum network',
           position: 'bottom-left',
           duration: 0
         });
