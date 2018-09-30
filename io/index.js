@@ -11,16 +11,13 @@ async function whitelisting({cookie, userdata, data}) {
   let id = data.queryTime;
   if (userdata.code === 202) {
     let gasPrice = await managerWorker.getGasPrice();
-    console.log(gasPrice);
     let whitelisted = await managerWorker.addToWhiteList(userdata.success.wallet, gasPrice);
-    console.log('whitelisted: ', userdata.success.wallet, managerWorker.getCap(), whitelisted);
     if (!whitelisted.ok) {
       //io emit exit
       io.emit('wl', {ok: false, id: id});
       return false;
     }
     let usercapped = await managerWorker.setUserCap(userdata.success.wallet, gasPrice);
-    console.log('usercapped: ', usercapped.ok);
     if (!usercapped.ok) {
       //io emit exit
       io.emit('wl', {ok: false, id: id});
@@ -47,48 +44,6 @@ async function whitelisting({cookie, userdata, data}) {
         io.emit('wl', {ok: false, id: id});
       }
     })
-    /*    managerWorker.web3.eth.getGasPrice((err, res) => {
-          if (!err) {
-            let gasPrice = parseInt(res * 1.2);
-            console.log(gasPrice);
-            managerWorker.addToWhiteList(body.success.wallet, gasPrice).then(res => {
-              console.log(res.ok);
-              if (res.ok) {
-                console.log(body.success.wallet, managerWorker.getCap());
-                setTimeout(() => {
-                  managerWorker.setUserCap(body.success.wallet, gasPrice).then(res => {
-                    console.log(res.ok);
-                    if (res.ok) {
-                      request.post({
-                        url: apiUrl + '/wallet',
-                        method: 'post',
-                        form: data,
-                        withCredentials: true,
-                        headers: {
-                          'X-Requested-With': 'XMLHttpRequest',
-                          'Content-Type': 'application/json',
-                          Cookie: req.headers.cookie
-                        }
-                      }, (err, res, body) => {
-                        let data = JSON.parse(body);
-                        mail.send('wl', {EMAIL: userdata.success.email, FIRST_NAME: userdata.success.name});
-                        if (data.code !== 401) {
-                          resp.send({ok: true});
-                        } else {
-                          resp.send({ok: false});
-                        }
-                      })
-                    }
-                  });
-                }, 60 * 1000);
-              } else {
-                resp.send({ok: res.ok});
-              }
-            });
-          } else {
-            resp.send({ok: false});
-          }
-        });*/
   }
 }
 
