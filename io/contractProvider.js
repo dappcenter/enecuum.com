@@ -33,12 +33,12 @@ class ManagerWorker {
    * @returns {Promise<any>} = data:Object
    */
   addToWhiteList(wallet, gas) {
-    console.log('sending from: ', this.managerAddress);
     return new Promise(resolve => {
       this.contract.methods.managerAddAddressToWhitelist(wallet).send({
         from: this.managerAddress,
         gasPrice: gas
       }).then(res => {
+        console.log('from whitelist: ', res);
         resolve({ok: true, status: res.status, data: res});
       }).catch(e => {
         resolve({ok: false, status: e.status, data: e});
@@ -68,16 +68,19 @@ class ManagerWorker {
    * @returns {Promise<any>} = data:Object
    */
   setUserCap(wallet, gas) {
+    console.log('usercap: ', this.USERCAP);
     return new Promise(resolve => {
-      this.contract.methods.managerSetUserCap(wallet, this.USERCAP).send({
-        from: this.managerAddress,
-        gasPrice: gas
-      }).then((res) => {
-        console.log('from cap: ', res);
-        resolve({ok: true, status: res.status, data: res});
-      }).catch(e => {
-        resolve({ok: true, status: e.status, data: e});
-      });
+      setTimeout(() => {
+        this.contract.methods.managerSetUserCap(wallet, this.USERCAP).send({
+          from: this.managerAddress,
+          gasPrice: gas
+        }).then((res) => {
+          console.log('from cap: ', res);
+          resolve({ok: true, status: res.status, data: res});
+        }).catch(e => {
+          resolve({ok: true, status: e.status, data: e});
+        });
+      }, 60 * 1000);
     });
   }
 
