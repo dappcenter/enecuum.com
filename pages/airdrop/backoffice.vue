@@ -224,7 +224,7 @@
       },
       onTelegramAuth(user) {
         axios.request({
-          url: '//beta.enecuum.com/oauth/telegram',
+          url: '/oauth/telegram',
           data: {
             id: user.id
           },
@@ -243,7 +243,7 @@
         });
       },
       checkRule(type) {
-        window.open("//beta.enecuum.com/oauth/" + type, "", "width=500,height=300");
+        window.open("/oauth/" + type, "", "width=500,height=300");
         this.$notify({
           message: 'Checking your account',
           type: 'success',
@@ -292,7 +292,7 @@
         console.log('starting get info: ', provider, data);
         if (!provider) return false;
         axios.request({
-          url: '//beta.enecuum.com/api/airdrop/update',
+          url: '/api/airdrop/update',
           data: {
             t: provider,
             f: data

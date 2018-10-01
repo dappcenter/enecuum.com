@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const apiUrl = 'https://api.enecuum.com/v1';
-const pureApi = 'https://airdrop.enecuum.com/api';
-const pureUrl = 'https://enecuum.com';
+const pureApi = 'http://airdrop.enecuum.com/api';
+const pureUrl = 'http://enecuum.com';
 
 const airdropDirectory = '/app';
 
