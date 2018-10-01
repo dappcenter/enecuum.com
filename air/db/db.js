@@ -161,6 +161,34 @@ class MongoProvider {
       });
     });
   }
+
+  /**
+   *
+   * @param sessionid
+   * @returns {Promise<any>}
+   */
+
+  getLiteKyc({sessionid}) {
+    return new Promise(resolve => {
+      User.findOne({
+        id: sessionid
+      }).select('email').exec((err, user) => {
+        if (user) {
+          LiteKyc.findOne({
+            email: user.email
+          }).select('name nation birthDate walletInfo email -_id').exec((err, kyc) => {
+            if (kyc) {
+              resolve({ok: true, data: kyc});
+            } else {
+              resolve(400);
+            }
+          });
+        } else {
+          resolve(400);
+        }
+      });
+    });
+  }
 }
 
 let instance = '';

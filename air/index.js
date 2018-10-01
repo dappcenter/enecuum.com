@@ -121,10 +121,21 @@ app.post('/api/airdrop/login', (req, res) => {
   });
 });
 
+app.get('/api/airdrop/litekyc', upload.single('file'), (req, res) => {
+  if (!req.session.user) return res.send('Permission denied');
+  db.getLiteKyc({sessionid: req.session.user}).then(kyc => {
+    if (kyc.ok) {
+      return res.send({ok: true, message: kyc.data});
+    } else {
+      return res.send({ok: false});
+    }
+  });
+});
+
 app.post('/api/airdrop/litekyc', upload.single('file'), (req, res) => {
   if (!req.session.user) return res.send('Permission denied');
   let data = req.body;
-  data.filepath = req.file.path;
+  data.file = req.file.path;
   db.saveLiteKyc({data: data, sessionid: req.session.user}).then(kyc => {
     if (kyc === 200) {
       return res.send({ok: true});

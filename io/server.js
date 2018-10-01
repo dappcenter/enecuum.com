@@ -5,7 +5,7 @@ const bodyParser = require(require.resolve('body-parser'));
 const cookieParser = require(require.resolve('cookie-parser'));
 
 const startTimestamp = new Date().getTime();
-const origins = ['enecuum.com:*'];
+//const origins = ['*'];
 
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.disable('x-powered-by');
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Credentials", true);
-  res.header("Access-Control-Allow-Origin", "http://enecuum.com");
+  res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
@@ -29,7 +29,7 @@ const io = require('socket.io')(server, {
   cookie: true
 });
 
-io.origins[origins];
+//io.origins[origins];
 
 io.on('connection', (client) => {
   client.emit('connectServer', startTimestamp);

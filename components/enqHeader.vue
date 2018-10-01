@@ -21,7 +21,7 @@
             <nuxt-link to="/privatesale" class="special-a">
               <button class="button-link orange">Private Sale</button>
             </nuxt-link>
-            <nuxt-link to="/airdrop/backoffice" class="special-a">
+            <nuxt-link to="/app/backoffice" class="special-a">
               <button class="button-link orange">airdrop</button>
             </nuxt-link>
           </div>
@@ -88,9 +88,9 @@
           <nuxt-link to="/privatesale" class="special-a">
             <button class="button-link orange">Private Sale</button>
           </nuxt-link>
-          <nuxt-link to="/airdrop/backoffice" class="special-a">
+          <a href="/app/backoffice" class="special-a">
             <button class="button-link orange">airdrop</button>
-          </nuxt-link>
+          </a>
         </div>
         <nuxt-link to="/auth/login" class="el-menu-item menu-item float-right" v-if="!isAuth">
           <el-button type="text">Sign In</el-button>

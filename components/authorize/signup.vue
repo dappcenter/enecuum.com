@@ -17,7 +17,7 @@
         </el-form-item>
         <el-form-item>
           <el-button type="primary" class="neon" @click="submitForm" :loading="loading">Sign Up</el-button>
-          <router-link to="/airdrop/signup">
+          <router-link to="/airdrop/backoffice">
             <el-button type="text">Airdrop</el-button>
           </router-link>
         </el-form-item>

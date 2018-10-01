@@ -17,3 +17,6 @@ dist
 
 # dotenv environment variables file
 .env
+
+air/uploads/*
+!air/uploads/.gitkeep

@@ -31,11 +31,10 @@ app.use(expressSession({
 app.use(passport.initialize());
 app.use(passport.session());
 io.on('connect', (ioclient) => {
-
   passport.use(new TwitterStrategy({
       consumerKey: process.env.TWITTER_API_KEY,
       consumerSecret: process.env.TWITTER_API_SECRET_KEY,
-      callbackURL: process.env.DOMAIN_URL + "/oauth/twitter/callback"
+      callbackURL: 'https://' + process.env.AIRDROP_HOST + "/oauth/twitter/callback"
     },
     async (accessToken, refreshToken, profile, cb) => {
       let tweets = await getTweets(profile.id);

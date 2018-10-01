@@ -61,8 +61,8 @@ app.post((process.env.dev ? '' : '/api') + '/backoffice/whitelist', (req, resp) 
       if (!err) {
         let userdata = JSON.parse(body);
         whitelisting({cookie: req.headers.cookie, data: maindata, userdata: userdata})
-
       }
+      resp.send({ok: true});
     }
   );
 });

@@ -1,9 +1,24 @@
 import axios from 'axios';
 
 const apiUrl = 'https://api.enecuum.com/v1';
-const pureApi = 'http://beta.enecuum.com/api';
+const pureApi = 'https://airdrop.enecuum.com/api';
+const pureUrl = 'https://enecuum.com';
+
+const airdropDirectory = '/app';
 
 const actions = {
+  setWhiteList(store, data) {
+    return new Promise(resolve => {
+      axios.request({
+        url: pureUrl + '/api/backoffice/whitelist',
+        method: 'POST',
+        data: data,
+        withCredentials: true,
+      }).then((res) => {
+        resolve(res.data);
+      })
+    });
+  },
   crutch(store) {
     return new Promise(resolve => {
       axios.request({
@@ -24,6 +39,21 @@ const actions = {
           resolve('notauth');
         }
       })
+    });
+  },
+  getAirdropKyc() {
+    return new Promise(resolve => {
+      axios.request({
+        url: pureApi + '/airdrop/litekyc',
+        method: 'get',
+        withCredentials: true,
+      }).then((res) => {
+        if (res.data.ok) {
+          resolve({ok: true, message: res.data.message});
+        } else {
+          resolve({ok: false});
+        }
+      });
     });
   },
   airdropLiteKyc(store, data) {
@@ -133,13 +163,21 @@ const actions = {
       });
     })
   },
-  nuxtServerInit(store, {req}) {
+  nuxtServerInit(store, {req, redirect}) {
     let cookies = '';
     if (req.headers) {
       cookies = (req.headers.cookie);
     }
     process.env.dev ? store.commit('SET_DEBUG', true) : null;
+    console.log(process.env.AIRDROP_HOST, req.headers.host, req.path, (req.path.indexOf('oauth') === -1));
     store.commit('SET_COOKIES', cookies);
+    if (req.headers.host === process.env.AIRDROP_HOST) {
+      if ((req.path.indexOf('oauth') === -1) && req.path !== airdropDirectory + '/signup' && req.path !== airdropDirectory + '/signin' && req.path !== airdropDirectory + '/backoffice') {
+        redirect('/app/signup');
+      }
+    } else if (req.path == airdropDirectory + '/signup' || req.path == airdropDirectory + '/signin' || req.path == airdropDirectory + '/backoffice') {
+      redirect(process.env.AIRDROP_HOST + airdropDirectory + '/backoffice');
+    }
   },
   subscribeWP(state, data) {
     return new Promise(resolve => {

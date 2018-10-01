@@ -25,7 +25,7 @@
         <el-form-item prop="confirm_password" v-if="!show2FA">
           <el-button type="primary" class="neon" @click="submitForm" :loading="loading">Sign In</el-button>
           <el-button type="text" @click="restore">Forgot password?</el-button>
-          <router-link to="/airdrop/signin">
+          <router-link to="/airdrop/backoffice">
             <el-button type="text">Airdrop</el-button>
           </router-link>
         </el-form-item>
