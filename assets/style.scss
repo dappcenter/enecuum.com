@@ -16,6 +16,8 @@
 @import 'press.scss';
 @import 'enqvstyle';
 @import 'tokensale';
+@import 'airdrop';
+@import 'fonts';
 
 * {
   padding: 0px;
@@ -391,6 +393,7 @@ p {
 .mt60 {
   margin-top: 60px;
 }
+
 .mb60 {
   margin-bottom: 60px;
 }
@@ -428,3 +431,4 @@ p {
 .grecaptcha-badge {
   display: none;
 }
+

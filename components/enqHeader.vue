@@ -17,9 +17,14 @@
           <el-menu-item index="/press" class="menu-item">Press</el-menu-item>
           <el-menu-item index="/token" class="menu-item">Token</el-menu-item>
           <el-menu-item index="/faq" class="menu-item">FAQ</el-menu-item>
-          <nuxt-link to="/privatesale" class="special-a">
-            <button class="button-link orange">Private Sale</button>
-          </nuxt-link>
+          <div class="special-a-wrapper">
+            <nuxt-link to="/privatesale" class="special-a">
+              <button class="button-link orange">Private Sale</button>
+            </nuxt-link>
+            <nuxt-link to="/app/backoffice" class="special-a">
+              <button class="button-link orange">airdrop</button>
+            </nuxt-link>
+          </div>
           <el-menu-item index="/auth/login" class="menu-item" v-if="!isAuth">
             <el-button type="text">Sign In</el-button>
           </el-menu-item>
@@ -79,9 +84,14 @@
         <fingerLoader @onEnd="loadingFingerEnd=false"></fingerLoader>
       </ul>
       <ul class="el-menu--horizontal el-menu menu-right" v-else>
-        <nuxt-link to="/privatesale" class="special-a">
-          <button class="button-link orange">Private Sale</button>
-        </nuxt-link>
+        <div class="special-a-wrapper">
+          <nuxt-link to="/privatesale" class="special-a">
+            <button class="button-link orange">Private Sale</button>
+          </nuxt-link>
+          <a href="/app/backoffice" class="special-a">
+            <button class="button-link orange">airdrop</button>
+          </a>
+        </div>
         <nuxt-link to="/auth/login" class="el-menu-item menu-item float-right" v-if="!isAuth">
           <el-button type="text">Sign In</el-button>
         </nuxt-link>
@@ -101,16 +111,6 @@
   import axios from 'axios';
   import socket from '~/plugins/socket.io.js';
   import fingerLoader from '@/components/authorize/loader';
-
-  socket.on('twitter', (data) => {
-    console.log(data);
-  });
-  socket.on('facebook', (data) => {
-    console.log(data);
-  });
-  socket.on('linkedin', (data) => {
-    console.log(data);
-  });
 
   export default {
     name: "enq-header",
@@ -290,13 +290,21 @@
       background-color: $color-header;
       padding-right: 54px;
       .special-a {
-        position: absolute;
         top: 65px;
         right: 110px;
         z-index: 1;
         .orange {
           width: 255px;
           padding: 5px 15px;
+        }
+        &-wrapper {
+          display: flex;
+          position: absolute;
+          top: 65px;
+          right: 50px;
+          a {
+            padding-right: 10px;
+          }
         }
       }
     }
@@ -454,6 +462,7 @@
         width: 100%;
         button {
           width: 100%;
+          margin-bottom: 10px;
         }
       }
     }

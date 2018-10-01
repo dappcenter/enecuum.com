@@ -94,7 +94,6 @@
 <script>
   import accountForm from '@/components/account/accountForm';
   import tokenVesting from '@/components/account/tokenVesting';
-  import airdrop from '@/components/account/airdrop';
   import socket from '~/plugins/socket.io.js';
   import ICountUp from 'vue-countup-v2';
   import bn from 'bignumber.js';
@@ -133,8 +132,7 @@
     components: {
       accountForm,
       tokenVesting,
-      ICountUp,
-      airdrop
+      ICountUp
     },
     methods: {
       hasVestingWallet() {

@@ -1,7 +1,7 @@
 const dev = require(require.resolve('dotenv')).config();
 const {app, server, io} = require('./server');
 const request = require('request');
-//require('./social/');
+require('./social/');
 const mail = require('./../mail/mailer.js');
 const {managerWorker} = require('./checkingBot');
 
@@ -61,8 +61,8 @@ app.post((process.env.dev ? '' : '/api') + '/backoffice/whitelist', (req, resp) 
       if (!err) {
         let userdata = JSON.parse(body);
         whitelisting({cookie: req.headers.cookie, data: maindata, userdata: userdata})
-
       }
+      resp.send({ok: true});
     }
   );
 });
