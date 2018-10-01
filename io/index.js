@@ -47,7 +47,7 @@ async function whitelisting({cookie, userdata, data}) {
   }
 }
 
-app.post((process.env.dev ? '' : '/api') + '/backoffice/whitelist', (req, resp) => {
+app.post('/api/backoffice/whitelist', (req, resp) => {
   let maindata = req.body;
   return request({
       url: apiUrl + '/lk',
