@@ -10,7 +10,7 @@ const actions = {
   setWhiteList(store, data) {
     return new Promise(resolve => {
       axios.request({
-        url: pureUrl + '/api/backoffice/whitelist',
+        url: pureUrl + '/backoffice/whitelist',
         method: 'POST',
         data: data,
         withCredentials: true,
