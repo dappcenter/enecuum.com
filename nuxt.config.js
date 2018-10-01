@@ -93,11 +93,9 @@ module.exports = {
     dev: process.env.dev
   },
   serverMiddleware: [
-    '~/mail'
+    '~/mail',
+    '~/air'
   ],
-  /*
-  ** Run ESLint on save
-  */
   extend(config, {isDev, isClient}) {
     if (isDev && isClient) {
       config.module.rules.push({

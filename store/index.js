@@ -8,6 +8,8 @@ const createStore = () => {
   return new Vuex.Store({
     state: {
       debug: false,
+      airdropUser: {},
+      isAirdropAuth: false,
       cookies: '',
       kyc: {},
       web3wallet: '',

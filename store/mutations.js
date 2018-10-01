@@ -1,4 +1,10 @@
 const mutations = {
+  SET_AIRDROP_USER(state, object) {
+    state.airdropUser = object;
+  },
+  SET_AIRDROP_AUTH(state, boolean) {
+    state.isAirdropAuth = boolean;
+  },
   SET_AUTH(state, boolean) {
     state.isAuth = boolean;
   },

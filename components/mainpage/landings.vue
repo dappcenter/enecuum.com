@@ -27,7 +27,7 @@
           title: 'Earn tokens',
           description: 'Any smartphone owner can join the Enecuum blockchain. Be amongst the first, download the Enecuum App today and start earning tokens',
           img: '/img/mainpage/landings/ln1.png',
-          button: 'About app',
+          button: 'Airdrop',
           btnLink: '/airdrop'
         }, {
           title: 'Why Enecuum',

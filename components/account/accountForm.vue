@@ -46,10 +46,13 @@
       verified: Boolean,
       userInfo: Object,
       web3info: Object,
-      address: String
+      token: Object,
+      ico: Object,
+      contractInfo: Object
     },
     data() {
       return {
+        contractInstance: {},
         price: 0,
         accountForm: {
           invest: 1,
@@ -87,9 +90,9 @@
           let gasPrice = res.c[0];//bn(res.c[0]).multipliedBy("10e8").toNumber();
           web3.eth.sendTransaction({
             from: web3.eth.coinbase,
-            to: this.address,
+            to: this.contractInfo.icoAddress,
             value: web3.toWei(bn(this.accountForm.invest).toFixed(10), "ether"),
-            gas: 200000,
+            gas: 1000000,
             gasPrice: gasPrice
           }, (err, res) => {
             socket.emit('check');
@@ -114,22 +117,44 @@
         });
       },
       ethInput(e) {
-        this.accountForm.get = bn(e.srcElement.value).multipliedBy(this.price).dividedBy(tokenPrice);
+        let input = bn(e.srcElement.value).multipliedBy(1e18).toString();
+        if (input) {
+          this.ico.getTokenAmount(input, (err, res) => {
+            if (!err) {
+              console.log(res);
+              this.accountForm.get = bn(res).dividedBy(1e10).toString();
+            }
+          });
+        }
       },
       enqInput(e) {
-        this.accountForm.invest = bn(e.srcElement.value).dividedBy(this.price).multipliedBy(tokenPrice);
+        let input = bn(e.srcElement.value).toString();
+        if (input) {
+          this.ico.getWeiAmount(parseInt(input), (err, res) => {
+            if (!err) {
+              this.accountForm.invest = bn(res).dividedBy(1e10).toString();
+            }
+          });
+        }
       }
     },
     mounted() {
-      axios.get('https://api.coinmarketcap.com/v2/ticker/1027/?convert=USD').then(res => {
-        this.price = res.data.data.quotes.USD.price;
-        let e = {
-          srcElement: {
-            value: 1
-          }
+      this.ico.getFiatPrice.call((err, res) => {
+        if (!err) {
+          console.log('fiat price:', bn(res).dividedBy(1e3).toString());
         }
-        this.ethInput(e);
       });
+      this.ico.getUserCap(this.userInfo.wallet, (err, res) => {
+        if (!err) {
+          console.log('user cap: ', bn(res).dividedBy(1e3).toString());
+        }
+      });
+      let input = {
+        srcElement: {
+          value: 1
+        }
+      };
+      this.ethInput(input);
     }
   }
 </script>

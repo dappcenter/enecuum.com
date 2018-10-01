@@ -102,6 +102,9 @@
           flag: 'en',
           url: '/docs/op_en.pdf'
         }, {
+          flag: 'es',
+          url: '/docs/op_es.pdf'
+        }, {
           flag: 'jp',
           url: '/docs/op_jp.pdf'
         }, {

@@ -6,13 +6,18 @@
         class="enq-alert"
         :title="'Pay attention: you will not be able to change the address of the wallet after confirmation, only the contribution from specified address will be accepted during the private sale'"
         type="info"
+        ref="payalert"
         :closable="false">
       </el-alert>
-      <el-form :model="walletForm" :rules="walletFormRules" ref="walletForm">
+      <el-alert :title="'Do not contribute from exchange addresses'" type="warning" center
+                :closable="false">
+      </el-alert>
+      <el-form :model="walletForm" :rules="walletFormRules" ref="walletForm" class="mt40">
         <el-row class="flex-center">
           <el-col :span="22">
             <el-form-item prop="wallet">
-              <el-input v-model="walletForm.ethWalletNumber" placeholder="Wallet address"></el-input>
+              <el-input v-model="walletForm.ethWalletNumber" placeholder="Wallet address"
+                        :disabled="loading"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
@@ -26,7 +31,16 @@
         </el-row>
       </el-form>
       <el-row class="flex-center">
-        <el-button type="primary" class="neon" @click="submitForm" :disabled="!agree ? 'disabled' : null"
+        <el-popover
+          placement="right"
+          trigger="hover"
+          content="Be patient, this can take a while"
+          v-if="loading">
+          <el-button slot="reference" type="primary" class="neon"><i class="el-icon-refresh"
+                                                                     style="animation: rotating 2s linear infinite;animation-direction: reverse;"></i>
+          </el-button>
+        </el-popover>
+        <el-button v-else type="primary" class="neon" @click="submitForm" :disabled="!agree ? 'disabled' : null"
                    :loading="loading">Save
         </el-button>
       </el-row>
@@ -38,6 +52,7 @@
 
 <script>
   import VueRecaptcha from 'vue-recaptcha';
+  import socket from '~/plugins/socket.io.js';
 
   export default {
     name: "walletVerify",
@@ -46,9 +61,10 @@
     },
     data() {
       return {
+        waitingNotif: {},
         loading: false,
-        read: false,
-        agree: false,
+        read: true,
+        agree: true,
         errorAgree: '',
         timer: 0,
         walletForm: {
@@ -118,33 +134,46 @@
         });
       },
       sendWallet(captcha) {
+        this.waitingNotif = this.$notify({
+          title: 'Verification',
+          type: 'info',
+          message: 'Waiting for wallet to be added to whitelist. Synchronization may take up to 5 minutes depending on the load of the ethereum network',
+          position: 'bottom-left',
+          duration: 0
+        });
         let data = this.walletForm;
-        this.loading = true;
         data.recaptcha = captcha;
-        let isVerify = this.$store.dispatch('walletVerification', data);
-        isVerify.then(res => {
-          if (res.code === 200 || res.code === 423) {
-            this.$notify({
-              title: 'Success',
-              type: 'success',
-              message: this.$store.state.lang[res.code],
-              position: 'bottom-left'
-            });
-            this.$router.push('/backoffice');
-          } else {
-            this.$notify({
-              title: 'Error',
-              type: 'error',
-              message: this.$store.state.lang[res.code],
-              position: 'bottom-left'
-            });
-            this.$refs.invisibleRecaptcha.reset();
-          }
-          this.loading = false;
+        let idtime = new Date().getTime();
+        localStorage.setItem('idle', idtime);
+        console.log(idtime, localStorage.getItem('idle'));
+        data.queryTime = idtime;
+        this.loading = true;
+        let isWhitelisted = this.$store.dispatch('setWhiteList', data);
+        isWhitelisted.then(res => {
+          console.log(res);
+          this.$refs.invisibleRecaptcha.reset();
         });
       }
     },
     mounted() {
+      socket.on('wl', ({ok, id}) => {
+        console.log({ok, id});
+        let idle = localStorage.getItem('idle');
+        if (this.kyc.code === 202 && parseInt(idle) === parseInt(id)) {
+          if (ok) {
+            this.$router.push('/backoffice');
+          } else {
+            this.$notify({
+              title: 'Verification',
+              type: 'Error',
+              message: 'Something went wrong please try late',
+              position: 'bottom-left'
+            });
+          }
+          this.waitingNotif.close();
+          this.loading = false;
+        }
+      });
       this.walletForm.ethWalletNumber = this.kyc.message.wallet;
     }
   }

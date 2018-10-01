@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const apiUrl = 'https://api.enecuum.com/v1';
+const pureApi = 'http://beta.enecuum.com/api';
 
 const actions = {
   crutch(store) {
@@ -23,6 +24,82 @@ const actions = {
           resolve('notauth');
         }
       })
+    });
+  },
+  airdropLiteKyc(store, data) {
+    return new Promise(resolve => {
+      axios.request({
+        url: pureApi + '/airdrop/litekyc',
+        data: data,
+        method: 'post',
+        withCredentials: true,
+      }).then((res) => {
+        if (res.data.ok) {
+          resolve({ok: true});
+        } else {
+          resolve({ok: false});
+        }
+      });
+    });
+  },
+  airdropLogin(store, data) {
+    return new Promise(resolve => {
+      axios.request({
+        url: pureApi + '/airdrop/login',
+        data: data,
+        method: 'post',
+        withCredentials: true,
+      }).then((res) => {
+        if (res.data.email) {
+          store.commit('SET_AIRDROP_USER', res.data);
+          resolve({ok: true});
+        } else {
+          resolve({ok: false});
+        }
+      })
+    });
+  },
+  airdropRegister(store, data) {
+    return new Promise(resolve => {
+      axios.request({
+        url: pureApi + '/airdrop/registration',
+        data: data,
+        method: 'post',
+        withCredentials: true,
+      }).then((res) => {
+        if (res.data.email) {
+          store.commit('SET_AIRDROP_USER', res.data);
+          resolve({ok: true});
+        } else {
+          if (res.data.message) {
+            resolve({ok: false, message: res.data.message});
+          } else {
+            resolve({ok: false});
+          }
+        }
+      })
+    });
+  },
+  isAirdropAuth(store, {cookies}) {
+    return new Promise(resolve => {
+      axios.request({
+        url: pureApi + '/airdrop/login',
+        method: 'POST',
+        withCredentials: true,
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          Cookie: cookies ? cookies : ''
+        },
+      }).then((res) => {
+        console.log(res.data);
+        if (res.data.ok) {
+          store.commit('SET_AIRDROP_USER', res.data.message);
+          store.commit('SET_AIRDROP_AUTH', true);
+          resolve('success');
+        } else {
+          resolve('notauth');
+        }
+      });
     });
   },
   isAuth(store, {cookies}) {

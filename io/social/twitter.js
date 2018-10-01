@@ -5,7 +5,13 @@ const expressSession = require('express-session');
 const Twitter = require('twitter');
 
 
-let keywords = ['#Enecuum', '#ENQ', '#mobilemining'];
+const keywords = ['#Enecuum', '#ENQ', '#mobilemining'];
+const retweetedCompany = 'ENQ_enecuum';
+const mincount = 2;
+const mindays = 7;
+
+const GODMODE = false;
+
 
 const client = new Twitter({
   consumer_key: process.env.TWITTER_API_KEY,
@@ -24,84 +30,104 @@ app.use(expressSession({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new TwitterStrategy({
-    consumerKey: process.env.TWITTER_API_KEY,
-    consumerSecret: process.env.TWITTER_API_SECRET_KEY,
-    callbackURL: "http://enecuum.com:8081/oauth/twitter/callback"
-  },
-  async (accessToken, refreshToken, profile, cb) => {
-    let tweets = await getTweets(profile.id);
-    let isFollow = await isFollowedTo(profile.id);
-    checkTerms(tweets, profile, isFollow);
-    cb(null);
-  }
-));
+io.on('connect', (ioclient) => {
 
-function getTweets(id) {
-  return new Promise(resolve => {
-    client.get('statuses/user_timeline', (error, tweets, response) => {
-      if (!error) {
-        resolve(tweets);
-      } else {
-        io.emit('twitter', error);
-      }
+  passport.use(new TwitterStrategy({
+      consumerKey: process.env.TWITTER_API_KEY,
+      consumerSecret: process.env.TWITTER_API_SECRET_KEY,
+      callbackURL: process.env.DOMAIN_URL + "/oauth/twitter/callback"
+    },
+    async (accessToken, refreshToken, profile, cb) => {
+      let tweets = await getTweets(profile.id);
+      let isFollow = await isFollowedTo(profile.id);
+      checkTerms(tweets, profile, isFollow);
+      cb(null);
+    }
+  ));
+
+  function getTweets(id) {
+    return new Promise(resolve => {
+      client.get('statuses/user_timeline', (error, tweets, response) => {
+        if (!error) {
+          resolve(tweets);
+        } else {
+          //io.emit('twitter', error);
+        }
+      });
     });
-  });
-}
-
-function isFollowedTo(id) {
-  return new Promise(resolve => {
-    client.get('friendships/show', {
-      target_id: id
-    }, (error, body, response) => {
-      if (!error) {
-        resolve(body.relationship.source.followed_by);
-      } else {
-        io.emit('twitter', error);
-      }
-    });
-  });
-}
-
-
-function checkTerms(data, profile, isfollow) {
-  let count = {
-    tweets: 0,
-    retweets: 0
-  };
-  let info = {
-    hashtag: false,
-    followers: false,
-    retweets: false,
-    isFollow: isfollow
-  };
-  if (profile._json.followers_count > 250) {
-    info.followers = true;
   }
-  data.forEach(item => {
-    keywords.forEach(word => {
-      if (item.retweeted) {
-        if (item.retweeted_status.text.toLowerCase().search(word.toLowerCase()) > -1) {
-          count.retweets++;
-          if (count.retweets >= 2) {
-            info.retweets = true;
+
+  function isFollowedTo(id) {
+    return new Promise(resolve => {
+      client.get('friendships/show', {
+        target_id: id
+      }, (error, body, response) => {
+        if (!error) {
+          resolve(body.relationship.source.followed_by);
+        } else {
+          //io.emit('twitter', error);
+        }
+      });
+    });
+  }
+
+  function checkTerms(data, profile, isfollow) {
+    console.log('checking terms: ');
+    let count = {
+      tweets: 0,
+      retweets: 0
+    };
+    let info = {
+      hashtag: false,
+      followers: false,
+      retweets: false,
+      isFollow: isfollow
+    };
+
+    const GODMODE = false;
+
+    if (profile._json.followers_count > 250) {
+      info.followers = true;
+    }
+    data.forEach(item => {
+      keywords.forEach(word => {
+        if (item.retweeted && item.retweeted_status.user.screen_name.toLowerCase() === retweetedCompany.toLowerCase()) {
+          let tweetDate = new Date(item.created_at);
+          let retweetDate = new Date(item.retweeted_status.created_at);
+          let diffDate = Math.ceil(Math.abs(tweetDate.getTime() - retweetDate.getTime()) / (1000 * 3600 * 24));
+          if (diffDate < mindays) {
+            count.retweets++;
+            if (count.retweets >= mincount) {
+              info.retweets = true;
+            }
           }
         }
-      }
-      if (item.text.toLowerCase().search(word.toLowerCase()) > -1) {
-        count.tweets++;
-        if (count.tweets >= 2) {
-          info.hashtag = true;
+        if (!item.retweeted && item.text.toLowerCase().search(word.toLowerCase()) > -1) {
+          count.tweets++;
+          if (count.tweets >= mincount) {
+            info.hashtag = true;
+          }
         }
-      }
+      });
     });
-  });
-  io.emit('twitter', info);
-}
+    if (GODMODE) {
+      ioclient.emit('twitter', GODMODE);
+      return false;
+    }
 
-app.get('/oauth/twitter', passport.authenticate('twitter'));
-app.get('/oauth/twitter/callback',
-  passport.authenticate('twitter', {failureRedirect: '/oauth/close'}),
-  function (req, res) {
-    res.redirect('/');
-  });
+    //io.emit('twitter', info);
+    console.log('twitter', info, ioclient);
+    if (info.hashtag && info.followers && info.retweets && info.isFollow) {
+      ioclient.emit('twitter', true);
+    } else {
+      ioclient.emit('twitter', false);
+    }
+  }
+
+  app.get('/oauth/twitter', passport.authenticate('twitter'));
+  app.get('/oauth/twitter/callback',
+    passport.authenticate('twitter', {failureRedirect: '/oauth/close'}),
+    function (req, res) {
+      res.redirect('/');
+    });
+});
