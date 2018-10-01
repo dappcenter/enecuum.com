@@ -4,7 +4,8 @@ const lists = {
   reg: 'KdFtUDXv0',
   kc: 'fAg3ovh9j',
   sb: 'LZysw0SR0',
-  ad: 'VvF013GlS'
+  ad: 'VvF013GlS',
+  wl: 'Qonag6BtT'
 };
 
 class Mail {

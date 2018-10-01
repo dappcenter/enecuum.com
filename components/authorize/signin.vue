@@ -18,7 +18,10 @@
                       :disabled="'disabled' ? loading : null"
                       @keyup.native="submit2FA"></el-input>
           </el-form-item>
-          <el-form-item>
+          <el-alert :title="'if you lost 2fa please contact support'" type="warning" center
+                    :closable="false">
+          </el-alert>
+          <el-form-item class="mt20">
             <el-button type="primary" class="neon" @click="submit2FA" :loading="loading">Submit</el-button>
           </el-form-item>
         </div>

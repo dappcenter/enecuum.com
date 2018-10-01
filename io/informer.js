@@ -4,13 +4,13 @@ const BigNumber = require(require.resolve('bignumber.js'));
 
 let pool = mysql.createPool({
   connectionLimit: 20,
-  user: process.env.db_user,
-  password: process.env.db_password,
-  host: process.env.db_host,
-  database: process.env.db_name
+  user: process.env.DB_USER_SITE,
+  password: process.env.DB_PASSWORD_SITE,
+  host: process.env.DB_HOST_SITE,
+  database: process.env.DB_NAME_SITE
 });
 
-function query({sender, token}) {
+/*function query({sender, token}) {
   return new Promise(resolve => {
     pool.getConnection((err, connection) => {
       if (err) {
@@ -108,12 +108,24 @@ function sendPureLog(data) {
   request('https://api.enecuum.com/v1' + "/log?err=Info&url=[&line=]&ua=data: " + data, (err, res) => {
     if (err) console.log(err);
   });
+}*/
+
+function getUsers(status = 3) {
+  return new Promise(resolve => {
+    let query = "SELECT IFNULL(i.ethWalletNumber, c.ethWalletNumber) AS wallet FROM users AS u JOIN kyc AS k ON u.id = k.user_id LEFT JOIN kyc_individual AS i ON (k.accountType = 1 AND u.id = i.user_id) LEFT JOIN kyc_company AS c ON (k.accountType = 2 AND u.id = c.user_id) WHERE k.status = " + status;
+    pool.getConnection((err, connection) => {
+      if (err) {
+        console.log('error:', err.stack);
+        return;
+      }
+      connection.query(query, (error, res) => {
+        connection.release();
+        resolve(res);
+      });
+    });
+  });
 }
 
 module.exports = {
-  query,
-  sendLog,
-  sendPureLog,
-  setFirstBlock,
-  getFirstBlock
-}
+  getUsers
+};

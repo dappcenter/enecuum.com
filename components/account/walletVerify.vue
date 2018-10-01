@@ -63,8 +63,8 @@
       return {
         waitingNotif: {},
         loading: false,
-        read: false,
-        agree: false,
+        read: true,
+        agree: true,
         errorAgree: '',
         timer: 0,
         walletForm: {
