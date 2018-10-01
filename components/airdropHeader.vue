@@ -3,7 +3,7 @@
     <div>
       <img src="/img/airdrop/bglogo.png" alt="" class="bg-logo">
       <div class="logo">
-        <router-link to="/"><img src="/img/airdrop/logo.png" alt=""></router-link>
+        <a to="https://enecuum.com"><img src="/img/airdrop/logo.png" alt=""></a>
       </div>
       <div class="menu-text" v-if="!auth">
         Enecuum is the world's first blockchain to unite millions of connected devices into a single network.
