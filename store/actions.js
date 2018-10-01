@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const apiUrl = 'https://api.enecuum.com/v1';
-const pureApi = 'http://airdrop.enecuum.com/api';
-const pureUrl = 'http://enecuum.com';
+const pureApi = 'https://airdrop.enecuum.com/api';
+const pureUrl = 'https://enecuum.com';
 
 const airdropDirectory = '/app';
 
@@ -10,7 +10,7 @@ const actions = {
   setWhiteList(store, data) {
     return new Promise(resolve => {
       axios.request({
-        url: pureUrl + '/backoffice/whitelist',
+        url: pureUrl + '/api/backoffice/whitelist',
         method: 'POST',
         data: data,
         withCredentials: true,
