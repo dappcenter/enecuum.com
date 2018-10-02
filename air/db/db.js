@@ -80,6 +80,26 @@ class MongoProvider {
 
   /**
    *
+   * @param data
+   * @returns {Promise<any>}
+   */
+  getUserByEmail(data) {
+    return new Promise(resolve => {
+      User.findOne({
+        email: data.email,
+      }).select('id name surname email twitter facebook linkedin telegram emailpro total kyc -_id').exec((err, user) => {
+        if (err) {
+          console.log('get user error: ', err);
+          resolve(400);
+        } else {
+          resolve(user);
+        }
+      });
+    })
+  }
+
+  /**
+   *
    * @param t
    * @param sessionid
    * @returns {Promise<any>}

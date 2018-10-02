@@ -76,7 +76,6 @@ io.on('connect', (ioclient) => {
     let info = {
       hashtag: false,
       followers: false,
-      retweets: false,
       isFollow: isfollow
     };
 
@@ -84,15 +83,16 @@ io.on('connect', (ioclient) => {
       info.followers = true;
     }
     data.forEach(item => {
+      console.log(item);
       keywords.forEach(word => {
         if (item.retweeted && item.retweeted_status.user.screen_name.toLowerCase() === retweetedCompany.toLowerCase()) {
           /*          let tweetDate = new Date(item.created_at);
                     let retweetDate = new Date(item.retweeted_status.created_at);
                     let diffDate = Math.ceil(Math.abs(tweetDate.getTime() - retweetDate.getTime()) / (1000 * 3600 * 24));*/
           //if (diffDate < mindays) {
-          count.retweets++;
-          if (count.retweets >= mincount) {
-            info.retweets = true;
+          count.tweets++;
+          if (count.tweets >= mincount) {
+            info.hashtag = true;
           }
           //}
         }
@@ -106,7 +106,7 @@ io.on('connect', (ioclient) => {
     });
 
     console.log('twitter', info, ioclient);
-    if (info.hashtag && info.followers && info.retweets && info.isFollow) {
+    if (info.hashtag && info.followers && info.isFollow) {
       ioclient.emit('twitter', true);
     } else {
       ioclient.emit('twitter', false);

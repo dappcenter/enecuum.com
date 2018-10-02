@@ -247,8 +247,8 @@
       checkRule(type) {
         window.open("/oauth/" + type, "", "width=500,height=300");
         this.$notify({
-          message: 'Checking your account',
-          type: 'success',
+          message: 'Checking your account...',
+          type: 'info',
           position: 'bottom-left'
         });
         this.rulesVisible = false;
@@ -312,13 +312,14 @@
             this.$store.state.airdropUser[provider] = true;
             this.$store.state.airdropUser.total = res.data.total;
             this.$notify({
-              message: 'Awesome! Your balance is ' + res.data.total + 'ENQ',
+              message: 'Congrats, you just earned ' + res.data.total + ' ENQ',
               type: 'success',
               position: 'bottom-left'
             });
           } else {
             this.$notify({
-              message: 'Check rules',
+              title: 'Verification',
+              message: 'All required conditions are not met',
               type: 'info',
               position: 'bottom-left'
             });
@@ -340,7 +341,8 @@
       socket.on('twitter', (data) => {
         if (!data || typeof(data) === 'object') {
           this.$notify({
-            message: 'Check rules',
+            title: 'Verification',
+            message: 'All required conditions are not met',
             type: 'info',
             position: 'bottom-left'
           });
@@ -351,7 +353,8 @@
       socket.on('facebook', (data) => {
         if (!data || typeof(data) === 'object') {
           this.$notify({
-            message: 'Check rules',
+            title: 'Verification',
+            message: 'All required conditions are not met',
             type: 'info',
             position: 'bottom-left'
           });
