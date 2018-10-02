@@ -86,6 +86,7 @@
                 form</label><input
                 type="file"
                 id="file"
+                accept="image/*"
                 @change="loadFile"></label>
               <input type="text" class="inputfile" disabled v-model="file.name">
             </div>
@@ -102,7 +103,7 @@
               you can register it, for example, on myetherwallet.com
             </div>
           </el-col>
-          <el-col :xs="24" :sm="16" v-if="!mainuser.kyc">
+          <el-col :xs="24" :sm="16">
             <div class="input_group-wrapper">
               <div class="input_group button flex-start">
                 <button @click="submit">Submit</button>
@@ -127,13 +128,15 @@
       <div slot="footer" class="dialog-footer">
         <a href="https://twitter.com/ENQ_enecuum" target="_blank" style="padding-right: 10px;"
            v-if="activeRule==='twitter'">
-          <el-button type="primary">Follow Twitter</el-button>
+          <el-button type="primary">Twitter Group</el-button>
         </a>
-        <a href="https://t.me/joinchat/BP8vLBA-c58r3BbF5y9cYg" target="_blank" style="padding-right: 10px;"
+        <a href="https://t.me/Enecuum_EN" target="_blank" style="padding-right: 10px;"
            v-if="activeRule==='telegram'">
-          <el-button type="primary">Join Telegram</el-button>
+          <el-button type="primary">Telegram Group</el-button>
         </a>
-        <el-button type="primary" @click="checkRule(activeRule)" v-if="activeRule!=='telegram'">OK</el-button>
+        <el-button type="primary" @click="checkRule(activeRule)" v-if="activeRule!=='telegram' && activeRule!=='uniq'">
+          OK
+        </el-button>
       </div>
     </el-dialog>
   </div>
@@ -154,8 +157,8 @@
         countries: [],
         airdropData: {
           facebook: ['You must have at least 300 friends. If you have been rejected due to less than 300 friends, do not resent your application with updated followers list. The application will be denied.', 'You have to be a follower of official Enecuum facebook page (<a href="https://www.facebook.com/enecuum.EN/" target="_blank">https://www.facebook.com/enecuum.EN/</a>)', 'Facebook friends count will not be updated after your registration', 'You have to make at least 1 original post (with your own content) and 1 repost per campaign.'],
-          twitter: ['You must have at least 250 followers. If you have been rejected due to less than 250 followers, do not resent your application with updated followers list. The application will be denied', 'You have to be a follower of official Enecuum Twitter', 'Do not retweet tweets older than 1 week. It will not be counted. (<a href="https://twitter.com/ENQ_enecuum" target="_blank">https://twitter.com/ENQ_enecuum</a>)', 'Your Twitter audit must be at least 80%', 'Twitter followers count will not be updated after your registration', 'You have to make at least 2 original tweets (with your own content) and 2 retweets per campaign', 'You must use our hashtags: #Enecuum #ENQ #mobilemining in original tweets'],
-          telegram: ['Follow Enecuum <a href="https://t.me/joinchat/BP8vLBA-c58r3BbF5y9cYg" target="_blank">Telegram</a> group to get a reward', 'Quitting during the ongoing airdrop is restricted. If you quit the channel before the campaign is over, your reward will be annulled'],
+          twitter: ['You must have at least 150 followers. If you have been rejected due to less than 150 followers, do not resent your application with updated followers list. The application will be denied', 'You have to be a follower of official Enecuum Twitter', 'You have to make at least 2 original tweets (with your own content) and 2 retweets per campaign', 'You must use our hashtags: #Enecuum #ENQ #mobilemining in original tweets'],
+          telegram: ['Follow Enecuum <a href="https://t.me/Enecuum_EN" target="_blank">Telegram</a> group to get a reward', 'Quitting during the ongoing airdrop is restricted. If you quit the channel before the campaign is over, your reward will be annulled'],
           uniq: ['Your content (article or video) must be original and contain at least 300 words (2 min)', 'Your article (video) may be in other language than English but please write that in your application. Your article must have the following links: Enecuum website (<a href="https://enecuum.com/">https://enecuum.com//<a>) ', 'Enecuum Telegram (<a href="https://t.me/Enecuum_EN" target="_blank">https://t.me/Enecuum_EN</a>) Your article may be posted on Facebook, Medium, LinkedIn, Youtube.', 'Promote your article (video) in other forums like Facebook, Twitter or LinkedIn or other with a large outreach (more than 250 followers) *', 'Send link to the article to the Enecuum Telegram (<a href="https://t.me/Enecuum_EN" target="_blank" ">https://t.me/Enecuum_EN</a>)', 'Send the link on your Article  to <a href="mailto:airdrop@enecuum.com">airdrop@enecuum.com</a>'],
           emailpro: ['Leave your application (email) to participate in Airdrop']
         },
@@ -173,15 +176,15 @@
           price: 25
         }, {
           type: 'telegram',
-          img: '/img/airdrop/0x74656c656772616d.png',
+          img: '/img/airdrop/telegram.png',
           price: 40
         }, {
           type: 'twitter',
-          img: '/img/airdrop/0x74776974746572.png',
+          img: '/img/airdrop/twitter.png',
           price: 20
         }, /* {
           type: 'facebook',
-          img: '/img/airdrop/0x66616365626f6f6b.png',
+          img: '/img/airdrop/facebook.png',
           price: 20
         },*/ {
           type: 'uniq',
@@ -234,7 +237,7 @@
             this.getInfo('telegram', res.data.ok);
           } else {
             this.$notify({
-              message: 'Please check rules',
+              message: 'Check rules',
               type: 'error',
               position: 'bottom-left'
             });
@@ -244,8 +247,8 @@
       checkRule(type) {
         window.open("/oauth/" + type, "", "width=500,height=300");
         this.$notify({
-          message: 'Checking your account...',
-          type: 'info',
+          message: 'Checking your account',
+          type: 'success',
           position: 'bottom-left'
         });
         this.rulesVisible = false;
@@ -271,9 +274,10 @@
         data.append('nation', this.userdata.nation);
         data.append('birthDate', this.userdata.birthDate);
         data.append('walletInfo', this.userdata.walletInfo);
-        data.append('email', this.$store.state.airdropUser.email); //this.$store.state.airdropUser.email
+        data.append('email', this.$store.state.airdropUser.email);
         let save = this.$store.dispatch('airdropLiteKyc', data);
-        save.then(res => {
+        console.log(save);
+        save.then((err, res) => {
           if (res.ok) {
             this.$notify({
               message: 'Thank you!',
@@ -281,6 +285,12 @@
               position: 'bottom-left'
             });
             this.$store.state.airdropUser.kyc = true;
+          } else {
+            this.$notify({
+              message: res.message,
+              type: 'error',
+              position: 'bottom-left'
+            });
           }
         });
       },
@@ -314,7 +324,6 @@
               position: 'bottom-left'
             });
           }
-          this.rulesVisible = false;
         });
       }
     },
@@ -324,7 +333,6 @@
       }
       this.user = this.$store.state.airdropUser;
       socket.on('twitter', (data) => {
-        console.log('from io twitter: ', data);
         if (!data || typeof(data) === 'object') {
           this.$notify({
             message: 'Check rules',
@@ -336,6 +344,7 @@
         }
       });
       socket.on('facebook', (data) => {
+        console.log('from io facebook: ', data);
         if (!data || typeof(data) === 'object') {
           this.$notify({
             message: 'Check rules',
@@ -351,12 +360,6 @@
       });
       axios.get('/i18n/countries.json').then(res => {
         this.countries = res.data;
-      });
-      let airdropKyc = this.$store.dispatch('getAirdropKyc');
-      airdropKyc.then(res => {
-        if (res.ok) {
-          this.userdata = res.message;
-        }
       });
     }
   }

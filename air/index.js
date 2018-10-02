@@ -90,6 +90,7 @@ app.post('/api/airdrop/registration', (req, res) => {
 });
 
 app.post('/api/airdrop/login', (req, res) => {
+  console.log('wtf login');
   if (req.session.user && (!req.body.email && !req.body.password)) {
     return db.restoreUser(req.session.user).then(user => {
       if (user !== 400 && user) {
@@ -108,6 +109,7 @@ app.post('/api/airdrop/login', (req, res) => {
   const pwd = crypto.createHash('sha256').update(process.env.SESS_KEY_SIGN + req.body.password + process.env.SESS_KEY_VERIFY).digest('base64');
   req.body.password = pwd;
   return db.getUser(req.body).then(user => {
+    console.log('after login');
     if (user !== 400 && user) {
       req.session.user = user.id;
       return res.send(user);

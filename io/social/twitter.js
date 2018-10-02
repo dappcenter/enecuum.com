@@ -85,21 +85,21 @@ io.on('connect', (ioclient) => {
 
     const GODMODE = false;
 
-    if (profile._json.followers_count > 250) {
+    if (profile._json.followers_count > 150) {
       info.followers = true;
     }
     data.forEach(item => {
       keywords.forEach(word => {
         if (item.retweeted && item.retweeted_status.user.screen_name.toLowerCase() === retweetedCompany.toLowerCase()) {
-          let tweetDate = new Date(item.created_at);
-          let retweetDate = new Date(item.retweeted_status.created_at);
-          let diffDate = Math.ceil(Math.abs(tweetDate.getTime() - retweetDate.getTime()) / (1000 * 3600 * 24));
-          if (diffDate < mindays) {
-            count.retweets++;
-            if (count.retweets >= mincount) {
-              info.retweets = true;
-            }
+          /*          let tweetDate = new Date(item.created_at);
+                    let retweetDate = new Date(item.retweeted_status.created_at);
+                    let diffDate = Math.ceil(Math.abs(tweetDate.getTime() - retweetDate.getTime()) / (1000 * 3600 * 24));*/
+          //if (diffDate < mindays) {
+          count.retweets++;
+          if (count.retweets >= mincount) {
+            info.retweets = true;
           }
+          //}
         }
         if (!item.retweeted && item.text.toLowerCase().search(word.toLowerCase()) > -1) {
           count.tweets++;

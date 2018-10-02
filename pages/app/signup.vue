@@ -81,7 +81,7 @@
         <el-col :xs="24" :sm="6">
           <div class="input_group-wrapper">
             <div class="input_group button">
-              <router-link to="/app/signin">
+              <router-link to="/airdrop/signin">
                 <button>Already signed up</button>
               </router-link>
             </div>
@@ -142,7 +142,7 @@
           let logged = this.$store.dispatch('airdropRegister', this.user);
           logged.then(res => {
             if (res.ok) {
-              this.$router.push('/app/backoffice');
+              this.$router.push('/airdrop/backoffice');
             } else {
               if (res.message) {
                 this.$notify({
