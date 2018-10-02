@@ -226,7 +226,7 @@
       },
       onTelegramAuth(user) {
         axios.request({
-          url: '//airdrop.enecuum.com/oauth/telegram',
+          url: '/oauth/telegram',
           data: {
             id: user.id,
             hash: user.hash
