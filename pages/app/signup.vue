@@ -78,7 +78,7 @@
         </el-col>
       </el-row>
       <el-row type="flex" justify="center" class="input_group-row">
-        <el-col :xs="24" :sm="6">
+        <el-col :xs="24" :sm="8">
           <div class="input_group-wrapper">
             <div class="input_group button">
               <router-link to="/app/signin">
