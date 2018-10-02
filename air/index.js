@@ -57,7 +57,7 @@ app.post('/api/airdrop/registration', (req, res) => {
       message: 'Some fields are empty'
     });
   }
-  const pwd = crypto.createHash('sha256').update(process.env.SESS_KEY_SIGN + process.env.SESS_KEY_VERIFY + req.body.password).digest('base64');
+  const pwd = crypto.createHash('sha256').update(process.env.SESS_KEY_SIGN + req.body.password + process.env.SESS_KEY_VERIFY).digest('base64');
   const id = crypto.createHash('sha256').update(new Date().getTime() + Math.random() * 9999 + (process.env.SESS_KEY_SIGN + process.env.SESS_KEY_VERIFY)).digest('base64');
   req.body.password = pwd;
   req.body.id = id;
@@ -108,7 +108,7 @@ app.post('/api/airdrop/login', (req, res) => {
     });
   }
   console.log('before getuser');
-  const pwd = crypto.createHash('sha256').update(process.env.SESS_KEY_SIGN + process.env.SESS_KEY_VERIFY + req.body.password).digest('base64');
+  const pwd = crypto.createHash('sha256').update(process.env.SESS_KEY_SIGN + req.body.password + process.env.SESS_KEY_VERIFY).digest('base64');
   req.body.password = pwd;
   return db.getUser(req.body).then(user => {
     if (user !== 400 && user) {
