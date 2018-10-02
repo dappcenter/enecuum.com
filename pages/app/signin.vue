@@ -74,7 +74,7 @@
               this.$router.push('/app/backoffice');
             } else {
               this.$notify({
-                message: 'Incorrect email or password.',
+                message: 'Incorrect email or password',
                 type: 'error',
                 position: 'bottom-left'
               });
@@ -82,7 +82,7 @@
           });
         } else {
           this.$notify({
-            message: 'Email of password is empty.',
+            message: 'Email of password is empty',
             type: 'warning',
             position: 'bottom-left'
           });
