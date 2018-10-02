@@ -215,7 +215,6 @@
           script.setAttribute('data-size', this.size || 'medium');
           script.setAttribute('data-userpic', this.userpic || false);
           script.setAttribute('data-telegram-login', this.telegramLogin || 'ENQ_airdrop_bot');
-          script.setAttribute('data-request-access', this.requestAccess || 'read');
           if (this.radius) {
             script.setAttribute('data-radius', '4')
           }
