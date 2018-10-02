@@ -134,7 +134,8 @@
            v-if="activeRule==='telegram'">
           <el-button type="primary">Telegram Group</el-button>
         </a>
-        <el-button type="primary" @click="checkRule(activeRule)" v-if="activeRule!=='telegram'">OK</el-button>
+        {{activeRule}}
+        <el-button type="primary" @click="checkRule(activeRule)" v-if="activeRule!=='telegram' && activeRule!=='eniq'">OK</el-button>
       </div>
     </el-dialog>
   </div>

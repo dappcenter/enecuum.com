@@ -172,6 +172,12 @@
       axios.get('/i18n/countries.json').then(res => {
         this.countries = res.data;
       });
+      let isAuthed = this.$store.dispatch('isAirdropAuth', {cookies: this.$store.state.cookies});
+      isAuthed.then(res => {
+        if (res == 'success') {
+          this.$router.push('/app/backoffice');
+        }
+      });
     }
   }
 </script>

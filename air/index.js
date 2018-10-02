@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
 });
 
 app.use(cookieSession({
-  name: 'supersession',
+  name: 'session',
   keys: [process.env.SESS_KEY_SIGN, process.env.SESS_KEY_VERIFY],
   maxAge: 60 * 60 * 1000 * 24 * 7
 }));
@@ -108,6 +108,7 @@ app.post('/api/airdrop/login', (req, res) => {
   const pwd = crypto.createHash('sha256').update(process.env.SESS_KEY_SIGN + req.body.password + process.env.SESS_KEY_VERIFY).digest('base64');
   req.body.password = pwd;
   return db.getUser(req.body).then(user => {
+    console.log('after login');
     if (user !== 400 && user) {
       req.session.user = user.id;
       return res.send(user);
