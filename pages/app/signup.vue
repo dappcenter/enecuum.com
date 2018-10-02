@@ -20,6 +20,14 @@
           <el-col :xs="24" :sm="12">
             <div class="input_group-wrapper">
               <div class="input_group">
+                <label for="surname">Surname:</label>
+                <input type="text" id="surname" v-model="user.surname" @keyup.enter="register">
+              </div>
+            </div>
+          </el-col>
+          <el-col :xs="24" :sm="12">
+            <div class="input_group-wrapper">
+              <div class="input_group">
                 <label for="email">E-mail:</label>
                 <input type="email" id="email" v-model="user.email" @keyup.enter="register">
               </div>
@@ -27,14 +35,6 @@
           </el-col>
         </el-row>
         <el-row :gutter="20">
-          <el-col :xs="24" :sm="12">
-            <div class="input_group-wrapper">
-              <div class="input_group">
-                <label for="surname">Surname:</label>
-                <input type="text" id="surname" v-model="user.surname" @keyup.enter="register">
-              </div>
-            </div>
-          </el-col>
           <el-col :xs="24" :sm="12">
             <div class="input_group-wrapper">
               <div class="input_group">
