@@ -448,16 +448,23 @@ header {
   .user {
     &_panel {
       display: flex;
+      padding-left: 20px;
       padding-right: 20px;
       padding-top: 5px;
       padding-bottom: 5px;
       border-top: 2px solid #1772b4;
       border-bottom: 2px solid #1772b4;
       &-item {
+        display: flex;
         .wc {
           color: #ffffff;
           padding-left: 10px;
           padding-right: 10px;
+          max-width: 200px;
+          display: inline-block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
         &.logout {
           cursor: pointer;

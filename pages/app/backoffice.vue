@@ -228,8 +228,7 @@
         axios.request({
           url: '/oauth/telegram',
           data: {
-            id: user.id,
-            hash: user.hash
+            user: user
           },
           method: 'post',
           withCredentials: true,
