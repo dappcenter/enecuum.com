@@ -276,8 +276,7 @@
         data.append('walletInfo', this.userdata.walletInfo);
         data.append('email', this.$store.state.airdropUser.email);
         let save = this.$store.dispatch('airdropLiteKyc', data);
-        console.log(save);
-        save.then((err, res) => {
+        save.then(res => {
           if (res.ok) {
             this.$notify({
               message: 'Thank you!',

@@ -10,9 +10,6 @@ const retweetedCompany = 'ENQ_enecuum';
 const mincount = 2;
 const mindays = 7;
 
-const GODMODE = false;
-
-
 const client = new Twitter({
   consumer_key: process.env.TWITTER_API_KEY,
   consumer_secret: process.env.TWITTER_API_SECRET_KEY,
@@ -83,8 +80,6 @@ io.on('connect', (ioclient) => {
       isFollow: isfollow
     };
 
-    const GODMODE = false;
-
     if (profile._json.followers_count > 150) {
       info.followers = true;
     }
@@ -109,12 +104,7 @@ io.on('connect', (ioclient) => {
         }
       });
     });
-    if (GODMODE) {
-      ioclient.emit('twitter', GODMODE);
-      return false;
-    }
 
-    //io.emit('twitter', info);
     console.log('twitter', info, ioclient);
     if (info.hashtag && info.followers && info.retweets && info.isFollow) {
       ioclient.emit('twitter', true);

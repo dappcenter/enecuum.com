@@ -33,7 +33,7 @@
         <el-col :xs="24" :sm="6">
           <div class="input_group-wrapper">
             <div class="input_group button">
-              <router-link to="/airdrop/signup">
+              <router-link to="/app/signup">
                 <button>I'm not signed up</button>
               </router-link>
             </div>
@@ -71,7 +71,7 @@
           let logged = this.$store.dispatch('airdropLogin', this.user);
           logged.then(res => {
             if (res.ok) {
-              this.$router.push('/airdrop/backoffice');
+              this.$router.push('/app/backoffice');
             } else {
               this.$notify({
                 message: 'Incorrect login or password.',
