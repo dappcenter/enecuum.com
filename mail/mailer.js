@@ -4,6 +4,7 @@ const lists = {
   reg: 'KdFtUDXv0',
   kc: 'fAg3ovh9j',
   sb: 'LZysw0SR0',
+  ad: 'VvF013GlS',
   wl: 'Qonag6BtT'
 };
 
@@ -31,7 +32,8 @@ class Mail {
         url: 'https://mail.enecuum.com/api/subscribe/' + lists[type] + '?access_token=' + this.apikey,
         body: JSON.stringify(data)
       }, (err, res) => {
-        if (err) resolve({status: 400, message: err.body});
+        console.log(JSON.parse(res.body).error);
+        if (JSON.parse(res.body).error) resolve({status: 400, message: JSON.parse(res.body).error});
         resolve({status: 200, message: 'success'});
       });
     })

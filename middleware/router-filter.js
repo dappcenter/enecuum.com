@@ -1,7 +1,8 @@
 export default function ({route, redirect}) {
+  console.log('router', route.path);
   if (routes.indexOf(route.path) > -1) {
-    !process.env.dev ? redirect('/') : null;
+    redirect('/airdrop/signup');
   }
 }
 
-const routes = ['/account'];
+const routes = ['/airdrop', '/airdrop/'];

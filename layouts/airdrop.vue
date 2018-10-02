@@ -1,19 +1,19 @@
 <template>
-  <section class="container-wrapper">
-    <enqHeader></enqHeader>
+  <section class="airdrop">
+    <airdropHeader></airdropHeader>
     <nuxt/>
-    <enqFooter></enqFooter>
+    <airdropFooter></airdropFooter>
   </section>
 </template>
 <script>
-  import enqHeader from '@/components/enqHeader';
-  import enqFooter from '@/components/enqFooter';
+  import airdropHeader from '@/components/airdropHeader';
+  import airdropFooter from '@/components/airdropFooter';
 
   export default {
     name: 'airdrop',
     components: {
-      enqHeader,
-      enqFooter
+      airdropHeader,
+      airdropFooter
     }
   }
 </script>

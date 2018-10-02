@@ -1,3 +1,3 @@
-require('./facebook');
+//require('./facebook');
 require('./twitter');
-require('./linkedin');
+require('./telegram');

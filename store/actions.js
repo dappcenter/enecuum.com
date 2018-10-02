@@ -1,7 +1,11 @@
 import axios from 'axios';
 
 const apiUrl = 'https://api.enecuum.com/v1';
-const pureUrl = '//enecuum.com';
+const pureApi = 'https://airdrop.enecuum.com/api';
+const pureUrl = 'https://enecuum.com';
+
+const airdropDirectory = '/app';
+
 const actions = {
   setWhiteList(store, data) {
     return new Promise(resolve => {
@@ -9,7 +13,6 @@ const actions = {
         url: pureUrl + '/api/backoffice/whitelist',
         method: 'POST',
         data: data,
-        timeout: 360 * 1000,
         withCredentials: true,
       }).then((res) => {
         resolve(res.data);
@@ -36,6 +39,97 @@ const actions = {
           resolve('notauth');
         }
       })
+    });
+  },
+  getAirdropKyc() {
+    return new Promise(resolve => {
+      axios.request({
+        url: pureApi + '/airdrop/litekyc',
+        method: 'get',
+        withCredentials: true,
+      }).then((res) => {
+        if (res.data.ok) {
+          resolve({ok: true, message: res.data.message});
+        } else {
+          resolve({ok: false});
+        }
+      });
+    });
+  },
+  airdropLiteKyc(store, data) {
+    return new Promise(resolve => {
+      axios.request({
+        url: pureApi + '/airdrop/litekyc',
+        data: data,
+        method: 'post',
+        withCredentials: true,
+      }).then((res) => {
+        if (res.data.ok) {
+          resolve({ok: true});
+        } else {
+          resolve({ok: false});
+        }
+      });
+    });
+  },
+  airdropLogin(store, data) {
+    return new Promise(resolve => {
+      axios.request({
+        url: pureApi + '/airdrop/login',
+        data: data,
+        method: 'post',
+        withCredentials: true,
+      }).then((res) => {
+        if (res.data.email) {
+          store.commit('SET_AIRDROP_USER', res.data);
+          resolve({ok: true});
+        } else {
+          resolve({ok: false});
+        }
+      })
+    });
+  },
+  airdropRegister(store, data) {
+    return new Promise(resolve => {
+      axios.request({
+        url: pureApi + '/airdrop/registration',
+        data: data,
+        method: 'post',
+        withCredentials: true,
+      }).then((res) => {
+        if (res.data.email) {
+          store.commit('SET_AIRDROP_USER', res.data);
+          resolve({ok: true});
+        } else {
+          if (res.data.message) {
+            resolve({ok: false, message: res.data.message});
+          } else {
+            resolve({ok: false});
+          }
+        }
+      })
+    });
+  },
+  isAirdropAuth(store, {cookies}) {
+    return new Promise(resolve => {
+      axios.request({
+        url: pureApi + '/airdrop/login',
+        method: 'POST',
+        withCredentials: true,
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          Cookie: cookies ? cookies : ''
+        },
+      }).then((res) => {
+        console.log(res.data);
+        if (res.data.ok) {
+          store.commit('SET_AIRDROP_USER', res.data.message);
+          store.commit('SET_AIRDROP_AUTH', true);
+          resolve('success');
+        } else {
+          resolve('notauth');
+        }
+      });
     });
   },
   isAuth(store, {cookies}) {
@@ -69,13 +163,21 @@ const actions = {
       });
     })
   },
-  nuxtServerInit(store, {req}) {
+  nuxtServerInit(store, {req, redirect}) {
     let cookies = '';
     if (req.headers) {
       cookies = (req.headers.cookie);
     }
     process.env.dev ? store.commit('SET_DEBUG', true) : null;
+    console.log(process.env.AIRDROP_HOST, req.headers.host, req.path, (req.path.indexOf('oauth') === -1));
     store.commit('SET_COOKIES', cookies);
+    if (req.headers.host === process.env.AIRDROP_HOST) {
+      if ((req.path.indexOf('oauth') === -1) && req.path !== airdropDirectory + '/signup' && req.path !== airdropDirectory + '/signin' && req.path !== airdropDirectory + '/backoffice') {
+        redirect('/app/signup');
+      }
+    } else if (req.path == airdropDirectory + '/signup' || req.path == airdropDirectory + '/signin' || req.path == airdropDirectory + '/backoffice') {
+      redirect(process.env.AIRDROP_HOST + airdropDirectory + '/backoffice');
+    }
   },
   subscribeWP(state, data) {
     return new Promise(resolve => {

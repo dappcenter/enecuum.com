@@ -1,7 +1,7 @@
 <template>
   <section class="container">
     <el-row class="flex-center">
-      <el-col :xs="22" :sm="14" :md="10" :lg="8" :xl="6">
+      <el-col :xs="22" :sm="14" :md="12" :lg="10" :xl="8">
         <signin v-if="signinShow" @restore="signinShow=false"></signin>
         <restore v-else @back="signinShow=true"></restore>
       </el-col>

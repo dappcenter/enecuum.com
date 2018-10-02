@@ -6,31 +6,28 @@ const FacebookStrategy = require(require.resolve('passport-facebook')).Strategy;
 const facebookV = '3.1';
 const facebookGraph = 'https://graph.facebook.com/v' + facebookV + '/';
 
-let keywords = ['Enecuum', 'ENQ'];
+const keywords = ['Enecuum', 'ENQ'];
+const companyname = 'Enecuum ENQ Blockchain of tomorrow';
+const minfriends = 300;
+
+const GODMODE = true;
 
 passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
     profileFields: ['id', 'displayName', 'email', 'likes'],
-    callbackURL: "http://localhost:8081/oauth/facebook/callback"
+    callbackURL: process.env.DOMAIN_URL + "/oauth/facebook/callback"
   },
   async (accessToken, refreshToken, profile, cb) => {
-    let feed = await getFeed(profile, accessToken);
-    let friends = await getFriends(profile, accessToken);
-    io.emit(friends);
-    checkTerms(feed.data, friends.summary.total_count, profile);
+    let allInfo = await getAll(profile, accessToken);
+    checkTerms(allInfo.feed.data, allInfo.friends.summary, profile);
     cb('<script>window.close();</script>');
-    /*    request.get(facebookGraph + 'me/feed?format=json&access_token=' + accessToken, (err, res) => {
-          let feeds = JSON.parse(res.body);
-          checkTerms(feeds.data, profile);
-          cb('<script>window.close();</script>');
-        });*/
   }
 ));
 
-function getFeed(profile, accessToken) {
+function getAll(profile, accessToken) {
   return new Promise(resolve => {
-    request.get(facebookGraph + 'me/feed?format=json&access_token=' + accessToken, (err, res) => {
+    request.get(facebookGraph + 'me?fields=feed{subscribed,name,full_picture,from,message,target,type},friends&format=json&access_token=' + accessToken, (err, res) => {
       if (!err) {
         resolve(JSON.parse(res.body));
       }
@@ -38,43 +35,46 @@ function getFeed(profile, accessToken) {
   });
 }
 
-function getFriends(profile, accessToken) {
-  return new Promise(resolve => {
-    request.get(facebookGraph + 'me/friends?format=json&access_token=' + accessToken, (err, res) => {
-      console.log(err, res.body);
-      if (!err) {
-        resolve(JSON.parse(res.body));
-      }
-    });
-  });
-}
-
-function checkTerms(data, totalFriends, profile) {
-  let info = {
-    isPosted: false,
-    isReposted: false,
-    isFriends: false,
-  };
-  console.log(data);
-  data.forEach(item => {
-/*    if (item.id === '1168739663278027_531648226987177') {
-      info.isReposted = true;
-    }*/
-    if (item.message) {
-      keywords.forEach(word => {
-        if (item.message.toLowerCase().search(word.toLowerCase()) > -1) {
-          info.isPosted = true;
+io.on('connect', (client) => {
+  function checkTerms(data, totalFriends, profile) {
+    let info = {
+      isPosted: false,
+      isReposted: false,
+      isFriends: false,
+      isSubscribed: false,
+    };
+    data.forEach(item => {
+      if (item.name === companyname) {
+        info.isReposted = true;
+        if (item.subscribed = true) {
+          item.isSubscribed = true;
         }
-      });
+      }
+      if (item.message) {
+        keywords.forEach(word => {
+          if (item.message.toLowerCase().search(word.toLowerCase()) > -1) {
+            info.isPosted = true;
+          }
+        });
+      }
+    });
+    if (totalFriends.total_count > minfriends) {
+      info.isFriends = true;
     }
-  });
-  if (totalFriends > 300) {
-    info.isFriends = true;
+
+    if (GODMODE) {
+      client.emit('facebook', GODMODE);
+      return false;
+    }
+
+    client.emit('facebook', {info: info, totalFriends: totalFriends.total_count});
+    if (info.isPosted && info.isReposted && info.isFriends && info.isSubscribed) {
+      client.emit('facebook', true);
+    } else {
+      client.emit('facebook', false);
+    }
   }
-  io.emit('facebook', profile);
-  io.emit('facebook', info);
-  io.emit('facebook', data);
-}
+});
 
 app.get('/oauth/facebook', passport.authenticate('facebook', {scope: ['email', 'user_posts', 'groups_access_member_info', 'user_likes', 'user_friends']}));
 app.get('/oauth/facebook/callback', (req, res, next) => {

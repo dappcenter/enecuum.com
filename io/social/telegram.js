@@ -1,15 +1,18 @@
-const request = require(require.resolve('request'));
-const passport = require(require.resolve('passport'));
+const TelegramBot = require('node-telegram-bot-api');
+const Agent = require('socks5-https-client/lib/Agent');
+const token = process.env.TELEGRAM_APIKEY;
+
+const bot = new TelegramBot(token, {
+  polling: true
+});
+
 const {app, io} = require('./../server');
-const TelegramStrategy = require('passport-telegram-official').Strategy;
 
-
-passport.use(new TelegramStrategy({
-    botToken: BOT_TOKEN
-  },
-  (profile, cb) => {
-    console.log(profile);
-  }
-));
-
-app.get('/oauth/telegram', passport.authenticate('telegram'));
+app.post('/oauth/telegram', (req, res, next) => {
+  console.log(req.body.id);
+  bot.getChatMember(process.env.TELEGRAM_GROUPID, req.body.id).catch(error => {
+    res.send({ok: false});
+  }).then(user => {
+    res.send({ok: true});
+  });
+});
