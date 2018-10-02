@@ -123,6 +123,7 @@
       return {
         videoVisible: false,
         videoUrl: '',
+        videoTitle: '',
         icoContract: {},
         tokenContract: {},
         web3info: {
