@@ -110,7 +110,7 @@ app.post('/api/airdrop/login', (req, res) => {
   console.log('before getuser');
   const pwd = crypto.createHash('sha256').update(process.env.SESS_KEY_SIGN + req.body.password + process.env.SESS_KEY_VERIFY).digest('base64');
   req.body.password = pwd;
-  console.log('after get pwd');
+  console.log('after get pwd', process.env);
   return db.getUser(req.body).then(user => {
     console.log('in promise getting user', user);
     if (user !== 400 && user) {
