@@ -25,11 +25,21 @@
               </div>
             </div>
           </el-col>
+        </el-row>
+        <el-row :gutter="20">
           <el-col :xs="24" :sm="12">
             <div class="input_group-wrapper">
               <div class="input_group">
                 <label for="email">E-mail:</label>
                 <input type="email" id="email" v-model="user.email" @keyup.enter="register">
+              </div>
+            </div>
+          </el-col>
+          <el-col :xs="24" :sm="12">
+            <div class="input_group-wrapper">
+              <div class="input_group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" v-model="user.password" @keyup.enter="register">
               </div>
             </div>
           </el-col>
@@ -42,16 +52,6 @@
                   <option selected disabled>Country of citizenship</option>
                   <option v-for="(item, key) in countries" :value="item.name" :key="key">{{item.name}}</option>
                 </select>
-              </div>
-            </div>
-          </el-col>
-        </el-row>
-        <el-row :gutter="20">
-          <el-col :xs="24" :sm="12">
-            <div class="input_group-wrapper">
-              <div class="input_group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" v-model="user.password" @keyup.enter="register">
               </div>
             </div>
           </el-col>
