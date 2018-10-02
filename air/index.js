@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
 });
 
 app.use(cookieSession({
-  name: 'supersession',
+  name: 'session',
   keys: [process.env.SESS_KEY_SIGN, process.env.SESS_KEY_VERIFY],
   maxAge: 60 * 60 * 1000 * 24 * 7
 }));
