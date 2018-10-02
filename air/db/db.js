@@ -5,7 +5,6 @@ const {User, LiteKyc} = require('./models');
 class MongoProvider {
   constructor(url) {
     mongoose.connect(url, (err) => {
-      console.log('mongourl: ', url);
       if (!err) {
         console.log('connect success')
       } else {
@@ -69,7 +68,6 @@ class MongoProvider {
         email: data.email,
         password: data.password
       }).select('id name surname email twitter facebook linkedin telegram emailpro total kyc -_id').exec((err, user) => {
-        console.log(err, user);
         if (err) {
           console.log('get user error: ', err);
           resolve(400);
