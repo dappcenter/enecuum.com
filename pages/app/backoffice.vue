@@ -226,7 +226,7 @@
       },
       onTelegramAuth(user) {
         axios.request({
-          url: '/oauth/telegram',
+          url: 'https://dev.enecuum.com/oauth/telegram',
           data: {
             id: user.id
           },
