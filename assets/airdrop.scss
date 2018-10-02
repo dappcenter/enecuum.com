@@ -230,10 +230,10 @@
         &[type='file'] {
           display: none;
         }
-        &[disabled]:not(.inputfile) {
+/*        &[disabled]:not(.inputfile) {
           border: 0px;
           box-shadow: none;
-        }
+        }*/
       }
       &:hover {
         box-shadow: none;
@@ -249,10 +249,10 @@
         option {
           color: #2e2e2e;
         }
-        &[disabled] {
+/*        &[disabled] {
           border: 0px;
           box-shadow: none;
-        }
+        }*/
       }
     }
     &.button {

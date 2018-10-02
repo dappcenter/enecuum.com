@@ -16,7 +16,6 @@ const storage = multer.diskStorage({
     cb(null, new Date().getTime() + file.originalname);
   }
 });
-const upload = multer({storage: storage});
 
 app.use(cookieSession({
   name: 'supersession',
@@ -100,7 +99,6 @@ app.post('/api/airdrop/login', (req, res) => {
       }
     });
   }
-  console.log('after session');
   if (!req.body.email || !req.body.password) {
     return res.send({
       ok: false,
@@ -130,15 +128,34 @@ app.get('/api/airdrop/litekyc', (req, res) => {
   });
 });
 
-app.post('/api/airdrop/litekyc', upload.single('file'), (req, res) => {
-  if (!req.session.user) return res.send('Permission denied');
-  let data = req.body;
-  data.file = req.file.path;
-  db.saveLiteKyc({data: data, sessionid: req.session.user}).then(kyc => {
-    if (kyc === 200) {
-      return res.send({ok: true});
+const upload = multer({
+  storage: storage,
+  fileFilter(req, file, cb) {
+    let filetypes = ['jpeg', 'jpg', 'gif', 'png', 'bmp', 'pdf'];
+    if (filetypes.includes(file.originalname.split('.').slice(-1)[0])) {
+      cb(null, true);
     } else {
-      return res.send({ok: false});
+      cb(new Error('Filetype not allowed'));
+    }
+  }
+});
+const fileUpload = upload.single('file');
+
+app.post('/api/airdrop/litekyc', (req, res) => {
+  if (!req.session.user) return res.send('Permission denied');
+  fileUpload(req, res, (err) => {
+    if (err) {
+      return res.send({ok: false, message: 'Filetype not allowed'});
+    } else {
+      let data = req.body;
+      data.file = req.file.path;
+      db.saveLiteKyc({data: data, sessionid: req.session.user}).then(kyc => {
+        if (kyc === 200) {
+          return res.send({ok: true});
+        } else {
+          return res.send({ok: false});
+        }
+      });
     }
   });
 });
