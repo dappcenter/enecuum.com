@@ -10,7 +10,7 @@
         <br>
         Very soon we will launch our application for smartphones, which will make it possible to earn tokens. Just
         imagine, you will be able to receive a reward while you are sleeping! Do you want to receive benefits as device
-        owner? All you need to do is download our App !
+        owner? All you need to do is download our App!
       </div>
       <div class="enq-video">
         <iframe src="https://www.youtube.com/embed/GpPAfyFqbAE" frameborder="0" style="width: 100%; height: 360px;"
@@ -100,7 +100,7 @@
           <el-col :xs="24" :sm="16" v-if="!mainuser.kyc">
             <div class="subscr"> IMPORTANT: Do not enter an exchange wallet address from Coinbase, Bittrex, Binance, or
               any other. You need a personal address where you control the private keys! If you do not have a wallet,
-              you can register it, for example, on myetherwallet.com
+              you can register it, for example, on myetherwallet.com.
             </div>
           </el-col>
           <el-col :xs="24" :sm="16" v-if="!mainuser.kyc">
@@ -226,9 +226,10 @@
       },
       onTelegramAuth(user) {
         axios.request({
-          url: 'https://dev.enecuum.com/',
+          url: '//oauth/telegram',
           data: {
-            id: user.id
+            id: user.id,
+            hash: user.hash
           },
           method: 'post',
           withCredentials: true,
