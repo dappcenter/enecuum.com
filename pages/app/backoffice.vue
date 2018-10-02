@@ -205,7 +205,6 @@
       },
       initTelegramBtn() {
         setTimeout(() => {
-          console.log(document.getElementById('telegramAuth'));
           if (!document.getElementById('telegramAuth')) return false;
           const script = document.createElement('script');
           script.async = true;
@@ -337,7 +336,6 @@
         }
       });
       socket.on('facebook', (data) => {
-        console.log('from io facebook: ', data);
         if (!data || typeof(data) === 'object') {
           this.$notify({
             message: 'Check rules',
@@ -349,7 +347,6 @@
         }
       });
       socket.on('connectServer', (data) => {
-        console.log('conencted to server:', data);
         if (!data) return false;
       });
       axios.get('/i18n/countries.json').then(res => {

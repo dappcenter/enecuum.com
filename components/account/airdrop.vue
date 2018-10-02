@@ -48,13 +48,6 @@
 <script>
   import socket from '~/plugins/socket.io.js';
 
-  socket.on('facebook', (data) => {
-    console.log(data);
-  });
-
-  socket.on('twitter', (data) => {
-    console.log(data);
-  });
   export default {
     name: "airdrop",
     data() {

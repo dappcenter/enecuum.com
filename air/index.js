@@ -91,7 +91,6 @@ app.post('/api/airdrop/registration', (req, res) => {
 });
 
 app.post('/api/airdrop/login', (req, res) => {
-  console.log(req.session.user, req.body.email, req.body.password);
   if (req.session.user && (!req.body.email && !req.body.password)) {
     return db.restoreUser(req.session.user).then(user => {
       if (user !== 400 && user) {
@@ -102,7 +101,7 @@ app.post('/api/airdrop/login', (req, res) => {
     });
   }
   console.log('after session');
-  if (!req.body.email && !req.body.password) {
+  if (!req.body.email || !req.body.password) {
     return res.send({
       ok: false,
       message: 'Some fields are empty'

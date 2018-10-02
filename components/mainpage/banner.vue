@@ -127,7 +127,6 @@
     },
     methods: {
       onVerify(response) {
-        console.log(response);
         this.sendWhitelist(response);
       },
       submitWL() {

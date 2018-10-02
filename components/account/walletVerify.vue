@@ -145,7 +145,6 @@
         data.recaptcha = captcha;
         let idtime = new Date().getTime();
         localStorage.setItem('idle', idtime);
-        console.log(idtime, localStorage.getItem('idle'));
         data.queryTime = idtime;
         this.loading = true;
         let isWhitelisted = this.$store.dispatch('setWhiteList', data);
@@ -157,7 +156,6 @@
     },
     mounted() {
       socket.on('wl', ({ok, id}) => {
-        console.log({ok, id});
         let idle = localStorage.getItem('idle');
         if (this.kyc.code === 202 && parseInt(idle) === parseInt(id)) {
           if (ok) {
