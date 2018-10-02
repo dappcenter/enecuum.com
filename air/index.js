@@ -89,13 +89,18 @@ app.post('/api/airdrop/registration', (req, res) => {
   });
 });
 
+app.get('/api/airdrop/logout', (req, res) => {
+  req.session = null;
+  res.send({ok: true});
+});
+
 app.post('/api/airdrop/login', (req, res) => {
   if (req.session.user && (!req.body.email && !req.body.password)) {
     return db.restoreUser(req.session.user).then(user => {
       if (user !== 400 && user) {
         return res.send({ok: true, message: user});
       } else {
-        delete req.session.user;
+        req.session = null;
       }
     });
   }

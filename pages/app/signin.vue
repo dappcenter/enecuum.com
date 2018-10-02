@@ -13,7 +13,7 @@
             <div class="input_group-wrapper">
               <div class="input_group">
                 <label for="email">Email:</label>
-                <input type="text" id="email" v-model="user.email">
+                <input type="text" id="email" v-model="user.email" @keyup.enter="login">
               </div>
             </div>
           </el-col>
@@ -23,7 +23,7 @@
             <div class="input_group-wrapper">
               <div class="input_group">
                 <label for="password">Password</label>
-                <input type="password" id="password" v-model="user.password">
+                <input type="password" id="password" v-model="user.password" @keyup.enter="login">
               </div>
             </div>
           </el-col>

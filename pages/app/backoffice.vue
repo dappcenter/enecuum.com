@@ -99,11 +99,11 @@
           </el-col>
           <el-col :xs="24" :sm="16" v-if="!mainuser.kyc">
             <div class="subscr"> IMPORTANT: Do not enter an exchange wallet address from Coinbase, Bittrex, Binance, or
-              any other. You need a personal address where you control the private keys!. If you do not have a wallet,
+              any other. You need a personal address where you control the private keys! If you do not have a wallet,
               you can register it, for example, on myetherwallet.com
             </div>
           </el-col>
-          <el-col :xs="24" :sm="16">
+          <el-col :xs="24" :sm="16" v-if="!mainuser.kyc">
             <div class="input_group-wrapper">
               <div class="input_group button flex-start">
                 <button @click="submit">Submit</button>
@@ -128,11 +128,11 @@
       <div slot="footer" class="dialog-footer">
         <a href="https://twitter.com/ENQ_enecuum" target="_blank" style="padding-right: 10px;"
            v-if="activeRule==='twitter'">
-          <el-button type="primary">Twitter Group</el-button>
+          <el-button type="primary">Follow Twitter</el-button>
         </a>
         <a href="https://t.me/Enecuum_EN" target="_blank" style="padding-right: 10px;"
            v-if="activeRule==='telegram'">
-          <el-button type="primary">Telegram Group</el-button>
+          <el-button type="primary">Join Telegram</el-button>
         </a>
         <el-button type="primary" @click="checkRule(activeRule)" v-if="activeRule!=='telegram' && activeRule!=='uniq'">
           OK
@@ -176,15 +176,15 @@
           price: 25
         }, {
           type: 'telegram',
-          img: '/img/airdrop/telegram.png',
+          img: '/img/airdrop/0x74656c656772616d.png',
           price: 40
         }, {
           type: 'twitter',
-          img: '/img/airdrop/twitter.png',
+          img: '/img/airdrop/0x74776974746572.png',
           price: 20
         }, /* {
           type: 'facebook',
-          img: '/img/airdrop/facebook.png',
+          img: '/img/airdrop/0x66616365626f6f6b.png',
           price: 20
         },*/ {
           type: 'uniq',
@@ -331,6 +331,12 @@
         this.checkTerms = localStorage.getItem('checkterms');
       }
       this.user = this.$store.state.airdropUser;
+      let airdropKyc = this.$store.dispatch('getAirdropKyc');
+      airdropKyc.then(res => {
+        if (res.ok) {
+          this.userdata = res.message;
+        }
+      });
       socket.on('twitter', (data) => {
         if (!data || typeof(data) === 'object') {
           this.$notify({

@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const apiUrl = 'https://api.enecuum.com/v1';
-const pureApi = 'https://airdrop.enecuum.com/api';
-const pureUrl = 'https://enecuum.com';
+const pureApi = 'http://airdrop.enecuum.com/api';
+const pureUrl = 'http://enecuum.com';
 
 const airdropDirectory = '/app';
 
@@ -54,6 +54,15 @@ const actions = {
           resolve({ok: false});
         }
       });
+    });
+  },
+  airdropLogout(store) {
+    axios.request({
+      url: pureApi + '/airdrop/logout',
+      method: 'GET',
+      withCredentials: true,
+    }).then((res) => {
+      store.commit('SET_AIRDROP_AUTH', false);
     });
   },
   airdropLiteKyc(store, data) {
