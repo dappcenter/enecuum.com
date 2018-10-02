@@ -173,7 +173,7 @@ const actions = {
     store.commit('SET_COOKIES', cookies);
     if (req.headers.host === process.env.AIRDROP_HOST) {
       if ((req.path.indexOf('oauth') === -1) && req.path !== airdropDirectory + '/signup' && req.path !== airdropDirectory + '/signin' && req.path !== airdropDirectory + '/backoffice') {
-        redirect('/app/signup');
+        redirect(airdropDirectory + '/signup');
       }
     } else if (req.path == airdropDirectory + '/signup' || req.path == airdropDirectory + '/signin' || req.path == airdropDirectory + '/backoffice') {
       redirect(process.env.AIRDROP_HOST + airdropDirectory + '/backoffice');
