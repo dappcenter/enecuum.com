@@ -40,15 +40,33 @@
           <h4 class="mt40 text-center title-middle">
             Address for Contribute (ETH)
           </h4>
-          <h4 class="text-center title-bold title-middle mt13 flex-center flex-middle addr-wrapper">
+          <h4 class="text-center title-bold title-middle flex-center flex-middle addr-wrapper">
             <span
               class="addr">{{contractInfo.icoAddress}}</span>
             <img src="/img/icons/copy.svg"
                  class="ml13 account-copy"
                  alt="" @click="copy"></h4>
-          <div class="text-center mb40">
+          <div class="text-center">
             Please set gas limit to 1.000.000 or above
           </div>
+          <el-row type="flex" justify="center" class="mb40 mt20">
+            <el-button-group>
+              <el-button type="default" size="small" @click.prevent="openVideo('6Gf_kRE4MJU', 'How MetaMask works')">How MetaMask works</el-button>
+              <el-button type="default" size="small" @click.prevent="openVideo('bRM4OBqsc2I', 'How to buy tokens')">How to buy tokens</el-button>
+            </el-button-group>
+          </el-row>
+          <el-dialog
+            :title="videoTitle"
+            :visible.sync="videoVisible"
+            width="560px"
+            :before-close="handleVideoVisible"
+            class="videounborder">
+            <div style="height: 315px">
+              <iframe width="560" height="315" :src="'https://www.youtube.com/embed/'+videoUrl+'?autoplay=1'"
+                      frameborder="0"
+                      allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+          </el-dialog>
           <el-alert
             title="Your wallet is not whitelisted yet, please wait"
             type="warning"
@@ -103,6 +121,8 @@
     middleware: 'auth',
     data() {
       return {
+        videoVisible: false,
+        videoUrl: '',
         icoContract: {},
         tokenContract: {},
         web3info: {
@@ -135,6 +155,15 @@
       ICountUp
     },
     methods: {
+      openVideo(url, title) {
+        this.videoUrl = url;
+        this.videoTitle = title;
+        this.videoVisible = true;
+      },
+      handleVideoVisible() {
+        this.videoVisible = false;
+        this.videoUrl = '';
+      },
       hasVestingWallet() {
         this.icoContract.hasVestingWallet(this.userInfo.wallet, (err, res) => {
           if (!res) {

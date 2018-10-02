@@ -90,7 +90,6 @@ app.post('/api/airdrop/registration', (req, res) => {
 });
 
 app.post('/api/airdrop/login', (req, res) => {
-  console.log('wtf login');
   if (req.session.user && (!req.body.email && !req.body.password)) {
     return db.restoreUser(req.session.user).then(user => {
       if (user !== 400 && user) {
