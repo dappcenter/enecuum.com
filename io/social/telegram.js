@@ -9,11 +9,6 @@ const bot = new TelegramBot(token, {
 
 const {app, io} = require('./../server');
 
-bot.on('message', (msg) => {
-  const chatId = msg.chat.id;
-  console.log(msg);
-});
-
 function checkSignature(token, {hash, ...data}) {
   const secret = createHash('sha256').update(token).digest();
   const checkString = Object.keys(data).sort().map(k => `${k}=${data[k]}`).join('\n');

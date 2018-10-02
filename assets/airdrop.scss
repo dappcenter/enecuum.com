@@ -110,6 +110,11 @@
     b {
       color: #46b0ff;
     }
+    @media screen and (max-width: 768px) {
+      padding-top: 200px;
+      padding-left: 15px;
+      padding-right: 15px;
+    }
   }
   &-title {
     font-family: "Poppins";
@@ -120,6 +125,9 @@
     }
     &.title {
       text-align: left;
+      @media screen and (max-width: 768px) {
+        font-size: 20px;
+      }
     }
     &.line {
       &-bottom {
@@ -396,6 +404,10 @@ header {
     &:first-child {
       display: flex;
       align-items: center;
+      @media screen and (max-width: 768px) {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
     }
     &:last-child {
       display: flex;
