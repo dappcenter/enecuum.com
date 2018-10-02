@@ -137,7 +137,6 @@
     methods: {
       hasVestingWallet() {
         this.icoContract.hasVestingWallet(this.userInfo.wallet, (err, res) => {
-          console.log('check isvesting');
           if (!res) {
             setTimeout(() => {
               this.hasVestingWallet();
@@ -242,7 +241,6 @@
                   this.icoContract = web3.eth.contract(this.contractInfo.icoAbi).at(this.contractInfo.icoAddress);
                   this.tokenContract = web3.eth.contract(this.contractInfo.tokenAbi).at(this.contractInfo.tokenAddress);
                   this.web3info.loaded = true;
-                  console.log(this.tokenContract.options);
                   this.icoContract.hasRole(this.userInfo.wallet, 'whitelist', (err, res) => {
                     if (!err) {
                       this.whitelisted = res;
@@ -272,7 +270,6 @@
       this.contractInfo.icoAddress = require('./../../config/config').web3.mainnet.contracts.ico.address;
     },
     created() {
-      console.log(this.$store.state.kyc);
       if (this.$store.state.kyc.code === 200) {
         setTimeout(() => {
           if (typeof web3 !== 'undefined') {

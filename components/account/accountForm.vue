@@ -86,7 +86,6 @@
         });
       },
       sendTransaction() {
-        console.log(this.contractInfo.tokenAddress);
         web3.eth.getGasPrice((err, res) => {
           let gasPrice = res.c[0];//bn(res.c[0]).multipliedBy("10e8").toNumber();
           web3.eth.sendTransaction({
@@ -123,7 +122,6 @@
         if (input) {
           this.ico.getTokenAmount(input, (err, res) => {
             if (!err) {
-              console.log(res);
               this.accountForm.get = bn(res).dividedBy(1e10).toString();
             }
           });
@@ -147,11 +145,6 @@
           console.log('fiat price:', bn(res).dividedBy(1e3).toString());
         }
       });
-      this.ico.getUserCap(this.userInfo.wallet, (err, res) => {
-        if (!err) {
-          console.log('user cap: ', bn(res).dividedBy(1e3).toString());
-        }
-      })
     }
   }
 </script>

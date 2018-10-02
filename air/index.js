@@ -16,7 +16,6 @@ const storage = multer.diskStorage({
     cb(null, new Date().getTime() + file.originalname);
   }
 });
-const upload = multer({storage: storage});
 
 app.use(cookieSession({
   name: 'supersession',
@@ -57,7 +56,7 @@ app.post('/api/airdrop/registration', (req, res) => {
       message: 'Some fields are empty'
     });
   }
-  const pwd = crypto.createHash('sha256').update(req.body.password).digest('base64');
+  const pwd = crypto.createHash('sha256').update(process.env.SESS_KEY_SIGN + req.body.password + process.env.SESS_KEY_VERIFY).digest('base64');
   const id = crypto.createHash('sha256').update(new Date().getTime() + Math.random() * 9999 + (process.env.SESS_KEY_SIGN + process.env.SESS_KEY_VERIFY)).digest('base64');
   req.body.password = pwd;
   req.body.id = id;
@@ -91,7 +90,6 @@ app.post('/api/airdrop/registration', (req, res) => {
 });
 
 app.post('/api/airdrop/login', (req, res) => {
-  console.log(req.session.user, req.body.email, req.body.password);
   if (req.session.user && (!req.body.email && !req.body.password)) {
     return db.restoreUser(req.session.user).then(user => {
       if (user !== 400 && user) {
@@ -101,15 +99,13 @@ app.post('/api/airdrop/login', (req, res) => {
       }
     });
   }
-  console.log('after session');
-  if (!req.body.email && !req.body.password) {
+  if (!req.body.email || !req.body.password) {
     return res.send({
       ok: false,
       message: 'Some fields are empty'
     });
   }
-  console.log('before getuser');
-  const pwd = crypto.createHash('sha256').update(req.body.password).digest('base64');
+  const pwd = crypto.createHash('sha256').update(process.env.SESS_KEY_SIGN + req.body.password + process.env.SESS_KEY_VERIFY).digest('base64');
   req.body.password = pwd;
   return db.getUser(req.body).then(user => {
     if (user !== 400 && user) {
@@ -121,7 +117,7 @@ app.post('/api/airdrop/login', (req, res) => {
   });
 });
 
-app.get('/api/airdrop/litekyc', upload.single('file'), (req, res) => {
+app.get('/api/airdrop/litekyc', (req, res) => {
   if (!req.session.user) return res.send('Permission denied');
   db.getLiteKyc({sessionid: req.session.user}).then(kyc => {
     if (kyc.ok) {
@@ -132,15 +128,34 @@ app.get('/api/airdrop/litekyc', upload.single('file'), (req, res) => {
   });
 });
 
-app.post('/api/airdrop/litekyc', upload.single('file'), (req, res) => {
-  if (!req.session.user) return res.send('Permission denied');
-  let data = req.body;
-  data.file = req.file.path;
-  db.saveLiteKyc({data: data, sessionid: req.session.user}).then(kyc => {
-    if (kyc === 200) {
-      return res.send({ok: true});
+const upload = multer({
+  storage: storage,
+  fileFilter(req, file, cb) {
+    let filetypes = ['jpeg', 'jpg', 'gif', 'png', 'bmp', 'pdf'];
+    if (filetypes.includes(file.originalname.split('.').slice(-1)[0])) {
+      cb(null, true);
     } else {
-      return res.send({ok: false});
+      cb(new Error('Filetype not allowed'));
+    }
+  }
+});
+const fileUpload = upload.single('file');
+
+app.post('/api/airdrop/litekyc', (req, res) => {
+  if (!req.session.user) return res.send('Permission denied');
+  fileUpload(req, res, (err) => {
+    if (err) {
+      return res.send({ok: false, message: 'Filetype not allowed'});
+    } else {
+      let data = req.body;
+      data.file = req.file.path;
+      db.saveLiteKyc({data: data, sessionid: req.session.user}).then(kyc => {
+        if (kyc === 200) {
+          return res.send({ok: true});
+        } else {
+          return res.send({ok: false});
+        }
+      });
     }
   });
 });

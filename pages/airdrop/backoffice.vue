@@ -86,6 +86,7 @@
                 form</label><input
                 type="file"
                 id="file"
+                accept="image/*"
                 @change="loadFile"></label>
               <input type="text" class="inputfile" disabled v-model="file.name">
             </div>
@@ -129,7 +130,7 @@
            v-if="activeRule==='twitter'">
           <el-button type="primary">Twitter Group</el-button>
         </a>
-        <a href="https://t.me/joinchat/BP8vLBA-c58r3BbF5y9cYg" target="_blank" style="padding-right: 10px;"
+        <a href="https://t.me/Enecuum_EN" target="_blank" style="padding-right: 10px;"
            v-if="activeRule==='telegram'">
           <el-button type="primary">Telegram Group</el-button>
         </a>
@@ -205,7 +206,6 @@
       },
       initTelegramBtn() {
         setTimeout(() => {
-          console.log(document.getElementById('telegramAuth'));
           if (!document.getElementById('telegramAuth')) return false;
           const script = document.createElement('script');
           script.async = true;
@@ -272,9 +272,10 @@
         data.append('nation', this.userdata.nation);
         data.append('birthDate', this.userdata.birthDate);
         data.append('walletInfo', this.userdata.walletInfo);
-        data.append('email', this.$store.state.airdropUser.email); //this.$store.state.airdropUser.email
+        data.append('email', this.$store.state.airdropUser.email);
         let save = this.$store.dispatch('airdropLiteKyc', data);
-        save.then(res => {
+        console.log(save);
+        save.then((err, res) => {
           if (res.ok) {
             this.$notify({
               message: 'Thank you!',
@@ -282,6 +283,12 @@
               position: 'bottom-left'
             });
             this.$store.state.airdropUser.kyc = true;
+          } else {
+            this.$notify({
+              message: res.message,
+              type: 'error',
+              position: 'bottom-left'
+            });
           }
         });
       },
@@ -324,7 +331,6 @@
       }
       this.user = this.$store.state.airdropUser;
       socket.on('twitter', (data) => {
-        console.log('from io twitter: ', data);
         if (!data || typeof(data) === 'object') {
           this.$notify({
             message: 'Check rules',
@@ -348,7 +354,6 @@
         }
       });
       socket.on('connectServer', (data) => {
-        console.log('conencted to server:', data);
         if (!data) return false;
       });
       axios.get('/i18n/countries.json').then(res => {

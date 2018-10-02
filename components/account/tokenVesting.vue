@@ -134,7 +134,6 @@
       getReleased() {
         this.vestingContract.released(this.contractInfo.tokenAddress, (err, res) => {
           if (!err) {
-            console.log('vesting already released', res);
             this.vestingInfo.alreadyReleased = bn(res).dividedBy(1e10).toString();
           } else {
             console.log('vesting already released error: ', err);
@@ -144,7 +143,6 @@
       getReleasableAmount() {
         this.vestingContract.releasableAmount(this.contractInfo.tokenAddress, (err, res) => {
           if (!err) {
-            console.log('vesting releasable', res);
             this.vestingInfo.releasable = bn(res).dividedBy(1e10).toString();
           } else {
             console.log('vesting releasable error: ', err);
@@ -154,7 +152,6 @@
       getVestingAmount() {
         this.vestingContract.vestedAmount(this.contractInfo.tokenAddress, (err, res) => {
           if (!err) {
-            console.log('vesting already vesting', res);
             this.vestingInfo.alreadyVesting = bn(res).dividedBy(1e10).toString();
           } else {
             console.log('vesting already vesting error: ', err);
