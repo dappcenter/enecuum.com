@@ -50,6 +50,8 @@ app.post('/api/airdrop/update', (req, res) => {
 });
 
 app.post('/api/airdrop/registration', (req, res) => {
+  req.session.user = null;
+  res.clearCookie('session.sig', {path: '/'}).status(200);
   if (!req.body.name && !req.body.surname && !req.body.email && !req.body.password && !req.body.country) {
     return res.send({
       ok: false,
@@ -58,16 +60,17 @@ app.post('/api/airdrop/registration', (req, res) => {
   }
   const pwd = crypto.createHash('sha256').update(process.env.SESS_KEY_SIGN + req.body.password + process.env.SESS_KEY_VERIFY).digest('base64');
   const id = crypto.createHash('sha256').update(new Date().getTime() + Math.random() * 9999 + (process.env.SESS_KEY_SIGN + process.env.SESS_KEY_VERIFY)).digest('base64');
+  req.body.email = req.body.email.toLowerCase();
   req.body.password = pwd;
   req.body.id = id;
-  return db.getUser(req.body).then(user => {
+  return db.getUserByEmail(req.body).then(user => {
     console.log(user);
     if (user) {
       return res.send({ok: false, message: 'Email already exist'});
     } else {
       console.log('not exist');
       let isSended = mail.send('ad', {
-        EMAIL: req.body.email,
+        EMAIL: req.body.email.toLowerCase(),
         FIRST_NAME: req.body.name,
         LAST_NAME: req.body.surname
       });
@@ -82,7 +85,7 @@ app.post('/api/airdrop/registration', (req, res) => {
             }
           });
         } else {
-          return res.send({ok: false, message: 'Address domain not found. Please use another email address.'});
+          return res.send({ok: false, message: 'Please check your email or use another email address.'});
         }
       });
     }
@@ -90,7 +93,8 @@ app.post('/api/airdrop/registration', (req, res) => {
 });
 
 app.get('/api/airdrop/logout', (req, res) => {
-  req.session = null;
+  req.session.user = null;
+  res.clearCookie('session.sig', {path: '/'}).status(200);
   res.send({ok: true});
 });
 
