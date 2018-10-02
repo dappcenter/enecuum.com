@@ -14,9 +14,9 @@ bot.on('message', (msg) => {
 });
 
 app.post('/oauth/telegram', (req, res, next) => {
-  console.log(req.body);
+  console.log('userid: ', req.body, req.body.id);
   bot.getChatMember(process.env.TELEGRAM_GROUPID, req.body.id).catch(error => {
-    console.log('getChatMember error: ', error);
+    console.log('getChatMember error:');
     res.send({ok: false});
   }).then(user => {
     console.log('getChatMember success: ', user);
