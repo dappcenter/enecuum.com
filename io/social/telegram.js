@@ -8,8 +8,13 @@ const bot = new TelegramBot(token, {
 
 const {app, io} = require('./../server');
 
+bot.on('message', (msg) => {
+  const chatId = msg.chat.id;
+  console.log(msg);
+});
+
 app.post('/oauth/telegram', (req, res, next) => {
-  console.log(req.body.id);
+  console.log(req.body);
   bot.getChatMember(process.env.TELEGRAM_GROUPID, req.body.id).catch(error => {
     res.send({ok: false});
   }).then(user => {
