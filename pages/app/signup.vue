@@ -77,7 +77,7 @@
           </div>
         </el-col>
       </el-row>
-      <el-row type="flex" justify="center">
+      <el-row type="flex" justify="center" class="input_group-row">
         <el-col :xs="24" :sm="6">
           <div class="input_group-wrapper">
             <div class="input_group button">
