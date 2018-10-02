@@ -163,7 +163,6 @@ class MongoProvider {
               console.log('save user error: ', err);
               resolve(400);
             } else {
-              console.log(data);
               User.findOne({
                 email: data.email,
               }).exec((err, user) => {
