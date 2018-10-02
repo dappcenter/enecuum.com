@@ -20,8 +20,8 @@
           <el-col :xs="24" :sm="12">
             <div class="input_group-wrapper">
               <div class="input_group">
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" v-model="user.email" @keyup.enter="register">
+                <label for="surname">Surname:</label>
+                <input type="text" id="surname" v-model="user.surname" @keyup.enter="register">
               </div>
             </div>
           </el-col>
@@ -30,11 +30,21 @@
           <el-col :xs="24" :sm="12">
             <div class="input_group-wrapper">
               <div class="input_group">
-                <label for="surname">Surname:</label>
-                <input type="text" id="surname" v-model="user.surname" @keyup.enter="register">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" v-model="user.email" @keyup.enter="register">
               </div>
             </div>
           </el-col>
+          <el-col :xs="24" :sm="12">
+            <div class="input_group-wrapper">
+              <div class="input_group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" v-model="user.password" @keyup.enter="register">
+              </div>
+            </div>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20">
           <el-col :xs="24" :sm="12">
             <div class="input_group-wrapper">
               <div class="input_group">
@@ -42,16 +52,6 @@
                   <option selected disabled>Country of citizenship</option>
                   <option v-for="(item, key) in countries" :value="item.name" :key="key">{{item.name}}</option>
                 </select>
-              </div>
-            </div>
-          </el-col>
-        </el-row>
-        <el-row :gutter="20">
-          <el-col :xs="24" :sm="12">
-            <div class="input_group-wrapper">
-              <div class="input_group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" v-model="user.password" @keyup.enter="register">
               </div>
             </div>
           </el-col>
@@ -77,8 +77,8 @@
           </div>
         </el-col>
       </el-row>
-      <el-row type="flex" justify="center">
-        <el-col :xs="24" :sm="6">
+      <el-row type="flex" justify="center" class="input_group-row">
+        <el-col :xs="24" :sm="8">
           <div class="input_group-wrapper">
             <div class="input_group button">
               <router-link to="/app/signin">

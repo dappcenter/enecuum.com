@@ -10,7 +10,7 @@
         <br>
         Very soon we will launch our application for smartphones, which will make it possible to earn tokens. Just
         imagine, you will be able to receive a reward while you are sleeping! Do you want to receive benefits as device
-        owner? All you need to do is download our App !
+        owner? All you need to do is download our App!
       </div>
       <div class="enq-video">
         <iframe src="https://www.youtube.com/embed/GpPAfyFqbAE" frameborder="0" style="width: 100%; height: 360px;"
@@ -100,7 +100,7 @@
           <el-col :xs="24" :sm="16" v-if="!mainuser.kyc">
             <div class="subscr"> IMPORTANT: Do not enter an exchange wallet address from Coinbase, Bittrex, Binance, or
               any other. You need a personal address where you control the private keys! If you do not have a wallet,
-              you can register it, for example, on myetherwallet.com
+              you can register it, for example, on myetherwallet.com.
             </div>
           </el-col>
           <el-col :xs="24" :sm="16" v-if="!mainuser.kyc">
@@ -157,7 +157,7 @@
         countries: [],
         airdropData: {
           facebook: ['You must have at least 300 friends. If you have been rejected due to less than 300 friends, do not resent your application with updated followers list. The application will be denied.', 'You have to be a follower of official Enecuum facebook page (<a href="https://www.facebook.com/enecuum.EN/" target="_blank">https://www.facebook.com/enecuum.EN/</a>)', 'Facebook friends count will not be updated after your registration', 'You have to make at least 1 original post (with your own content) and 1 repost per campaign.'],
-          twitter: ['You must have at least 150 followers. If you have been rejected due to less than 150 followers, do not resent your application with updated followers list. The application will be denied', 'You have to be a follower of official Enecuum Twitter', 'You have to make at least 2 original tweets (with your own content) and 2 retweets per campaign', 'You must use our hashtags: #Enecuum #ENQ #mobilemining in original tweets'],
+          twitter: ['You must have at least 50 followers. If you have been rejected due to less than 50 followers, do not resent your application with updated followers list. The application will be denied', 'You have to be a follower of official Enecuum Twitter', 'You have to make at least 2 original tweets (with your own content) and 2 retweets per campaign', 'You must use our hashtags: #Enecuum #ENQ #mobilemining in original tweets'],
           telegram: ['Follow Enecuum <a href="https://t.me/Enecuum_EN" target="_blank">Telegram</a> group to get a reward', 'Quitting during the ongoing airdrop is restricted. If you quit the channel before the campaign is over, your reward will be annulled'],
           uniq: ['Your content (article or video) must be original and contain at least 300 words (2 min)', 'Your article (video) may be in other language than English but please write that in your application. Your article must have the following links: Enecuum website (<a href="https://enecuum.com/">https://enecuum.com//<a>) ', 'Enecuum Telegram (<a href="https://t.me/Enecuum_EN" target="_blank">https://t.me/Enecuum_EN</a>) Your article may be posted on Facebook, Medium, LinkedIn, Youtube.', 'Promote your article (video) in other forums like Facebook, Twitter or LinkedIn or other with a large outreach (more than 250 followers) *', 'Send link to the article to the Enecuum Telegram (<a href="https://t.me/Enecuum_EN" target="_blank" ">https://t.me/Enecuum_EN</a>)', 'Send the link on your Article  to <a href="mailto:airdrop@enecuum.com">airdrop@enecuum.com</a>'],
           emailpro: ['Leave your application (email) to participate in Airdrop']
@@ -215,7 +215,6 @@
           script.setAttribute('data-size', this.size || 'medium');
           script.setAttribute('data-userpic', this.userpic || false);
           script.setAttribute('data-telegram-login', this.telegramLogin || 'ENQ_airdrop_bot');
-          script.setAttribute('data-request-access', this.requestAccess || 'read');
           if (this.radius) {
             script.setAttribute('data-radius', '4')
           }
@@ -228,7 +227,7 @@
         axios.request({
           url: '/oauth/telegram',
           data: {
-            id: user.id
+            user: user
           },
           method: 'post',
           withCredentials: true,
@@ -317,6 +316,7 @@
               type: 'success',
               position: 'bottom-left'
             });
+            this.rulesVisible = false;
           } else {
             this.$notify({
               title: 'Verification',

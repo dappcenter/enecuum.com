@@ -66,7 +66,7 @@ app.post('/api/airdrop/registration', (req, res) => {
   return db.getUserByEmail(req.body).then(user => {
     console.log(user);
     if (user) {
-      return res.send({ok: false, message: 'Email already exist'});
+      return res.send({ok: false, message: 'Email already exists'});
     } else {
       console.log('not exist');
       let isSended = mail.send('ad', {
@@ -95,6 +95,7 @@ app.post('/api/airdrop/registration', (req, res) => {
 app.get('/api/airdrop/logout', (req, res) => {
   req.session.user = null;
   res.clearCookie('session.sig', {path: '/'}).status(200);
+  res.clearCookie('session', {path: '/'}).status(200);
   res.send({ok: true});
 });
 
@@ -115,6 +116,7 @@ app.post('/api/airdrop/login', (req, res) => {
     });
   }
   const pwd = crypto.createHash('sha256').update(process.env.SESS_KEY_SIGN + req.body.password + process.env.SESS_KEY_VERIFY).digest('base64');
+  req.body.email = req.body.email.toLowerCase();
   req.body.password = pwd;
   return db.getUser(req.body).then(user => {
     console.log('after login');

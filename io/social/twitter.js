@@ -9,6 +9,7 @@ const keywords = ['#Enecuum', '#ENQ', '#mobilemining'];
 const retweetedCompany = 'ENQ_enecuum';
 const mincount = 2;
 const mindays = 7;
+const maxFriendsCount = 50;
 
 const client = new Twitter({
   consumer_key: process.env.TWITTER_API_KEY,
@@ -79,7 +80,7 @@ io.on('connect', (ioclient) => {
       isFollow: isfollow
     };
 
-    if (profile._json.followers_count > 150) {
+    if (profile._json.followers_count > maxFriendsCount) {
       info.followers = true;
     }
     data.forEach(item => {

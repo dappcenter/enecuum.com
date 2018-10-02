@@ -110,6 +110,12 @@
     b {
       color: #46b0ff;
     }
+    @media screen and (max-width: 768px) {
+      padding-top: 200px;
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-bottom: 100px;
+    }
   }
   &-title {
     font-family: "Poppins";
@@ -120,6 +126,9 @@
     }
     &.title {
       text-align: left;
+      @media screen and (max-width: 768px) {
+        font-size: 20px;
+      }
     }
     &.line {
       &-bottom {
@@ -324,6 +333,11 @@
     &-wrapper {
       margin-bottom: 20px
     }
+    &-row {
+      @media screen and (max-width: 768px) {
+        flex-wrap: wrap;
+      }
+    }
     button {
       background: linear-gradient(to bottom, #0ab4f4 0%, #265af5 50%, #4c2ff5 100%);
       padding: 15px;
@@ -396,6 +410,10 @@ header {
     &:first-child {
       display: flex;
       align-items: center;
+      @media screen and (max-width: 768px) {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
     }
     &:last-child {
       display: flex;
@@ -448,16 +466,23 @@ header {
   .user {
     &_panel {
       display: flex;
+      padding-left: 20px;
       padding-right: 20px;
       padding-top: 5px;
       padding-bottom: 5px;
       border-top: 2px solid #1772b4;
       border-bottom: 2px solid #1772b4;
       &-item {
+        display: flex;
         .wc {
           color: #ffffff;
           padding-left: 10px;
           padding-right: 10px;
+          max-width: 200px;
+          display: inline-block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
         &.logout {
           cursor: pointer;
