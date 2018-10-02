@@ -316,6 +316,7 @@
               type: 'success',
               position: 'bottom-left'
             });
+            this.rulesVisible = false;
           } else {
             this.$notify({
               title: 'Verification',
