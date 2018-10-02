@@ -349,7 +349,6 @@
         }
       });
       socket.on('facebook', (data) => {
-        console.log('from io facebook: ', data);
         if (!data || typeof(data) === 'object') {
           this.$notify({
             message: 'Check rules',
