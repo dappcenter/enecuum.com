@@ -13,7 +13,7 @@
             <div class="input_group-wrapper">
               <div class="input_group">
                 <label for="name">Name:</label>
-                <input type="text" id="name" v-model="user.name">
+                <input type="text" id="name" v-model="user.name" @keyup.enter="register">
               </div>
             </div>
           </el-col>
@@ -21,7 +21,7 @@
             <div class="input_group-wrapper">
               <div class="input_group">
                 <label for="email">E-mail:</label>
-                <input type="email" id="email" v-model="user.email">
+                <input type="email" id="email" v-model="user.email" @keyup.enter="register">
               </div>
             </div>
           </el-col>
@@ -31,7 +31,7 @@
             <div class="input_group-wrapper">
               <div class="input_group">
                 <label for="surname">Surname:</label>
-                <input type="text" id="surname" v-model="user.surname">
+                <input type="text" id="surname" v-model="user.surname" @keyup.enter="register">
               </div>
             </div>
           </el-col>
@@ -51,7 +51,7 @@
             <div class="input_group-wrapper">
               <div class="input_group">
                 <label for="password">Password:</label>
-                <input type="password" id="password" v-model="user.password">
+                <input type="password" id="password" v-model="user.password" @keyup.enter="register">
               </div>
             </div>
           </el-col>

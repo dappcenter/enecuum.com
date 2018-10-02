@@ -25,6 +25,9 @@
             <span class="wc">{{mainuser.total}}</span>
             <span>ENQ</span>
           </div>
+          <div class="user_panel-item logout" @click="logout">
+            <span><i class="fa fa-sign-out" aria-hidden="true"></i></span>
+          </div>
         </div>
       </div>
     </div>
@@ -40,6 +43,12 @@
       },
       mainuser() {
         return this.$store.state.airdropUser;
+      }
+    },
+    methods: {
+      logout() {
+        this.$store.dispatch('airdropLogout');
+        this.$router.push('/app/signin');
       }
     }
   }

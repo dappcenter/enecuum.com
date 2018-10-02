@@ -38,12 +38,14 @@ async function whitelisting({cookie, userdata, data}) {
       console.log('before send mail: ', userdata.success);
       mail.send('wl', {EMAIL: userdata.success.email, FIRST_NAME: userdata.success.name});
       console.log(data);
-      if (data.code !== 401) {
+      if (data.code === 200 || data.code === 423) {
         io.emit('wl', {ok: true, id: id});
       } else {
         io.emit('wl', {ok: false, id: id});
       }
     })
+  } else {
+    io.emit('wl', {ok: false, id: id});
   }
 }
 

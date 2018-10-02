@@ -56,6 +56,15 @@ const actions = {
       });
     });
   },
+  airdropLogout(store) {
+    axios.request({
+      url: pureApi + '/airdrop/logout',
+      method: 'GET',
+      withCredentials: true,
+    }).then((res) => {
+      store.commit('SET_AIRDROP_AUTH', false);
+    });
+  },
   airdropLiteKyc(store, data) {
     return new Promise(resolve => {
       axios.request({

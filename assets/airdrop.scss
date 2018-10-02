@@ -230,10 +230,10 @@
         &[type='file'] {
           display: none;
         }
-/*        &[disabled]:not(.inputfile) {
-          border: 0px;
-          box-shadow: none;
-        }*/
+        /*        &[disabled]:not(.inputfile) {
+                  border: 0px;
+                  box-shadow: none;
+                }*/
       }
       &:hover {
         box-shadow: none;
@@ -249,10 +249,10 @@
         option {
           color: #2e2e2e;
         }
-/*        &[disabled] {
-          border: 0px;
-          box-shadow: none;
-        }*/
+        /*        &[disabled] {
+                  border: 0px;
+                  box-shadow: none;
+                }*/
       }
     }
     &.button {
@@ -458,6 +458,11 @@ header {
           color: #ffffff;
           padding-left: 10px;
           padding-right: 10px;
+        }
+        &.logout {
+          cursor: pointer;
+          padding-left: 10px;
+          color: #ffffff;
         }
       }
     }
