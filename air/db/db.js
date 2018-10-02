@@ -5,6 +5,7 @@ const {User, LiteKyc} = require('./models');
 class MongoProvider {
   constructor(url) {
     mongoose.connect(url, (err) => {
+      console.log('mongourl: ', url);
       if (!err) {
         console.log('connect success')
       } else {
