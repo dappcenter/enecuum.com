@@ -25,6 +25,7 @@ app.post('/oauth/telegram', (req, res, next) => {
       res.send({ok: false});
     }).then(user => {
       console.log('getChatMember success: ', user);
+      console.log('send ok');
       res.send({ok: true});
     });
   } else {

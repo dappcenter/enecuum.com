@@ -245,6 +245,13 @@
         });
       },
       checkRule(type) {
+        let id = '';
+        if (localStorage.getItem('uid')) {
+          id = localStorage.getItem('uid');
+        } else {
+          id = new Date().getTime();
+          localStorage.setItem('uid');
+        }
         window.open("/oauth/" + type, "", "width=500,height=300");
         this.$notify({
           message: 'Checking your account...',
@@ -349,18 +356,6 @@
           });
         } else {
           this.getInfo('twitter', data);
-        }
-      });
-      socket.on('facebook', (data) => {
-        if (!data || typeof(data) === 'object') {
-          this.$notify({
-            title: 'Verification',
-            message: 'All required conditions are not met',
-            type: 'info',
-            position: 'bottom-left'
-          });
-        } else {
-          this.getInfo('facebook', data);
         }
       });
       socket.on('connectServer', (data) => {
