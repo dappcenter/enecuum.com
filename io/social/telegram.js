@@ -20,7 +20,7 @@ app.post('/oauth/telegram', (req, res, next) => {
   console.log('userid: ', req.body);
   let user = req.body.user;
   if (checkSignature(token, user)) {
-    return bot.getChatMember(process.env.TELEGRAM_GROUPID, 39182658).catch(error => {
+    return bot.getChatMember(process.env.TELEGRAM_GROUPID, user.id).catch(error => {
       console.log('getChatMember error:');
       res.send({ok: false});
     }).then(user => {

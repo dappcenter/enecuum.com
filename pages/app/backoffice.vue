@@ -252,7 +252,7 @@
           id = new Date().getTime();
           localStorage.setItem('uid');
         }
-        window.open("http://airdrop.enecuum.com:8081/oauth/" + type, "", "width=500,height=300");
+        window.open("/oauth/" + type, "", "width=500,height=300");
         this.$notify({
           message: 'Checking your account...',
           type: 'info',
