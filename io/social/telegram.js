@@ -32,10 +32,3 @@ app.post('/oauth/telegram', (req, res, next) => {
     return res.send({ok: false});
   }
 });
-
-bot.getChatMember(process.env.TELEGRAM_GROUPID, 39182658).catch(error => {
-  console.log('getChatMember error');
-}).then(user => {
-  console.log('getChatMember success: ', user);
-  console.log('send ok');
-});
