@@ -21,9 +21,9 @@
             <nuxt-link to="/privatesale" class="special-a">
               <button class="button-link orange">Private Sale</button>
             </nuxt-link>
-            <nuxt-link to="/app/backoffice" class="special-a">
+            <a href="/app/backoffice" class="special-a">
               <button class="button-link orange">airdrop</button>
-            </nuxt-link>
+            </a>
           </div>
           <el-menu-item index="/auth/login" class="menu-item" v-if="!isAuth">
             <el-button type="text">Sign In</el-button>

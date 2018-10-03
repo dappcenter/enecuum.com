@@ -84,7 +84,6 @@ io.on('connect', (ioclient) => {
       info.followers = true;
     }
     data.forEach(item => {
-      console.log(item);
       keywords.forEach(word => {
         if (item.retweeted && item.retweeted_status.user.screen_name.toLowerCase() === retweetedCompany.toLowerCase()) {
           /*          let tweetDate = new Date(item.created_at);
@@ -106,7 +105,7 @@ io.on('connect', (ioclient) => {
       });
     });
 
-    console.log('twitter', info, ioclient);
+    console.log('twitter', info);
     if (info.hashtag && info.followers && info.isFollow) {
       ioclient.emit('twitter', true);
     } else {
