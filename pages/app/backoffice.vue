@@ -245,13 +245,6 @@
         });
       },
       checkRule(type) {
-        let id = '';
-        if (localStorage.getItem('uid')) {
-          id = localStorage.getItem('uid');
-        } else {
-          id = new Date().getTime();
-          localStorage.setItem('uid');
-        }
         window.open("/oauth/" + type, "", "width=500,height=300");
         this.$notify({
           message: 'Checking your account...',
