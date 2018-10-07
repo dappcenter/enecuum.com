@@ -495,17 +495,22 @@ header {
 }
 
 @media screen and (max-width: 768px) {
-  header {
-    flex-direction: column;
-    .user-panel {
-      flex-direction: column;
-      margin-top: 50px;
-    }
-    .menu-text {
-      font-size: 16px;
-    }
-  }
   .airdrop {
+    header {
+      flex-direction: column;
+      z-index: 2;
+      .menu-text {
+        font-size: 16px;
+      }
+      .user {
+        &_panel {
+          margin-top: 50px;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
     &_tasks {
       width: 100%;
       .task {
