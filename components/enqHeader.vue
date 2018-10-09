@@ -2,7 +2,7 @@
   <div class="menu-wrapper " :class="isfixedcolor">
     <div class="menu_logo-mobile">
       <transition name="fade">
-        <div class="menu_logo-overlay" v-show="isOpened" @click="closeMenu"></div>
+        <div class="menu_logo-overlay" v-show="false" @click="closeMenu"></div>
       </transition>
     </div>
     <div class="flex-between menu">
@@ -65,8 +65,8 @@
         <!--</ul>-->
       </div>
       <el-menu :default-active="activeMenu" mode="horizontal" router class="menu-left">
-        <button class="menu_logo menu_logo-hamburger" @click="openMenu"><i class="fa fa-bars" aria-hidden="true"></i>
-        </button>
+        <!--<button class="menu_logo menu_logo-hamburger" @click="openMenu"><i class="fa fa-bars" aria-hidden="true"></i>-->
+        <!--</button>-->
         <nuxt-link to="/" class="menu_logo">
           <img :src="isfixedcolor==='false' ? '/img/logo.svg' : '/img/logo-white.png'" alt="" class="menu_logo-img">
         </nuxt-link>
@@ -121,7 +121,7 @@
       return {
         activeMenu: '/',
         itsHomepage: false,
-        isOpened: false,
+        // isOpened: false,
         checkingAuth: true,
         loadingFingerEnd: true,
         waitingServerUpdateCount: 0,
