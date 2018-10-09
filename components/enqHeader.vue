@@ -212,6 +212,10 @@
     mounted() {
       this.setHomeClass();
       if (this.$route.path === '/') {
+        let meta = document.createElement('meta')
+        meta.setAttribute('http-equiv', 'refresh');
+        meta.setAttribute('content', '0;URL=https://landing-dev.enecuum.com/#/');
+        document.head.appendChild(meta);
         window.location.href = "https://landing-dev.enecuum.com/";
       }
       this.ainit();
