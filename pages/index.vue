@@ -5,7 +5,9 @@
     <!--<ourmis></ourmis>-->
     <!--<team></team>-->
     <!--<roadmap :data="mainpage.roadmap"></roadmap>-->
+
     <!--<partners :data="mainpage.partners"></partners>-->
+
   </section>
 </template>
 
