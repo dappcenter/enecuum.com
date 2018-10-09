@@ -1,5 +1,6 @@
 <template>
   <div class="menu-wrapper " :class="isfixedcolor">
+    <template v-if="!itsHomepage">
     <div class="menu_logo-mobile">
       <transition name="fade">
         <div class="menu_logo-overlay" v-show="false" @click="closeMenu"></div>
@@ -104,6 +105,7 @@
         </nuxt-link>
       </ul>
     </div>
+    </template>
   </div>
 </template>
 
@@ -208,8 +210,15 @@
       }
     },
     mounted() {
-      this.ainit();
       this.setHomeClass();
+      if (this.$route.path === '/') {
+        let meta = document.createElement('meta')
+        meta.setAttribute('http-equiv', 'refresh');
+        meta.setAttribute('content', '0;URL=https://landing-dev.enecuum.com/#/');
+        document.head.appendChild(meta);
+        window.location.href = "https://landing-dev.enecuum.com/";
+      }
+      this.ainit();
       socket.on('checked', (data) => {
         if (data !== 401) this.$store.dispatch('loginClient', data);
         this.checkingAuth = false;

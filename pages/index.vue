@@ -36,7 +36,6 @@
       // }
     },
     mounted() {
-      window.location.href = "https://landing-dev.enecuum.com/";
       // jarallax(document.querySelectorAll('.jarallax'), {
       //   imgSize: 'contain'
       // });
