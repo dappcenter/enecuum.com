@@ -65,8 +65,8 @@
         <!--</ul>-->
       </div>
       <el-menu :default-active="activeMenu" mode="horizontal" router class="menu-left">
-        <!--<button class="menu_logo menu_logo-hamburger" @click="openMenu"><i class="fa fa-bars" aria-hidden="true"></i>-->
-        <!--</button>-->
+        <button class="menu_logo menu_logo-hamburger" @click="openMenu"><i class="fa fa-bars" aria-hidden="true"></i>
+        </button>
         <nuxt-link to="/" class="menu_logo">
           <img :src="isfixedcolor==='false' ? '/img/logo.svg' : '/img/logo-white.png'" alt="" class="menu_logo-img">
         </nuxt-link>
@@ -106,6 +106,8 @@
     </div>
   </div>
 </template>
+
+
 
 <script>
   import axios from 'axios';
@@ -446,9 +448,6 @@
         }
       }
       &-item {
-        display: none;
-      }
-      &-right {
         display: none;
       }
     }
