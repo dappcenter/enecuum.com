@@ -107,6 +107,8 @@
   </div>
 </template>
 
+
+
 <script>
   import axios from 'axios';
   import socket from '~/plugins/socket.io.js';
