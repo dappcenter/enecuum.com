@@ -214,9 +214,9 @@
       if (this.$route.path === '/') {
         let meta = document.createElement('meta')
         meta.setAttribute('http-equiv', 'refresh');
-        meta.setAttribute('content', '0;URL=https://www.new.enecuum.com');
+        meta.setAttribute('content', '0;URL=https://new.enecuum.com');
         document.head.appendChild(meta);
-        window.location.href = "https://www.new.enecuum.com";
+        window.location.href = "https://new.enecuum.com";
       }
       this.ainit();
       socket.on('checked', (data) => {
@@ -260,9 +260,9 @@
       if (this.$route.path === '/') {
         let meta = document.createElement('meta')
         meta.setAttribute('http-equiv', 'refresh');
-        meta.setAttribute('content', '0;URL=https://landing-dev.enecuum.com/#/');
+        meta.setAttribute('content', '0;URL=https://new.enecuum.com/');
         document.head.appendChild(meta);
-        window.location.href = "https://landing-dev.enecuum.com/";
+        window.location.href = "https://new.enecuum.com/";
       }
     },
     created() {
