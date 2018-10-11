@@ -115,6 +115,12 @@
   import socket from '~/plugins/socket.io.js';
   import ICountUp from 'vue-countup-v2';
   import bn from 'bignumber.js';
+  import {init as initApm} from "elastic-apm-js-base"
+
+  var apm = initApm({
+    serviceName: "Backoffice",
+    serverUrl: "http://apm.enecuum.com:8200"
+  })
 
   export default {
     name: "faq",
@@ -211,6 +217,7 @@
         addr.remove();
       },
       detectNetwork() {
+        apm.startTransaction('DetectNetwork', 'custom')
         let address = '';
         web3.version.getNetwork((err, netId) => {
           switch (netId) {
@@ -221,9 +228,11 @@
               this.contractInfo.tokenAddress = require('./../../config/config').web3.mainnet.contracts.token.address;
               this.contractInfo.tokenAbi = require('./../../config/config').web3.mainnet.contracts.token.abi;
               this.contractInfo.vestingAbi = require('./../../config/config').web3.mainnet.contracts.vesting.abi;
+              apm.captureError(new Error('web3.version.getNerwork == case 1'))
               break;
             case "2":
               this.web3info.text = 'You\'re using deprecated Morden test network to use extended buyer form';
+              apm.captureError(new Error('web3.version.getNerwork == case 2'))
               setTimeout(() => {
                 this.detectNetwork();
               }, 15000);
@@ -236,15 +245,18 @@
               this.contractInfo.tokenAddress = require('./../../config/config').web3.ropsten.contracts.token.address;
               this.contractInfo.tokenAbi = require('./../../config/config').web3.ropsten.contracts.token.abi;
               this.contractInfo.vestingAbi = require('./../../config/config').web3.ropsten.contracts.vesting.abi;
+              apm.captureError(new Error('web3.version.getNerwork == case 3'))
               break;
             default:
               this.web3info.text = 'Connect to MainNet or Ropsten to use extended buyer form';
+              apm.captureError(new Error('web3.version.getNerwork == case default'))
               setTimeout(() => {
                 this.detectNetwork();
               }, 15000);
           }
           if (web3.eth.accounts.length < 1) {
             this.web3info.text = 'Please unlock your MetaMask account to use extended buyer form';
+            apm.captureError(new Error('unlock your MetaMask account'))
             setTimeout(() => {
               this.detectNetwork();
             }, 10000);
@@ -252,6 +264,7 @@
           }
           if (this.contractInfo.icoAddress && this.contractInfo.tokenAddress) setTimeout(() => {
             web3.eth.getCoinbase((error, result) => {
+              apm.captureError(new Error('getCoinbase >>>> ' + result + " error >>> " + error))
               if (error) {
                 this.web3info.text = 'Wa can\'t detect your coinbase account';
                 this.whitelisted = false;
@@ -272,6 +285,7 @@
                   this.tokenContract = web3.eth.contract(this.contractInfo.tokenAbi).at(this.contractInfo.tokenAddress);
                   this.web3info.loaded = true;
                   this.icoContract.hasRole(this.userInfo.wallet, 'whitelist', (err, res) => {
+                    apm.captureError(new Error('icoContract.hasRole >>> ' + res + " err >>>" + err))
                     if (!err) {
                       this.whitelisted = res;
                       this.verified = res;

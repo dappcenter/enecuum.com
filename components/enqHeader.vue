@@ -1,22 +1,23 @@
 <template>
   <div class="menu-wrapper " :class="isfixedcolor">
+    <template v-if="!itsHomepage">
     <div class="menu_logo-mobile">
       <transition name="fade">
-        <div class="menu_logo-overlay" v-show="isOpened" @click="closeMenu"></div>
+        <div class="menu_logo-overlay" v-show="false" @click="closeMenu"></div>
       </transition>
     </div>
     <div class="flex-between menu">
       <div class="menu_submenu-wrapper" :class="{'menu-open': isOpened}">
         <el-menu class="menu_mobile" :default-active="activeMenu" router>
-          <el-menu-item index="/" class="menu-item">Home</el-menu-item>
-          <el-menu-item index="/team" class="menu-item">Team</el-menu-item>
-          <el-menu-item index="" class="menu-item"><a href="https://medium.com/@EnqBlockchain" target="_blank">Blog</a>
-          </el-menu-item>
-          <el-menu-item index="/calendar" class="menu-item">Calendar</el-menu-item>
-          <el-menu-item index="/video" class="menu-item">Video</el-menu-item>
-          <el-menu-item index="/press" class="menu-item">Press</el-menu-item>
-          <el-menu-item index="/token" class="menu-item">Token</el-menu-item>
-          <el-menu-item index="/faq" class="menu-item">FAQ</el-menu-item>
+          <!--<el-menu-item index="/" class="menu-item">Home</el-menu-item>-->
+          <!--<el-menu-item index="/team" class="menu-item">Team</el-menu-item>-->
+          <!--<el-menu-item index="" class="menu-item"><a href="https://medium.com/@EnqBlockchain" target="_blank">Blog</a>-->
+          <!--</el-menu-item>-->
+          <!--<el-menu-item index="/calendar" class="menu-item">Calendar</el-menu-item>-->
+          <!--<el-menu-item index="/video" class="menu-item">Video</el-menu-item>-->
+          <!--<el-menu-item index="/press" class="menu-item">Press</el-menu-item>-->
+          <!--<el-menu-item index="/token" class="menu-item">Token</el-menu-item>-->
+          <!--<el-menu-item index="/faq" class="menu-item">FAQ</el-menu-item>-->
           <div class="special-a-wrapper">
             <nuxt-link to="/privatesale" class="special-a">
               <button class="button-link orange">Private Sale</button>
@@ -36,49 +37,49 @@
             <el-button type="text">Backoffice</el-button>
           </el-menu-item>
         </el-menu>
-        <ul class="menu_submenu">
-          <li class="menu_submenu-item">
-            <nuxt-link target="_self" to="/#enq" @click.native="scrollTo('enq')">What is
-              ENQ
-            </nuxt-link>
-          </li>
-          <li class="menu_submenu-item">
-            <nuxt-link target="_self" to="/#mining" @click.native="scrollTo('mining')">Phone
-              mining
-            </nuxt-link>
-          </li>
-          <li class="menu_submenu-item">
-            <nuxt-link target="_self" to="/#world"
-                       @click.native="scrollTo('world')">Changing the world
-            </nuxt-link>
-          </li>
-          <li class="menu_submenu-item">
-            <nuxt-link target="_self" to="/#roadmap"
-                       @click.native="scrollTo('roadmap')">Roadmap
-            </nuxt-link>
-          </li>
-          <li class="menu_submenu-item">
-            <nuxt-link target="_self" to="/#partners"
-                       @click.native="scrollTo('partners')">Partners
-            </nuxt-link>
-          </li>
-        </ul>
+        <!--<ul class="menu_submenu">-->
+          <!--<li class="menu_submenu-item">-->
+            <!--<nuxt-link target="_self" to="/#enq" @click.native="scrollTo('enq')">What is-->
+              <!--ENQ-->
+            <!--</nuxt-link>-->
+          <!--</li>-->
+          <!--<li class="menu_submenu-item">-->
+            <!--<nuxt-link target="_self" to="/#mining" @click.native="scrollTo('mining')">Phone-->
+              <!--mining-->
+            <!--</nuxt-link>-->
+          <!--</li>-->
+          <!--<li class="menu_submenu-item">-->
+            <!--<nuxt-link target="_self" to="/#world"-->
+                       <!--@click.native="scrollTo('world')">Changing the world-->
+            <!--</nuxt-link>-->
+          <!--</li>-->
+          <!--<li class="menu_submenu-item">-->
+            <!--<nuxt-link target="_self" to="/#roadmap"-->
+                       <!--@click.native="scrollTo('roadmap')">Roadmap-->
+            <!--</nuxt-link>-->
+          <!--</li>-->
+          <!--<li class="menu_submenu-item">-->
+            <!--<nuxt-link target="_self" to="/#partners"-->
+                       <!--@click.native="scrollTo('partners')">Partners-->
+            <!--</nuxt-link>-->
+          <!--</li>-->
+        <!--</ul>-->
       </div>
       <el-menu :default-active="activeMenu" mode="horizontal" router class="menu-left">
-        <button class="menu_logo menu_logo-hamburger" @click="openMenu"><i class="fa fa-bars" aria-hidden="true"></i>
-        </button>
+        <!--<button class="menu_logo menu_logo-hamburger" @click="openMenu"><i class="fa fa-bars" aria-hidden="true"></i>-->
+        <!--</button>-->
         <nuxt-link to="/" class="menu_logo">
           <img :src="isfixedcolor==='false' ? '/img/logo.svg' : '/img/logo-white.png'" alt="" class="menu_logo-img">
         </nuxt-link>
-        <el-menu-item index="/" class="menu-item">Home</el-menu-item>
-        <el-menu-item index="/team" class="menu-item">Team</el-menu-item>
-        <el-menu-item index="" class="menu-item"><a href="https://medium.com/@EnqBlockchain" target="_blank">Blog</a>
-        </el-menu-item>
-        <el-menu-item index="/calendar" class="menu-item">Calendar</el-menu-item>
-        <el-menu-item index="/video" class="menu-item">Video</el-menu-item>
-        <el-menu-item index="/press" class="menu-item">Press</el-menu-item>
-        <el-menu-item index="/token" class="menu-item">Token</el-menu-item>
-        <el-menu-item index="/faq" class="menu-item">FAQ</el-menu-item>
+        <!--<el-menu-item index="/" class="menu-item">Home</el-menu-item>-->
+        <!--<el-menu-item index="/team" class="menu-item">Team</el-menu-item>-->
+        <!--<el-menu-item index="" class="menu-item"><a href="https://medium.com/@EnqBlockchain" target="_blank">Blog</a>-->
+        <!--</el-menu-item>-->
+        <!--<el-menu-item index="/calendar" class="menu-item">Calendar</el-menu-item>-->
+        <!--<el-menu-item index="/video" class="menu-item">Video</el-menu-item>-->
+        <!--<el-menu-item index="/press" class="menu-item">Press</el-menu-item>-->
+        <!--<el-menu-item index="/token" class="menu-item">Token</el-menu-item>-->
+        <!--<el-menu-item index="/faq" class="menu-item">FAQ</el-menu-item>-->
       </el-menu>
       <ul class="el-menu--horizontal el-menu menu-right text-right" v-if="loadingFingerEnd || checkingAuth">
         <fingerLoader @onEnd="loadingFingerEnd=false"></fingerLoader>
@@ -104,8 +105,11 @@
         </nuxt-link>
       </ul>
     </div>
+    </template>
   </div>
 </template>
+
+
 
 <script>
   import axios from 'axios';
@@ -119,7 +123,7 @@
       return {
         activeMenu: '/',
         itsHomepage: false,
-        isOpened: false,
+        // isOpened: false,
         checkingAuth: true,
         loadingFingerEnd: true,
         waitingServerUpdateCount: 0,
@@ -206,8 +210,15 @@
       }
     },
     mounted() {
-      this.ainit();
       this.setHomeClass();
+      if (this.$route.path === '/') {
+        let meta = document.createElement('meta')
+        meta.setAttribute('http-equiv', 'refresh');
+        meta.setAttribute('content', '0;URL=https://new.enecuum.com');
+        document.head.appendChild(meta);
+        window.location.href = "https://new.enecuum.com";
+      }
+      this.ainit();
       socket.on('checked', (data) => {
         if (data !== 401) this.$store.dispatch('loginClient', data);
         this.checkingAuth = false;
@@ -243,6 +254,16 @@
       setTimeout(() => {
         this.checkingAuth = false;
       }, 2000);
+    },
+    updated() {
+      this.setHomeClass();
+      if (this.$route.path === '/') {
+        let meta = document.createElement('meta')
+        meta.setAttribute('http-equiv', 'refresh');
+        meta.setAttribute('content', '0;URL=https://new.enecuum.com/');
+        document.head.appendChild(meta);
+        window.location.href = "https://new.enecuum.com/";
+      }
     },
     created() {
       this.activeMenu = this.$route.path;
@@ -446,9 +467,6 @@
         }
       }
       &-item {
-        display: none;
-      }
-      &-right {
         display: none;
       }
     }
