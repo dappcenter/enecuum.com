@@ -49,6 +49,46 @@ app.post('/api/airdrop/update', (req, res) => {
   }
 });
 
+app.post('/api/airdrop/verification', (req, res) => {
+  if (!req.body.verification) {
+    return res.send({
+      ok: false,
+      message: 'Verification code is empty'
+    });
+  }
+  return db.getWaitingRegUser(req.body).then(user => {
+    if (user) {
+      console.log('exist user: ', user);
+      let isSended = mail.send('ad', {
+        EMAIL: user.email.toLowerCase(),
+        FIRST_NAME: user.name,
+        LAST_NAME: user.surname
+      });
+      return isSended.then(mail => {
+        if (mail.status === 200) {
+          return db.saveUser(user).then(user => {
+            if (user !== 400 && user) {
+              req.session.user = user.id;
+              res.send({
+                ok: true
+              });
+            } else {
+              return res.send('User not found');
+            }
+          });
+        } else {
+          return res.send({ok: false, message: 'Please check your email or use another email address.'});
+        }
+      });
+    } else {
+      return res.send({
+        ok: false,
+        message: 'Wrong verification code'
+      });
+    }
+  })
+});
+
 app.post('/api/airdrop/registration', (req, res) => {
   req.session.user = null;
   res.clearCookie('session.sig', {path: '/'}).status(200);
@@ -68,26 +108,37 @@ app.post('/api/airdrop/registration', (req, res) => {
     if (user) {
       return res.send({ok: false, message: 'Email already exists'});
     } else {
-      console.log('not exist');
-      let isSended = mail.send('ad', {
-        EMAIL: req.body.email.toLowerCase(),
-        FIRST_NAME: req.body.name,
-        LAST_NAME: req.body.surname
-      });
-      return isSended.then(mail => {
-        if (mail.status === 200) {
-          return db.saveUser(req.body).then(user => {
-            if (user !== 400 && user) {
-              req.session.user = id;
-              res.send(user);
-            } else {
-              return res.send('User not found');
-            }
-          });
-        } else {
-          return res.send({ok: false, message: 'Please check your email or use another email address.'});
+      let verification = crypto.createHash('sha256').update(req.body.email + req.body.password + req.body.id).digest('base64');
+      req.body.verificationCode = verification;
+      return db.saveWaitingRegUser({data: req.body}).then(verificationCode => {
+        if (verificationCode !== 400) {
+          console.log('verificationCOde: ', verificationCode);
+          return res.send({
+            ok: true,
+            message: 'Confirm your email address'
+          })
         }
       });
+      /*      console.log('not exist');
+            let isSended = mail.send('ad', {
+              EMAIL: req.body.email.toLowerCase(),
+              FIRST_NAME: req.body.name,
+              LAST_NAME: req.body.surname
+            });
+            return isSended.then(mail => {
+              if (mail.status === 200) {
+                return db.saveUser(req.body).then(user => {
+                  if (user !== 400 && user) {
+                    req.session.user = id;
+                    res.send(user);
+                  } else {
+                    return res.send('User not found');
+                  }
+                });
+              } else {
+                return res.send({ok: false, message: 'Please check your email or use another email address.'});
+              }
+            });*/
     }
   });
 });

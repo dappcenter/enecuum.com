@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const {User, LiteKyc} = require('./models');
+const {User, LiteKyc, WaitingReg} = require('./models');
 
 class MongoProvider {
   constructor(url) {
@@ -22,6 +22,8 @@ class MongoProvider {
     data.total = 25;
     data._id = new mongoose.Types.ObjectId();
     const _user = new User(data);
+
+    console.log('saving user: ', data, _user);
     return new Promise(resolve => {
       _user.save((err) => {
         if (err) {
@@ -179,6 +181,57 @@ class MongoProvider {
         }
       });
     });
+  }
+
+  /**
+   *
+   * @param data
+   * @returns {Promise<any>}
+   */
+  getWaitingRegUser(data) {
+    console.log('verification vode from db: ', data);
+    return new Promise(resolve => {
+      WaitingReg.findOne({
+        verificationCode: data.verification
+      }).select('id name surname email password country').exec((err, user) => {
+        if (err) {
+          console.log('get waiting user error: ', err);
+          resolve(false);
+        } else {
+          let us = Object.assign({}, user._doc);
+          delete us._id;
+          WaitingReg.findByIdAndRemove(user._id, (err, res) => {
+            console.log('after removing" ', err, res);
+            if (err) {
+              console.log('remove user error: ', err);
+              resolve(false);
+            } else {
+              resolve(us);
+            }
+          });
+        }
+      });
+    });
+  }
+
+  /**
+   *
+   * @param data
+   * @returns {Promise<any>}
+   */
+  saveWaitingRegUser({data}) {
+    data._id = new mongoose.Types.ObjectId();
+    const _user = new WaitingReg(data);
+    return new Promise(resolve => {
+      _user.save((err) => {
+        if (err) {
+          console.log('save waitingRegUser error: ', err);
+          resolve(400);
+        } else {
+          resolve(data.verificationCode);
+        }
+      });
+    })
   }
 
   /**
