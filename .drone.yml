@@ -1,11 +1,10 @@
 pipeline:
   build:
     image: plugins/docker
-    secrets: [docker_username, docker_password, docker_registry]
+    secrets: [docker_username, docker_password]
     registry: dev.enecuum.com:2087
     repo: dev.enecuum.com:2087/site/frontend
     tags: latest
-    debug: true
     when:
       branch:
         - dev
