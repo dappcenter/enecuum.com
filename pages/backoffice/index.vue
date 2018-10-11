@@ -95,6 +95,7 @@
         </el-row>
       </el-col>
     </el-row>
+
     <tokenVesting v-if="vesting" :contractInfo="contractInfo" :ico="icoContract" :token="tokenContract"
                   :userInfo="userInfo"
                   :verified="verified" @setVestingBalance="setVestingBalance"></tokenVesting>
@@ -104,6 +105,7 @@
           href="mailto:support@enecuum.com">support@enecuum.com</a></p>
         <h3 class="text-center title-under mb13"><a href="/docs/Enecuum_TokenSale_Terms_and_Conditions.pdf"
                                                     target="_blank">Token Sale Terms and Conditions</a></h3>
+
       </el-col>
     </el-row>
   </section>
