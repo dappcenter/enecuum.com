@@ -79,7 +79,7 @@
     </el-row>
     <accountForm v-if="web3info.loaded" :web3info="web3info" :contractInfo="contractInfo" :ico="icoContract"
                  :token="tokenContract"
-                 :verified="verified" :userInfo="userInfo"></accountForm>
+                 :verified="true" :userInfo="userInfo"></accountForm>
     <el-row class="flex-center mb40" v-else>
       <el-col :xs="22" :sm="10" :md="12" :xl="10">
         <el-row :gutter="30" class="flex-center flex-wrap flex-column">
