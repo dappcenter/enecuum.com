@@ -24,7 +24,6 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "elastic-apm-js-base": "^1.0.0",
     "axios": "^0.18.0",
     "bignumber.js": "^7.2.1",
     "body-parser": "^1.18.3",
