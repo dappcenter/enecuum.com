@@ -18,7 +18,7 @@
     </div>
     <div class="flex-center flex-wrap">
       <div class="button-link-lang">
-        <a href="/docs/pp_en.pdf" class="button-link blue" target="_blank">
+        <a href="/docs/pp_en.pdf?v=1.0.0" class="button-link blue" target="_blank">
           Whitepaper
         </a>
         <div class="flag">
@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="button-link-lang">
-        <a href="/docs/op_en.pdf" class="button-link blue" target="_blank">
+        <a href="/docs/op_en.pdf?v=1.0.0" class="button-link blue" target="_blank">
           Onepager
         </a>
         <div class="flag">
@@ -165,6 +165,11 @@
           price: '1 ENQ = USD 0,06',
           limit: '4.774.049,28 USD'
         }]
+      }
+    },
+    methods: {
+      version: function(e) {
+        return new Date().getTime();
       }
     }
   }
