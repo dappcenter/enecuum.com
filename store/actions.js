@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const apiUrl = 'https://api.enecuum.com/v1';
-const pureApi = 'https://airdrop.enecuum.com/api';
-const pureUrl = 'https://enecuum.com';
+const pureApi = 'http://airdrop.enecuum.com/api';
+const pureUrl = 'http://enecuum.com';
 
 const airdropDirectory = '/app';
 
@@ -11,6 +11,32 @@ const actions = {
     return new Promise(resolve => {
       axios.request({
         url: pureApi + '/airdrop/verification',
+        method: 'POST',
+        data: data,
+        withCredentials: true,
+      }).then((res) => {
+        resolve(res.data);
+      })
+    });
+  },
+  restorePasswordCode(store, data) {
+    console.log(data);
+    return new Promise(resolve => {
+      axios.request({
+        url: pureApi + '/airdrop/resetpassword',
+        method: 'POST',
+        data: data,
+        withCredentials: true,
+      }).then((res) => {
+        resolve(res.data);
+      })
+    });
+  },
+  restorePassword(store, data) {
+    console.log(data);
+    return new Promise(resolve => {
+      axios.request({
+        url: pureApi + '/airdrop/restore',
         method: 'POST',
         data: data,
         withCredentials: true,
@@ -81,6 +107,22 @@ const actions = {
     return new Promise(resolve => {
       axios.request({
         url: pureApi + '/airdrop/litekyc',
+        data: data,
+        method: 'post',
+        withCredentials: true,
+      }).then((res) => {
+        if (res.data.ok) {
+          resolve({ok: true});
+        } else {
+          resolve({ok: false, message: res.data.message});
+        }
+      });
+    });
+  },
+  airdropLiteKycUpdate(store, data) {
+    return new Promise(resolve => {
+      axios.request({
+        url: pureApi + '/airdrop/litekyc/update',
         data: data,
         method: 'post',
         withCredentials: true,

@@ -7,7 +7,20 @@
         We give <b>25 000 000</b> tokens for our bounty program. Complete the fields below, read the Airdrop terms of
         Airdrop and start earning with us right now!
       </h2>
-      <div class="airdrop_form">
+      <div class="airdrop_form" v-if="resetpwd">
+        <el-row type="flex" justify="center">
+          <el-col :xs="24" :sm="12">
+            <div class="input_group-wrapper">
+              <div class="input_group">
+                <label for="remail">Email:</label>
+                <input type="text" id="remail" v-model="reset.email" @keyup.enter="login">
+              </div>
+            </div>
+            <el-button type="text" @click="resetpwd=false">Back</el-button>
+          </el-col>
+        </el-row>
+      </div>
+      <div class="airdrop_form" v-else>
         <el-row type="flex" justify="center">
           <el-col :xs="24" :sm="12">
             <div class="input_group-wrapper">
@@ -26,6 +39,7 @@
                 <input type="password" id="password" v-model="user.password" @keyup.enter="login">
               </div>
             </div>
+            <el-button type="text" @click="resetpwd=true">Reset password</el-button>
           </el-col>
         </el-row>
       </div>
@@ -59,6 +73,10 @@
     layout: 'airdrop',
     data() {
       return {
+        resetpwd: false,
+        reset: {
+          email: ''
+        },
         user: {
           email: '',
           password: ''
@@ -67,25 +85,45 @@
     },
     methods: {
       login() {
-        if (this.user.email && this.user.password) {
-          let logged = this.$store.dispatch('airdropLogin', this.user);
-          logged.then(res => {
+        if (this.resetpwd) {
+          let reseted = this.$store.dispatch('restorePasswordCode', this.reset);
+          reseted.then(res => {
             if (res.ok) {
-              this.$router.push('/app/backoffice');
+              this.$notify({
+                message: res.message,
+                type: 'success',
+                position: 'bottom-left'
+              });
+              this.resetpwd = false;
             } else {
               this.$notify({
-                message: 'Incorrect email or password',
+                message: res.message,
                 type: 'error',
                 position: 'bottom-left'
               });
             }
-          });
+          })
         } else {
-          this.$notify({
-            message: 'Email of password is empty',
-            type: 'warning',
-            position: 'bottom-left'
-          });
+          if (this.user.email && this.user.password) {
+            let logged = this.$store.dispatch('airdropLogin', this.user);
+            logged.then(res => {
+              if (res.ok) {
+                this.$router.push('/app/backoffice');
+              } else {
+                this.$notify({
+                  message: 'Incorrect email or password',
+                  type: 'error',
+                  position: 'bottom-left'
+                });
+              }
+            });
+          } else {
+            this.$notify({
+              message: 'Email of password is empty',
+              type: 'warning',
+              position: 'bottom-left'
+            });
+          }
         }
       }
     },

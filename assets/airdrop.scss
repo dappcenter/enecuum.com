@@ -159,12 +159,19 @@
     }
   }
   &_form {
-    margin: 65px 0px;
+    margin: 20px 0px;
     .subscr {
       margin-top: 10px;
       font-size: 10px;
       line-height: 1.2;
       padding: 10px;
+    }
+    &.restore {
+      .input_group {
+        label {
+          min-width: 180px;
+        }
+      }
     }
   }
   &_social {
@@ -239,10 +246,10 @@
         &[type='file'] {
           display: none;
         }
-        /*        &[disabled]:not(.inputfile) {
-                  border: 0px;
-                  box-shadow: none;
-                }*/
+        &[disabled]:not(.inputfile) {
+          border-color: rgba(29, 122, 170, 0.2);
+          box-shadow: none;
+        }
       }
       &:hover {
         box-shadow: none;
@@ -258,10 +265,10 @@
         option {
           color: #2e2e2e;
         }
-        /*        &[disabled] {
-                  border: 0px;
-                  box-shadow: none;
-                }*/
+        &[disabled] {
+          border-color: rgba(29, 122, 170, 0.2);
+          box-shadow: none;
+        }
       }
     }
     &.button {
@@ -269,6 +276,9 @@
       justify-content: center;
       &:hover {
         box-shadow: none;
+      }
+      &.flex-between {
+        justify-content: space-around;
       }
     }
     &-checkbox {
@@ -490,6 +500,17 @@ header {
           color: #ffffff;
         }
       }
+    }
+  }
+  .totalSupplyAirdrop {
+    position: absolute;
+    z-index: 1;
+    width: 400px;
+    bottom: -20px;
+    right: 40px;
+    &_text {
+      text-align: center;
+      color: #ffffff;
     }
   }
 }

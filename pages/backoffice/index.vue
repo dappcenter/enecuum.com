@@ -115,12 +115,12 @@
   import socket from '~/plugins/socket.io.js';
   import ICountUp from 'vue-countup-v2';
   import bn from 'bignumber.js';
-  import {init as initApm} from "elastic-apm-js-base"
+  //import {init as initApm} from "elastic-apm-js-base"
 
-  var apm = initApm({
+/*  var apm = initApm({
     serviceName: "Backoffice",
     serverUrl: "http://apm.enecuum.com:8200"
-  })
+  })*/
 
   export default {
     name: "faq",

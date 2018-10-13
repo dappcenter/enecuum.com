@@ -8,6 +8,7 @@ const db = require('./db/db');
 const crypto = require('crypto');
 const multer = require('multer');
 const mail = require('./../mail/mailer');
+const {confirmMail, recoveryMail} = require('./sendmail');
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, './air/uploads');
@@ -35,18 +36,81 @@ app.use((req, res, next) => {
 app.post('/api/airdrop/update', (req, res) => {
   if (!req.session.user) return res.send('Permission denied');
   if (req.body.f) {
-    console.log(req.session.user);
     return db.updateUser({t: req.body.t, sessionid: req.session.user}).then(user => {
       console.log('user: ', user);
-      if (user !== 400) {
+      if (user.ok) {
         res.send({ok: true, total: user.total});
       } else {
-        res.send({ok: false});
+        res.send({ok: false, message: user.message});
       }
     });
   } else {
     res.send('fail');
   }
+});
+
+app.post('/api/airdrop/resetpassword', (req, res) => {
+  let data = req.body;
+  if (!data.email) {
+    return res.send({
+      ok: false,
+      message: 'Some fields are empty'
+    });
+  }
+  let verification = crypto.createHash('sha256').update(new Date().getTime() + data.email).digest('base64');
+  data.verificationCode = verification;
+  db.resetPassword(data).then(verificationCode => {
+    if (verificationCode !== 400) {
+      console.log('verificationCode: ', verificationCode);
+      recoveryMail({email: data.email, code: verificationCode}).then(mail => {
+        if (mail.ok) {
+          return res.send({
+            ok: true,
+            message: 'Check your email'
+          })
+        } else {
+          return res.send({
+            ok: false,
+            message: 'Cant send email'
+          });
+        }
+      });
+    } else {
+      return res.send({
+        ok: false,
+        message: 'Something went wrong please try later'
+      });
+    }
+  });
+});
+
+app.post('/api/airdrop/restore', (req, res) => {
+  let data = req.body;
+  if (!data.code && !data.password) {
+    return res.send({
+      ok: false,
+      message: 'Some fields are empty'
+    });
+  }
+  if (data.password !== data.confirmPassword) {
+    return res.send({
+      ok: false,
+      message: 'Password do not match'
+    });
+  }
+  const pwd = crypto.createHash('sha256').update(process.env.SESS_KEY_SIGN + data.password + process.env.SESS_KEY_VERIFY).digest('base64');
+  db.restorePassword({code: data.code, password: pwd}).then(user => {
+    if (user === 400) {
+      return res.send({
+        ok: false,
+        message: 'Something went wrong'
+      });
+    } else {
+      return res.send({
+        ok: true
+      });
+    }
+  });
 });
 
 app.post('/api/airdrop/verification', (req, res) => {
@@ -112,10 +176,24 @@ app.post('/api/airdrop/registration', (req, res) => {
       req.body.verificationCode = verification;
       return db.saveWaitingRegUser({data: req.body}).then(verificationCode => {
         if (verificationCode !== 400) {
-          console.log('verificationCOde: ', verificationCode);
+          console.log('verificationCode: ', verificationCode);
+          confirmMail({email: req.body.email, code: verificationCode}).then(mail => {
+            if (mail.ok) {
+              return res.send({
+                ok: true,
+                message: 'Check your email'
+              })
+            } else {
+              return res.send({
+                ok: false,
+                message: 'Cant send email'
+              });
+            }
+          });
+        } else {
           return res.send({
-            ok: true,
-            message: 'Confirm your email address'
+            ok: false,
+            message: 'Something went wrong'
           })
         }
       });
@@ -139,6 +217,16 @@ app.post('/api/airdrop/registration', (req, res) => {
                 return res.send({ok: false, message: 'Please check your email or use another email address.'});
               }
             });*/
+    }
+  });
+});
+
+app.get('/api/airdrop/getAllAirdrop', (req, res) => {
+  return db.getAirdropCount().then(total => {
+    if (total.ok) {
+      res.send(total);
+    } else {
+      res.send({ok: false, message: 'Something went wrong'});
     }
   });
 });
@@ -195,7 +283,7 @@ const upload = multer({
   storage: storage,
   fileFilter(req, file, cb) {
     let filetypes = ['jpeg', 'jpg', 'gif', 'png', 'bmp', 'pdf'];
-    if (filetypes.includes(file.originalname.split('.').slice(-1)[0])) {
+    if (filetypes.includes(file.originalname.toLowerCase().split('.').slice(-1)[0])) {
       cb(null, true);
     } else {
       cb(new Error('Filetype not allowed'));
@@ -221,6 +309,18 @@ app.post('/api/airdrop/litekyc', (req, res) => {
       });
     }
   });
+});
+
+app.post('/api/airdrop/litekyc/update', (req, res) => {
+  if (!req.session.user) return res.send('Permission denied');
+  console.log('req: ', req);
+  db.updateLiteKyc({data: req.body, sessionid: req.session.user}).then(kyc => {
+    if (kyc === 200) {
+      return res.send({ok: true});
+    } else {
+      return res.send({ok: false});
+    }
+  })
 });
 
 module.exports = app;

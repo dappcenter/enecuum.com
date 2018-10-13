@@ -15,8 +15,7 @@
         <div v-if="show2FA">
           <el-form-item>
             <el-input v-model="code" type="text" placeholder="2FA Code"
-                      :disabled="'disabled' ? loading : null"
-                      @keyup.native="submit2FA"></el-input>
+                      :disabled="'disabled' ? loading : null"></el-input>
           </el-form-item>
           <el-alert :title="'if you lost 2fa please contact support'" type="warning" center
                     :closable="false">
@@ -28,9 +27,9 @@
         <el-form-item prop="confirm_password" v-if="!show2FA">
           <el-button type="primary" class="neon" @click="submitForm" :loading="loading">Sign In</el-button>
           <el-button type="text" @click="restore">Forgot password?</el-button>
-          <router-link to="/airdrop/backoffice">
+          <a href="/app/backoffice">
             <el-button type="text">Airdrop</el-button>
-          </router-link>
+          </a>
         </el-form-item>
       </el-form>
     </el-row>
