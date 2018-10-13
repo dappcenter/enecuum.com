@@ -10,7 +10,7 @@
     <div class="text-center mt60 mb60">
       <h2 class="page-title">End of token sale</h2>
       <div>
-        <button class="button-link orange special text-uppercase">31 October 2018</button>
+        <button class="button-link orange special text-uppercase">31 December 2018</button>
       </div>
     </div>
     <div class="mb40">
@@ -18,7 +18,7 @@
     </div>
     <div class="flex-center flex-wrap">
       <div class="button-link-lang">
-        <a href="/docs/pp_en.pdf" class="button-link blue" target="_blank">
+        <a href="/docs/pp_en.pdf?v=1.0.0" class="button-link blue" target="_blank">
           Whitepaper
         </a>
         <div class="flag">
@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="button-link-lang">
-        <a href="/docs/op_en.pdf" class="button-link blue" target="_blank">
+        <a href="/docs/op_en.pdf?v=1.0.0" class="button-link blue" target="_blank">
           Onepager
         </a>
         <div class="flag">
@@ -65,6 +65,11 @@
         <el-table-column
           prop="min"
           label="Min"
+          header-align="center">
+        </el-table-column>
+        <el-table-column
+          prop="price"
+          label="Price"
           header-align="center">
         </el-table-column>
         <el-table-column
@@ -138,25 +143,33 @@
         scheduleData: [{
           id: 1,
           start: '22.06.2018',
-          end: '01.10.2018',
+          end: '31.10.2018',
           max: '2.000.000 USD',
           min: 'none',
+          price: '1 ENQ = USD 0,04',
           limit: '5.967.564,6 USD'
         }, {
           id: 2,
-          start: '01.10.2018',
-          end: '21.10.2018',
+          start: '01.11.2018',
+          end: '30.11.2018',
           max: '1.000.000 USD',
           min: 'none',
+          price: '1 ENQ = USD 0,05',
           limit: '13.128.235,52 USD'
         }, {
           id: 3,
-          start: '22.10.2018',
-          end: '31.10.2018',
+          start: '01.12.2018',
+          end: '31.12.2018',
           max: '1.000.000 USD',
           min: 'none',
+          price: '1 ENQ = USD 0,06',
           limit: '4.774.049,28 USD'
         }]
+      }
+    },
+    methods: {
+      version: function(e) {
+        return new Date().getTime();
       }
     }
   }
