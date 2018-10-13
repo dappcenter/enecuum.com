@@ -90,7 +90,7 @@
         <el-col :xs="24" :sm="8">
           <div class="input_group-wrapper">
             <div class="input_group button">
-              <button @click="register">
+              <button @click="register" :disabled="loading">
                 Open tomorrow now
               </button>
             </div>
@@ -110,6 +110,7 @@
     data() {
       return {
         countries: [],
+        loading: false,
         terms: false,
         user: {
           name: '',
@@ -139,12 +140,18 @@
             });
             return false;
           }
+          this.loading = true;
           let logged = this.$store.dispatch('airdropRegister', this.user);
           logged.then(res => {
             if (res.ok) {
               this.$router.push('/app/backoffice');
             } else {
               if (res.message) {
+                this.user.name = '';
+                this.user.surname = '';
+                this.user.email = '';
+                this.user.password = '';
+
                 this.$notify({
                   message: res.message,
                   type: 'warning',
@@ -158,6 +165,7 @@
                 });
               }
             }
+            this.loading = false;
           })
         } else {
           this.$notify({

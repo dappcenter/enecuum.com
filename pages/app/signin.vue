@@ -56,7 +56,7 @@
         <el-col :xs="24" :sm="8">
           <div class="input_group-wrapper">
             <div class="input_group button">
-              <button @click="login">
+              <button @click="login" :disabled="loading">
                 Open tomorrow now
               </button>
             </div>
@@ -74,6 +74,7 @@
     data() {
       return {
         resetpwd: false,
+        loading: false,
         reset: {
           email: ''
         },
@@ -85,14 +86,13 @@
     },
     methods: {
       login() {
+        this.loading = true;
         if (this.resetpwd) {
           let reseted = this.$store.dispatch('restorePasswordCode', this.reset);
           reseted.then(res => {
             if (res.ok) {
-              this.$notify({
-                message: res.message,
-                type: 'success',
-                position: 'bottom-left'
+              this.$alert(res.message, 'Registration', {
+                confirmButtonText: 'OK'
               });
               this.resetpwd = false;
             } else {
@@ -102,6 +102,7 @@
                 position: 'bottom-left'
               });
             }
+            this.loading = false;
           })
         } else {
           if (this.user.email && this.user.password) {
@@ -116,6 +117,7 @@
                   position: 'bottom-left'
                 });
               }
+              this.loading = false;
             });
           } else {
             this.$notify({
@@ -123,6 +125,7 @@
               type: 'warning',
               position: 'bottom-left'
             });
+            this.loading = false;
           }
         }
       }
