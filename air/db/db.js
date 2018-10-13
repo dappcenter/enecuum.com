@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const {User, LiteKyc} = require('./models');
+const {User, LiteKyc, WaitingReg, ResetPwd} = require('./models');
 
 class MongoProvider {
   constructor(url) {
@@ -15,6 +15,33 @@ class MongoProvider {
 
   /**
    *
+   * @returns {Promise<any>}
+   */
+  getAirdropCount() {
+    return new Promise(resolve => {
+      User.find({}).select('total -_id').exec((err, users) => {
+        if (err) {
+          console.log('get total airdrop users error: ', err);
+          resolve({ok: false});
+        } else {
+          console.log('users: ', users);
+          let totalAirdrops = users.reduce((sum, current) => {
+            return parseInt(sum.total || sum) + parseInt(current.total);
+          });
+          console.log('total airdrops: ', totalAirdrops);
+          resolve({
+            ok: true, message: {
+              totalSupply: process.env.AIRDROP_TOTAL_SUPPLY,
+              totalAirdrop: totalAirdrops
+            }
+          });
+        }
+      });
+    })
+  }
+
+  /**
+   *
    * @param data
    * @returns {Promise<any>}
    */
@@ -22,6 +49,8 @@ class MongoProvider {
     data.total = 25;
     data._id = new mongoose.Types.ObjectId();
     const _user = new User(data);
+
+    console.log('saving user: ', data, _user);
     return new Promise(resolve => {
       _user.save((err) => {
         if (err) {
@@ -111,11 +140,11 @@ class MongoProvider {
         }).select('twitter facebook linkedin telegram emailpro total').exec((err, user) => {
           if (err) {
             console.log('get user error: ', err);
-            resolve(400);
+            resolve({ok: false});
           } else {
             console.log('selected user is: ', user);
             try {
-              if (!user) resolve(400);
+              if (!user) resolve({ok: false});
               let incr = 0;
               user[t] = true;
               user.twitter ? incr += 20 : null;
@@ -124,17 +153,26 @@ class MongoProvider {
               user.linkedin ? incr += 20 : null;
               user.telegram ? incr += 40 : null;
               user.total = incr;
-              user.save((err) => {
-                if (err) {
-                  console.log('save user error: ', err);
-                  resolve(400);
-                } else {
-                  resolve({total: user.total});
+
+              this.getAirdropCount().then(total => {
+                if (total.ok) {
+                  if (total.message.totalAirdrop + incr < total.message.totalSupply) {
+                    user.save((err) => {
+                      if (err) {
+                        console.log('save user error: ', err);
+                        resolve({ok: false});
+                      } else {
+                        resolve({total: user.total});
+                      }
+                    });
+                  } else {
+                    resolve({ok: false, message: 'Airdrop supply limit sorry'});
+                  }
                 }
               });
             } catch (e) {
               console.log('error: ', e);
-              resolve(400);
+              resolve({ok: false});
             }
           }
         });
@@ -183,6 +221,88 @@ class MongoProvider {
 
   /**
    *
+   * @param data
+   * @param sessionid
+   * @returns {Promise<any>}
+   */
+  updateLiteKyc({data, sessionid}) {
+    return new Promise(resolve => {
+      User.findOne({
+        id: sessionid
+      }).select('email').exec((err, user) => {
+        console.log(data);
+        LiteKyc.update({
+          email: user.email
+        }, {
+          nation: data.nation,
+          birthDate: data.birthDate,
+          walletInfo: data.walletInfo
+        }, (err) => {
+          if (err) {
+            console.log('save user error: ', err);
+            resolve(400);
+          } else {
+            resolve(200);
+          }
+        });
+      });
+    });
+  }
+
+  /**
+   *
+   * @param data
+   * @returns {Promise<any>}
+   */
+  getWaitingRegUser(data) {
+    console.log('verification vode from db: ');
+    return new Promise(resolve => {
+      WaitingReg.findOne({
+        verificationCode: data.verification.replace(' ', '+')
+      }).select('id name surname email password country').exec((err, user) => {
+        if (!user || err) {
+          console.log('get waiting user error: ', err);
+          resolve(false);
+        } else {
+          console.log(user);
+          let us = Object.assign({}, user._doc);
+          delete us._id;
+          WaitingReg.findByIdAndRemove(user._id, (err, res) => {
+            console.log('after removing" ', err, res);
+            if (err) {
+              console.log('remove user error: ', err);
+              resolve(false);
+            } else {
+              resolve(us);
+            }
+          });
+        }
+      });
+    });
+  }
+
+  /**
+   *
+   * @param data
+   * @returns {Promise<any>}
+   */
+  saveWaitingRegUser({data}) {
+    data._id = new mongoose.Types.ObjectId();
+    const _user = new WaitingReg(data);
+    return new Promise(resolve => {
+      _user.save((err) => {
+        if (err) {
+          console.log('save waitingRegUser error: ', err);
+          resolve(400);
+        } else {
+          resolve(data.verificationCode);
+        }
+      });
+    })
+  }
+
+  /**
+   *
    * @param sessionid
    * @returns {Promise<any>}
    */
@@ -207,6 +327,50 @@ class MongoProvider {
         }
       });
     });
+  }
+
+  resetPassword({email, verificationCode}) {
+    const _user = new ResetPwd({email, verificationCode});
+    return new Promise(resolve => {
+      _user.save((err) => {
+        if (err) {
+          console.log('save waitingRegUser error: ', err);
+          resolve(400);
+        } else {
+          resolve(verificationCode);
+        }
+      });
+    })
+  }
+
+  restorePassword({code, password}) {
+    return new Promise(resolve => {
+      ResetPwd.findOne({
+        verificationCode: code.replace(' ', '+')
+      }).select('email').exec((err, us) => {
+        console.log('us from restore pwd', us);
+        if (!us || err) {
+          console.log('get restoring user error: ', err);
+          resolve(400);
+        } else {
+          User.update({
+            email: us.email
+          }, {
+            password: password
+          }, (err) => {
+            if (err) resolve(400);
+            ResetPwd.findByIdAndRemove(us._id, (err, res) => {
+              if (err) {
+                console.log('remove restore pwd error: ', err);
+                resolve(400);
+              } else {
+                resolve({ok: true});
+              }
+            });
+          });
+        }
+      })
+    })
   }
 }
 
