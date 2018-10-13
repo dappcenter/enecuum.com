@@ -4,8 +4,7 @@
       <h2 class="airdrop-title title">
         Welcome to the Enecuum Airdrop campaign!
 
-        We give <b>25 000 000</b> tokens for our bounty program. Complete the fields below, read the Airdrop terms of
-        Airdrop and start earning with us right now!
+        <b>5 000 000</b> tokens will be distributed! Complete the fields below, read the Airdrop terms and conditions and start earning tokens right now!
       </h2>
       <div class="airdrop_form">
         <el-row :gutter="20">
@@ -59,7 +58,7 @@
             <div class="subscr">
               Certain jurisdictions may make it unlawful for us to deliver tokens to you; therefore, you may not be
               eligible to receive tokens depending on your country of citizenship. We are consistently monitoring the
-              regulatory landscape to be able to deliver tokens to as many people as possible.
+              regulatory landscape to enable delivery of tokens to as many people as possible.
             </div>
           </el-col>
         </el-row>
@@ -151,11 +150,8 @@
                 this.user.surname = '';
                 this.user.email = '';
                 this.user.password = '';
-
-                this.$notify({
-                  message: res.message,
-                  type: 'warning',
-                  position: 'bottom-left'
+                this.$alert(res.message, 'Registration', {
+                  confirmButtonText: 'OK'
                 });
               } else {
                 this.$notify({

@@ -4,8 +4,7 @@
       <h2 class="airdrop-title title">
         Welcome to the Enecuum Airdrop campaign!
 
-        We give <b>25 000 000</b> tokens for our bounty program. Complete the fields below, read the Airdrop terms of
-        Airdrop and start earning with us right now!
+        <b>5 000 000</b> tokens will be distributed! Complete the fields below, read the Airdrop terms and conditions and start earning tokens right now!
       </h2>
       <div class="airdrop_form" v-if="resetpwd">
         <el-row type="flex" justify="center">
@@ -56,7 +55,10 @@
         <el-col :xs="24" :sm="8">
           <div class="input_group-wrapper">
             <div class="input_group button">
-              <button @click="login" :disabled="loading">
+              <button @click="login" v-if="resetpwd" :disabled="loading">
+                Change password
+              </button>
+              <button @click="login" v-else>
                 Open tomorrow now
               </button>
             </div>
@@ -91,8 +93,10 @@
           let reseted = this.$store.dispatch('restorePasswordCode', this.reset);
           reseted.then(res => {
             if (res.ok) {
-              this.$alert(res.message, 'Registration', {
-                confirmButtonText: 'OK'
+              this.$notify({
+                message: res.message,
+                type: 'success',
+                position: 'bottom-left'
               });
               this.resetpwd = false;
             } else {
