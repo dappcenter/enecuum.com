@@ -125,7 +125,7 @@
     <el-dialog
       title="Rules"
       :visible.sync="rulesVisible"
-      width="40%">
+      custom-class="airdrop-dialog">
       <div>
         <ul class="airdrop_rules">
           <li v-for="(item, key) in airdropData[activeRule]" :key="key" v-html="item"></li>
@@ -135,7 +135,7 @@
         </div>
       </div>
       <div slot="footer" class="dialog-footer flex-between">
-        <a href="https://twitter.com/ENQ_enecuum" target="_blank" style="padding-right: 10px;"
+        <a href="https://twitter.com/ENQ_enecuum" target="_blank"
            v-if="activeRule==='twitter'">
           <el-button type="primary">Follow Twitter</el-button>
         </a>

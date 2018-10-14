@@ -47,7 +47,6 @@ class MongoProvider {
     data._id = new mongoose.Types.ObjectId();
     const _user = new User(data);
 
-    console.log('saving user: ', data, _user);
     return new Promise(resolve => {
       _user.save((err) => {
         if (err) {
@@ -139,7 +138,6 @@ class MongoProvider {
             console.log('get user error: ', err);
             resolve({ok: false});
           } else {
-            console.log('selected user is: ', user);
             try {
               if (!user) resolve({ok: false});
               let incr = 0;

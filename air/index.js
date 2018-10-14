@@ -315,7 +315,6 @@ app.post('/api/airdrop/litekyc', (req, res) => {
 
 app.post('/api/airdrop/litekyc/update', (req, res) => {
   if (!req.session.user) return res.send('Permission denied');
-  console.log('req: ', req);
   db.updateLiteKyc({data: req.body, sessionid: req.session.user}).then(kyc => {
     if (kyc === 200) {
       return res.send({ok: true});
