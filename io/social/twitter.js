@@ -37,7 +37,7 @@ io.on('connect', (ioclient) => {
     async (accessToken, refreshToken, profile, cb) => {
       let tweets = await getTweets(profile.id);
       let isFollow = await isFollowedTo(profile.id);
-      checkTerms(tweets, profile, isFollow);
+      checkTerms(tweets, profile, isFollow, ioclient);
       cb(null);
     }
   ));
@@ -68,7 +68,7 @@ io.on('connect', (ioclient) => {
     });
   }
 
-  function checkTerms(data, profile, isfollow) {
+  function checkTerms(data, profile, isfollow, socket) {
     console.log('checking terms: ');
     let count = {
       tweets: 0,
@@ -104,15 +104,15 @@ io.on('connect', (ioclient) => {
         }
       });
     });
-    ioclient.emit('test', 'testall');
+    socket.emit('test', 'testall');
     if (info.hashtag && info.followers && info.isFollow) {
       console.log('send good twitter', info);
-      ioclient.emit('test', 'testgood');
-      ioclient.emit('twitter', true);
+      socket.emit('test', 'testgood');
+      socket.emit('twitter', true);
     } else {
       console.log('send bad twitter', info);
-      ioclient.emit('test', 'testbad');
-      ioclient.emit('twitter', false);
+      socket.emit('test', 'testbad');
+      socket.emit('twitter', false);
     }
   }
 
