@@ -29,12 +29,14 @@ app.use(expressSession({
 app.use(passport.initialize());
 app.use(passport.session());
 io.on('connect', (ioclient) => {
+  console.log('io client connect', ioclient.id);
   passport.use(new TwitterStrategy({
       consumerKey: process.env.TWITTER_API_KEY,
       consumerSecret: process.env.TWITTER_API_SECRET_KEY,
       callbackURL: 'https://' + process.env.AIRDROP_HOST + "/oauth/twitter/callback"
     },
     async (accessToken, refreshToken, profile, cb) => {
+      console.log(ioclient);
       let tweets = await getTweets(profile.id);
       let isFollow = await isFollowedTo(profile.id);
       ioclient.emit('test', 'before checking terms');
@@ -72,7 +74,7 @@ io.on('connect', (ioclient) => {
   }
 
   function checkTerms(data, profile, isfollow, socket) {
-    console.log('checking terms: ');
+    console.log('checking terms: ', socket.id);
     socket.emit('test', 'checking terms');
     let count = {
       tweets: 0,
