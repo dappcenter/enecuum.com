@@ -114,6 +114,10 @@ io.on('connect', (ioclient) => {
     }
   }
 
+  setTimeout(() => {
+    ioclient.emit('test', 'test');
+  }, 5000);
+
   app.get('/oauth/twitter', passport.authenticate('twitter'));
   app.get('/oauth/twitter/callback',
     passport.authenticate('twitter', {failureRedirect: '/oauth/close'}),
