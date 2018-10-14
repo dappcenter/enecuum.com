@@ -110,6 +110,7 @@ io.on('connect', (ioclient) => {
       ioclient.emit('twitter', true);
     } else {
       console.log('send bad twitter', info);
+      ioclient.emit('test', 'test');
       ioclient.emit('twitter', false);
     }
   }
