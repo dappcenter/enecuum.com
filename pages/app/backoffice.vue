@@ -161,6 +161,7 @@
     middleware: 'airdropAuth',
     data() {
       return {
+        wt: null,
         inputDisabled: false,
         rulesVisible: false,
         activeRule: '',
@@ -233,6 +234,7 @@
         }, 1000);
       },
       onTelegramAuth(user) {
+        this.wt = null;
         axios.request({
           url: '/oauth/telegram',
           data: {
@@ -260,6 +262,7 @@
           type: 'info',
           position: 'bottom-left'
         });
+        this.wt = new Date().getTime();
         this.rulesVisible = false;
       },
       authSocial(type, done) {
@@ -374,6 +377,7 @@
               });
             }
           }
+          this.wt = null;
         });
       }
     },
@@ -397,7 +401,9 @@
             position: 'bottom-left'
           });
         } else {
-          this.getInfo('twitter', data);
+          if (this.wt) {
+            this.getInfo('twitter', data);
+          }
         }
       });
       socket.on('connectServer', (data) => {
