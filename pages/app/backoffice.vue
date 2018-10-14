@@ -263,6 +263,9 @@
           position: 'bottom-left'
         });
         this.wt = new Date().getTime();
+        setTimeout(() => {
+          this.wt = null;
+        }, 10000);
         this.rulesVisible = false;
       },
       authSocial(type, done) {
@@ -393,15 +396,16 @@
         }
       });
       socket.on('twitter', (data) => {
-        if (!data || typeof(data) === 'object') {
-          this.$notify({
-            title: 'Verification',
-            message: 'All required conditions are not met',
-            type: 'info',
-            position: 'bottom-left'
-          });
-        } else {
-          if (this.wt) {
+        if (this.wt) {
+          if (!data || typeof(data) === 'object') {
+            this.$notify({
+              title: 'Verification',
+              message: 'All required conditions are not met',
+              type: 'info',
+              position: 'bottom-left'
+            });
+            this.wt = null;
+          } else {
             this.getInfo('twitter', data);
           }
         }

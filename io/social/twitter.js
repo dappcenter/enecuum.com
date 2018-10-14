@@ -29,21 +29,16 @@ app.use(expressSession({
 app.use(passport.initialize());
 app.use(passport.session());
 io.on('connect', (ioclient) => {
-  console.log('io client connect', ioclient.id);
   passport.use(new TwitterStrategy({
       consumerKey: process.env.TWITTER_API_KEY,
       consumerSecret: process.env.TWITTER_API_SECRET_KEY,
       callbackURL: 'https://' + process.env.AIRDROP_HOST + "/oauth/twitter/callback"
     },
     async (accessToken, refreshToken, profile, cb) => {
-      console.log(ioclient);
       let tweets = await getTweets(profile.id);
       let isFollow = await isFollowedTo(profile.id);
-      ioclient.emit('test', 'before checking terms');
-      checkTerms(tweets, profile, isFollow, ioclient);
-      ioclient.emit('test', 'after checking terms');
+      checkTerms(tweets, profile, isFollow);
       cb(null);
-      ioclient.emit('test', 'after ps callback');
     }
   ));
 
@@ -73,9 +68,8 @@ io.on('connect', (ioclient) => {
     });
   }
 
-  function checkTerms(data, profile, isfollow, socket) {
-    console.log('checking terms: ', socket.id);
-    socket.emit('test', 'checking terms');
+  const checkTerms = (data, profile, isfollow) => {
+    console.log('checking terms: ');
     let count = {
       tweets: 0,
       retweets: 0
@@ -110,21 +104,14 @@ io.on('connect', (ioclient) => {
         }
       });
     });
-    socket.emit('test', 'testall');
     if (info.hashtag && info.followers && info.isFollow) {
       console.log('send good twitter', info);
-      socket.emit('test', 'testgood');
-      socket.emit('twitter', true);
+      io.emit('twitter', true);
     } else {
       console.log('send bad twitter', info);
-      socket.emit('test', 'testbad');
-      socket.emit('twitter', false);
+      io.emit('twitter', false);
     }
   }
-
-  setTimeout(() => {
-    ioclient.emit('test', 'test');
-  }, 5000);
 
   app.get('/oauth/twitter', passport.authenticate('twitter'));
   app.get('/oauth/twitter/callback',
