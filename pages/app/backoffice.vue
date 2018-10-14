@@ -125,7 +125,7 @@
     <el-dialog
       title="Rules"
       :visible.sync="rulesVisible"
-      width="40%">
+      custom-class="airdrop-dialog">
       <div>
         <ul class="airdrop_rules">
           <li v-for="(item, key) in airdropData[activeRule]" :key="key" v-html="item"></li>
@@ -135,7 +135,7 @@
         </div>
       </div>
       <div slot="footer" class="dialog-footer flex-between">
-        <a href="https://twitter.com/ENQ_enecuum" target="_blank" style="padding-right: 10px;"
+        <a href="https://twitter.com/ENQ_enecuum" target="_blank"
            v-if="activeRule==='twitter'">
           <el-button type="primary">Follow Twitter</el-button>
         </a>
@@ -161,6 +161,7 @@
     middleware: 'airdropAuth',
     data() {
       return {
+        wt: null,
         inputDisabled: false,
         rulesVisible: false,
         activeRule: '',
@@ -233,6 +234,7 @@
         }, 1000);
       },
       onTelegramAuth(user) {
+        this.wt = null;
         axios.request({
           url: '/oauth/telegram',
           data: {
@@ -260,6 +262,10 @@
           type: 'info',
           position: 'bottom-left'
         });
+        this.wt = new Date().getTime();
+        setTimeout(() => {
+          this.wt = null;
+        }, 10000);
         this.rulesVisible = false;
       },
       authSocial(type, done) {
@@ -339,7 +345,6 @@
         this.file = e.target.files[0];
       },
       getInfo(provider, data) {
-        console.log('starting get info: ', provider, data);
         if (!provider) return false;
         axios.request({
           url: '/api/airdrop/update',
@@ -362,7 +367,6 @@
           } else {
             if (res.data.message) {
               this.$notify({
-                title: '',
                 message: res.data.message,
                 type: 'info',
                 position: 'bottom-left'
@@ -391,15 +395,18 @@
         }
       });
       socket.on('twitter', (data) => {
-        if (!data || typeof(data) === 'object') {
-          this.$notify({
-            title: 'Verification',
-            message: 'All required conditions are not met',
-            type: 'info',
-            position: 'bottom-left'
-          });
-        } else {
-          this.getInfo('twitter', data);
+        if (this.wt) {
+          this.wt = null;
+          if (!data || typeof(data) === 'object') {
+            this.$notify({
+              title: 'Verification',
+              message: 'All required conditions are not met',
+              type: 'info',
+              position: 'bottom-left'
+            });
+          } else {
+            this.getInfo('twitter', data);
+          }
         }
       });
       socket.on('connectServer', (data) => {

@@ -133,14 +133,12 @@
     },
     methods: {
       onVerify(response) {
-        console.log('verify recaptcha', response);
         this.submit();
       },
       register() {
         this.loading = true;
         this.$refs.invisibleRecaptcha.execute();
         this.loading = false;
-        console.log(this.loading);
       },
       submit() {
         console.log(this.loading);

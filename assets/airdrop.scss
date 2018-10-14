@@ -1,6 +1,9 @@
 .airdrop {
   position: relative;
   height: auto;
+  &-dialog {
+    width: 40%;
+  }
   .blockedOverlay {
     position: relative;
     opacity: .4;
@@ -524,6 +527,17 @@ header {
 
 @media screen and (max-width: 768px) {
   .airdrop {
+    &-dialog.el-dialog {
+      width: 300px;
+      .dialog-footer {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        a {
+          margin-bottom: 10px;
+        }
+      }
+    }
     header {
       flex-direction: column;
       z-index: 2;

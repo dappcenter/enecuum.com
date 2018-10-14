@@ -16,7 +16,6 @@ function checkSignature(token, {hash, ...data}) {
   return hmac === hash;
 }
 
-
 app.post('/oauth/telegram', (req, res, next) => {
   console.log('userid: ', req.body);
   let user = req.body.user;
