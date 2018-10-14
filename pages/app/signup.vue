@@ -4,8 +4,7 @@
       <h2 class="airdrop-title title">
         Welcome to the Enecuum Airdrop campaign!
 
-        <b>5 000 000</b> tokens will be distributed! Complete the fields below, read the Airdrop terms and conditions
-        and start earning tokens right now!
+        <b>5 000 000</b> tokens will be distributed! Complete the fields below, read the Airdrop terms and conditions and start earning tokens right now!
       </h2>
       <div class="airdrop_form">
         <el-row :gutter="20">
