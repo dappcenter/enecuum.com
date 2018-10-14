@@ -339,7 +339,6 @@
         this.file = e.target.files[0];
       },
       getInfo(provider, data) {
-        console.log('starting get info: ', provider, data);
         if (!provider) return false;
         axios.request({
           url: '/api/airdrop/update',
@@ -362,7 +361,6 @@
           } else {
             if (res.data.message) {
               this.$notify({
-                title: '',
                 message: res.data.message,
                 type: 'info',
                 position: 'bottom-left'

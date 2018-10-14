@@ -159,7 +159,7 @@ class MongoProvider {
                         console.log('save user error: ', err);
                         resolve({ok: false});
                       } else {
-                        resolve({total: user.total});
+                        resolve({ok: true, total: user.total});
                       }
                     });
                   } else {
