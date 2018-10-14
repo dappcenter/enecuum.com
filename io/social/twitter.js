@@ -105,10 +105,11 @@ io.on('connect', (ioclient) => {
       });
     });
 
-    console.log('twitter', info);
     if (info.hashtag && info.followers && info.isFollow) {
+      console.log('send good twitter', info);
       ioclient.emit('twitter', true);
     } else {
+      console.log('send bad twitter', info);
       ioclient.emit('twitter', false);
     }
   }
