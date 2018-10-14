@@ -4,7 +4,8 @@
       <h2 class="airdrop-title title">
         Welcome to the Enecuum Airdrop campaign!
 
-        <b>5 000 000</b> tokens will be distributed! Complete the fields below, read the Airdrop terms and conditions and start earning tokens right now!
+        <b>5 000 000</b> tokens will be distributed! Complete the fields below, read the Airdrop terms and conditions
+        and start earning tokens right now!
       </h2>
       <div class="airdrop_form">
         <el-row :gutter="20">
@@ -96,12 +97,15 @@
           </div>
         </el-col>
       </el-row>
+      <vue-recaptcha size="invisible" :sitekey="recaptchaKey" ref="invisibleRecaptcha"
+                     @verify="onVerify"></vue-recaptcha>
     </div>
   </div>
 </template>
 
 <script>
   import axios from 'axios';
+  import VueRecaptcha from 'vue-recaptcha';
 
   export default {
     name: "aidrop_signup",
@@ -120,8 +124,25 @@
         }
       }
     },
+    components: {
+      'vue-recaptcha': VueRecaptcha
+    },
+    computed: {
+      recaptchaKey() {
+        return require('@/config/config.json').recaptchaKey;
+      }
+    },
     methods: {
+      onVerify(response) {
+        console.log('verify recaptcha', response);
+        this.submit();
+      },
       register() {
+        this.loading = true;
+        this.$refs.invisibleRecaptcha.execute();
+        this.loading = false;
+      },
+      submit() {
         if (!this.terms) {
           this.$notify({
             message: 'Please accept the terms',
