@@ -38,7 +38,7 @@
                 <input type="password" id="password" v-model="user.password" @keyup.enter="login">
               </div>
             </div>
-            <el-button type="text" @click="resetpwd=true">Reset password</el-button>
+<!--            <el-button type="text" @click="resetpwd=true">Reset password</el-button>-->
           </el-col>
         </el-row>
       </div>
