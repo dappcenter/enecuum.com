@@ -141,8 +141,10 @@
         this.loading = true;
         this.$refs.invisibleRecaptcha.execute();
         this.loading = false;
+        console.log(this.loading);
       },
       submit() {
+        console.log(this.loading);
         if (!this.terms) {
           this.$notify({
             message: 'Please accept the terms',
@@ -181,6 +183,7 @@
                   position: 'bottom-left'
                 });
               }
+              this.$refs.invisibleRecaptcha.reset();
             }
             this.loading = false;
           })
@@ -190,6 +193,7 @@
             type: 'warning',
             position: 'bottom-left'
           });
+          this.$refs.invisibleRecaptcha.reset();
         }
       }
     },
