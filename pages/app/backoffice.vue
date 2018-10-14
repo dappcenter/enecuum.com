@@ -380,7 +380,6 @@
               });
             }
           }
-          this.wt = null;
         });
       }
     },
@@ -397,6 +396,7 @@
       });
       socket.on('twitter', (data) => {
         if (this.wt) {
+          this.wt = null;
           if (!data || typeof(data) === 'object') {
             this.$notify({
               title: 'Verification',
@@ -404,7 +404,6 @@
               type: 'info',
               position: 'bottom-left'
             });
-            this.wt = null;
           } else {
             this.getInfo('twitter', data);
           }
