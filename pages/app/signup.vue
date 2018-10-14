@@ -96,12 +96,15 @@
           </div>
         </el-col>
       </el-row>
+      <vue-recaptcha size="invisible" :sitekey="recaptchaKey" ref="invisibleRecaptcha"
+                     @verify="onVerify"></vue-recaptcha>
     </div>
   </div>
 </template>
 
 <script>
   import axios from 'axios';
+  import VueRecaptcha from 'vue-recaptcha';
 
   export default {
     name: "aidrop_signup",
@@ -120,8 +123,27 @@
         }
       }
     },
+    components: {
+      'vue-recaptcha': VueRecaptcha
+    },
+    computed: {
+      recaptchaKey() {
+        return require('@/config/config.json').recaptchaKey;
+      }
+    },
     methods: {
+      onVerify(response) {
+        console.log('verify recaptcha', response);
+        this.submit();
+      },
       register() {
+        this.loading = true;
+        this.$refs.invisibleRecaptcha.execute();
+        this.loading = false;
+        console.log(this.loading);
+      },
+      submit() {
+        console.log(this.loading);
         if (!this.terms) {
           this.$notify({
             message: 'Please accept the terms',
@@ -160,6 +182,7 @@
                   position: 'bottom-left'
                 });
               }
+              this.$refs.invisibleRecaptcha.reset();
             }
             this.loading = false;
           })
@@ -169,6 +192,7 @@
             type: 'warning',
             position: 'bottom-left'
           });
+          this.$refs.invisibleRecaptcha.reset();
         }
       }
     },

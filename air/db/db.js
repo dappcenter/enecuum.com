@@ -21,14 +21,11 @@ class MongoProvider {
     return new Promise(resolve => {
       User.find({}).select('total -_id').exec((err, users) => {
         if (err) {
-          console.log('get total airdrop users error: ', err);
           resolve({ok: false});
         } else {
-          console.log('users: ', users);
           let totalAirdrops = users.reduce((sum, current) => {
             return parseInt(sum.total || sum) + parseInt(current.total);
           });
-          console.log('total airdrops: ', totalAirdrops);
           resolve({
             ok: true, message: {
               totalSupply: process.env.AIRDROP_TOTAL_SUPPLY,
