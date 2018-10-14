@@ -4,7 +4,8 @@
       <h2 class="airdrop-title title">
         Welcome to the Enecuum Airdrop campaign!
 
-        <b>5 000 000</b> tokens will be distributed! Complete the fields below, read the Airdrop terms and conditions and start earning tokens right now!
+        <b>5 000 000</b> tokens will be distributed! Complete the fields below, read the Airdrop terms and conditions
+        and start earning tokens right now!
       </h2>
       <div class="airdrop_form" v-if="resetpwd">
         <el-row type="flex" justify="center">
@@ -38,7 +39,7 @@
                 <input type="password" id="password" v-model="user.password" @keyup.enter="login">
               </div>
             </div>
-<!--            <el-button type="text" @click="resetpwd=true">Reset password</el-button>-->
+            <el-button type="text" @click="resetpwd=true">Reset password</el-button>
           </el-col>
         </el-row>
       </div>
