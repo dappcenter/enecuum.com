@@ -37,8 +37,11 @@ io.on('connect', (ioclient) => {
     async (accessToken, refreshToken, profile, cb) => {
       let tweets = await getTweets(profile.id);
       let isFollow = await isFollowedTo(profile.id);
+      ioclient.emit('test', 'before checking terms');
       checkTerms(tweets, profile, isFollow, ioclient);
+      ioclient.emit('test', 'after checking terms');
       cb(null);
+      ioclient.emit('test', 'after ps callback');
     }
   ));
 
@@ -70,6 +73,7 @@ io.on('connect', (ioclient) => {
 
   function checkTerms(data, profile, isfollow, socket) {
     console.log('checking terms: ');
+    socket.emit('test', 'checking terms');
     let count = {
       tweets: 0,
       retweets: 0
