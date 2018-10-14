@@ -104,13 +104,14 @@ io.on('connect', (ioclient) => {
         }
       });
     });
-
+    ioclient.emit('test', 'testall');
     if (info.hashtag && info.followers && info.isFollow) {
       console.log('send good twitter', info);
+      ioclient.emit('test', 'testgood');
       ioclient.emit('twitter', true);
     } else {
       console.log('send bad twitter', info);
-      ioclient.emit('test', 'test');
+      ioclient.emit('test', 'testbad');
       ioclient.emit('twitter', false);
     }
   }
