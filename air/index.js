@@ -177,7 +177,7 @@ app.post('/api/airdrop/registration', (req, res) => {
   req.body.id = id;
   return db.getUserByEmail(req.body).then(user => {
       console.log(user);
-      if (user) {
+      if (user && user!==400) {
         return res.send({ok: false, message: 'Email already exists'});
       } else {
         let verification = crypto.createHash('sha256').update(req.body.email + req.body.password + req.body.id).digest('base64');
