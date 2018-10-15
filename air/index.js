@@ -62,7 +62,7 @@ app.post('/api/airdrop/resetpassword', (req, res) => {
   db.resetPassword(data).then(verificationCode => {
     if (verificationCode !== 400) {
       console.log('verificationCode: ', verificationCode);
-      recoveryMail({email: data.email, code: verificationCode}).then(mail => {
+      recoveryMail({email: data.email.toLowerCase(), code: verificationCode}).then(mail => {
         if (mail.ok) {
           return res.send({
             ok: true,
