@@ -113,7 +113,7 @@ class MongoProvider {
       User.findOne({
         email: data.email,
       }).select('id name surname email twitter facebook linkedin telegram emailpro total kyc -_id').exec((err, user) => {
-        if (err) {
+        if (!user || err) {
           console.log('get user error: ', err);
           resolve(400);
         } else {
