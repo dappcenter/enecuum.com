@@ -111,7 +111,7 @@ class MongoProvider {
   getUserByEmail(data) {
     return new Promise(resolve => {
       User.findOne({
-        email: data.email,
+        email: data.email.toLowerCase(),
       }).select('id name surname email twitter facebook linkedin telegram emailpro total kyc -_id').exec((err, user) => {
         if (!user || err) {
           console.log('get user error: ', err);
