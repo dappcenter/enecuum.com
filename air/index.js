@@ -57,28 +57,36 @@ app.post('/api/airdrop/resetpassword', (req, res) => {
       message: 'Some fields are empty'
     });
   }
-  let verification = crypto.createHash('sha256').update(new Date().getTime() + data.email).digest('base64');
+  let verification = crypto.createHash('sha256').update(process.env.SESS_KEY_SIGN+new Date().getTime() + data.email+process.env.SESS_KEY_VERIFY).digest('base64');
   data.verificationCode = verification;
-  db.resetPassword(data).then(verificationCode => {
-    if (verificationCode !== 400) {
-      console.log('verificationCode: ', verificationCode);
-      recoveryMail({email: data.email.toLowerCase(), code: verificationCode}).then(mail => {
-        if (mail.ok) {
-          return res.send({
-            ok: true,
-            message: 'Check your email'
-          })
+  db.getUserByEmail(data).then(user => {
+    if (user !== 400) {
+      db.resetPassword(data).then(verificationCode => {
+        if (verificationCode !== 400) {
+          recoveryMail({email: data.email.toLowerCase(), code: verificationCode}).then(mail => {
+            if (mail.ok) {
+              return res.send({
+                ok: true,
+                message: 'Check your email'
+              })
+            } else {
+              return res.send({
+                ok: false,
+                message: 'Cant send email'
+              });
+            }
+          });
         } else {
           return res.send({
             ok: false,
-            message: 'Cant send email'
+            message: 'Something went wrong please try later'
           });
         }
       });
     } else {
       return res.send({
         ok: false,
-        message: 'Something went wrong please try later'
+        message: 'Email does not exists'
       });
     }
   });
