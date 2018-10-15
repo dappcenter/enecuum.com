@@ -8,6 +8,12 @@
       <div class="menu-text" v-if="!auth">
         Enecuum is the world's first blockchain to unite millions of connected devices into a single network.
       </div>
+      <div class="totalSupplyAirdrop">
+        <el-progress :percentage="totalSupplyPercent" :stroke-width="18" :show-text="false"></el-progress>
+        <div class="totalSupplyAirdrop_text" v-if="totalSupply!==0">
+          {{currentAirdrop}} / {{totalSupply}} ENQ
+        </div>
+      </div>
     </div>
     <div>
       <div class="menu_responsive"></div>
@@ -35,8 +41,19 @@
 </template>
 
 <script>
+  import axios from 'axios';
+  import socket from '~/plugins/socket.io.js';
+
+
   export default {
     name: "airdrop-header",
+    data() {
+      return {
+        totalSupplyPercent: 0,
+        totalSupply: 0,
+        currentAirdrop: 0
+      }
+    },
     computed: {
       auth() {
         return this.$store.state.isAirdropAuth;
@@ -50,6 +67,22 @@
         this.$store.dispatch('airdropLogout');
         this.$router.push('/app/signin');
       }
+    },
+    mounted() {
+      axios.get('/api/airdrop/getAllAirdrop').then(res => {
+        if (res.data.ok) {
+          this.totalSupply = res.data.message.totalSupply;
+          this.currentAirdrop = res.data.message.totalAirdrop;
+          this.totalSupplyPercent = (this.currentAirdrop / this.totalSupply) * 100;
+        }
+      });
+      socket.on('airdrop', (res) => {
+        if (res.data.ok) {
+          this.totalSupply = res.data.message.totalSupply;
+          this.currentAirdrop = res.data.message.totalAirdrop;
+          this.totalSupplyPercent = (this.currentAirdrop / this.totalSupply) * 100;
+        }
+      });
     }
   }
 </script>

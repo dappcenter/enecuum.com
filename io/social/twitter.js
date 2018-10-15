@@ -68,7 +68,7 @@ io.on('connect', (ioclient) => {
     });
   }
 
-  function checkTerms(data, profile, isfollow) {
+  const checkTerms = (data, profile, isfollow) => {
     console.log('checking terms: ');
     let count = {
       tweets: 0,
@@ -104,12 +104,12 @@ io.on('connect', (ioclient) => {
         }
       });
     });
-
-    console.log('twitter', info);
     if (info.hashtag && info.followers && info.isFollow) {
-      ioclient.emit('twitter', true);
+      console.log('send good twitter', info);
+      io.emit('twitter', true);
     } else {
-      ioclient.emit('twitter', false);
+      console.log('send bad twitter', info);
+      io.emit('twitter', false);
     }
   }
 

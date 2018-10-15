@@ -4,8 +4,7 @@
       <h2 class="airdrop-title title">
         Welcome to the Enecuum Airdrop campaign!
 
-        We give <b>25 000 000</b> tokens for our bounty program. Complete the fields below, read the Airdrop terms of
-        Airdrop and start earning with us right now!
+        <b>5 000 000</b> tokens will be distributed! Complete the fields below, read the Airdrop terms and conditions and start earning tokens right now!
       </h2>
       <div class="airdrop_form">
         <el-row :gutter="20">
@@ -59,7 +58,7 @@
             <div class="subscr">
               Certain jurisdictions may make it unlawful for us to deliver tokens to you; therefore, you may not be
               eligible to receive tokens depending on your country of citizenship. We are consistently monitoring the
-              regulatory landscape to be able to deliver tokens to as many people as possible.
+              regulatory landscape to enable delivery of tokens to as many people as possible.
             </div>
           </el-col>
         </el-row>
@@ -90,19 +89,22 @@
         <el-col :xs="24" :sm="8">
           <div class="input_group-wrapper">
             <div class="input_group button">
-              <button @click="register">
+              <button @click="register" :disabled="loading">
                 Open tomorrow now
               </button>
             </div>
           </div>
         </el-col>
       </el-row>
+      <vue-recaptcha size="invisible" :sitekey="recaptchaKey" ref="invisibleRecaptcha"
+                     @verify="onVerify"></vue-recaptcha>
     </div>
   </div>
 </template>
 
 <script>
   import axios from 'axios';
+  import VueRecaptcha from 'vue-recaptcha';
 
   export default {
     name: "aidrop_signup",
@@ -110,6 +112,7 @@
     data() {
       return {
         countries: [],
+        loading: false,
         terms: false,
         user: {
           name: '',
@@ -120,8 +123,25 @@
         }
       }
     },
+    components: {
+      'vue-recaptcha': VueRecaptcha
+    },
+    computed: {
+      recaptchaKey() {
+        return require('@/config/config.json').recaptchaKey;
+      }
+    },
     methods: {
+      onVerify(response) {
+        this.submit();
+      },
       register() {
+        this.loading = true;
+        this.$refs.invisibleRecaptcha.execute();
+        this.loading = false;
+      },
+      submit() {
+        console.log(this.loading);
         if (!this.terms) {
           this.$notify({
             message: 'Please accept the terms',
@@ -139,16 +159,19 @@
             });
             return false;
           }
+          this.loading = true;
           let logged = this.$store.dispatch('airdropRegister', this.user);
           logged.then(res => {
             if (res.ok) {
               this.$router.push('/app/backoffice');
             } else {
               if (res.message) {
-                this.$notify({
-                  message: res.message,
-                  type: 'warning',
-                  position: 'bottom-left'
+                this.user.name = '';
+                this.user.surname = '';
+                this.user.email = '';
+                this.user.password = '';
+                this.$alert(res.message, 'Registration', {
+                  confirmButtonText: 'OK'
                 });
               } else {
                 this.$notify({
@@ -157,7 +180,9 @@
                   position: 'bottom-left'
                 });
               }
+              this.$refs.invisibleRecaptcha.reset();
             }
+            this.loading = false;
           })
         } else {
           this.$notify({
@@ -165,6 +190,7 @@
             type: 'warning',
             position: 'bottom-left'
           });
+          this.$refs.invisibleRecaptcha.reset();
         }
       }
     },

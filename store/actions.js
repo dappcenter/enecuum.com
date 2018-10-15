@@ -7,6 +7,44 @@ const pureUrl = 'https://enecuum.com';
 const airdropDirectory = '/app';
 
 const actions = {
+  checkConfirmationEmail(store, data) {
+    return new Promise(resolve => {
+      axios.request({
+        url: pureApi + '/airdrop/verification',
+        method: 'POST',
+        data: data,
+        withCredentials: true,
+      }).then((res) => {
+        resolve(res.data);
+      })
+    });
+  },
+  restorePasswordCode(store, data) {
+    console.log(data);
+    return new Promise(resolve => {
+      axios.request({
+        url: pureApi + '/airdrop/resetpassword',
+        method: 'POST',
+        data: data,
+        withCredentials: true,
+      }).then((res) => {
+        resolve(res.data);
+      })
+    });
+  },
+  restorePassword(store, data) {
+    console.log(data);
+    return new Promise(resolve => {
+      axios.request({
+        url: pureApi + '/airdrop/restore',
+        method: 'POST',
+        data: data,
+        withCredentials: true,
+      }).then((res) => {
+        resolve(res.data);
+      })
+    });
+  },
   setWhiteList(store, data) {
     return new Promise(resolve => {
       axios.request({
@@ -69,6 +107,22 @@ const actions = {
     return new Promise(resolve => {
       axios.request({
         url: pureApi + '/airdrop/litekyc',
+        data: data,
+        method: 'post',
+        withCredentials: true,
+      }).then((res) => {
+        if (res.data.ok) {
+          resolve({ok: true});
+        } else {
+          resolve({ok: false, message: res.data.message});
+        }
+      });
+    });
+  },
+  airdropLiteKycUpdate(store, data) {
+    return new Promise(resolve => {
+      axios.request({
+        url: pureApi + '/airdrop/litekyc/update',
         data: data,
         method: 'post',
         withCredentials: true,
@@ -178,13 +232,12 @@ const actions = {
       cookies = (req.headers.cookie);
     }
     process.env.dev ? store.commit('SET_DEBUG', true) : null;
-    console.log(process.env.AIRDROP_HOST, req.headers.host, req.path, (req.path.indexOf('oauth') === -1));
     store.commit('SET_COOKIES', cookies);
     if (req.headers.host === process.env.AIRDROP_HOST) {
-      if ((req.path.indexOf('api') === -1) && (req.path.indexOf('oauth') === -1) && req.path !== airdropDirectory + '/signup' && req.path !== airdropDirectory + '/signin' && req.path !== airdropDirectory + '/backoffice') {
+      if ((req.path.indexOf('api') === -1) && (req.path.indexOf('oauth') === -1) && req.path !== airdropDirectory + '/signup' && req.path !== airdropDirectory + '/signin' && req.path !== airdropDirectory + '/backoffice' && req.path !== airdropDirectory + '/confirmation') {
         redirect(airdropDirectory + '/signup');
       }
-    } else if (req.path == airdropDirectory + '/signup' || req.path == airdropDirectory + '/signin' || req.path == airdropDirectory + '/backoffice') {
+    } else if (req.path == airdropDirectory + '/signup' || req.path == airdropDirectory + '/signin' || req.path == airdropDirectory + '/backoffice' || req.path == airdropDirectory + '/confirmation') {
       redirect(process.env.AIRDROP_HOST + airdropDirectory + '/backoffice');
     }
   },

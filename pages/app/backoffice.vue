@@ -68,7 +68,7 @@
           <el-col :xs="24" :sm="16">
             <div class="input_group pure">
               <label>Nationality - combo choice (including any dual-nationality):</label>
-              <select v-model="userdata.nation" placeholder="Nationality" :disabled="mainuser.kyc">
+              <select v-model="userdata.nation" placeholder="Nationality" :disabled="inputDisabled">
                 <option selected disabled>Country of citizenship</option>
                 <option v-for="(item, key) in countries" :value="item.name" :key="key">{{item.name}}</option>
               </select>
@@ -77,7 +77,7 @@
           <el-col :xs="24" :sm="16">
             <div class="input_group pure">
               <label for="birthDate">Date of birth:</label>
-              <input type="date" id="birthDate" v-model="userdata.birthDate" :disabled="mainuser.kyc">
+              <input type="date" id="birthDate" v-model="userdata.birthDate" :disabled="inputDisabled">
             </div>
           </el-col>
           <el-col :xs="24" :sm="16" v-if="!mainuser.kyc">
@@ -94,7 +94,7 @@
           <el-col :xs="24" :sm="16">
             <div class="input_group pure">
               <label for="walletInfo">Digital wallet information </label>
-              <input type="text" id="walletInfo" v-model="userdata.walletInfo" :disabled="mainuser.kyc">
+              <input type="text" id="walletInfo" v-model="userdata.walletInfo" :disabled="inputDisabled">
             </div>
           </el-col>
           <el-col :xs="24" :sm="16" v-if="!mainuser.kyc">
@@ -110,13 +110,22 @@
               </div>
             </div>
           </el-col>
+          <el-col :xs="24" :sm="16" v-else>
+            <div class="input_group-wrapper">
+              <div class="input_group button flex-between">
+                <button @click="inputDisabled=false" v-if="inputDisabled">Edit</button>
+                <button @click="inputDisabled=true" v-else>Cancel</button>
+                <button @click="edit" v-if="!inputDisabled">Submit</button>
+              </div>
+            </div>
+          </el-col>
         </el-row>
       </div>
     </div>
     <el-dialog
       title="Rules"
       :visible.sync="rulesVisible"
-      width="40%">
+      custom-class="airdrop-dialog">
       <div>
         <ul class="airdrop_rules">
           <li v-for="(item, key) in airdropData[activeRule]" :key="key" v-html="item"></li>
@@ -125,8 +134,8 @@
           <div id="telegramAuth" style="text-align:center;"></div>
         </div>
       </div>
-      <div slot="footer" class="dialog-footer">
-        <a href="https://twitter.com/ENQ_enecuum" target="_blank" style="padding-right: 10px;"
+      <div slot="footer" class="dialog-footer flex-between">
+        <a href="https://twitter.com/ENQ_enecuum" target="_blank"
            v-if="activeRule==='twitter'">
           <el-button type="primary">Follow Twitter</el-button>
         </a>
@@ -135,7 +144,7 @@
           <el-button type="primary">Join Telegram</el-button>
         </a>
         <el-button type="primary" @click="checkRule(activeRule)" v-if="activeRule!=='telegram' && activeRule!=='uniq'">
-          OK
+          {{activeRule==='twitter' ? 'Accept' : 'OK'}}
         </el-button>
       </div>
     </el-dialog>
@@ -152,12 +161,14 @@
     middleware: 'airdropAuth',
     data() {
       return {
+        wt: null,
+        inputDisabled: false,
         rulesVisible: false,
         activeRule: '',
         countries: [],
         airdropData: {
           facebook: ['You must have at least 300 friends. If you have been rejected due to less than 300 friends, do not resent your application with updated followers list. The application will be denied.', 'You have to be a follower of official Enecuum facebook page (<a href="https://www.facebook.com/enecuum.EN/" target="_blank">https://www.facebook.com/enecuum.EN/</a>)', 'Facebook friends count will not be updated after your registration', 'You have to make at least 1 original post (with your own content) and 1 repost per campaign.'],
-          twitter: ['You must have at least 50 followers. If you have been rejected due to less than 50 followers, do not resent your application with updated followers list. The application will be denied', 'You have to be a follower of official Enecuum Twitter', 'You have to make at least 2 original tweets (with your own content) and 2 retweets per campaign', 'You must use our hashtags: #Enecuum #ENQ #mobilemining in original tweets'],
+          twitter: ['You must have at least 50 followers. If you have been rejected due to less than 50 followers, do not resent your application with updated followers list. The application will be denied', 'You have to be a follower of official Enecuum Twitter', 'You have to make at least 2 original tweets (with your own content) or 2 retweets per campaign', 'You must use our hashtags: #Enecuum #ENQ #mobilemining in original tweets'],
           telegram: ['Follow Enecuum <a href="https://t.me/Enecuum_EN" target="_blank">Telegram</a> group to get a reward', 'Quitting during the ongoing airdrop is restricted. If you quit the channel before the campaign is over, your reward will be annulled'],
           uniq: ['Your content (article or video) must be original and contain at least 300 words (2 min)', 'Your article (video) may be in other language than English but please write that in your application. Your article must have the following links: Enecuum website (<a href="https://enecuum.com/">https://enecuum.com//<a>) ', 'Enecuum Telegram (<a href="https://t.me/Enecuum_EN" target="_blank">https://t.me/Enecuum_EN</a>) Your article may be posted on Facebook, Medium, LinkedIn, Youtube.', 'Promote your article (video) in other forums like Facebook, Twitter or LinkedIn or other with a large outreach (more than 250 followers) *', 'Send link to the article to the Enecuum Telegram (<a href="https://t.me/Enecuum_EN" target="_blank" ">https://t.me/Enecuum_EN</a>)', 'Send the link on your Article  to <a href="mailto:airdrop@enecuum.com">airdrop@enecuum.com</a>'],
           emailpro: ['Leave your application (email) to participate in Airdrop']
@@ -196,13 +207,12 @@
     computed: {
       mainuser() {
         let user = this.$store.state.airdropUser;
+        this.inputDisabled = user.kyc;
         this.userdata.name = user.name + ' ' + user.surname;
         return user;
       }
     },
     methods: {
-      getRules(type) {
-      },
       checkMark() {
         localStorage.setItem('checkterms', this.checkTerms);
       },
@@ -224,6 +234,7 @@
         }, 1000);
       },
       onTelegramAuth(user) {
+        this.wt = null;
         axios.request({
           url: '/oauth/telegram',
           data: {
@@ -251,6 +262,10 @@
           type: 'info',
           position: 'bottom-left'
         });
+        this.wt = new Date().getTime();
+        setTimeout(() => {
+          this.wt = null;
+        }, 10000);
         this.rulesVisible = false;
       },
       authSocial(type, done) {
@@ -258,6 +273,39 @@
         this.initTelegramBtn();
         this.rulesVisible = true;
         this.activeRule = type;
+      },
+      edit() {
+        if (!this.userdata.name || !this.userdata.nation || !this.userdata.birthDate || !this.userdata.walletInfo) {
+          this.$notify({
+            message: 'Some fields are empty',
+            type: 'warning',
+            position: 'bottom-left'
+          });
+          return false;
+        }
+        let data = {
+          nation: this.userdata.nation,
+          birthDate: this.userdata.birthDate,
+          walletInfo: this.userdata.walletInfo
+        };
+        let save = this.$store.dispatch('airdropLiteKycUpdate', data);
+        save.then(res => {
+          if (res.ok) {
+            this.$notify({
+              message: 'Thank you!',
+              type: 'success',
+              position: 'bottom-left'
+            });
+            this.inputDisabled = true;
+            this.$store.state.airdropUser.kyc = true;
+          } else {
+            this.$notify({
+              message: res.message,
+              type: 'error',
+              position: 'bottom-left'
+            });
+          }
+        });
       },
       submit() {
         if (!this.file || !this.userdata.name || !this.userdata.nation || !this.userdata.birthDate || !this.userdata.walletInfo) {
@@ -297,7 +345,6 @@
         this.file = e.target.files[0];
       },
       getInfo(provider, data) {
-        console.log('starting get info: ', provider, data);
         if (!provider) return false;
         axios.request({
           url: '/api/airdrop/update',
@@ -318,12 +365,20 @@
             });
             this.rulesVisible = false;
           } else {
-            this.$notify({
-              title: 'Verification',
-              message: 'All required conditions are not met',
-              type: 'info',
-              position: 'bottom-left'
-            });
+            if (res.data.message) {
+              this.$notify({
+                message: res.data.message,
+                type: 'info',
+                position: 'bottom-left'
+              });
+            } else {
+              this.$notify({
+                title: 'Verification',
+                message: 'All required conditions are not met',
+                type: 'info',
+                position: 'bottom-left'
+              });
+            }
           }
         });
       }
@@ -340,15 +395,18 @@
         }
       });
       socket.on('twitter', (data) => {
-        if (!data || typeof(data) === 'object') {
-          this.$notify({
-            title: 'Verification',
-            message: 'All required conditions are not met',
-            type: 'info',
-            position: 'bottom-left'
-          });
-        } else {
-          this.getInfo('twitter', data);
+        if (this.wt) {
+          this.wt = null;
+          if (!data || typeof(data) === 'object') {
+            this.$notify({
+              title: 'Verification',
+              message: 'All required conditions are not met',
+              type: 'info',
+              position: 'bottom-left'
+            });
+          } else {
+            this.getInfo('twitter', data);
+          }
         }
       });
       socket.on('connectServer', (data) => {
