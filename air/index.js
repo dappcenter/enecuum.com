@@ -28,7 +28,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Credentials", true);
-  res.header("Access-Control-Allow-Origin", "*"); //process.env.DOMAIN_URL
+  res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
@@ -57,7 +57,7 @@ app.post('/api/airdrop/resetpassword', (req, res) => {
       message: 'Some fields are empty'
     });
   }
-  let verification = crypto.createHash('sha256').update(process.env.SESS_KEY_SIGN+new Date().getTime() + data.email+process.env.SESS_KEY_VERIFY).digest('base64');
+  let verification = crypto.createHash('sha256').update(process.env.SESS_KEY_SIGN+new Date().getTime() + data.email+process.env.SESS_KEY_VERIFY).digest('hex');
   data.verificationCode = verification;
   db.getUserByEmail(data).then(user => {
     if (user !== 400) {
@@ -180,7 +180,7 @@ app.post('/api/airdrop/registration', (req, res) => {
       if (user && user!==400) {
         return res.send({ok: false, message: 'Email already exists'});
       } else {
-        let verification = crypto.createHash('sha256').update(req.body.email + req.body.password + req.body.id).digest('base64');
+        let verification = crypto.createHash('sha256').update(req.body.email + req.body.password + req.body.id).digest('hex');
         req.body.verificationCode = verification;
         return db.saveWaitingRegUser({data: req.body}).then(verificationCode => {
           if (verificationCode !== 400) {
@@ -205,26 +205,6 @@ app.post('/api/airdrop/registration', (req, res) => {
             })
           }
         });
-        /*console.log('not exist');
-        let isSended = mail.send('ad', {
-          EMAIL: req.body.email.toLowerCase(),
-          FIRST_NAME: req.body.name,
-          LAST_NAME: req.body.surname
-        });
-        return isSended.then(mail => {
-          if (mail.status === 200) {
-            return db.saveUser(req.body).then(user => {
-              if (user !== 400 && user) {
-                req.session.user = id;
-                res.send(user);
-              } else {
-                return res.send('User not found');
-              }
-            });
-          } else {
-            return res.send({ok: false, message: 'Please check your email or use another email address.'});
-          }
-        });*/
       }
     }
   );
