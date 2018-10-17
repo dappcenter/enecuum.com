@@ -28,7 +28,7 @@ module.exports = (app, socket) => {
         }).then(user => {
           console.log('getChatMember success: ', user, user.user.username);
           let provider = 'telegram';
-          userUpdate({t: provider, session: req.session.user, ok: true, tl: user.user.username}).then(user => {
+          userUpdate({t: provider, session: req.session.user, ko: true, tl: user.user.username}).then(user => {
             socket.send(JSON.stringify({
               ok: user.ok,
               userId: req.session.user,
