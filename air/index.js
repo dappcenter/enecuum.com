@@ -39,7 +39,7 @@ const socket = zmq.socket('push');
 socket.bindSync('tcp://' + process.env.MQ_SERVER);
 
 require('./social/twitter')(app, socket);
-//require('./social/telegram')(app, socket);
+require('./social/telegram')(app, socket);
 
 app.get('/oauth/close', (req, res) => {
   res.send('<script>window.close();</script>')
