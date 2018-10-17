@@ -161,7 +161,7 @@
   import axios from 'axios';
   import io from 'socket.io-client';
 
-  const socket = io('//airdrop.enecuum.com', {
+  const socket = io('https://airdrop.enecuum.com', {
     path: '/io',
     autoConnect: false
   });
