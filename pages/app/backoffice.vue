@@ -285,6 +285,9 @@
           walletInfo: this.userdata.walletInfo,
           name: this.userdata.name
         };
+        if (this.userdata.enqWallet) {
+          data.enqWallet = this.userdata.enqWallet;
+        }
         let save = this.$store.dispatch('airdropLiteKycUpdate', data);
         save.then(res => {
           if (res.ok) {
