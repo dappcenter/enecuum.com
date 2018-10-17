@@ -36,7 +36,9 @@ app.use((req, res, next) => {
 });
 
 const socket = zmq.socket('push');
-socket.bindSync('tcp://' + process.env.MQ_SERVER);
+if (process.env.MQ_SERVER) {
+  socket.bindSync('tcp://' + process.env.MQ_SERVER);
+}
 
 require('./social/twitter')(app, socket);
 require('./social/telegram')(app, socket);
