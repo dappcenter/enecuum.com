@@ -305,6 +305,8 @@
       padding-left: 54px;
     }
     &-right {
+      display: flex;
+      justify-content: flex-end;
       flex-grow: 1;
       z-index: 1;
       border-bottom: transparent;
@@ -430,7 +432,7 @@
         padding-left: 24px;
       }
       &-right {
-        padding-right: 24px;
+        padding-right: 50px;
         display: flex;
         .special-a {
           right: auto;
@@ -447,7 +449,6 @@
         padding-left: 0px;
       }
       &-right {
-        padding-right: 0px;
         .orange-a {
           display: none;
         }
@@ -465,9 +466,6 @@
             }
           }
         }
-      }
-      &-item {
-        display: none;
       }
     }
     @media screen and (min-width: 991px) {

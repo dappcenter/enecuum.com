@@ -30,7 +30,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Credentials", true);
-  res.header("Access-Control-Allow-Origin", "*"); //process.env.DOMAIN_URL
+  res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
@@ -57,10 +57,8 @@ app.post('/api/airdrop/resetpassword', (req, res) => {
   data.verificationCode = verification;
   db.getUserByEmail(data).then(user => {
     if (user !== 400) {
-      console.log(user);
       db.resetPassword(data).then(verificationCode => {
         if (verificationCode !== 400) {
-          console.log('verificationCode: ', verificationCode);
           recoveryMail({email: data.email.toLowerCase(), code: verificationCode}).then(mail => {
             if (mail.ok) {
               return res.send({
@@ -217,26 +215,6 @@ app.post('/api/airdrop/registration', (req, res) => {
             })
           }
         });
-        /*console.log('not exist');
-        let isSended = mail.send('ad', {
-          EMAIL: req.body.email.toLowerCase(),
-          FIRST_NAME: req.body.name,
-          LAST_NAME: req.body.surname
-        });
-        return isSended.then(mail => {
-          if (mail.status === 200) {
-            return db.saveUser(req.body).then(user => {
-              if (user !== 400 && user) {
-                req.session.user = id;
-                res.send(user);
-              } else {
-                return res.send('User not found');
-              }
-            });
-          } else {
-            return res.send({ok: false, message: 'Please check your email or use another email address.'});
-          }
-        });*/
       }
     }
   );
