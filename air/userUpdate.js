@@ -19,7 +19,7 @@ module.exports = (data) => {
         }
       });
     } else {
-      resolve({ok: false, message: user.message});
+      resolve({ok: false, message: 'All required conditions are not me'});
     }
   });
 }
