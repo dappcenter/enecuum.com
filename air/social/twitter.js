@@ -1,55 +1,61 @@
-const passport = require(require.resolve('passport'));
-const {app, io} = require('./../server');
-const TwitterStrategy = require(require.resolve('passport-twitter')).Strategy;
+const userUpdate = require('../userUpdate');
+const passport = require('passport');
+const TwitterStrategy = require('passport-twitter').Strategy;
 const expressSession = require('express-session');
 const Twitter = require('twitter');
 
+module.exports = (app, socket) => {
 
-const keywords = ['#Enecuum', '#ENQ', '#mobilemining'];
-const retweetedCompany = 'ENQ_enecuum';
-const mincount = 2;
-const mindays = 7;
-const maxFriendsCount = 50;
+  const keywords = ['#Enecuum', '#ENQ', '#mobilemining'];
+  const retweetedCompany = 'ENQ_enecuum';
+  const mincount = 2;
+  const mindays = 7;
+  const maxFriendsCount = 50;
 
-const client = new Twitter({
-  consumer_key: process.env.TWITTER_API_KEY,
-  consumer_secret: process.env.TWITTER_API_SECRET_KEY,
-  access_token_key: process.env.TWITTER_ACCESS_TOKEN,
-  access_token_secret: process.env.TWITTER_SECRET_TOKEN
-});
+  const client = new Twitter({
+    consumer_key: process.env.TWITTER_API_KEY,
+    consumer_secret: process.env.TWITTER_API_SECRET_KEY,
+    access_token_key: process.env.TWITTER_ACCESS_TOKEN,
+    access_token_secret: process.env.TWITTER_SECRET_TOKEN
+  });
 
-app.use(expressSession({
-  secret: 'superpuperubersecret',
-  resave: true,
-  saveUninitialized: true,
-  cookie: {
-    secure: false
-  }
-}));
-app.use(passport.initialize());
-app.use(passport.session());
-io.on('connect', (ioclient) => {
+  app.use(expressSession({
+    secret: 'superpuperubersecret',
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+      secure: false
+    }
+  }));
+
+  app.use(passport.initialize());
+  app.use(passport.session());
   passport.use(new TwitterStrategy({
       consumerKey: process.env.TWITTER_API_KEY,
       consumerSecret: process.env.TWITTER_API_SECRET_KEY,
       callbackURL: 'https://' + process.env.AIRDROP_HOST + "/oauth/twitter/callback"
     },
     async (accessToken, refreshToken, profile, cb) => {
-      console.log(profile.username);
+      console.log('twitter start');
       let tweets = await getTweets(profile.id);
       let isFollow = await isFollowedTo(profile.id);
-      checkTerms(tweets, profile, isFollow);
-      cb(null);
+      let results = checkTerms(tweets, profile, isFollow);
+      cb(null, results);
     }
   ));
+  passport.serializeUser((user, done) => {
+    done(null, user);
+  });
+
+  passport.deserializeUser((user, done) => {
+    done(null, user);
+  });
 
   function getTweets(id) {
     return new Promise(resolve => {
       client.get('statuses/user_timeline', (error, tweets, response) => {
         if (!error) {
           resolve(tweets);
-        } else {
-          //io.emit('twitter', error);
         }
       });
     });
@@ -62,15 +68,13 @@ io.on('connect', (ioclient) => {
       }, (error, body, response) => {
         if (!error) {
           resolve(body.relationship.source.followed_by);
-        } else {
-          //io.emit('twitter', error);
         }
       });
     });
   }
 
   const checkTerms = (data, profile, isfollow) => {
-    console.log('checking terms: ');
+    console.log('start checking twitter terms');
     let count = {
       tweets: 0,
       retweets: 0
@@ -105,18 +109,35 @@ io.on('connect', (ioclient) => {
         }
       });
     });
+
     if (info.hashtag && info.followers && info.isFollow) {
-      console.log('send good twitter', info);
-      io.emit('twitter', {ko: true, tt: new Date().getTime(), tw: profile.username});
+      console.log('twitter finished all conditions', info);
+      return {ko: true, tw: profile.username};
     } else {
-      console.log('send bad twitter', info);
-      io.emit('twitter', {ko: false, tt: new Date().getTime(), tw: profile.username});
+      console.log('twitter finished not all conditions', info);
+      return {ko: false, tw: profile.username};
     }
-  }
+  };
   app.get('/oauth/twitter', passport.authenticate('twitter'));
-  app.get('/oauth/twitter/callback',
-    passport.authenticate('twitter', {failureRedirect: '/oauth/close'}),
-    function (req, res) {
-      res.redirect('/');
+  app.get('/oauth/twitter/callback', passport.authenticate('twitter', {failureRedirect: '/oauth/close'}),
+    (req, res) => {
+      try {
+        if (req.user.ko) {
+          let provider = 'twitter';
+          userUpdate({t: provider, session: req.session.user, ...req.user}).then(user => {
+            socket.send(JSON.stringify({
+              ok: user.ok,
+              userId: req.session.user,
+              message: user.message,
+              provider: provider
+            }));
+          });
+        } else {
+          socket.send(JSON.stringify({ok: false, userId: req.session.user}));
+        }
+      } catch (e) {
+        console.log('twitter callback send error: ', e);
+      }
+      res.redirect('/oauth/close');
     });
-});
+};

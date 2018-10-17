@@ -16,7 +16,7 @@ const confirmMail = ({code, email}) => {
     fs.readFile('./air/templates/confirm.html', 'utf8', (err, file) => {
       let filteredHtml = file.replace('{confirmationString}', 'code=' + code.replace(' ', '+'));
       let mailOptions = {
-        from: process.env.SMTP_LOGIN,
+        from: 'noreply@enecuum.com',
         to: email,
         subject: 'ENQ | Email confirmation',
         html: filteredHtml
@@ -37,7 +37,7 @@ const recoveryMail = ({code, email}) => {
     fs.readFile('./air/templates/restore.html', 'utf8', (err, file) => {
       let filteredHtml = file.replace('{confirmationString}', 'restore=' + code.replace(' ', '+'));
       let mailOptions = {
-        from: process.env.SMTP_LOGIN,
+        from: 'noreply@enecuum.com',
         to: email,
         subject: 'ENQ | Recovery password',
         html: filteredHtml

@@ -1,8 +1,8 @@
 {
   "name": "enq",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Enecuum site project",
-  "author": "GeekHack",
+  "author": "",
   "license": "AGPL-3.0-or-later",
   "private": true,
   "config": {
@@ -29,6 +29,7 @@
     "body-parser": "^1.18.3",
     "chart.js": "^2.7.2",
     "connect-mongo": "^2.0.1",
+    "cookie": "^0.3.1",
     "cookie-parser": "^1.4.3",
     "cookie-session": "^2.0.0-beta.3",
     "countup.js": "^1.9.3",
@@ -64,7 +65,8 @@
     "vue-chartjs": "^3.3.2",
     "vue-countup-v2": "^1.0.3",
     "vue-recaptcha": "^1.1.1",
-    "web3": "^1.0.0-beta.34"
+    "web3": "^1.0.0-beta.34",
+    "zeromq": "^5.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
