@@ -2,7 +2,7 @@ const db = require('./db/db');
 
 module.exports = (data) => {
   return new Promise(resolve => {
-    console.log('updating user to db...');
+    console.log('updating user to db...', data);
     if (data.ko) {
       return db.updateUser({
         t: data.t,

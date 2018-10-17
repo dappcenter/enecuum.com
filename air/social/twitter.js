@@ -123,6 +123,7 @@ module.exports = (app, socket) => {
     app.get('/oauth/twitter/callback', passport.authenticate('twitter', {failureRedirect: '/oauth/close'}),
       (req, res) => {
         try {
+          console.log('before user update: ', req.user);
           if (req.user.ko) {
             let provider = 'twitter';
             userUpdate({t: provider, session: req.session.user, ...req.user}).then(user => {
