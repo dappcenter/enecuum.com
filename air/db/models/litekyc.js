@@ -7,6 +7,7 @@ const kycSchema = mongoose.Schema({
   nation: String,
   birthDate: String,
   walletInfo: String,
+  enqWallet: String,
   email: String
 });
 

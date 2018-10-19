@@ -13,7 +13,7 @@
             <div class="input_group-wrapper">
               <div class="input_group">
                 <label for="remail">Email:</label>
-                <input type="text" id="remail" v-model="reset.email" @keyup.enter="login">
+                <input type="email" id="remail" v-model="reset.email" @keyup.enter="login">
               </div>
             </div>
             <el-button type="text" @click="resetpwd=false">Back</el-button>
@@ -26,7 +26,7 @@
             <div class="input_group-wrapper">
               <div class="input_group">
                 <label for="email">Email:</label>
-                <input type="text" id="email" v-model="user.email" @keyup.enter="login">
+                <input type="email" id="email" v-model="user.email" @keyup.enter="login">
               </div>
             </div>
           </el-col>
