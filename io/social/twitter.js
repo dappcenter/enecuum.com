@@ -35,6 +35,7 @@ io.on('connect', (ioclient) => {
       callbackURL: 'https://' + process.env.AIRDROP_HOST + "/oauth/twitter/callback"
     },
     async (accessToken, refreshToken, profile, cb) => {
+      console.log(profile.username);
       let tweets = await getTweets(profile.id);
       let isFollow = await isFollowedTo(profile.id);
       checkTerms(tweets, profile, isFollow);
@@ -106,13 +107,12 @@ io.on('connect', (ioclient) => {
     });
     if (info.hashtag && info.followers && info.isFollow) {
       console.log('send good twitter', info);
-      io.emit('twitter', true);
+      io.emit('twitter', {ko: true, tt: new Date().getTime(), tw: profile.username});
     } else {
       console.log('send bad twitter', info);
-      io.emit('twitter', false);
+      io.emit('twitter', {ko: false, tt: new Date().getTime(), tw: profile.username});
     }
   }
-
   app.get('/oauth/twitter', passport.authenticate('twitter'));
   app.get('/oauth/twitter/callback',
     passport.authenticate('twitter', {failureRedirect: '/oauth/close'}),

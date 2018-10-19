@@ -111,9 +111,9 @@ class MongoProvider {
   getUserByEmail(data) {
     return new Promise(resolve => {
       User.findOne({
-        email: data.email,
+        email: data.email.toLowerCase(),
       }).select('id name surname email twitter facebook linkedin telegram emailpro total kyc -_id').exec((err, user) => {
-        if (err) {
+        if (!user || err) {
           console.log('get user error: ', err);
           resolve(400);
         } else {
@@ -127,13 +127,16 @@ class MongoProvider {
    *
    * @param t
    * @param sessionid
+   * @param tw
+   * @param tl
    * @returns {Promise<any>}
    */
-  updateUser({t, sessionid}) {
+  updateUser({t, sessionid, tw = '', tl = '', fb = ''} = {}) {
+    console.log({t, tw, tl, fb});
     return new Promise(resolve => {
         User.findOne({
           id: sessionid
-        }).select('twitter facebook linkedin telegram emailpro total').exec((err, user) => {
+        }).select('twitter facebook linkedin telegram emailpro total twitterName telegramName facebookName').exec((err, user) => {
           if (err) {
             console.log('get user error: ', err);
             resolve({ok: false});
@@ -148,14 +151,16 @@ class MongoProvider {
               user.linkedin ? incr += 20 : null;
               user.telegram ? incr += 40 : null;
               user.total = incr;
-
+              user.twitterName = user.twitterName ? user.twitterName : tw;
+              user.telegramName = user.telegramName ? user.telegramName : tl;
+              user.facebookName = user.facebookName ? user.facebookName : fb;
               this.getAirdropCount().then(total => {
                 if (total.ok) {
                   if (total.message.totalAirdrop + incr < total.message.totalSupply) {
                     user.save((err) => {
                       if (err) {
                         console.log('save user error: ', err);
-                        resolve({ok: false});
+                        resolve({ok: false, message: 'Something went wrong please try again later'});
                       } else {
                         resolve({ok: true, total: user.total});
                       }
@@ -167,7 +172,7 @@ class MongoProvider {
               });
             } catch (e) {
               console.log('error: ', e);
-              resolve({ok: false});
+              resolve({ok: false, message: 'Something went wrong please try again later'});
             }
           }
         });
@@ -182,30 +187,46 @@ class MongoProvider {
    * @returns {Promise<any>}
    */
   saveLiteKyc({data, sessionid}) {
-    data._id = new mongoose.Types.ObjectId();
-    const _liteKyc = new LiteKyc(data);
     return new Promise(resolve => {
       User.findOne({
         id: sessionid
-      }).select('kyc').exec((err, user) => {
+      }).select('email kyc').exec((err, user) => {
         if (user.kyc) {
           resolve(400);
         } else {
-          _liteKyc.save((err) => {
-            if (err) {
-              console.log('save user error: ', err);
-              resolve(400);
+          LiteKyc.findOne({
+            email: user.email
+          }).select('email').exec((err, kycuser) => {
+            if (kycuser) {
+              this.updateLiteKyc({data: data, sessionid: sessionid}).then(_ => {
+                resolve(_);
+              });
             } else {
-              User.findOne({
-                email: data.email,
-              }).exec((err, user) => {
-                console.log(err, user);
-                user.kyc = true;
-                user.save((err) => {
-                  if (!err) {
+              data._id = new mongoose.Types.ObjectId();
+              const _liteKyc = new LiteKyc(data);
+              _liteKyc.save((err) => {
+                if (err) {
+                  resolve(400);
+                } else {
+                  console.log('incoming data: ', data);
+                  if (!data.file) {
                     resolve(200);
+                    return false;
                   }
-                });
+                  User.findOne({
+                    email: data.email,
+                  }).exec((err, user) => {
+                    console.log('find one user: ', user);
+                    user.kyc = true;
+                    user.save((err) => {
+                      if (!err) {
+                        resolve(200);
+                      } else {
+                        resolve(400);
+                      }
+                    });
+                  });
+                }
               });
             }
           });
@@ -221,18 +242,17 @@ class MongoProvider {
    * @returns {Promise<any>}
    */
   updateLiteKyc({data, sessionid}) {
+    console.log('updatelitekyc', data);
     return new Promise(resolve => {
       User.findOne({
         id: sessionid
-      }).select('email').exec((err, user) => {
+      }).select('email kyc').exec((err, user) => {
+        user.kyc = true;
+        user.save();
         console.log(data);
         LiteKyc.update({
           email: user.email
-        }, {
-          nation: data.nation,
-          birthDate: data.birthDate,
-          walletInfo: data.walletInfo
-        }, (err) => {
+        }, data, (err) => {
           if (err) {
             console.log('save user error: ', err);
             resolve(400);
@@ -250,11 +270,12 @@ class MongoProvider {
    * @returns {Promise<any>}
    */
   getWaitingRegUser(data) {
-    console.log('verification vode from db: ');
+    console.log('verification vode from db: ', data.verification.replace(' ', '+'));
     return new Promise(resolve => {
       WaitingReg.findOne({
         verificationCode: data.verification.replace(' ', '+')
-      }).select('id name surname email password country').exec((err, user) => {
+      }).select('id name surname email password country enqWallet').exec((err, user) => {
+        console.log(err, user);
         if (!user || err) {
           console.log('get waiting user error: ', err);
           resolve(false);
@@ -310,7 +331,7 @@ class MongoProvider {
         if (user) {
           LiteKyc.findOne({
             email: user.email
-          }).select('name nation birthDate walletInfo email -_id').exec((err, kyc) => {
+          }).select('name nation birthDate walletInfo email enqWallet -_id').exec((err, kyc) => {
             if (kyc) {
               resolve({ok: true, data: kyc});
             } else {

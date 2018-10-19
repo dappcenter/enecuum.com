@@ -8,6 +8,9 @@ const userSchema = mongoose.Schema({
   email: String,
   password: String,
   country: String,
+  twitterName: String,
+  telegramName: String,
+  facebookName: String,
   kyc: {
     type: Boolean,
     default: false

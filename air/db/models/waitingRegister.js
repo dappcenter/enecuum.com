@@ -8,6 +8,7 @@ const userSchema = mongoose.Schema({
   email: String,
   password: String,
   country: String,
+  enqWallet: String,
   verificationCode: String
 });
 

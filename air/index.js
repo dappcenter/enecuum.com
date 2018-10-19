@@ -8,6 +8,7 @@ const db = require('./db/db');
 const crypto = require('crypto');
 const multer = require('multer');
 const mail = require('./../mail/mailer');
+const zmq = require('zeromq');
 const {confirmMail, recoveryMail} = require('./sendmail');
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -17,6 +18,7 @@ const storage = multer.diskStorage({
     cb(null, new Date().getTime() + file.originalname);
   }
 });
+
 
 app.use(cookieSession({
   name: 'session',
@@ -28,25 +30,21 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Credentials", true);
-  res.header("Access-Control-Allow-Origin", "*"); //process.env.DOMAIN_URL
+  res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
 
-app.post('/api/airdrop/update', (req, res) => {
-  if (!req.session.user) return res.send('Permission denied');
-  if (req.body.f) {
-    return db.updateUser({t: req.body.t, sessionid: req.session.user}).then(user => {
-      console.log('user: ', user);
-      if (user.ok) {
-        res.send({ok: true, total: user.total});
-      } else {
-        res.send({ok: false, message: user.message});
-      }
-    });
-  } else {
-    res.send('fail');
-  }
+const socket = zmq.socket('push');
+if (process.env.MQ_SERVER) {
+  socket.bindSync('tcp://' + process.env.MQ_SERVER);
+}
+
+require('./social/twitter')(app, socket);
+require('./social/telegram')(app, socket);
+
+app.get('/oauth/close', (req, res) => {
+  res.send('<script>window.close();</script>')
 });
 
 app.post('/api/airdrop/resetpassword', (req, res) => {
@@ -57,28 +55,36 @@ app.post('/api/airdrop/resetpassword', (req, res) => {
       message: 'Some fields are empty'
     });
   }
-  let verification = crypto.createHash('sha256').update(new Date().getTime() + data.email).digest('base64');
+  let verification = crypto.createHash('sha256').update(process.env.SESS_KEY_SIGN + new Date().getTime() + data.email + process.env.SESS_KEY_VERIFY).digest('hex');
   data.verificationCode = verification;
-  db.resetPassword(data).then(verificationCode => {
-    if (verificationCode !== 400) {
-      console.log('verificationCode: ', verificationCode);
-      recoveryMail({email: data.email, code: verificationCode}).then(mail => {
-        if (mail.ok) {
-          return res.send({
-            ok: true,
-            message: 'Check your email'
-          })
+  db.getUserByEmail(data).then(user => {
+    if (user !== 400) {
+      db.resetPassword(data).then(verificationCode => {
+        if (verificationCode !== 400) {
+          recoveryMail({email: data.email.toLowerCase(), code: verificationCode}).then(mail => {
+            if (mail.ok) {
+              return res.send({
+                ok: true,
+                message: 'Check your email'
+              })
+            } else {
+              return res.send({
+                ok: false,
+                message: 'Cant send email'
+              });
+            }
+          });
         } else {
           return res.send({
             ok: false,
-            message: 'Cant send email'
+            message: 'Something went wrong please try later'
           });
         }
       });
     } else {
       return res.send({
         ok: false,
-        message: 'Something went wrong please try later'
+        message: 'Email does not exists'
       });
     }
   });
@@ -120,22 +126,37 @@ app.post('/api/airdrop/verification', (req, res) => {
       message: 'Verification code is empty'
     });
   }
-  return db.getWaitingRegUser(req.body).then(user => {
-    if (user) {
-      console.log('exist user: ', user);
+  console.log('get waiting user body: ', req.body);
+  return db.getWaitingRegUser(req.body).then(wuser => {
+    if (wuser) {
+      console.log('get waiting reg user: ', wuser);
       let isSended = mail.send('ad', {
-        EMAIL: user.email.toLowerCase(),
-        FIRST_NAME: user.name,
-        LAST_NAME: user.surname
+        EMAIL: wuser.email.toLowerCase(),
+        FIRST_NAME: wuser.name,
+        LAST_NAME: wuser.surname
       });
       return isSended.then(mail => {
         if (mail.status === 200) {
-          return db.saveUser(user).then(user => {
+          return db.saveUser(wuser).then(user => {
             if (user !== 400 && user) {
               req.session.user = user.id;
-              res.send({
-                ok: true
-              });
+              console.log();
+              if (wuser.enqWallet) {
+                db.saveLiteKyc({
+                  data: {
+                    email: wuser.email,
+                    enqWallet: wuser.enqWallet
+                  }, sessionid: user.id
+                }).then(_ => {
+                  res.send({
+                    ok: true
+                  });
+                });
+              } else {
+                res.send({
+                  ok: true
+                });
+              }
             } else {
               return res.send('User not found');
             }
@@ -169,14 +190,13 @@ app.post('/api/airdrop/registration', (req, res) => {
   req.body.id = id;
   return db.getUserByEmail(req.body).then(user => {
       console.log(user);
-      if (user) {
+      if (user && user !== 400) {
         return res.send({ok: false, message: 'Email already exists'});
       } else {
-        let verification = crypto.createHash('sha256').update(req.body.email + req.body.password + req.body.id).digest('base64');
+        let verification = crypto.createHash('sha256').update(req.body.email + req.body.password + req.body.id).digest('hex');
         req.body.verificationCode = verification;
         return db.saveWaitingRegUser({data: req.body}).then(verificationCode => {
           if (verificationCode !== 400) {
-            console.log('verificationCode: ', verificationCode);
             confirmMail({email: req.body.email, code: verificationCode}).then(mail => {
               if (mail.ok) {
                 return res.send({
@@ -197,26 +217,6 @@ app.post('/api/airdrop/registration', (req, res) => {
             })
           }
         });
-        /*console.log('not exist');
-        let isSended = mail.send('ad', {
-          EMAIL: req.body.email.toLowerCase(),
-          FIRST_NAME: req.body.name,
-          LAST_NAME: req.body.surname
-        });
-        return isSended.then(mail => {
-          if (mail.status === 200) {
-            return db.saveUser(req.body).then(user => {
-              if (user !== 400 && user) {
-                req.session.user = id;
-                res.send(user);
-              } else {
-                return res.send('User not found');
-              }
-            });
-          } else {
-            return res.send({ok: false, message: 'Please check your email or use another email address.'});
-          }
-        });*/
       }
     }
   );
@@ -259,7 +259,6 @@ app.post('/api/airdrop/login', (req, res) => {
   req.body.email = req.body.email.toLowerCase();
   req.body.password = pwd;
   return db.getUser(req.body).then(user => {
-    console.log('after login');
     if (user !== 400 && user) {
       req.session.user = user.id;
       return res.send(user);
@@ -299,7 +298,7 @@ app.post('/api/airdrop/litekyc', (req, res) => {
     if (err) {
       return res.send({ok: false, message: 'Filetype not allowed'});
     } else {
-      if (!req.file) return res.send({ok: false});
+      if (!req.file) return res.send({ok: false, message: 'Upload file first'});
       let data = req.body;
       data.file = req.file.path;
       db.saveLiteKyc({data: data, sessionid: req.session.user}).then(kyc => {
@@ -323,5 +322,6 @@ app.post('/api/airdrop/litekyc/update', (req, res) => {
     }
   })
 });
+
 
 module.exports = app;

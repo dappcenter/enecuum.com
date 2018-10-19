@@ -2,7 +2,7 @@
   <div class="bgback">
     <div class="airdrop_container">
       <h2 class="airdrop-title title line-bottom">
-        Open <b>Tommorow</b> Now
+        Open <b>Tomorrow</b> Now
       </h2>
       <div class="airdrop-title description">
         Enecuum is the world's first blockchain to unite millions of connected devices into a single network. With more
@@ -97,6 +97,12 @@
               <input type="text" id="walletInfo" v-model="userdata.walletInfo" :disabled="inputDisabled">
             </div>
           </el-col>
+          <el-col :xs="24" :sm="16" v-if="userdata.enqWallet">
+            <div class="input_group pure">
+              <label for="enqWallet">ENQ wallet information </label>
+              <input type="text" id="enqWallet" v-model="userdata.enqWallet" :disabled="inputDisabled">
+            </div>
+          </el-col>
           <el-col :xs="24" :sm="16" v-if="!mainuser.kyc">
             <div class="subscr"> IMPORTANT: Do not enter an exchange wallet address from Coinbase, Bittrex, Binance, or
               any other. You need a personal address where you control the private keys! If you do not have a wallet,
@@ -153,14 +159,19 @@
 
 <script>
   import axios from 'axios';
-  import socket from '~/plugins/socket.io.js';
+  import io from 'socket.io-client';
 
+  const socket = io('https://airdrop.enecuum.com', {
+    path: '/io',
+    autoConnect: false
+  });
   export default {
     name: "aidrop_page",
     layout: 'airdrop',
     middleware: 'airdropAuth',
     data() {
       return {
+        socket: null,
         wt: null,
         inputDisabled: false,
         rulesVisible: false,
@@ -234,7 +245,6 @@
         }, 1000);
       },
       onTelegramAuth(user) {
-        this.wt = null;
         axios.request({
           url: '/oauth/telegram',
           data: {
@@ -242,17 +252,7 @@
           },
           method: 'post',
           withCredentials: true,
-        }).then((res) => {
-          if (res.data.ok) {
-            this.getInfo('telegram', res.data.ok);
-          } else {
-            this.$notify({
-              title: 'Verification',
-              message: 'All required conditions are not met',
-              type: 'info',
-              position: 'bottom-left'
-            });
-          }
+        }).then((_) => {
         });
       },
       checkRule(type) {
@@ -262,10 +262,6 @@
           type: 'info',
           position: 'bottom-left'
         });
-        this.wt = new Date().getTime();
-        setTimeout(() => {
-          this.wt = null;
-        }, 10000);
         this.rulesVisible = false;
       },
       authSocial(type, done) {
@@ -286,8 +282,12 @@
         let data = {
           nation: this.userdata.nation,
           birthDate: this.userdata.birthDate,
-          walletInfo: this.userdata.walletInfo
+          walletInfo: this.userdata.walletInfo,
+          name: this.userdata.name
         };
+        if (this.userdata.enqWallet) {
+          data.enqWallet = this.userdata.enqWallet;
+        }
         let save = this.$store.dispatch('airdropLiteKycUpdate', data);
         save.then(res => {
           if (res.ok) {
@@ -343,44 +343,6 @@
       },
       loadFile(e) {
         this.file = e.target.files[0];
-      },
-      getInfo(provider, data) {
-        if (!provider) return false;
-        axios.request({
-          url: '/api/airdrop/update',
-          data: {
-            t: provider,
-            f: data
-          },
-          method: 'post',
-          withCredentials: true,
-        }).then((res) => {
-          if (res.data.ok) {
-            this.$store.state.airdropUser[provider] = true;
-            this.$store.state.airdropUser.total = res.data.total;
-            this.$notify({
-              message: 'Congrats, you just earned ' + res.data.total + ' ENQ',
-              type: 'success',
-              position: 'bottom-left'
-            });
-            this.rulesVisible = false;
-          } else {
-            if (res.data.message) {
-              this.$notify({
-                message: res.data.message,
-                type: 'info',
-                position: 'bottom-left'
-              });
-            } else {
-              this.$notify({
-                title: 'Verification',
-                message: 'All required conditions are not met',
-                type: 'info',
-                position: 'bottom-left'
-              });
-            }
-          }
-        });
       }
     },
     mounted() {
@@ -394,27 +356,42 @@
           this.userdata = res.message;
         }
       });
-      socket.on('twitter', (data) => {
-        if (this.wt) {
-          this.wt = null;
-          if (!data || typeof(data) === 'object') {
-            this.$notify({
-              title: 'Verification',
-              message: 'All required conditions are not met',
-              type: 'info',
-              position: 'bottom-left'
-            });
-          } else {
-            this.getInfo('twitter', data);
-          }
-        }
-      });
       socket.on('connectServer', (data) => {
         if (!data) return false;
+      });
+
+      socket.on('airdropNotification', (data) => {
+        if (!data) return false;
+        if (data.ok) {
+          this.$notify({
+            message: 'Congrats, you just earned ' + data.message + ' ENQ',
+            type: 'success',
+            position: 'bottom-left'
+          });
+          this.$store.state.airdropUser[data.provider] = true;
+          this.$store.state.airdropUser.total = data.message;
+          this.rulesVisible = false;
+        } else {
+          this.$notify({
+            title: 'Verification',
+            message: data.message,
+            type: 'info',
+            position: 'bottom-left'
+          });
+        }
       });
       axios.get('/i18n/countries.json').then(res => {
         this.countries = res.data;
       });
+      socket.emit('enterBackoffice');
+      if (!socket.conencted) {
+        socket.connect();
+      }
+    },
+    beforeRouteLeave(to, from, next) {
+      socket.emit('leaveBackoffice');
+      socket.disconnect();
+      next();
     }
   }
 </script>

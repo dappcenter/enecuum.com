@@ -4,7 +4,8 @@
       <h2 class="airdrop-title title">
         Welcome to the Enecuum Airdrop campaign!
 
-        <b>5 000 000</b> tokens will be distributed! Complete the fields below, read the Airdrop terms and conditions and start earning tokens right now!
+        <b>5 000 000</b> tokens will be distributed! Complete the fields below, read the Airdrop terms and conditions
+        and start earning tokens right now!
       </h2>
       <div class="airdrop_form">
         <el-row :gutter="20">
@@ -148,6 +149,7 @@
             type: 'warning',
             position: 'bottom-left'
           });
+          this.$refs.invisibleRecaptcha.reset();
           return false;
         }
         if (this.user.name && this.user.surname && this.user.email && this.user.password && this.user.country) {
@@ -157,9 +159,24 @@
               type: 'warning',
               position: 'bottom-left'
             });
+            this.$refs.invisibleRecaptcha.reset();
+            return false;
+          }
+          let regex = '(?:[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\\])';
+          let isEmail = this.user.email.match(regex);
+          if (!isEmail) {
+            this.$notify({
+              message: 'Email is not valid',
+              type: 'warning',
+              position: 'bottom-left'
+            });
+            this.$refs.invisibleRecaptcha.reset();
             return false;
           }
           this.loading = true;
+          if (localStorage.getItem('enqWallet')) {
+            this.user.enqWallet = localStorage.getItem('enqWallet');
+          }
           let logged = this.$store.dispatch('airdropRegister', this.user);
           logged.then(res => {
             if (res.ok) {
@@ -204,6 +221,12 @@
           this.$router.push('/app/backoffice');
         }
       });
+      if (this.$route.query.enq || this.$route.query.ENQ) {
+        let enqWallet = this.$route.query.enq || this.$route.query.ENQ;
+        localStorage.setItem('enqWallet', enqWallet);
+      } else {
+        localStorage.removeItem('enqWallet');
+      }
     }
   }
 </script>
