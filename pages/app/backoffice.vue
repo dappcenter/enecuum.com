@@ -99,7 +99,7 @@
           </el-col>
           <el-col :xs="24" :sm="16" v-if="userdata.enqWallet">
             <div class="input_group pure">
-              <label for="enqWallet">ENQ wallet information </label>
+              <label for="enqWallet">Ethereum wallet</label>
               <input type="text" id="enqWallet" v-model="userdata.enqWallet" :disabled="inputDisabled">
             </div>
           </el-col>
