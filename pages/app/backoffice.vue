@@ -2,7 +2,7 @@
   <div class="bgback">
     <div class="airdrop_container">
       <h2 class="airdrop-title title line-bottom">
-        Open <b>Tommorow</b> Now
+        Open <b>Tomorrow</b> Now
       </h2>
       <div class="airdrop-title description">
         Enecuum is the world's first blockchain to unite millions of connected devices into a single network. With more
