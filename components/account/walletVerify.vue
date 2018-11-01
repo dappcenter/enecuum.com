@@ -24,7 +24,7 @@
         <el-row class="flex-center">
           <el-form-item :error="errorAgree">
             <el-checkbox v-model="agree" @change="checked">I agree with <a
-              href="/docs/Enecuum_TokenSale_Terms_and_Conditions.pdf" target="_blank" @click="reading"
+              href="/docs/Enecuum_TokenSale_Terms_and_Conditions.pdf?v=1.4" target="_blank" @click="reading"
               class="unvisited">Token Sale Terms and Conditions</a>
             </el-checkbox>
           </el-form-item>
