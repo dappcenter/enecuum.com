@@ -13,7 +13,7 @@
           <el-col :xs="20" :sm="8" :md="8" :lg="8" :xl="4">
             <el-select v-model="icoAddress" size="small" placeholder="Select stage">
               <el-option
-                v-for="(addr, key) in icoAddressList"
+                v-for="(addr, key) in icoAddressListReverse"
                 :key="key"
                 :label="'Stage '+ (key+1)"
                 :value="addr">
@@ -28,12 +28,10 @@
             </el-button>
           </h4>
         </el-row>
-        <h3 class="text-center title-semibold mb13"
-            v-if="vestingWallet && vestingWallet!=='0x0000000000000000000000000000000000000000'">{{vestingWallet}}</h3>
+        <h3 class="text-center title-semibold mb13" v-if="vesting">{{vestingWallet}}</h3>
       </el-col>
     </el-row>
-    <el-row class="vesting-table_wrapper"
-            v-if="vestingWallet && vestingWallet!=='0x0000000000000000000000000000000000000000'">
+    <el-row class="vesting-table_wrapper" v-if="vesting">
       <el-col :xs="22" :sm="22" :md="22" :xl="10">
         <el-row class="vesting-table">
           <el-col :xs="22" :sm="10" :md="8" :lg="8" :xl="8" class="vesting-cell">
@@ -84,7 +82,7 @@
         <lineChart ref="linechart" :chartData="chartdata" :options="options" :height="250"></lineChart>
       </el-col>
     </el-row>
-    <el-row class="flex-center">
+    <el-row class="flex-center" v-else>
       <div>
         <el-alert
           :title="'You did not buy tokens at this stage, use the form above to purchase or select another stage'"
@@ -94,7 +92,7 @@
       </div>
     </el-row>
     <br>
-    <el-row class="flex-center" v-if="vestingWallet && vestingWallet!=='0x0000000000000000000000000000000000000000'">
+    <el-row class="flex-center" v-if="vesting">
       <el-button type="primary" class="neon" :disabled="!verified ? 'disabled' : null" @click="getTokens">Receive
         token
       </el-button>
@@ -139,25 +137,29 @@
     props: {
       userInfo: Object,
       verified: Boolean,
+      vesting: Boolean,
       ico: Object,
       token: Object,
       contractInfo: Object,
       icoAddressProp: String,
-      icoAddressList: Array
+      icoAddressList: Array,
+      changeVesting: Boolean
     },
     components: {
       lineChart
     },
     computed: {
+      icoAddressListReverse: {
+        get() {
+          return this.icoAddressList.reverse();
+        }
+      },
       icoAddress: {
         get() {
           return this.icoAddressProp;
         },
         set(val) {
           this.$emit('changeStage', val);
-          setTimeout(() => {
-            console.log(this.icoAddressList, this.contractInfo.icoAddress);
-          }, 1000);
         }
       },
       data() {
@@ -172,7 +174,7 @@
     },
     methods: {
       openVideo() {
-        this.$emit('openVideo', 'bRM4OBqsc2I', 'How to buy tokens');
+        this.$emit('openVideo', 'bRM4OBqsc2I', 'How To Receive Tokens');
       },
       getTokens() {
         this.vestingContract.release(this.contractInfo.tokenAddress, (err, res) => {
@@ -221,54 +223,67 @@
             }
           });
         })
-      }
-    },
-    mounted() {
-      this.ico.getVestingWallet(this.userInfo.currentWallet, (err, res) => {
-        if (!err) {
-          this.vestingContract = web3.eth.contract(this.contractInfo.vestingAbi).at(res);
-          this.vestingWallet = res;
+      },
+      vestingInit() {
+        this.chartdata.labels = [];
+        this.chartdata.datasets[0].data = [];
+        console.log(this.chartdata.labels, this.chartdata.datasets[0].data);
+        this.ico.getVestingWallet(this.userInfo.currentWallet, (err, res) => {
+          if (!err) {
+            this.vestingContract = web3.eth.contract(this.contractInfo.vestingAbi).at(res);
+            this.vestingWallet = res;
 
-          this.vestingContract.getStart((err, res) => {
-            if (!err) {
-              this.vestingInfo.startDate = moment(new Date(bn(res).toNumber() * 1000)).format('MMMM Do YYYY HH:mm');
-              this.vestingContract.getDuration((err, res) => {
-                if (!err) {
-                  this.vestingInfo.endDate = moment(this.vestingInfo.startDate, 'MMMM Do YYYY HH:mm').add(bn(res).toNumber(), 'seconds').format('MMMM Do YYYY HH:mm');
-                } else {
-                }
-              });
-              this.vestingContract.getCliff((err, res) => {
-                if (!err) {
-                  let date = moment(new Date(bn(res).toNumber() * 1000)).format('MMMM Do YYYY HH:mm');
-                  this.vestingInfo.cliffDate = date;
-                  this.chartdata.labels.push(this.vestingInfo.startDate);
-                  this.chartdata.datasets[0].data.push(0);
-                  this.chartdata.labels.push(this.vestingInfo.endDate);
-                  let balance = this.getVestingBalance();
-                  balance.then(res => {
-                    this.chartdata.datasets[0].data.push(bn(this.userInfo.balance).plus(bn(res)).toNumber());
-                    this.$refs.linechart.renderChart(this.chartdata, this.options);
-                  });
-                  //this.vestingInfo.alreadyVesting = bn(res).dividedBy(1e10).toString();
-                } else {
-                }
-              });
-            } else {
-            }
-          });
-          this.getReleased();
-          this.getReleasableAmount();
-          this.getVestingAmount();
-          this.getVestingBalance();
-          setInterval(() => {
+            this.vestingContract.getStart((err, res) => {
+              if (!err) {
+                this.vestingInfo.startDate = moment(new Date(bn(res).toNumber() * 1000)).format('MMMM Do YYYY HH:mm');
+                this.vestingContract.getDuration((err, res) => {
+                  if (!err) {
+                    this.vestingInfo.endDate = moment(this.vestingInfo.startDate, 'MMMM Do YYYY HH:mm').add(bn(res).toNumber(), 'seconds').format('MMMM Do YYYY HH:mm');
+                  } else {
+                  }
+                });
+                this.vestingContract.getCliff((err, res) => {
+                  if (!err) {
+                    let date = moment(new Date(bn(res).toNumber() * 1000)).format('MMMM Do YYYY HH:mm');
+                    this.vestingInfo.cliffDate = date;
+                    this.chartdata.labels.push(this.vestingInfo.startDate);
+                    this.chartdata.datasets[0].data.push(0);
+                    this.chartdata.labels.push(this.vestingInfo.endDate);
+                    let balance = this.getVestingBalance();
+                    balance.then(res => {
+                      this.chartdata.datasets[0].data.push(bn(this.userInfo.balance).plus(bn(res)).toNumber());
+                      this.$refs.linechart.renderChart(this.chartdata, this.options);
+                    });
+                    //this.vestingInfo.alreadyVesting = bn(res).dividedBy(1e10).toString();
+                  } else {
+                  }
+                });
+              } else {
+              }
+            });
             this.getReleased();
             this.getReleasableAmount();
             this.getVestingAmount();
             this.getVestingBalance();
-          }, 5000);
+            setInterval(() => {
+              this.getReleased();
+              this.getReleasableAmount();
+              this.getVestingAmount();
+              this.getVestingBalance();
+            }, 5000);
+          }
+        });
+      }
+    },
+    watch: {
+      'changeVesting': function () {
+        if (this.vesting) {
+          this.vestingInit();
         }
-      });
+      }
+    },
+    mounted() {
+      this.vestingInit();
     }
   }
 </script>
