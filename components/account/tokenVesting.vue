@@ -273,7 +273,7 @@
               this.getReleasableAmount();
               this.getVestingAmount();
               this.getVestingBalance();
-            }, 5000);
+            }, 10000);
           }
         });
       },
@@ -281,13 +281,13 @@
         return new Promise(rs => {
           let contracts = this.icoAddressList;
           let promisesContracts = contracts.map(addr => {
-            console.log('addr: ', addr);
             return new Promise(resolve => {
               let icoContract = web3.eth.contract(this.contractInfo.icoAbi).at(addr);
               icoContract.hasVestingWallet(this.userInfo.wallet, (err, res) => {
                 if (!err && res === true) {
                   icoContract.getVestingWallet(this.userInfo.currentWallet, (err, vestingWallet) => {
                     this.token.balanceOf(vestingWallet, (err, res) => {
+                      console.log('vesting balance of: ', vestingWallet, bn(res).dividedBy(1e10).toString());
                       resolve(bn(res).dividedBy(1e10).toString());
                     });
                   });
