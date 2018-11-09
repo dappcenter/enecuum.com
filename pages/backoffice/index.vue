@@ -179,8 +179,8 @@
         this.videoVisible = false;
         this.videoUrl = '';
       },
-      hasVestingWallet() {
-        this.icoContract = web3.eth.contract(this.contractInfo.icoAbi).at(this.contractInfo.icoAddress);
+      hasVestingWallet(addr = this.contractInfo.icoAddress) {
+        this.icoContract = web3.eth.contract(this.contractInfo.icoAbi).at(addr);
         this.icoContract.hasVestingWallet(this.userInfo.wallet, (err, res) => {
           if (!res) {
             setTimeout(() => {
