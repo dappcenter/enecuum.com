@@ -106,6 +106,8 @@
                   :ico="icoContract" :token="tokenContract"
                   :userInfo="userInfo"
                   :verified="verified"
+                  :vesting="vesting"
+                  :changeVesting="changeVesting"
                   @openVideo="openVideo" @setVestingBalance="setVestingBalance"></tokenVesting>
     <el-row class="flex-center mb40">
       <el-col :xs="22" :sm="16" :md="16" :lg="14" :xl="14">
@@ -131,6 +133,7 @@
     middleware: 'auth',
     data() {
       return {
+        changeVesting: false,
         icoAddressList: [],
         videoVisible: false,
         videoUrl: '',
@@ -177,6 +180,7 @@
         this.videoUrl = '';
       },
       hasVestingWallet() {
+        this.icoContract = web3.eth.contract(this.contractInfo.icoAbi).at(this.contractInfo.icoAddress);
         this.icoContract.hasVestingWallet(this.userInfo.wallet, (err, res) => {
           if (!res) {
             setTimeout(() => {
@@ -184,6 +188,7 @@
             }, 5000);
           }
           if (!err) {
+            this.changeVesting = !this.changeVesting;
             this.vesting = res;
           }
         });
@@ -223,9 +228,6 @@
       },
       selectStage(addr) {
         this.contractInfo.icoAddress = addr;
-        setTimeout(() => {
-          console.log(this.verified, this.whitelisted);
-        }, 2000);
         this.selectNetwork();
       },
       selectNetwork() {
@@ -238,7 +240,6 @@
             }, 10000);
           } else {
             this.userInfo.currentWallet = result;
-            console.log(this.userInfo.wallet.toLocaleLowerCase(), result.toLocaleLowerCase());
             this.$store.commit('SET_WEB3WALLET', result);
             if (this.userInfo.wallet.toLocaleLowerCase() !== result.toLocaleLowerCase()) {
               this.web3info.text = 'Waiting for changing your coinbase account';
@@ -273,7 +274,6 @@
       },
       detectNetwork() {
         let address = '';
-        console.log(this.contractInfo.icoAddress);
         web3.version.getNetwork((err, netId) => {
           switch (netId) {
             case "1":
