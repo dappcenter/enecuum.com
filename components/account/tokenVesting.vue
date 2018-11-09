@@ -2,11 +2,38 @@
   <div class="authorize">
     <el-row class="flex-center">
       <el-col :xs="22" :sm="14" :md="14" :lg="14" :xl="14">
-        <h4 class="text-center title-bold text-uppercase title-middle mb vesting-wallet">Token vesting</h4>
-        <h3 class="text-center title-semibold mb13">{{vestingWallet}}</h3>
+        <h4 class="text-center title-bold text-uppercase title-middle mb vesting-wallet"><span>Token vesting</span>
+        </h4>
+        <el-row class="flex-center">
+          <el-col :xs="22" :sm="12" :md="10" :lg="10" :xl="4">
+            <h4 class="text-center title-under mb13">Select stage where you bought tokens</h4>
+          </el-col>
+        </el-row>
+        <el-row class="flex-center mb13">
+          <el-col :xs="20" :sm="8" :md="8" :lg="8" :xl="4">
+            <el-select v-model="icoAddress" size="small" placeholder="Select stage">
+              <el-option
+                v-for="(addr, key) in icoAddressList"
+                :key="key"
+                :label="'Stage '+ (key+1)"
+                :value="addr">
+              </el-option>
+            </el-select>
+          </el-col>
+        </el-row>
+        <el-row class="flex-center">
+          <h4 class="text-center title-under mb13">
+            <el-button type="default" size="small" @click.prevent="openVideo">How To
+              Receive Tokens <i class="fa fa-play-circle-o"></i>
+            </el-button>
+          </h4>
+        </el-row>
+        <h3 class="text-center title-semibold mb13"
+            v-if="vestingWallet && vestingWallet!=='0x0000000000000000000000000000000000000000'">{{vestingWallet}}</h3>
       </el-col>
     </el-row>
-    <el-row class="vesting-table_wrapper">
+    <el-row class="vesting-table_wrapper"
+            v-if="vestingWallet && vestingWallet!=='0x0000000000000000000000000000000000000000'">
       <el-col :xs="22" :sm="22" :md="22" :xl="10">
         <el-row class="vesting-table">
           <el-col :xs="22" :sm="10" :md="8" :lg="8" :xl="8" class="vesting-cell">
@@ -57,8 +84,17 @@
         <lineChart ref="linechart" :chartData="chartdata" :options="options" :height="250"></lineChart>
       </el-col>
     </el-row>
-    <br>
     <el-row class="flex-center">
+      <div>
+        <el-alert
+          :title="'You did not buy tokens at this stage, use the form above to purchase or select another stage'"
+          type="info"
+          :closable="false">
+        </el-alert>
+      </div>
+    </el-row>
+    <br>
+    <el-row class="flex-center" v-if="vestingWallet && vestingWallet!=='0x0000000000000000000000000000000000000000'">
       <el-button type="primary" class="neon" :disabled="!verified ? 'disabled' : null" @click="getTokens">Receive
         token
       </el-button>
@@ -76,6 +112,7 @@
     data() {
       return {
         currentVestingBalance: 0,
+        ia: 0,
         vestingWallet: '',
         vestingInfo: {
           startDate: '',
@@ -104,12 +141,25 @@
       verified: Boolean,
       ico: Object,
       token: Object,
-      contractInfo: Object
+      contractInfo: Object,
+      icoAddressProp: String,
+      icoAddressList: Array
     },
     components: {
       lineChart
     },
     computed: {
+      icoAddress: {
+        get() {
+          return this.icoAddressProp;
+        },
+        set(val) {
+          this.$emit('changeStage', val);
+          setTimeout(() => {
+            console.log(this.icoAddressList, this.contractInfo.icoAddress);
+          }, 1000);
+        }
+      },
       data() {
         return {}
       },
@@ -121,6 +171,9 @@
       }
     },
     methods: {
+      openVideo() {
+        this.$emit('openVideo', 'bRM4OBqsc2I', 'How to buy tokens');
+      },
       getTokens() {
         this.vestingContract.release(this.contractInfo.tokenAddress, (err, res) => {
           if (!err) {

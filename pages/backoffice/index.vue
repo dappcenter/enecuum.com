@@ -42,7 +42,7 @@
           </h4>
           <h4 class="text-center title-bold title-middle flex-center flex-middle addr-wrapper">
             <span
-              class="addr">{{contractInfo.icoAddress}}</span>
+              class="addr">{{contractInfo.currentIcoAddress}}</span>
             <img src="/img/icons/copy.svg"
                  class="ml13 account-copy"
                  alt="" @click="copy"></h4>
@@ -51,8 +51,12 @@
           </div>
           <el-row type="flex" justify="center" class="mb40 mt20">
             <el-button-group>
-              <el-button type="default" size="small" @click.prevent="openVideo('6Gf_kRE4MJU', 'How MetaMask works')">How MetaMask works</el-button>
-              <el-button type="default" size="small" @click.prevent="openVideo('bRM4OBqsc2I', 'How to buy tokens')">How to buy tokens</el-button>
+              <el-button type="default" size="small" @click.prevent="openVideo('6Gf_kRE4MJU', 'How MetaMask works')">How
+                MetaMask works <i class="fa fa-play-circle-o"></i>
+              </el-button>
+              <el-button type="default" size="small" @click.prevent="openVideo('bRM4OBqsc2I', 'How to buy tokens')">How
+                to buy tokens <i class="fa fa-play-circle-o"></i>
+              </el-button>
             </el-button-group>
           </el-row>
           <el-dialog
@@ -96,9 +100,13 @@
       </el-col>
     </el-row>
 
-    <tokenVesting v-if="vesting" :contractInfo="contractInfo" :ico="icoContract" :token="tokenContract"
+    <tokenVesting v-if="web3info.loaded" @changeStage="selectStage" :icoAddressList="icoAddressList"
+                  :contractInfo="contractInfo"
+                  :icoAddressProp="contractInfo.icoAddress"
+                  :ico="icoContract" :token="tokenContract"
                   :userInfo="userInfo"
-                  :verified="verified" @setVestingBalance="setVestingBalance"></tokenVesting>
+                  :verified="verified"
+                  @openVideo="openVideo" @setVestingBalance="setVestingBalance"></tokenVesting>
     <el-row class="flex-center mb40">
       <el-col :xs="22" :sm="16" :md="16" :lg="14" :xl="14">
         <p class="text-center">If you have any more questions, please email our support at <br> <a
@@ -123,6 +131,7 @@
     middleware: 'auth',
     data() {
       return {
+        icoAddressList: [],
         videoVisible: false,
         videoUrl: '',
         videoTitle: '',
@@ -212,13 +221,66 @@
         }
         addr.remove();
       },
+      selectStage(addr) {
+        this.contractInfo.icoAddress = addr;
+        setTimeout(() => {
+          console.log(this.verified, this.whitelisted);
+        }, 2000);
+        this.selectNetwork();
+      },
+      selectNetwork() {
+        web3.eth.getCoinbase((error, result) => {
+          if (error) {
+            this.web3info.text = 'Wa can\'t detect your coinbase account';
+            this.whitelisted = false;
+            setTimeout(() => {
+              this.detectNetwork();
+            }, 10000);
+          } else {
+            this.userInfo.currentWallet = result;
+            console.log(this.userInfo.wallet.toLocaleLowerCase(), result.toLocaleLowerCase());
+            this.$store.commit('SET_WEB3WALLET', result);
+            if (this.userInfo.wallet.toLocaleLowerCase() !== result.toLocaleLowerCase()) {
+              this.web3info.text = 'Waiting for changing your coinbase account';
+              this.whitelisted = false;
+              setTimeout(() => {
+                this.detectNetwork();
+              }, 10000);
+            } else {
+              this.icoContract = web3.eth.contract(this.contractInfo.icoAbi).at(this.contractInfo.currentIcoAddress);
+              this.tokenContract = web3.eth.contract(this.contractInfo.tokenAbi).at(this.contractInfo.tokenAddress);
+              this.web3info.loaded = true;
+              this.icoContract.hasRole(this.userInfo.wallet, 'whitelist', (err, res) => {
+                if (!err) {
+                  this.whitelisted = res;
+                  this.verified = res;
+                  if (res) {
+                    socket.on('depositUpdates', (info) => {
+                      let me = (this.$store.state.web3wallet.toLocaleLowerCase() === info.sender.toLocaleLowerCase()) ? true : false;
+                      me ? (this.userInfo.balance = bn(bn(this.userInfo.balance).plus(bn(info.amount))).toNumber()) : null;
+                    });
+                  }
+                }
+              });
+              this.hasVestingWallet();
+              this.getTokenBalance();
+              setInterval(() => {
+                this.getTokenBalance();
+              }, 5000);
+            }
+          }
+        });
+      },
       detectNetwork() {
         let address = '';
+        console.log(this.contractInfo.icoAddress);
         web3.version.getNetwork((err, netId) => {
           switch (netId) {
             case "1":
               this.web3info.text = 'Connecting to MainNet';
-              this.contractInfo.icoAddress = require('./../../config/config').web3.mainnet.contracts.ico.address;
+              this.contractInfo.icoAddress = require('./../../config/config').web3.mainnet.contracts.ico.address[0];
+              this.contractInfo.currentIcoAddress = require('./../../config/config').web3.mainnet.contracts.ico.address[0];
+              this.icoAddressList = require('./../../config/config').web3.mainnet.contracts.ico.address;
               this.contractInfo.icoAbi = require('./../../config/config').web3.mainnet.contracts.ico.abi;
               this.contractInfo.tokenAddress = require('./../../config/config').web3.mainnet.contracts.token.address;
               this.contractInfo.tokenAbi = require('./../../config/config').web3.mainnet.contracts.token.abi;
@@ -233,7 +295,9 @@
             case "3":
               this.web3info.text = 'Connecting to Ropsten';
               this.userInfo.currentNetwork = 'ropsten.';
-              this.contractInfo.icoAddress = require('./../../config/config').web3.ropsten.contracts.ico.address;
+              this.contractInfo.icoAddress = require('./../../config/config').web3.ropsten.contracts.ico.address[0];
+              this.contractInfo.currentIcoAddress = require('./../../config/config').web3.mainnet.contracts.ico.address[0];
+              this.icoAddressList = require('./../../config/config').web3.ropsten.contracts.ico.address;
               this.contractInfo.icoAbi = require('./../../config/config').web3.ropsten.contracts.ico.abi;
               this.contractInfo.tokenAddress = require('./../../config/config').web3.ropsten.contracts.token.address;
               this.contractInfo.tokenAbi = require('./../../config/config').web3.ropsten.contracts.token.abi;
@@ -252,54 +316,16 @@
             }, 10000);
             return false;
           }
-          if (this.contractInfo.icoAddress && this.contractInfo.tokenAddress) setTimeout(() => {
-            web3.eth.getCoinbase((error, result) => {
-              if (error) {
-                this.web3info.text = 'Wa can\'t detect your coinbase account';
-                this.whitelisted = false;
-                setTimeout(() => {
-                  this.detectNetwork();
-                }, 10000);
-              } else {
-                this.userInfo.currentWallet = result;
-                this.$store.commit('SET_WEB3WALLET', result);
-                if (this.userInfo.wallet.toLocaleLowerCase() !== result.toLocaleLowerCase()) {
-                  this.web3info.text = 'Waiting for changing your coinbase account';
-                  this.whitelisted = false;
-                  setTimeout(() => {
-                    this.detectNetwork();
-                  }, 10000);
-                } else {
-                  this.icoContract = web3.eth.contract(this.contractInfo.icoAbi).at(this.contractInfo.icoAddress);
-                  this.tokenContract = web3.eth.contract(this.contractInfo.tokenAbi).at(this.contractInfo.tokenAddress);
-                  this.web3info.loaded = true;
-                  this.icoContract.hasRole(this.userInfo.wallet, 'whitelist', (err, res) => {
-                    if (!err) {
-                      this.whitelisted = res;
-                      this.verified = res;
-                      if (res) {
-                        socket.on('depositUpdates', (info) => {
-                          let me = (this.$store.state.web3wallet.toLocaleLowerCase() === info.sender.toLocaleLowerCase()) ? true : false;
-                          me ? (this.userInfo.balance = bn(bn(this.userInfo.balance).plus(bn(info.amount))).toNumber()) : null;
-                        });
-                      }
-                    }
-                  });
-                  this.hasVestingWallet();
-                  this.getTokenBalance();
-                  setInterval(() => {
-                    this.getTokenBalance();
-                  }, 5000);
-                }
-              }
-            });
+          if (this.contractInfo.currentIcoAddress && this.contractInfo.tokenAddress) setTimeout(() => {
+            this.selectNetwork();
           }, 2000);
         });
       }
     },
     mounted() {
       this.userInfo = this.$store.state.kyc.message;
-      this.contractInfo.icoAddress = require('./../../config/config').web3.mainnet.contracts.ico.address;
+      this.contractInfo.icoAddress = require('./../../config/config').web3.mainnet.contracts.ico.address[0];
+      this.icoAddressList = require('./../../config/config').web3.mainnet.contracts.ico.address;
     },
     created() {
       if (this.$store.state.kyc.code === 200) {
