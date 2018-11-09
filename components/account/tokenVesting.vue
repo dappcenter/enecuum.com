@@ -174,7 +174,7 @@
     },
     methods: {
       openVideo() {
-        this.$emit('openVideo', 'bRM4OBqsc2I', 'How to buy tokens');
+        this.$emit('openVideo', 'bRM4OBqsc2I', 'How To Receive Tokens');
       },
       getTokens() {
         this.vestingContract.release(this.contractInfo.tokenAddress, (err, res) => {
