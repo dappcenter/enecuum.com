@@ -105,7 +105,7 @@
           </el-col>
           <el-col :xs="24" :sm="16" v-if="!mainuser.kyc">
             <div class="subscr"> IMPORTANT: Do not enter an exchange wallet address from Coinbase, Bittrex, Binance, or
-              any other. You need a personal address where you control the private keys! If you do not have a wallet,
+              any other. You need a personal address where you control the private keys! If you do not have` a wallet,
               you can register it, for example, on myetherwallet.com.
             </div>
           </el-col>

@@ -57,6 +57,11 @@
       }
     }
   }
+  .addr {
+    .input {
+      min-width: 370px;
+    }
+  }
   @media screen and (max-width: 768px) {
     .addr {
       width: 100%;
