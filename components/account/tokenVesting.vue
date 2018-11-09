@@ -24,7 +24,7 @@
         </el-row>
         <el-row class="flex-center">
           <h4 class="text-center title-under mb13">
-            <el-button type="default" size="small" @click.prevent="openVideo">How To
+            <el-button type="default" size="small" @click.prevent="openVideo" v-if="false">How To
               Receive Tokens <i class="fa fa-play-circle-o"></i>
             </el-button>
           </h4>
