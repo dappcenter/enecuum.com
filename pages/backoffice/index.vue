@@ -171,43 +171,6 @@
       ICountUp
     },
     methods: {
-      openVideo(url, title) {
-        this.videoUrl = url;
-        this.videoTitle = title;
-        this.videoVisible = true;
-      },
-      handleVideoVisible() {
-        this.videoVisible = false;
-        this.videoUrl = '';
-      },
-      hasVestingWallet(addr = this.contractInfo.icoAddress) {
-        this.icoContract = web3.eth.contract(this.contractInfo.icoAbi).at(addr);
-        this.icoContract.hasVestingWallet(this.userInfo.wallet, (err, res) => {
-          if (!res) {
-            setTimeout(() => {
-              this.hasVestingWallet();
-            }, 5000);
-          }
-          if (!err) {
-            this.changeVesting = !this.changeVesting;
-            this.vesting = res;
-          }
-        });
-      },
-      getTokenBalance() {
-        this.tokenContract.balanceOf(this.userInfo.wallet, (err, res) => {
-          console.log(res.toString(), this.userInfo.vestingBalance);
-          if (!err) {
-            this.userInfo.balance = bn(res).dividedBy(1e10).plus(bn(this.userInfo.vestingBalance)).toNumber() || bn(res).dividedBy(1e10).toNumber();
-            this.$refs.counter.update(this.userInfo.balance);
-          }
-        });
-      },
-      setVestingBalance(val = 0) {
-        this.userInfo.vestingBalance = val;
-        //this.userInfo.balance += bn(bn(this.userInfo.balance).plus(bn(val)).toNumber());
-        //this.$refs.counter.update(this.userInfo.balance);
-      },
       copy() {
         let inp = document.createElement('input');
         inp.value = this.contractInfo.icoAddress;
@@ -228,9 +191,60 @@
         }
         addr.remove();
       },
+      openVideo(url, title) {
+        this.videoUrl = url;
+        this.videoTitle = title;
+        this.videoVisible = true;
+      },
+      handleVideoVisible() {
+        this.videoVisible = false;
+        this.videoUrl = '';
+      },
+      hasVestingWallet(addr = this.contractInfo.icoAddress) {
+        this.icoContract = web3.eth.contract(this.contractInfo.icoAbi).at(addr);
+        this.icoContract.hasVestingWallet(this.userInfo.wallet, {
+          from: this.userInfo.wallet
+        }, (err, res) => {
+          if (!res) {
+            setTimeout(() => {
+              console.log('has vestingWallet settimeout');
+              this.hasVestingWallet();
+            }, 5000);
+          }
+          if (!err) {
+            this.changeVesting = !this.changeVesting;
+            this.vesting = res;
+          }
+          if (res) {
+          }
+        });
+      },
+      getTokenBalance() {
+        this.tokenContract.balanceOf(this.userInfo.wallet, {
+          from: this.userInfo.wallet
+        }, (err, res) => {
+          if (!err) {
+            this.userInfo.balance = bn(res).dividedBy(1e10).plus(bn(this.userInfo.vestingBalance)).toNumber() || bn(res).dividedBy(1e10).toNumber();
+            this.$refs.counter.update(this.userInfo.balance);
+          }
+        });
+      },
+      setVestingBalance(val = 0) {
+        this.userInfo.vestingBalance = val;
+        //this.userInfo.balance += bn(bn(this.userInfo.balance).plus(bn(val)).toNumber());
+        //this.$refs.counter.update(this.userInfo.balance);
+      },
       selectStage(addr) {
+        console.log('SELECT STAGE: ', addr);
         this.contractInfo.icoAddress = addr;
-        this.selectNetwork(true);
+        this.icoContract = web3.eth.contract(this.contractInfo.icoAbi).at(addr);
+        this.icoContract.hasVestingWallet(this.userInfo.wallet, {
+          from: this.userInfo.wallet
+        }, (err, res) => {
+          if (!err) {
+            this.vesting = res;
+          }
+        });
       },
       selectNetwork(flush) {
         if (flush) clearInterval(this.interval);
@@ -266,11 +280,13 @@
                   }
                 }
               });
-              this.hasVestingWallet();
-              this.getTokenBalance();
+              setTimeout(() => {
+                this.hasVestingWallet();
+                this.getTokenBalance();
+              }, 1000);
               this.interval = setInterval(() => {
                 this.getTokenBalance();
-              }, 5000);
+              }, 9500);
             }
           }
         });
@@ -321,7 +337,7 @@
           }
           if (this.contractInfo.currentIcoAddress && this.contractInfo.tokenAddress) setTimeout(() => {
             this.selectNetwork();
-          }, 2000);
+          }, 4000);
         });
       }
     },
