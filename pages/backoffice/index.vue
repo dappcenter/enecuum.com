@@ -133,6 +133,7 @@
     middleware: 'auth',
     data() {
       return {
+        interval: null,
         changeVesting: false,
         icoAddressList: [],
         videoVisible: false,
@@ -195,6 +196,7 @@
       },
       getTokenBalance() {
         this.tokenContract.balanceOf(this.userInfo.wallet, (err, res) => {
+          console.log(res.toString(), this.userInfo.vestingBalance);
           if (!err) {
             this.userInfo.balance = bn(res).dividedBy(1e10).plus(bn(this.userInfo.vestingBalance)).toNumber() || bn(res).dividedBy(1e10).toNumber();
             this.$refs.counter.update(this.userInfo.balance);
@@ -228,9 +230,10 @@
       },
       selectStage(addr) {
         this.contractInfo.icoAddress = addr;
-        this.selectNetwork();
+        this.selectNetwork(true);
       },
-      selectNetwork() {
+      selectNetwork(flush) {
+        if (flush) clearInterval(this.interval);
         web3.eth.getCoinbase((error, result) => {
           if (error) {
             this.web3info.text = 'Wa can\'t detect your coinbase account';
@@ -265,7 +268,7 @@
               });
               this.hasVestingWallet();
               this.getTokenBalance();
-              setInterval(() => {
+              this.interval = setInterval(() => {
                 this.getTokenBalance();
               }, 5000);
             }
