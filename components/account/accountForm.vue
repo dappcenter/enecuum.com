@@ -90,7 +90,7 @@
           let gasPrice = res.c[0];//bn(res.c[0]).multipliedBy("10e8").toNumber();
           web3.eth.sendTransaction({
             from: web3.eth.coinbase,
-            to: this.contractInfo.icoAddress,
+            to: this.contractInfo.currentIcoAddress,
             value: web3.toWei(bn(this.accountForm.invest).toFixed(10), "ether"),
             gas: 1000000,
             gasPrice: gasPrice

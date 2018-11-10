@@ -126,7 +126,7 @@
             });
           } else {
             this.$notify({
-              message: 'Email of password is empty',
+              message: 'Email or password is empty',
               type: 'warning',
               position: 'bottom-left'
             });

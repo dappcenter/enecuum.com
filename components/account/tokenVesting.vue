@@ -2,11 +2,37 @@
   <div class="authorize">
     <el-row class="flex-center">
       <el-col :xs="22" :sm="14" :md="14" :lg="14" :xl="14">
-        <h4 class="text-center title-bold text-uppercase title-middle mb vesting-wallet">Token vesting</h4>
-        <h3 class="text-center title-semibold mb13">{{vestingWallet}}</h3>
+        <h4 class="text-center title-bold text-uppercase title-middle mb vesting-wallet"><span>Token vesting</span>
+        </h4>
+        <el-row class="flex-center">
+          <el-col :xs="22" :sm="12" :md="10" :lg="10" :xl="4">
+            <h4 class="text-center title-under mb13">Select stage where you bought tokens</h4>
+          </el-col>
+        </el-row>
+        <el-row class="flex-center mb13">
+          <el-col :xs="20" :sm="8" :md="8" :lg="8" :xl="4">
+            <el-select v-model="icoAddress" size="small" placeholder="Select stage"
+                       v-loading="loadVestings">
+              <el-option
+                v-for="(addr, key) in icoAddressListReverse"
+                :key="key"
+                :label="'Stage '+ (key+1)"
+                :value="addr">
+              </el-option>
+            </el-select>
+          </el-col>
+        </el-row>
+        <el-row class="flex-center">
+          <h4 class="text-center title-under mb13">
+            <el-button type="default" size="small" @click.prevent="openVideo" v-if="false">How To
+              Receive Tokens <i class="fa fa-play-circle-o"></i>
+            </el-button>
+          </h4>
+        </el-row>
+        <h3 class="text-center title-semibold mb13" v-if="vesting">{{vestingWallet}}</h3>
       </el-col>
     </el-row>
-    <el-row class="vesting-table_wrapper">
+    <el-row class="vesting-table_wrapper" v-if="vesting">
       <el-col :xs="22" :sm="22" :md="22" :xl="10">
         <el-row class="vesting-table">
           <el-col :xs="22" :sm="10" :md="8" :lg="8" :xl="8" class="vesting-cell">
@@ -57,8 +83,17 @@
         <lineChart ref="linechart" :chartData="chartdata" :options="options" :height="250"></lineChart>
       </el-col>
     </el-row>
+    <el-row class="flex-center" v-else>
+      <div>
+        <el-alert
+          :title="'You did not buy tokens at this stage, use the form above to purchase or select another stage'"
+          type="info"
+          :closable="false">
+        </el-alert>
+      </div>
+    </el-row>
     <br>
-    <el-row class="flex-center">
+    <el-row class="flex-center" v-if="vesting">
       <el-button type="primary" class="neon" :disabled="!verified ? 'disabled' : null" @click="getTokens">Receive
         token
       </el-button>
@@ -75,7 +110,10 @@
     name: "token-vesting",
     data() {
       return {
+        loadVestings: false,
+        interval: null,
         currentVestingBalance: 0,
+        ia: 0,
         vestingWallet: '',
         vestingInfo: {
           startDate: '',
@@ -102,14 +140,35 @@
     props: {
       userInfo: Object,
       verified: Boolean,
+      vesting: Boolean,
       ico: Object,
       token: Object,
-      contractInfo: Object
+      contractInfo: Object,
+      icoAddressProp: String,
+      icoAddressList: Array,
+      changeVesting: Boolean
     },
     components: {
       lineChart
     },
     computed: {
+      icoAddressListReverse: {
+        get() {
+          return this.icoAddressList.reverse();
+        }
+      },
+      icoAddress: {
+        get() {
+          return this.icoAddressProp;
+        },
+        set(val) {
+          this.loadVestings = true;
+          setTimeout(() => {
+            this.loadVestings = false;
+          }, 4800);
+          this.$emit('changeStage', val);
+        }
+      },
       data() {
         return {}
       },
@@ -121,10 +180,14 @@
       }
     },
     methods: {
+      openVideo() {
+        this.$emit('openVideo', 'bRM4OBqsc2I', 'How To Receive Tokens');
+      },
       getTokens() {
-        this.vestingContract.release(this.contractInfo.tokenAddress, (err, res) => {
+        this.vestingContract.release(this.contractInfo.tokenAddress, {
+          from: this.userInfo.wallet
+        }, (err, res) => {
           if (!err) {
-            console.log(res);
           }
         });
       },
@@ -132,7 +195,9 @@
         return bn(releasable).plus(alreadyReleased).toString();
       },
       getReleased() {
-        this.vestingContract.released(this.contractInfo.tokenAddress, (err, res) => {
+        this.vestingContract.released(this.contractInfo.tokenAddress, {
+          from: this.userInfo.wallet
+        }, (err, res) => {
           if (!err) {
             this.vestingInfo.alreadyReleased = bn(res).dividedBy(1e10).toString();
           } else {
@@ -141,7 +206,9 @@
         });
       },
       getReleasableAmount() {
-        this.vestingContract.releasableAmount(this.contractInfo.tokenAddress, (err, res) => {
+        this.vestingContract.releasableAmount(this.contractInfo.tokenAddress, {
+          from: this.userInfo.wallet
+        }, (err, res) => {
           if (!err) {
             this.vestingInfo.releasable = bn(res).dividedBy(1e10).toString();
           } else {
@@ -150,7 +217,9 @@
         });
       },
       getVestingAmount() {
-        this.vestingContract.vestedAmount(this.contractInfo.tokenAddress, (err, res) => {
+        this.vestingContract.vestedAmount(this.contractInfo.tokenAddress, {
+          from: this.userInfo.wallet
+        }, (err, res) => {
           if (!err) {
             this.vestingInfo.alreadyVesting = bn(res).dividedBy(1e10).toString();
           } else {
@@ -158,9 +227,11 @@
           }
         });
       },
-      getVestingBalance() {
+      getVestingBalance(wallet = this.vestingWallet) {
         return new Promise(resolve => {
-          this.token.balanceOf(this.vestingWallet, (err, res) => {
+          this.token.balanceOf(this.vestingWallet, {
+            from: this.userInfo.wallet
+          }, (err, res) => {
             this.$emit('setVestingBalance', bn(res).dividedBy(1e10).toString());
             resolve(bn(res).dividedBy(1e10).toString());
             if (!err) {
@@ -168,54 +239,118 @@
             }
           });
         })
-      }
-    },
-    mounted() {
-      this.ico.getVestingWallet(this.userInfo.currentWallet, (err, res) => {
-        if (!err) {
-          this.vestingContract = web3.eth.contract(this.contractInfo.vestingAbi).at(res);
-          this.vestingWallet = res;
-
-          this.vestingContract.getStart((err, res) => {
-            if (!err) {
-              this.vestingInfo.startDate = moment(new Date(bn(res).toNumber() * 1000)).format('MMMM Do YYYY HH:mm');
-              this.vestingContract.getDuration((err, res) => {
-                if (!err) {
-                  this.vestingInfo.endDate = moment(this.vestingInfo.startDate, 'MMMM Do YYYY HH:mm').add(bn(res).toNumber(), 'seconds').format('MMMM Do YYYY HH:mm');
-                } else {
-                }
-              });
-              this.vestingContract.getCliff((err, res) => {
-                if (!err) {
-                  let date = moment(new Date(bn(res).toNumber() * 1000)).format('MMMM Do YYYY HH:mm');
-                  this.vestingInfo.cliffDate = date;
-                  this.chartdata.labels.push(this.vestingInfo.startDate);
-                  this.chartdata.datasets[0].data.push(0);
-                  this.chartdata.labels.push(this.vestingInfo.endDate);
-                  let balance = this.getVestingBalance();
-                  balance.then(res => {
-                    this.chartdata.datasets[0].data.push(bn(this.userInfo.balance).plus(bn(res)).toNumber());
-                    this.$refs.linechart.renderChart(this.chartdata, this.options);
-                  });
-                  //this.vestingInfo.alreadyVesting = bn(res).dividedBy(1e10).toString();
-                } else {
-                }
-              });
-            } else {
-            }
-          });
-          this.getReleased();
-          this.getReleasableAmount();
-          this.getVestingAmount();
-          this.getVestingBalance();
-          setInterval(() => {
+      },
+      vestingInit() {
+        clearInterval(this.interval);
+        console.log('vestingInit', this.chartdata.labels, this.chartdata.datasets[0].data);
+        this.chartdata.labels = [];
+        this.chartdata.datasets[0].data = [];
+        this.ico.getVestingWallet(this.userInfo.currentWallet, {
+          from: this.userInfo.wallet
+        }, (err, res) => {
+          if (!err) {
+            this.vestingContract = web3.eth.contract(this.contractInfo.vestingAbi).at(res);
+            this.vestingWallet = res;
+            this.vestingContract.getStart({
+              from: this.userInfo.wallet
+            }, (err, res) => {
+              if (!err) {
+                this.vestingInfo.startDate = moment(new Date(bn(res).toNumber() * 1000)).format('MMMM Do YYYY HH:mm');
+                this.vestingContract.getDuration((err, res) => {
+                  if (!err) {
+                    this.vestingInfo.endDate = moment(this.vestingInfo.startDate, 'MMMM Do YYYY HH:mm').add(bn(res).toNumber(), 'seconds').format('MMMM Do YYYY HH:mm');
+                  } else {
+                  }
+                });
+                this.vestingContract.getCliff({
+                  from: this.userInfo.wallet
+                }, (err, res) => {
+                  if (!err) {
+                    let date = moment(new Date(bn(res).toNumber() * 1000)).format('MMMM Do YYYY HH:mm');
+                    this.vestingInfo.cliffDate = date;
+                    console.log(this.vestingInfo);
+                    this.chartdata.labels.push(this.vestingInfo.startDate);
+                    this.chartdata.datasets[0].data.push(0);
+                    this.chartdata.labels.push(this.vestingInfo.endDate);
+                    let balance = this.getAllVestingBallances();
+                    balance.then(res => {
+                      this.chartdata.datasets[0].data.push(bn(this.userInfo.balance).plus(bn(res)).toNumber());
+                      this.$refs.linechart.renderChart(this.chartdata, this.options);
+                      this.loadVestings = false;
+                    });
+                    //this.vestingInfo.alreadyVesting = bn(res).dividedBy(1e10).toString();
+                  } else {
+                    this.loadVestings = false;
+                  }
+                });
+              } else {
+                this.loadVestings = false;
+              }
+            });
             this.getReleased();
             this.getReleasableAmount();
             this.getVestingAmount();
-            this.getVestingBalance();
-          }, 5000);
+            this.getAllVestingBallances();
+            //this.getVestingBalance();
+            this.interval = setInterval(() => {
+              this.getReleased();
+              this.getReleasableAmount();
+              this.getVestingAmount();
+              this.getAllVestingBallances();
+              //this.getVestingBalance();
+            }, 10000);
+          }
+        });
+      },
+      getAllVestingBallances({emit = false} = {}) {
+        return new Promise(rs => {
+          let contracts = this.icoAddressList;
+          let promisesContracts = contracts.map(addr => {
+            return new Promise(resolve => {
+              let icoContract = web3.eth.contract(this.contractInfo.icoAbi).at(addr);
+              icoContract.hasVestingWallet(this.userInfo.wallet, {
+                from: this.userInfo.wallet
+              }, (err, res) => {
+                setTimeout(() => {
+                  //console.log('has vesting: ', addr, res, err);
+                  if (!err && res === true) {
+                    icoContract.getVestingWallet(this.userInfo.currentWallet, {
+                      from: this.userInfo.wallet
+                    }, (err, vestingWallet) => {
+                      setTimeout(() => {
+                        this.token.balanceOf(vestingWallet, {
+                          from: this.userInfo.wallet
+                        }, (err, res) => {
+                          //console.log('vesting balance of: ', vestingWallet, bn(res).dividedBy(1e10).toString());
+                          resolve(bn(res).dividedBy(1e10).toString());
+                        });
+                      }, 1000);
+                    });
+                  } else {
+                    resolve("0");
+                  }
+                }, 1000)
+              });
+            })
+          });
+          Promise.all(promisesContracts).then(res => {
+            let total = res.reduce((sum, current) => {
+              return bn(current).plus(sum);
+            });
+            if (emit) this.$emit('setVestingBalance', total.toString());
+            rs(total.toString());
+          });
+        })
+      }
+    },
+    watch: {
+      'changeVesting': function () {
+        console.log('changeVesting');
+        this.getAllVestingBallances({emit: true});
+        if (this.vesting) {
+          this.vestingInit();
         }
-      });
+      }
     }
   }
 </script>
