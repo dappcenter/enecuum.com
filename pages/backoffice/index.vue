@@ -4,7 +4,7 @@
     <el-row class="flex-center">
       <el-col :xs="22" :sm="10" :md="12" :xl="10">
         <el-row :gutter="30" class="flex-center flex-wrap flex-column">
-          <h3 class="text-center title-semibold text-uppercase mb13">Your balance</h3>
+          <h3 class="text-center title-semibold text-uppercase mb13">Your total balance</h3>
           <h4 class="text-center title-bold title-middle mb13">ENQ
             <ICountUp
               :startVal="0"
