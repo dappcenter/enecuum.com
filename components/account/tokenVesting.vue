@@ -24,7 +24,7 @@
         </el-row>
         <el-row class="flex-center">
           <h4 class="text-center title-under mb13">
-            <el-button type="default" size="small" @click.prevent="openVideo" v-if="false">How To
+            <el-button type="default" size="small" @click.prevent="openVideo">How To
               Receive Tokens <i class="fa fa-play-circle-o"></i>
             </el-button>
           </h4>
@@ -154,7 +154,8 @@
     computed: {
       icoAddressListReverse: {
         get() {
-          return this.icoAddressList.reverse();
+          let data = this.icoAddressList.map(addr => addr);
+          return data.reverse();
         }
       },
       icoAddress: {
@@ -181,7 +182,7 @@
     },
     methods: {
       openVideo() {
-        this.$emit('openVideo', 'bRM4OBqsc2I', 'How To Receive Tokens');
+        this.$emit('openVideo', '9EfS3k7NPzg', 'How To Receive Tokens');
       },
       getTokens() {
         this.vestingContract.release(this.contractInfo.tokenAddress, {
@@ -305,33 +306,37 @@
       getAllVestingBallances({emit = false} = {}) {
         return new Promise(rs => {
           let contracts = this.icoAddressList;
-          let promisesContracts = contracts.map(addr => {
-            return new Promise(resolve => {
-              let icoContract = web3.eth.contract(this.contractInfo.icoAbi).at(addr);
-              icoContract.hasVestingWallet(this.userInfo.wallet, {
-                from: this.userInfo.wallet
-              }, (err, res) => {
-                setTimeout(() => {
-                  //console.log('has vesting: ', addr, res, err);
-                  if (!err && res === true) {
-                    icoContract.getVestingWallet(this.userInfo.currentWallet, {
-                      from: this.userInfo.wallet
-                    }, (err, vestingWallet) => {
-                      setTimeout(() => {
-                        this.token.balanceOf(vestingWallet, {
-                          from: this.userInfo.wallet
-                        }, (err, res) => {
-                          //console.log('vesting balance of: ', vestingWallet, bn(res).dividedBy(1e10).toString());
-                          resolve(bn(res).dividedBy(1e10).toString());
-                        });
-                      }, 1000);
-                    });
-                  } else {
-                    resolve("0");
-                  }
-                }, 1000)
+          let promisesContracts = contracts.map((addr, index) => {
+            setTimeout(() => {
+
+              return new Promise(resolve => {
+                let icoContract = web3.eth.contract(this.contractInfo.icoAbi).at(addr);
+                icoContract.hasVestingWallet(this.userInfo.wallet, {
+                  from: this.userInfo.wallet
+                }, (err, res) => {
+                  setTimeout(() => {
+                    console.log('has vesting: ', addr, res, err);
+                    if (!err && res === true) {
+                      icoContract.getVestingWallet(this.userInfo.currentWallet, {
+                        from: this.userInfo.wallet
+                      }, (err, vestingWallet) => {
+                        setTimeout(() => {
+                          this.token.balanceOf(vestingWallet, {
+                            from: this.userInfo.wallet
+                          }, (err, res) => {
+                            console.log('vesting balance of: ', vestingWallet, res);
+                            console.log(bn(res).dividedBy(1e10).toString());
+                            resolve(bn(res).dividedBy(1e10).toString());
+                          });
+                        }, (index + 1) * 1000);
+                      });
+                    } else {
+                      resolve("0");
+                    }
+                  }, (index + 1) * 1000)
+                });
               });
-            })
+            }, (index + 1) * 1000)
           });
           Promise.all(promisesContracts).then(res => {
             let total = res.reduce((sum, current) => {
