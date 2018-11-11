@@ -292,13 +292,11 @@
             this.getReleasableAmount();
             this.getVestingAmount();
             this.getAllVestingBallances();
-            //this.getVestingBalance();
             this.interval = setInterval(() => {
               this.getReleased();
               this.getReleasableAmount();
               this.getVestingAmount();
               this.getAllVestingBallances();
-              //this.getVestingBalance();
             }, 10000);
           }
         });
@@ -308,14 +306,13 @@
           let contracts = this.icoAddressList;
           let promisesContracts = contracts.map((addr, index) => {
             setTimeout(() => {
-
               return new Promise(resolve => {
                 let icoContract = web3.eth.contract(this.contractInfo.icoAbi).at(addr);
                 icoContract.hasVestingWallet(this.userInfo.wallet, {
                   from: this.userInfo.wallet
                 }, (err, res) => {
                   setTimeout(() => {
-                    console.log('has vesting: ', addr, res, err);
+                    //console.log('has vesting: ', addr, res, err);
                     if (!err && res === true) {
                       icoContract.getVestingWallet(this.userInfo.currentWallet, {
                         from: this.userInfo.wallet
@@ -325,18 +322,18 @@
                             from: this.userInfo.wallet
                           }, (err, res) => {
                             console.log('vesting balance of: ', vestingWallet, res);
-                            console.log(bn(res).dividedBy(1e10).toString());
+                            //console.log(bn(res).dividedBy(1e10).toString());
                             resolve(bn(res).dividedBy(1e10).toString());
                           });
-                        }, (index + 1) * 1000);
+                        }, 1000);
                       });
                     } else {
                       resolve("0");
                     }
-                  }, (index + 1) * 1000)
+                  }, 1000)
                 });
               });
-            }, (index + 1) * 1000)
+            }, 1000)
           });
           Promise.all(promisesContracts).then(res => {
             let total = res.reduce((sum, current) => {
@@ -350,7 +347,6 @@
     },
     watch: {
       'changeVesting': function () {
-        console.log('changeVesting');
         this.getAllVestingBallances({emit: true});
         if (this.vesting) {
           this.vestingInit();
