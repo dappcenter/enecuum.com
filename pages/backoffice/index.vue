@@ -244,7 +244,9 @@
           from: this.userInfo.wallet
         }, (err, res) => {
           if (!err) {
-            this.changeStage = !this.changeStage;
+            if (res) {
+              this.changeStage = !this.changeStage;
+            }
             this.vesting = res;
           }
         });
