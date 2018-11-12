@@ -146,7 +146,8 @@
       contractInfo: Object,
       icoAddressProp: String,
       icoAddressList: Array,
-      changeVesting: Boolean
+      changeVesting: Boolean,
+      changeStage: Boolean
     },
     components: {
       lineChart
@@ -154,8 +155,8 @@
     computed: {
       icoAddressListReverse: {
         get() {
-          let data = this.icoAddressList.map(addr => addr);
-          return data.reverse();
+          let addresses = this.icoAddressList.map(addr => addr);
+          return addresses.reverse();
         }
       },
       icoAddress: {
@@ -349,6 +350,9 @@
         if (this.vesting) {
           this.vestingInit();
         }
+      },
+      'changeStage': function () {
+        this.vestingInit();
       }
     }
   }
