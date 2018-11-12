@@ -275,6 +275,7 @@
               this.web3info.loaded = true;
               this.icoContract.hasRole(this.userInfo.wallet, 'whitelist', (err, res) => {
                 if (!err) {
+                  console.log('hey from whitelist', this.userInfo.wallet, res);
                   this.whitelisted = res;
                   this.verified = res;
                   if (res) {
