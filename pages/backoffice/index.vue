@@ -108,6 +108,7 @@
                   :verified="verified"
                   :vesting="vesting"
                   :changeVesting="changeVesting"
+                  :changeStage="changeStage"
                   @openVideo="openVideo" @setVestingBalance="setVestingBalance"></tokenVesting>
     <el-row class="flex-center mb40">
       <el-col :xs="22" :sm="16" :md="16" :lg="14" :xl="14">
@@ -134,6 +135,7 @@
     data() {
       return {
         interval: null,
+        changeStage: false,
         changeVesting: false,
         icoAddressList: [],
         videoVisible: false,
@@ -205,9 +207,9 @@
         this.icoContract.hasVestingWallet(this.userInfo.wallet, {
           from: this.userInfo.wallet
         }, (err, res) => {
+          console.log('other vesting wallet');
           if (!res) {
             setTimeout(() => {
-              console.log('has vestingWallet settimeout');
               this.hasVestingWallet();
             }, 5000);
           }
@@ -235,13 +237,14 @@
         //this.$refs.counter.update(this.userInfo.balance);
       },
       selectStage(addr) {
-        console.log('SELECT STAGE: ', addr);
         this.contractInfo.icoAddress = addr;
         this.icoContract = web3.eth.contract(this.contractInfo.icoAbi).at(addr);
+        console.log(this.userInfo.wallet);
         this.icoContract.hasVestingWallet(this.userInfo.wallet, {
           from: this.userInfo.wallet
         }, (err, res) => {
           if (!err) {
+            this.changeStage = !this.changeStage;
             this.vesting = res;
           }
         });
