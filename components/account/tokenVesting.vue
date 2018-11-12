@@ -234,7 +234,6 @@
           this.token.balanceOf(this.vestingWallet, {
             from: this.userInfo.wallet
           }, (err, res) => {
-            this.$emit('setVestingBalance', bn(res).dividedBy(1e10).toString());
             resolve(bn(res).dividedBy(1e10).toString());
             if (!err) {
               resolve('error');
@@ -242,10 +241,9 @@
           });
         })
       },
-      vestingInit() {
+      vestingInit(once) {
         clearInterval(this.interval);
         console.log('vestingInit', this.chartdata.labels, this.chartdata.datasets[0].data);
-        this.chartdata.labels = [];
         this.chartdata.datasets[0].data = [];
         this.ico.getVestingWallet(this.userInfo.currentWallet, {
           from: this.userInfo.wallet
@@ -271,15 +269,24 @@
                     let date = moment(new Date(bn(res).toNumber() * 1000)).format('MMMM Do YYYY HH:mm');
                     this.vestingInfo.cliffDate = date;
                     console.log(this.vestingInfo);
-                    this.chartdata.labels.push(this.vestingInfo.startDate);
-                    this.chartdata.datasets[0].data.push(0);
-                    this.chartdata.labels.push(this.vestingInfo.endDate);
-                    let balance = this.getAllVestingBallances();
-                    balance.then(res => {
-                      this.chartdata.datasets[0].data.push(bn(this.userInfo.balance).plus(bn(res)).toNumber());
-                      this.$refs.linechart.renderChart(this.chartdata, this.options);
+                    this.chartdata.labels = [this.vestingInfo.startDate, this.vestingInfo.endDate];
+                    this.chartdata.datasets[0].data[0] = 0;
+                    if (!once) {
+                      this.getAllVestingBallances();
                       this.loadVestings = false;
-                    });
+                      /*                      balance.then(res => {
+                                              this.chartdata.datasets[0].data.push(bn(this.userInfo.balance).plus(bn(res)).toNumber());
+                                              this.$refs.linechart.renderChart(this.chartdata, this.options);
+                                              this.loadVestings = false;
+                                            });*/
+                    } else {
+                      let balance = this.getVestingBalance();
+                      balance.then(res => {
+                        this.chartdata.datasets[0].data[1] = (bn(res).toNumber());
+                        this.$refs.linechart.renderChart(this.chartdata, this.options);
+                        this.loadVestings = false;
+                      });
+                    }
                     //this.vestingInfo.alreadyVesting = bn(res).dividedBy(1e10).toString();
                   } else {
                     this.loadVestings = false;
@@ -321,7 +328,7 @@
                         this.token.balanceOf(vestingWallet, {
                           from: this.userInfo.wallet
                         }, (err, res) => {
-                          console.log('vesting balance of: ', vestingWallet, res);
+                          //console.log('vesting balance of: ', vestingWallet, res);
                           //console.log(bn(res).dividedBy(1e10).toString());
                           resolve(bn(res).dividedBy(1e10).toString());
                         });
@@ -352,8 +359,13 @@
         }
       },
       'changeStage': function () {
-        this.vestingInit();
+        this.vestingInit(true);
       }
+    },
+    mounted() {
+      setTimeout(() => {
+        this.vestingInit(true);
+      }, 1400);
     }
   }
 </script>

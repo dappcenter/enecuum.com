@@ -118,7 +118,6 @@
       },
       ethInput(e) {
         let input = bn(e.srcElement.value).multipliedBy(1e18).toString();
-        console.log(input);
         if (input) {
           this.ico.getTokenAmount(input, (err, res) => {
             if (!err) {
@@ -132,8 +131,7 @@
         if (input) {
           this.ico.getWeiAmount(parseInt(input), (err, res) => {
             if (!err) {
-              console.log(res);
-              this.accountForm.invest = bn(res).dividedBy(1e10).toString();
+              this.accountForm.invest = bn(res).dividedBy(1e8).toString();
             }
           });
         }
